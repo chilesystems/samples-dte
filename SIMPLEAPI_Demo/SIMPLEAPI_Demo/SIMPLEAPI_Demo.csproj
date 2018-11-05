@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SIMPLE_API">
+      <HintPath>..\..\..\..\..\..\Desktop\API\Confused\SIMPLE_API.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,16 +49,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="GenerarBoletaElectronica.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="GenerarBoletaElectronica.Designer.cs">
+      <DependentUpon>GenerarBoletaElectronica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Handler.cs" />
+    <Compile Include="IngresarTimbraje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IngresarTimbraje.Designer.cs">
+      <DependentUpon>IngresarTimbraje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemBoleta.cs" />
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MuestraTimbre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MuestraTimbre.Designer.cs">
+      <DependentUpon>MuestraTimbre.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="GenerarBoletaElectronica.resx">
+      <DependentUpon>GenerarBoletaElectronica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IngresarTimbraje.resx">
+      <DependentUpon>IngresarTimbraje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MuestraTimbre.resx">
+      <DependentUpon>MuestraTimbre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -65,6 +97,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -78,6 +111,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guardar_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\View.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
