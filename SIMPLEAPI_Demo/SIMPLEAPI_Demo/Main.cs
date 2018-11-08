@@ -73,7 +73,7 @@ namespace SIMPLEAPI_Demo
             //var EnvioCliente = GenerarEnvioCliente(dte, xml);
 
             /*Puede ser el EnvioSII o EnvioCliente, pues es el mismo tipo de objeto*/
-            var filePath = EnvioSII.Firmar(handler.nombreCertificado, handler.serialKEY);
+            var filePath = EnvioSII.Firmar(handler.nombreCertificado, handler.serialKEY, true);
             handler.Validate(filePath, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);
             MessageBox.Show("Envío generado exitosamente en " + filePath);
         }
@@ -345,8 +345,15 @@ namespace SIMPLEAPI_Demo
                 xmlDtes.Add(xml);
             }
             var EnvioSII = handler.GenerarEnvioBoletaDTEToSII(dtes, xmlDtes);
-            var filePath = EnvioSII.Firmar(handler.nombreCertificado, handler.serialKEY);
-            handler.Validate(filePath, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioBoleta);
+            var filePath = EnvioSII.Firmar(handler.nombreCertificado, handler.serialKEY, true);
+            try
+            {
+                handler.Validate(filePath, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioBoleta);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             MessageBox.Show("Envío generado exitosamente en " + filePath);
         }
         #endregion
@@ -399,3 +406,4 @@ namespace SIMPLEAPI_Demo
         #endregion  
     }
 }
+

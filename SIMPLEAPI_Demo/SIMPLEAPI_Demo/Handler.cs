@@ -21,7 +21,7 @@ namespace SIMPLEAPI_Demo
 
         public string serialKEY = "9292-A960-6367-9030-8947";
 
-        public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
+        public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica;
 
         public bool usaReferencia = false;
 
@@ -196,12 +196,23 @@ namespace SIMPLEAPI_Demo
                 EnsureExists
                 ((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE,
                 dte.Documento.Encabezado.IdentificacionDTE.Folio,
-                pathCaf), serialKEY, out messageOut);
+                pathCaf), pathResult, serialKEY, out messageOut);
             /*Finalmente, el documento timbrado debe firmarse con el certificado digital*/
             /*Se debe entregar en el argumento del método Firmar, el "FriendlyName" o Nombre descriptivo del certificado*/
             /*Retorna el filePath donde estará el archivo XML timbrado y firmado, listo para ser enviado al SII*/
             return dte.Firmar(nombreCertificado, serialKEY, "out\\temp\\");
         }
+
+        //public bool ValidateEnvio(string filePath, ChileSystems.DTE.Security.Firma.Firma.TipoXML tipo)
+        //{
+        //    string messageResult = string.Empty;
+        //    if (ChileSystems.DTE.Engine.XML.XmlHandler.ValidateWithSchema(filePath, out messageResult, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE))
+        //        if (ChileSystems.DTE.Security.Firma.Firma.VerificarFirma(filePath, tipo))
+        //            return true;
+        //        else
+        //            throw new Exception("NO SE HA PODIDO VERIFICAR LA FIRMA DEL ENVÍO");
+        //    throw new Exception(messageResult);
+        //}
 
         public bool Validate(string filePath, SIMPLE_API.Security.Firma.Firma.TipoXML tipo, string schema)
         {
@@ -251,7 +262,11 @@ namespace SIMPLEAPI_Demo
             foreach (var a in dtes)
                 EnvioSII.SetDTE.DTEs.Add(a);
             foreach (var a in xmlDtes)
+            {
                 EnvioSII.SetDTE.dteXmls.Add(a);
+                EnvioSII.SetDTE.signedXmls.Add(a);
+            }
+
 
             EnvioSII.SetDTE.Caratula = new ChileSystems.DTE.Engine.Envio.Caratula();
             EnvioSII.SetDTE.Caratula.FechaEnvio = DateTime.Now;
@@ -400,7 +415,10 @@ namespace SIMPLEAPI_Demo
             foreach (var a in dtes)
                 EnvioSII.SetDTE.DTEs.Add(a);
             foreach (var a in xmlDtes)
+            {
                 EnvioSII.SetDTE.dteXmls.Add(a);
+                EnvioSII.SetDTE.signedXmls.Add(a);
+            }
 
             EnvioSII.SetDTE.Caratula = new ChileSystems.DTE.Engine.Envio.Caratula();
             EnvioSII.SetDTE.Caratula.FechaEnvio = DateTime.Now;
