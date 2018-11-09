@@ -6,11 +6,30 @@ SAMPLES-DTE es una solución Visual Studio, que pretende ejemplificar, la mayor 
 
 ## Comenzando 🚀
 
-Dentro de la carpeta donde correrá el proyecto (Debug o Release según corresponda en el caso del entorno de VS), debes tener la siguiente estructura de carpetas:
+Para utilizar *SIMPLE SDK*, es necesario contar con un código de activación tipo Serial Key. La que viene incluída en el archivo Handler.cs, tiene una duración limitada y cuenta con un tope de 100 documentos.
+
+Más información en [www.chilesystems.com](http://www.chilesystems.com) o solicitandola a contacto@chilesystems.com
+
+### Pre-requisitos 📋
+
+```
+.NET Framework 4.6
+```
+### Instalación 🔧
+
+1. Dentro de la carpeta donde correrá el proyecto (Debug o Release según corresponda en el caso del entorno de VS), debes tener la siguiente estructura de carpetas:
 
 * out
+
+Dentro de *out* las carpetas
  * caf
  * temp
 
+En la carpeta _temp_ se guardarán los archivos XML. En la carpeta _caf_ los códigos de autorización de folios que entrega el SII. *Estas rutas son alternativas*.
 
-  
+2. Debes agregar la referencia a SIMPLE_SDK a tu proyecto.
+
+
+
+
+
