@@ -1,11 +1,9 @@
 # SAMPLES DTE
 
-SAMPLES-DTE es una solución Visual Studio, que pretende ejemplificar, la mayor cantidad de las operaciones disponibles en [SIMPLE SDK](http://www.chilesystems.com)
+SAMPLES-DTE es una solución Visual Studio, que pretende ejemplificar, la mayor cantidad de las operaciones disponibles en [SIMPLE SDK](http://www.chilesystems.com/Productos). Estos utilitario, muestra cómo operar todos los pasos que se componen en la emisión de los documentos (DTE) y otros varios, como el IECV, Libro de boletas, RCOF, entre otros.
 
-contiene una serie de utilitarios que sirv de ejemplo que muestra todos los procesos involucrados con SIMPLE API para la emisión de documentos tributarios electrónicos en Chile.
+[SIMPLE SDK](http://www.chilesystems.com/Productos) viene con la conexión incorporada al SII para el envío de los documentos.
+
 
 ## Comenzando 🚀
 
-
-
-Mira **Deployment** para conocer como desplegar el proyecto.
