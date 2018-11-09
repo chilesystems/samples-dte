@@ -21,15 +21,20 @@ Más información en [www.chilesystems.com](http://www.chilesystems.com) o solic
 
 * out
 
-Dentro de *out* las carpetas
+Dentro de **out** las carpetas
  * caf
  * temp
 
-En la carpeta _temp_ se guardarán los archivos XML. En la carpeta _caf_ los códigos de autorización de folios que entrega el SII. *Estas rutas son alternativas*.
+En la carpeta _temp_ se guardarán los archivos XML. En la carpeta _caf_ los códigos de autorización de folios que entrega el SII. **Estas rutas son alternativas**.
 
 2. Debes agregar la referencia a SIMPLE_SDK a tu proyecto.
 
+### Apoyo externo 🔩
 
+En 3 videos distintos, se muestra cómo utilizar este mismo proyecto (el de los videos es un poco más antiguo, pero las variaciones son mínimas).
 
+[Simulación y generación de Timbre impreso con API Simple](https://www.youtube.com/watch?v=ZLRxZ58b-w4)
+[Generación y envío de documentos al SII Chile con Simple API](https://www.youtube.com/watch?v=q20kf8eke50)
+[Certificación de boletas electrónicas con Simple API](https://www.youtube.com/watch?v=gq5mBIAyf6o)
 
 
