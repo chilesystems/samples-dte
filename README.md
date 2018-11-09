@@ -4,6 +4,12 @@ SAMPLES-DTE es una solución Visual Studio, que pretende ejemplificar, la mayor 
 
 [SIMPLE SDK](http://www.chilesystems.com/Productos) viene con la conexión incorporada al SII para el envío de los documentos.
 
-
 ## Comenzando 🚀
 
+Dentro de tu carpeta Debug o Release según corresponda, debes tener la siguiente estructura de carpetas:
+
+* out
+  *caf
+  *temp
+
+  
