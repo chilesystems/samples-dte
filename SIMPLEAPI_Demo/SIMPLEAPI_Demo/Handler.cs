@@ -19,9 +19,9 @@ namespace SIMPLEAPI_Demo
         public string rutCertificado = "1111111-1";
         public string nombreCertificado = "GONZALO ANDRES";
 
-        public string serialKEY = "9292-A960-6367-9030-8947";
+        public string serialKEY = "2937-A650-6365-2016-7034"; //Valida hasta el 30 de enero de 2019
 
-        public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica;
+        public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
 
         public bool usaReferencia = false;
 
