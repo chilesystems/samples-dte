@@ -24,7 +24,15 @@ namespace SIMPLEAPI_Demo
             string pathFile = openFileDialog1.FileName;
             string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
             var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
-            pictureBoxTimbre.Image = dte.Documento.TimbrePDF417;
+
+            /* El método TimbrePDF417 recibe como argumento una ruta para la generación de archivos temporales
+             * Si no se entrega argumento, asume out\temp
+             * Si se entrega un argumento vacío, asume la ruta del directorio actual donde vive la app
+             * Si se entrega un string, toma esa ruta. 
+             * Cabe señalar que los archivos temporales generados son elimiados automáticamente.
+             */
+
+            pictureBoxTimbre.Image = dte.Documento.TimbrePDF417();
         }
     }
 }

@@ -200,7 +200,7 @@ namespace SIMPLEAPI_Demo
             /*Finalmente, el documento timbrado debe firmarse con el certificado digital*/
             /*Se debe entregar en el argumento del método Firmar, el "FriendlyName" o Nombre descriptivo del certificado*/
             /*Retorna el filePath donde estará el archivo XML timbrado y firmado, listo para ser enviado al SII*/
-            return dte.Firmar(nombreCertificado, serialKEY, "out\\temp\\");
+            return dte.Firmar(nombreCertificado, serialKEY, out messageOut, "out\\temp\\");
         }
 
         //public bool ValidateEnvio(string filePath, ChileSystems.DTE.Security.Firma.Firma.TipoXML tipo)
