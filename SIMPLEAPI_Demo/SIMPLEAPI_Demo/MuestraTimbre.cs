@@ -31,8 +31,8 @@ namespace SIMPLEAPI_Demo
              * Si se entrega un string, toma esa ruta. 
              * Cabe señalar que los archivos temporales generados son elimiados automáticamente.
              */
-
-            pictureBoxTimbre.Image = dte.Documento.TimbrePDF417();
+            string outMessage = "";
+            pictureBoxTimbre.Image = dte.Documento.TimbrePDF417(out outMessage);
         }
     }
 }

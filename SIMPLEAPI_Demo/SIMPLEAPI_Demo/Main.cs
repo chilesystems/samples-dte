@@ -403,7 +403,12 @@ namespace SIMPLEAPI_Demo
             MessageBox.Show("Documento generado exitosamente en " + path);
         }
 
-        #endregion  
+        #endregion
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
