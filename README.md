@@ -27,7 +27,7 @@ Dentro de **out** las carpetas
 
 En la carpeta _temp_ se guardarán los archivos XML. En la carpeta _caf_ los códigos de autorización de folios que entrega el SII. **Estas rutas son alternativas**.
 
-2. Debes agregar la referencia a SIMPLE_SDK a tu proyecto.
+2. Debes agregar la referencia a [SIMPLE SDK](http://www.chilesystems.com/SDK/SIMPLE_SDK.dll) a tu proyecto.
 
 ### Apoyo externo 🔩
 
