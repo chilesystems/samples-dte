@@ -42,7 +42,7 @@ namespace SIMPLEAPI_Demo
 
             var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
 
-            handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+            handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             MessageBox.Show("Documento generado exitosamente en " + path);
         }
 
@@ -74,7 +74,7 @@ namespace SIMPLEAPI_Demo
 
             /*Puede ser el EnvioSII o EnvioCliente, pues es el mismo tipo de objeto*/
             var filePath = EnvioSII.Firmar(handler.nombreCertificado, handler.serialKEY, true);
-            handler.Validate(filePath, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);
+            handler.Validate(filePath, SIMPLE_SDK.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);
             MessageBox.Show("Envío generado exitosamente en " + filePath);
         }
 
@@ -271,7 +271,7 @@ namespace SIMPLEAPI_Demo
             });
 
             var path = handler.TimbrarYFirmarXMLDTE(dteNC, "out\\temp\\", "out\\caf\\");
-            handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+            handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
 
             MessageBox.Show("Nota de crédito generada exitosamente en " + path);
         }
@@ -325,7 +325,7 @@ namespace SIMPLEAPI_Demo
             });
 
             var path = handler.TimbrarYFirmarXMLDTE(dteNC, "out\\temp\\", "out\\caf\\");
-            handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+            handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
 
             MessageBox.Show("Nota de crédito generada exitosamente en " + path);
         }
@@ -348,7 +348,7 @@ namespace SIMPLEAPI_Demo
             var filePath = EnvioSII.Firmar(handler.nombreCertificado, handler.serialKEY, true);
             try
             {
-                handler.Validate(filePath, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioBoleta);
+                handler.Validate(filePath, SIMPLE_SDK.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioBoleta);
             }
             catch (Exception ex)
             {

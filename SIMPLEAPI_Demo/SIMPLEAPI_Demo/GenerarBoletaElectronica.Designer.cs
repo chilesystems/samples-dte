@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GenerarBoletaElectronica));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.numericFolio = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.botonGenerar = new System.Windows.Forms.Button();
@@ -69,7 +69,7 @@
             // 
             this.numericFolio.Location = new System.Drawing.Point(196, 9);
             this.numericFolio.Maximum = new decimal(new int[] {
-            15,
+            5000,
             0,
             0,
             0});
@@ -268,8 +268,8 @@
             // gridCantidadProducto
             // 
             this.gridCantidadProducto.DataPropertyName = "Cantidad";
-            dataGridViewCellStyle7.Format = "N1";
-            this.gridCantidadProducto.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Format = "N1";
+            this.gridCantidadProducto.DefaultCellStyle = dataGridViewCellStyle1;
             this.gridCantidadProducto.HeaderText = "Cantidad";
             this.gridCantidadProducto.Name = "gridCantidadProducto";
             this.gridCantidadProducto.ReadOnly = true;
@@ -278,8 +278,8 @@
             // gridPrecio
             // 
             this.gridPrecio.DataPropertyName = "Precio";
-            dataGridViewCellStyle8.Format = "N0";
-            this.gridPrecio.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Format = "N0";
+            this.gridPrecio.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridPrecio.HeaderText = "Precio";
             this.gridPrecio.Name = "gridPrecio";
             this.gridPrecio.ReadOnly = true;
@@ -288,8 +288,8 @@
             // gridTotal
             // 
             this.gridTotal.DataPropertyName = "Total";
-            dataGridViewCellStyle9.Format = "N0";
-            this.gridTotal.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Format = "N0";
+            this.gridTotal.DefaultCellStyle = dataGridViewCellStyle3;
             this.gridTotal.HeaderText = "Total";
             this.gridTotal.Name = "gridTotal";
             this.gridTotal.ReadOnly = true;

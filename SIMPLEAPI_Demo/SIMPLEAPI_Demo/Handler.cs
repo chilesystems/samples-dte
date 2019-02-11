@@ -17,11 +17,11 @@ namespace SIMPLEAPI_Demo
         public string idDte;
         public string rutEmpresa = "11111111-1";
         public string rutCertificado = "1111111-1";
-        public string nombreCertificado = "GONZALO ANDRES";
+        public string nombreCertificado = "Carlos Cerda Zuniga";
 
-        public string serialKEY = "5322-A570-6368-3449-4065"; //Valida hasta el 09 de febrero de 2019
+        public string serialKEY = "7022-A610-6371-7031-9513"; //Valida hasta el 11 de febrero de 2020
 
-        public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
+        public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica;
 
         public bool usaReferencia = false;
 
@@ -214,11 +214,11 @@ namespace SIMPLEAPI_Demo
         //    throw new Exception(messageResult);
         //}
 
-        public bool Validate(string filePath, SIMPLE_API.Security.Firma.Firma.TipoXML tipo, string schema)
+        public bool Validate(string filePath, SIMPLE_SDK.Security.Firma.Firma.TipoXML tipo, string schema)
         {
             string messageResult = string.Empty;
             if (ChileSystems.DTE.Engine.XML.XmlHandler.ValidateWithSchema(filePath, out messageResult, schema))
-                if (SIMPLE_API.Security.Firma.Firma.VerificarFirma(filePath, tipo))
+                if (SIMPLE_SDK.Security.Firma.Firma.VerificarFirma(filePath, tipo))
                     return true;
                 else
                     throw new Exception("NO SE HA PODIDO VERIFICAR LA FIRMA DEL ENVÍO");
