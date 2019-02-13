@@ -17,7 +17,7 @@ namespace SIMPLEAPI_Demo
         public string idDte;
         public string rutEmpresa = "11111111-1";
         public string rutCertificado = "1111111-1";
-        public string nombreCertificado = "Carlos Cerda Zuniga";
+        public string nombreCertificado = "NombreCertificado";
 
         public string serialKEY = "7022-A610-6371-7031-9513"; //Valida hasta el 11 de febrero de 2020
 
