@@ -41,6 +41,10 @@ namespace SIMPLEAPI_Demo
             dte.Documento.Encabezado.IdentificacionDTE.TipoDTE = tipoDTE;
             dte.Documento.Encabezado.IdentificacionDTE.FechaEmision = DateTime.Now;
             dte.Documento.Encabezado.IdentificacionDTE.Folio = Folio;
+            //Para boletas electrónicas
+            if(tipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica)
+                dte.Documento.Encabezado.IdentificacionDTE.IndicadorServicio = ChileSystems.DTE.Engine.Enum.IndicadorServicio.IndicadorServicioEnum.BoletaVentasYServicios;
+
 
             //DOCUMENTO - ENCABEZADO - EMISOR - CAMPOS OBLIGATORIOS          
             dte.Documento.Encabezado.Emisor.Rut = rutEmpresa;
