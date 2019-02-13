@@ -20,6 +20,7 @@ Más información en [www.chilesystems.com](http://www.chilesystems.com) o solic
 1. Dentro de la carpeta donde correrá el proyecto (Debug o Release según corresponda en el caso del entorno de VS), debes tener la siguiente estructura de carpetas:
 
 * out
+* XML (El contenido de esta carpeta, lo puedes descargar desde [aquí](http://www.chilesystems.com/SDK/XML.rar) 
 
 Dentro de **out** las carpetas
  * caf
