@@ -36,7 +36,7 @@
             // 
             // botonCargarDTE
             // 
-            this.botonCargarDTE.Location = new System.Drawing.Point(270, 12);
+            this.botonCargarDTE.Location = new System.Drawing.Point(506, 12);
             this.botonCargarDTE.Name = "botonCargarDTE";
             this.botonCargarDTE.Size = new System.Drawing.Size(75, 23);
             this.botonCargarDTE.TabIndex = 3;
@@ -48,7 +48,7 @@
             // 
             this.pictureBoxTimbre.Location = new System.Drawing.Point(14, 41);
             this.pictureBoxTimbre.Name = "pictureBoxTimbre";
-            this.pictureBoxTimbre.Size = new System.Drawing.Size(331, 125);
+            this.pictureBoxTimbre.Size = new System.Drawing.Size(567, 253);
             this.pictureBoxTimbre.TabIndex = 2;
             this.pictureBoxTimbre.TabStop = false;
             // 
@@ -60,7 +60,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(352, 175);
+            this.ClientSize = new System.Drawing.Size(593, 303);
             this.Controls.Add(this.botonCargarDTE);
             this.Controls.Add(this.pictureBoxTimbre);
             this.MaximizeBox = false;

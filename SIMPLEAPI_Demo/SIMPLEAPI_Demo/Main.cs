@@ -409,6 +409,12 @@ namespace SIMPLEAPI_Demo
         {
 
         }
+
+        private void botonValidador_Click(object sender, EventArgs e)
+        {
+            Validador formulario = new Validador();
+            formulario.ShowDialog();
+        }
     }
 }
 

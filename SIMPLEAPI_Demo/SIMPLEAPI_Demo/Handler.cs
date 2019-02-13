@@ -218,7 +218,7 @@ namespace SIMPLEAPI_Demo
         {
             string messageResult = string.Empty;
             if (ChileSystems.DTE.Engine.XML.XmlHandler.ValidateWithSchema(filePath, out messageResult, schema))
-                if (SIMPLE_SDK.Security.Firma.Firma.VerificarFirma(filePath, tipo))
+                if (SIMPLE_SDK.Security.Firma.Firma.VerificarFirma(filePath, tipo, out string messageOutFirma))
                     return true;
                 else
                     throw new Exception("NO SE HA PODIDO VERIFICAR LA FIRMA DEL ENVÍO");
