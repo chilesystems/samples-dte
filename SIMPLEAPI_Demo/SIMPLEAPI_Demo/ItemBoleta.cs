@@ -14,5 +14,6 @@ namespace SIMPLEAPI_Demo
         public int Total { get { return (int)Math.Round(Cantidad * Precio, 0); } }
         public bool Afecto { get; set; }
         public string UnidadMedida { get; set; }
+        public int Descuento { get; set; }
     }
 }

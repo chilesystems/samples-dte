@@ -53,7 +53,7 @@ namespace SIMPLEAPI_Demo
                     else if (tipo == "ENVIOBOLETA")
                     {
                         tipoSchema = ChileSystems.DTE.Engine.XML.Schemas.EnvioBoleta;
-                        tipoFirma = SIMPLE_SDK.Security.Firma.Firma.TipoXML.Envio;
+                        tipoFirma = SIMPLE_SDK.Security.Firma.Firma.TipoXML.EnvioBoleta;
                     }
                     else if (tipo == "IECV")
                     {

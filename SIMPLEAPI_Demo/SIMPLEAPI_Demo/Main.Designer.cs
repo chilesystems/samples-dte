@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.botonValidador = new System.Windows.Forms.Button();
             this.botonMuestraImpresa = new System.Windows.Forms.Button();
             this.botonAceptacion = new System.Windows.Forms.Button();
             this.botonSimulacion = new System.Windows.Forms.Button();
@@ -49,7 +50,7 @@
             this.botonGenerarDocumento = new System.Windows.Forms.Button();
             this.botonIngresarTimbraje = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.botonValidador = new System.Windows.Forms.Button();
+            this.botonSetPruebas = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -57,6 +58,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.botonSetPruebas);
             this.groupBox5.Controls.Add(this.botonValidador);
             this.groupBox5.Controls.Add(this.botonMuestraImpresa);
             this.groupBox5.Controls.Add(this.botonAceptacion);
@@ -64,10 +66,20 @@
             this.groupBox5.Controls.Add(this.botonConsultarEstadoDTE);
             this.groupBox5.Location = new System.Drawing.Point(350, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(163, 165);
+            this.groupBox5.Size = new System.Drawing.Size(163, 197);
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Utilidades";
+            // 
+            // botonValidador
+            // 
+            this.botonValidador.Location = new System.Drawing.Point(6, 135);
+            this.botonValidador.Name = "botonValidador";
+            this.botonValidador.Size = new System.Drawing.Size(151, 23);
+            this.botonValidador.TabIndex = 17;
+            this.botonValidador.Text = "Validador";
+            this.botonValidador.UseVisualStyleBackColor = true;
+            this.botonValidador.Click += new System.EventHandler(this.botonValidador_Click);
             // 
             // botonMuestraImpresa
             // 
@@ -112,7 +124,7 @@
             // radioProduccion
             // 
             this.radioProduccion.AutoSize = true;
-            this.radioProduccion.Location = new System.Drawing.Point(434, 183);
+            this.radioProduccion.Location = new System.Drawing.Point(90, 183);
             this.radioProduccion.Name = "radioProduccion";
             this.radioProduccion.Size = new System.Drawing.Size(79, 17);
             this.radioProduccion.TabIndex = 15;
@@ -123,7 +135,7 @@
             // 
             this.radioCertificacion.AutoSize = true;
             this.radioCertificacion.Checked = true;
-            this.radioCertificacion.Location = new System.Drawing.Point(356, 183);
+            this.radioCertificacion.Location = new System.Drawing.Point(12, 183);
             this.radioCertificacion.Name = "radioCertificacion";
             this.radioCertificacion.Size = new System.Drawing.Size(83, 17);
             this.radioCertificacion.TabIndex = 14;
@@ -274,15 +286,15 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // botonValidador
+            // botonSetPruebas
             // 
-            this.botonValidador.Location = new System.Drawing.Point(6, 135);
-            this.botonValidador.Name = "botonValidador";
-            this.botonValidador.Size = new System.Drawing.Size(151, 23);
-            this.botonValidador.TabIndex = 17;
-            this.botonValidador.Text = "Validador";
-            this.botonValidador.UseVisualStyleBackColor = true;
-            this.botonValidador.Click += new System.EventHandler(this.botonValidador_Click);
+            this.botonSetPruebas.Location = new System.Drawing.Point(6, 164);
+            this.botonSetPruebas.Name = "botonSetPruebas";
+            this.botonSetPruebas.Size = new System.Drawing.Size(151, 23);
+            this.botonSetPruebas.TabIndex = 18;
+            this.botonSetPruebas.Text = "SET de Pruebas";
+            this.botonSetPruebas.UseVisualStyleBackColor = true;
+            this.botonSetPruebas.Click += new System.EventHandler(this.botonSetPruebas_Click);
             // 
             // Main
             // 
@@ -331,6 +343,7 @@
         private System.Windows.Forms.Button botonIngresarTimbraje;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button botonValidador;
+        private System.Windows.Forms.Button botonSetPruebas;
     }
 }
 

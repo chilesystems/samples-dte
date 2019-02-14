@@ -11,17 +11,17 @@ namespace SIMPLEAPI_Demo
     public class Handler
     {
         public int Folio;
-        double neto = 0, netoExento = 0, iva = 0, total = 0;
+        //double neto = 0, netoExento = 0, iva = 0, total = 0;
 
         public string casoPruebas;
         public string idDte;
-        public string rutEmpresa = "11111111-1";
-        public string rutCertificado = "1111111-1";
-        public string nombreCertificado = "NombreCertificado";
+        public string rutEmpresa = "79628730-6";
+        public string rutCertificado = "5750735-7";
+        public string nombreCertificado = "ROELOF";
 
         public string serialKEY = "7022-A610-6371-7031-9513"; //Valida hasta el 11 de febrero de 2020
 
-        public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica;
+        public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
 
         public bool usaReferencia = false;
 
@@ -48,11 +48,15 @@ namespace SIMPLEAPI_Demo
 
             //DOCUMENTO - ENCABEZADO - EMISOR - CAMPOS OBLIGATORIOS          
             dte.Documento.Encabezado.Emisor.Rut = rutEmpresa;
-            dte.Documento.Encabezado.Emisor.RazonSocialBoleta = "TRANSPORTE DISTRIBUCION Y COMERCIALIZACION DE PRODUCTOS D&V LIMITADA";
-            dte.Documento.Encabezado.Emisor.GiroBoleta = "VENTA AL POR MAYOR DE CONFITES";
+            dte.Documento.Encabezado.Emisor.RazonSocial = "MERA VENNIK LIMITADA";
+            dte.Documento.Encabezado.Emisor.Giro = "VENTA AL POR MENOR DE OTROS PRODUCTOS EN PEQUENOS ALMACENES NO ESPECIA";
+            dte.Documento.Encabezado.Emisor.DireccionOrigen = "COLON 1148";
+            dte.Documento.Encabezado.Emisor.ComunaOrigen = "TALCAHUANO";
+            //dte.Documento.Encabezado.Emisor.RazonSocialBoleta = "TRANSPORTE DISTRIBUCION Y COMERCIALIZACION DE PRODUCTOS D&V LIMITADA";
+            //dte.Documento.Encabezado.Emisor.GiroBoleta = "VENTA AL POR MAYOR DE CONFITES";
 
-            dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(512250);
-            dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(519000);
+            dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(319010);
+            dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(521900);
 
             //DOCUMENTO - ENCABEZADO - RECEPTOR - CAMPOS OBLIGATORIOS
 
@@ -61,6 +65,7 @@ namespace SIMPLEAPI_Demo
             dte.Documento.Encabezado.Receptor.Direccion = "Dirección de cliente";
             dte.Documento.Encabezado.Receptor.Comuna = "Comuna de cliente";
             dte.Documento.Encabezado.Receptor.Ciudad = "Ciudad de cliente";
+            dte.Documento.Encabezado.Receptor.Giro = "Giro de cliente";
 
             return dte;
         }
@@ -92,8 +97,7 @@ namespace SIMPLEAPI_Demo
             dte.Documento.Detalles.Add(detalle);
 
             //DOCUMENTO - ENCABEZADO - TOTALES - CAMPOS OBLIGATORIOS
-
-            GenerateTotals(dte);
+            calculosTotales(dte);
         }
 
         public void GenerateDetails(ChileSystems.DTE.Engine.Documento.DTE dte, List<ItemBoleta> detalles)
@@ -118,27 +122,17 @@ namespace SIMPLEAPI_Demo
                 }
                 /*Monto del item*/
                 /*Recordar que debe restarse el descuento del detalle y sumarse el recargo*/
-                detalle.MontoItem = det.Total;
+                if (det.Descuento != 0)
+                {
+                    detalle.Descuento = det.Total * (det.Descuento / 100); 
+                    //detalle.DescuentoPorcentaje = det.Descuento;
+                }
+
+                detalle.MontoItem = det.Total - detalle.Descuento;
                 dte.Documento.Detalles.Add(detalle);
                 contador++;
             }
-            GenerateTotals(dte);
-        }
-
-        private void GenerateTotals(ChileSystems.DTE.Engine.Documento.DTE dte)
-        {
             calculosTotales(dte);
-
-            //DOCUMENTO - ENCABEZADO - TOTALES - CAMPOS OBLIGATORIOS
-            dte.Documento.Encabezado.Totales.MontoNeto = (int)Math.Round(neto, 0);
-            dte.Documento.Encabezado.Totales.MontoExento = (int)Math.Round(netoExento, 0);
-            if (neto != 0)
-            {
-                /*Las boletas no llevan TasaIVA*/
-                //dte.Documento.Encabezado.Totales.TasaIVA = Convert.ToDouble(19);
-                dte.Documento.Encabezado.Totales.IVA = (int)Math.Round(iva, 0); ;
-            }
-            dte.Documento.Encabezado.Totales.MontoTotal = (int)Math.Round(total, 0);
         }
 
         public void Referencias(ChileSystems.DTE.Engine.Documento.DTE dte)
@@ -151,7 +145,7 @@ namespace SIMPLEAPI_Demo
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.NotSet,
                 FechaDocumentoReferencia = DateTime.Now,
-                FolioReferencia = idDte,
+                FolioReferencia = Folio.ToString(),
                 IndicadorGlobal = 0,
                 Numero = c,
                 RazonReferencia = casoPruebas,
@@ -275,7 +269,7 @@ namespace SIMPLEAPI_Demo
             EnvioSII.SetDTE.Caratula = new ChileSystems.DTE.Engine.Envio.Caratula();
             EnvioSII.SetDTE.Caratula.FechaEnvio = DateTime.Now;
             /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
-            EnvioSII.SetDTE.Caratula.FechaResolucion = new DateTime(2013, 5, 30);
+            EnvioSII.SetDTE.Caratula.FechaResolucion = new DateTime(2018, 7, 13);
             EnvioSII.SetDTE.Caratula.NumeroResolucion = 0;
 
             EnvioSII.SetDTE.Caratula.RutEmisor = rutEmpresa;
@@ -371,38 +365,36 @@ namespace SIMPLEAPI_Demo
         {
             try
             {
-                foreach (var det in dte.Documento.Detalles)
+                //DOCUMENTO - ENCABEZADO - TOTALES - CAMPOS OBLIGATORIOS
+                if (tipoDTE != ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica)
+                    dte.Documento.Encabezado.Totales.TasaIVA = Convert.ToDouble(19);
+
+                var neto = dte.Documento.Detalles
+                    .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet)
+                    .Sum(x => x.MontoItem);
+
+                var exento = dte.Documento.Detalles
+                    .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
+                    .Sum(x => x.MontoItem);
+
+                var descuentos = dte.Documento.DescuentosRecargos?
+                    .Where(x => x.TipoMovimiento == ChileSystems.DTE.Engine.Enum.TipoMovimiento.TipoMovimientoEnum.Descuento
+                    && x.TipoValor == ChileSystems.DTE.Engine.Enum.ExpresionDinero.ExpresionDineroEnum.Porcentaje)
+                    .Sum(x => x.Valor);
+
+                if (descuentos.HasValue && descuentos.Value > 0)
                 {
-                    double div = 1.19;
-                    var NetoUnitario = (det.Precio / div);
-                    var Neto = (NetoUnitario * det.Cantidad);
-                    double iva_aux = Neto * 0.19;
-                    var IVA = Convert.ToInt32(Math.Round(iva_aux, 0));
-                    var Total = (int)Math.Round(Neto + iva_aux, 0);
-                    if (Total != det.MontoItem)
-                    {
-                        throw new Exception("Los totales no cuadran");
-                    }
-                    if (!(det.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento))
-                    {
-                        neto += Neto;
-                    }
-                    else
-                    {
-                        netoExento += det.Precio;
-                    }
-                }
+                    var montoDescuento = neto * (descuentos / 100);
+                    neto -= (int)Math.Round(montoDescuento.Value, 0);
+                }  
+                var iva = (int)Math.Round(neto * 0.19, 0);
 
-                neto = Math.Round(neto, 0);
-                iva = Math.Round(neto * 0.19, 0);
-                total = netoExento + neto + iva;
-
-                int nuevoNeto = (int)Math.Round(neto, 0);
-                int nuevoExento = (int)Math.Round(netoExento, 0);
-                int nuevoIVA = (int)Math.Round(iva, 0);
-                int nuevoTotal = (int)Math.Round(total, 0);
+                dte.Documento.Encabezado.Totales.MontoNeto = neto;
+                dte.Documento.Encabezado.Totales.MontoExento = exento;
+                dte.Documento.Encabezado.Totales.IVA = iva;
+                dte.Documento.Encabezado.Totales.MontoTotal = neto + exento + iva;
             }
-            catch { /*MessageBox.Show("Error. Hay una línea que debe ser borrada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);*/ }
+            catch {  }
         }
 
         #endregion
