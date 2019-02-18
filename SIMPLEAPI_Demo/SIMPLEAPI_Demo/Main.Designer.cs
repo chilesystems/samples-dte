@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.botonSetPruebas = new System.Windows.Forms.Button();
             this.botonValidador = new System.Windows.Forms.Button();
             this.botonMuestraImpresa = new System.Windows.Forms.Button();
             this.botonAceptacion = new System.Windows.Forms.Button();
@@ -44,13 +45,11 @@
             this.botonGenerarBoleta = new System.Windows.Forms.Button();
             this.botonLibroBoletas = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.botonIECV = new System.Windows.Forms.Button();
             this.botonEnviarSii = new System.Windows.Forms.Button();
             this.botonGenerarEnvio = new System.Windows.Forms.Button();
             this.botonGenerarDocumento = new System.Windows.Forms.Button();
             this.botonIngresarTimbraje = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.botonSetPruebas = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -70,6 +69,16 @@
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Utilidades";
+            // 
+            // botonSetPruebas
+            // 
+            this.botonSetPruebas.Location = new System.Drawing.Point(6, 164);
+            this.botonSetPruebas.Name = "botonSetPruebas";
+            this.botonSetPruebas.Size = new System.Drawing.Size(151, 23);
+            this.botonSetPruebas.TabIndex = 18;
+            this.botonSetPruebas.Text = "SET de Pruebas";
+            this.botonSetPruebas.UseVisualStyleBackColor = true;
+            this.botonSetPruebas.Click += new System.EventHandler(this.botonSetPruebas_Click);
             // 
             // botonValidador
             // 
@@ -220,7 +229,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.botonIECV);
             this.groupBox1.Controls.Add(this.botonEnviarSii);
             this.groupBox1.Controls.Add(this.botonGenerarEnvio);
             this.groupBox1.Controls.Add(this.botonGenerarDocumento);
@@ -231,16 +239,6 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General";
-            // 
-            // botonIECV
-            // 
-            this.botonIECV.Location = new System.Drawing.Point(6, 135);
-            this.botonIECV.Name = "botonIECV";
-            this.botonIECV.Size = new System.Drawing.Size(151, 23);
-            this.botonIECV.TabIndex = 4;
-            this.botonIECV.Text = "IECV";
-            this.botonIECV.UseVisualStyleBackColor = true;
-            this.botonIECV.Click += new System.EventHandler(this.botonIECV_Click);
             // 
             // botonEnviarSii
             // 
@@ -286,16 +284,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // botonSetPruebas
-            // 
-            this.botonSetPruebas.Location = new System.Drawing.Point(6, 164);
-            this.botonSetPruebas.Name = "botonSetPruebas";
-            this.botonSetPruebas.Size = new System.Drawing.Size(151, 23);
-            this.botonSetPruebas.TabIndex = 18;
-            this.botonSetPruebas.Text = "SET de Pruebas";
-            this.botonSetPruebas.UseVisualStyleBackColor = true;
-            this.botonSetPruebas.Click += new System.EventHandler(this.botonSetPruebas_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -336,7 +324,6 @@
         private System.Windows.Forms.Button botonGenerarBoleta;
         private System.Windows.Forms.Button botonLibroBoletas;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button botonIECV;
         private System.Windows.Forms.Button botonEnviarSii;
         private System.Windows.Forms.Button botonGenerarEnvio;
         private System.Windows.Forms.Button botonGenerarDocumento;

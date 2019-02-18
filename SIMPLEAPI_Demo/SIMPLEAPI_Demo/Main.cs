@@ -395,14 +395,6 @@ namespace SIMPLEAPI_Demo
                 MessageBox.Show("Ha ocurrido un error");
             }
         }
-
-        private void botonIECV_Click(object sender, EventArgs e)
-        {
-            var libro = handler.GenerateIECV();
-            var path = libro.Firmar(handler.nombreCertificado, "out\\temp\\", handler.serialKEY);
-            MessageBox.Show("Documento generado exitosamente en " + path);
-        }
-
         #endregion
 
         private void Main_Load(object sender, EventArgs e)
@@ -420,9 +412,12 @@ namespace SIMPLEAPI_Demo
         {
             handler.usaReferencia = false;
 
+            List<string> pathFiles = new List<string>();
+
             #region DTEs
             /******************************/
-            handler.Folio = 25;
+            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
+            handler.Folio = 25; 
             handler.idDte = "A_25";
             handler.casoPruebas = "1057727-1";
             var dte = handler.GenerateDTE();
@@ -441,9 +436,10 @@ namespace SIMPLEAPI_Demo
                 Precio = 2232,
                 Afecto = true
             });
-            handler.GenerateDetails(dte, detalles);            
+            handler.GenerateDetails(dte, detalles);
             handler.Referencias(dte);
             var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
+            pathFiles.Add(path);
             handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
@@ -472,6 +468,7 @@ namespace SIMPLEAPI_Demo
             handler.GenerateDetails(dte, detalles);
             handler.Referencias(dte);
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
+            pathFiles.Add(path);
             handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
@@ -505,6 +502,7 @@ namespace SIMPLEAPI_Demo
             handler.GenerateDetails(dte, detalles);
             handler.Referencias(dte);
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
+            pathFiles.Add(path);
             handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
@@ -549,6 +547,7 @@ namespace SIMPLEAPI_Demo
             handler.GenerateDetails(dte, detalles);
             handler.Referencias(dte);
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
+            pathFiles.Add(path);
             handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
@@ -576,6 +575,7 @@ namespace SIMPLEAPI_Demo
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.FacturaElectronica
             });
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
+            pathFiles.Add(path);
             handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
@@ -615,6 +615,7 @@ namespace SIMPLEAPI_Demo
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.FacturaElectronica
             });
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
+            pathFiles.Add(path);
             handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
@@ -660,6 +661,7 @@ namespace SIMPLEAPI_Demo
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.FacturaElectronica
             });
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
+            pathFiles.Add(path);
             handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
@@ -688,18 +690,45 @@ namespace SIMPLEAPI_Demo
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.NotaCreditoElectronica
             });
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
+            pathFiles.Add(path);
             handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
             #endregion
 
-            #region Libro de VENTAS
+            #region Envio de Documentos
 
-
+            List<ChileSystems.DTE.Engine.Documento.DTE> dtes = new List<ChileSystems.DTE.Engine.Documento.DTE>();
+            List<string> xmlDtes = new List<string>();
+            foreach (string pathFile in pathFiles)
+            {
+                string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
+                var dteAux = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
+                dtes.Add(dteAux);
+                xmlDtes.Add(xml);
+            }
+            var EnvioSII = handler.GenerarEnvioDTEToSII(dtes, xmlDtes);
+            path = EnvioSII.Firmar(handler.nombreCertificado, handler.serialKEY, true);
+            handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);
+            MessageBox.Show("Envío generado exitosamente en " + path);
 
             #endregion
 
-            MessageBox.Show("Documento generado exitosamente en " + path);
+            #region Libro de VENTAS
+
+            var libroVentas = handler.GenerateLibroVentas(EnvioSII);
+            path = libroVentas.Firmar(handler.nombreCertificado, "out\\temp\\", handler.serialKEY);
+
+            MessageBox.Show("Libro guardado en " + path);
+            #endregion
+
+            #region Libro de COMPRAS
+
+            var libroCompras = handler.GenerateLibroCompras();
+            path = libroCompras.Firmar(handler.nombreCertificado, "out\\temp\\", handler.serialKEY);
+
+            MessageBox.Show("Libro guardado en " + path);
+            #endregion
+            //MessageBox.Show("Documento generado exitosamente en " + path);
         }
     }
 }
-
