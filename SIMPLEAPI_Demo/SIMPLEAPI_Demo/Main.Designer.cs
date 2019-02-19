@@ -50,6 +50,7 @@
             this.botonGenerarDocumento = new System.Windows.Forms.Button();
             this.botonIngresarTimbraje = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.botonIntercambio = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -57,7 +58,7 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.botonSetPruebas);
+            this.groupBox5.Controls.Add(this.botonIntercambio);
             this.groupBox5.Controls.Add(this.botonValidador);
             this.groupBox5.Controls.Add(this.botonMuestraImpresa);
             this.groupBox5.Controls.Add(this.botonAceptacion);
@@ -72,7 +73,7 @@
             // 
             // botonSetPruebas
             // 
-            this.botonSetPruebas.Location = new System.Drawing.Point(6, 164);
+            this.botonSetPruebas.Location = new System.Drawing.Point(6, 135);
             this.botonSetPruebas.Name = "botonSetPruebas";
             this.botonSetPruebas.Size = new System.Drawing.Size(151, 23);
             this.botonSetPruebas.TabIndex = 18;
@@ -229,6 +230,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.botonSetPruebas);
             this.groupBox1.Controls.Add(this.botonEnviarSii);
             this.groupBox1.Controls.Add(this.botonGenerarEnvio);
             this.groupBox1.Controls.Add(this.botonGenerarDocumento);
@@ -284,6 +286,16 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // botonIntercambio
+            // 
+            this.botonIntercambio.Location = new System.Drawing.Point(6, 163);
+            this.botonIntercambio.Name = "botonIntercambio";
+            this.botonIntercambio.Size = new System.Drawing.Size(151, 23);
+            this.botonIntercambio.TabIndex = 18;
+            this.botonIntercambio.Text = "Intercambio";
+            this.botonIntercambio.UseVisualStyleBackColor = true;
+            this.botonIntercambio.Click += new System.EventHandler(this.botonIntercambio_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,6 +343,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button botonValidador;
         private System.Windows.Forms.Button botonSetPruebas;
+        private System.Windows.Forms.Button botonIntercambio;
     }
 }
 

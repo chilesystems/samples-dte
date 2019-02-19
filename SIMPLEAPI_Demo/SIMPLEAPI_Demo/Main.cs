@@ -98,91 +98,20 @@ namespace SIMPLEAPI_Demo
             List<ChileSystems.DTE.Engine.Documento.DTE> dtes = new List<ChileSystems.DTE.Engine.Documento.DTE>();
             List<string> xmlDtes = new List<string>();
             /*Cada valor de i se asigna como folio. Debes tener ojo con no enviar documentos con folios ya utilizados y enviados.*/
-            for (int i = 101; i <= 110; i++)
+            for (int i = 61; i <= 95; i++)
             {
-                var dteAux = GenerateRandomDTE(i, ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.GuiaDespachoElectronica);
+                var dteAux = handler.GenerateRandomDTE(i, ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica);
                 string filePath = handler.TimbrarYFirmarXMLDTE(dteAux, "out\\temp\\", "out\\caf\\");
                 string xml = File.ReadAllText(filePath, Encoding.GetEncoding("ISO-8859-1"));
                 dtes.Add(dteAux);
                 xmlDtes.Add(xml);
             }
             var EnvioSII = handler.GenerarEnvioDTEToSII(dtes, xmlDtes);
-            string filePathEnvio = EnvioSII.Firmar(handler.nombreCertificado, handler.serialKEY);
+            string filePathEnvio = EnvioSII.Firmar(handler.nombreCertificado, handler.serialKEY, true);
             MessageBox.Show("Envío generado exitosamente en " + filePathEnvio);
         }
 
-        public ChileSystems.DTE.Engine.Documento.DTE GenerateRandomDTE(int folio, ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipo)
-        {
-            // DOCUMENTO
-            Random r = new Random();
-            var dte = new ChileSystems.DTE.Engine.Documento.DTE();
-            dte.Documento.Id = "TEST" + folio.ToString();
-            dte.Documento.Encabezado.IdentificacionDTE.TipoDTE = tipo;
-            dte.Documento.Encabezado.IdentificacionDTE.FechaEmision = DateTime.Now;
-            dte.Documento.Encabezado.IdentificacionDTE.Folio = folio;
-            dte.Documento.Encabezado.IdentificacionDTE.TipoDespacho = ChileSystems.DTE.Engine.Enum.TipoDespacho.TipoDespachoEnum.EmisorACliente;
-            dte.Documento.Encabezado.IdentificacionDTE.TipoTraslado = ChileSystems.DTE.Engine.Enum.TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta;
-
-            //DOCUMENTO - ENCABEZADO - EMISOR - CAMPOS OBLIGATORIOS          
-            dte.Documento.Encabezado.Emisor.Rut = handler.rutEmpresa;
-            dte.Documento.Encabezado.Emisor.RazonSocial = "TRANSPORTE DISTRIBUCION Y COMERCIALIZACION DE PRODUCTOS D&V LIMITADA";
-            dte.Documento.Encabezado.Emisor.Giro = "VENTA AL POR MAYOR DE CONFITES";
-
-            dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(512250);
-            dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(519000);
-
-            //DOCUMENTO - ENCABEZADO - EMISOR - SUCURSAL ORIGEN
-            dte.Documento.Encabezado.Emisor.CodigoSucursal = 0;
-            dte.Documento.Encabezado.Emisor.DireccionOrigen = "TOESCA 2023";
-            dte.Documento.Encabezado.Emisor.ComunaOrigen = "SANTIAGO";
-            dte.Documento.Encabezado.Emisor.CiudadOrigen = "SANTIAGO";
-
-            //DOCUMENTO - ENCABEZADO - RECEPTOR - CAMPOS OBLIGATORIOS
-
-            dte.Documento.Encabezado.Receptor.Rut = "66666666-6";
-            dte.Documento.Encabezado.Receptor.RazonSocial = "Razon Social de Cliente";
-            dte.Documento.Encabezado.Receptor.Giro = "Giro de cliente";
-            dte.Documento.Encabezado.Receptor.Direccion = "Direccion de cliente";
-            dte.Documento.Encabezado.Receptor.Comuna = "Comuna de cliente";
-            dte.Documento.Encabezado.Receptor.Ciudad = "Ciudad";
-
-            //DOCUMENTO - DETALLES
-            dte.Documento.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
-            int max_detalles = r.Next(1, 5);
-            List<string> detallesRandom = new List<string>();
-            detallesRandom.Add("SERVICIO DE FACTURACION ELECT");
-            detallesRandom.Add("ASESORIA COMPUTACIONAL");
-            detallesRandom.Add("CAPACITACION AL PERSONAL");
-            detallesRandom.Add("IMPLEMENTACION DE ERP");
-            detallesRandom.Add("SERVICIO DE LIMPIEZA");
-            detallesRandom.Add("SERVICIO DE ASESORIA INFORMATICA");
-            detallesRandom.Add("DESARROLLO DE SITIOS WEB");
-            detallesRandom.Add("QA DE DESARROLLOS EXTERNOS");
-            detallesRandom.Add("LIMPIEZA DE COMPUTADORES");
-            detallesRandom.Add("AUTOMATIZACION DE DATOS");
-            detallesRandom.Add("DESARROLLO DE ETL");
-
-            for (int i = 1; i <= max_detalles; i++)
-            {
-                var detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
-                detalle.NumeroLinea = i;
-                detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
-                detalle.Nombre = detallesRandom[r.Next(0, detallesRandom.Count - 1)];
-                detalle.Cantidad = r.Next(1, 5);
-                detalle.Precio = r.Next(1, 150000);
-                detalle.MontoItem = (int)detalle.Cantidad * (int)detalle.Precio;
-                dte.Documento.Detalles.Add(detalle);
-            }
-
-            //DOCUMENTO - ENCABEZADO - TOTALES - CAMPOS OBLIGATORIOS
-            //dte.Documento.Encabezado.Totales.MontoNeto = 0;
-            dte.Documento.Encabezado.Totales.MontoExento = dte.Documento.Detalles.Sum(x => x.MontoItem);
-            //dte.Documento.Encabezado.Totales.TasaIVA = Convert.ToDouble(19);
-            //dte.Documento.Encabezado.Totales.IVA = 0;
-            dte.Documento.Encabezado.Totales.MontoTotal = dte.Documento.Detalles.Sum(x => x.MontoItem);
-
-            return dte;
-        }
+        
 
         private void botonEnviarSimulacionSII_Click(object sender, EventArgs e)
         {
@@ -372,8 +301,8 @@ namespace SIMPLEAPI_Demo
             int tipoDocumento = 33;
             int folio = 17158136;
             string accion = "ACD";
-            string rutProveedor = "81094100";
-            int dvProveedor = 6;
+            string rutProveedor = "88888888";
+            int dvProveedor = 8;
             var respuesta = handler.EnviarAceptacionReclamo(tipoDocumento, folio, accion, rutProveedor, dvProveedor, true);
             MessageBox.Show(respuesta);
         }
@@ -413,27 +342,37 @@ namespace SIMPLEAPI_Demo
             handler.usaReferencia = false;
 
             List<string> pathFiles = new List<string>();
+            List<int> folios = new List<int>();
+            folios.Add(57);
+            folios.Add(58);
+            folios.Add(59);
+            folios.Add(60);
+            folios.Add(30);
+            folios.Add(31);
+            folios.Add(32);
+            folios.Add(9);
+            string nAtencion = "1071461";
 
             #region DTEs
             /******************************/
             handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
-            handler.Folio = 25; 
-            handler.idDte = "A_25";
-            handler.casoPruebas = "1057727-1";
+            handler.Folio = folios[0]; 
+            handler.idDte = "A_" + folios[0];
+            handler.casoPruebas = "CASO " + nAtencion + "-1";
             var dte = handler.GenerateDTE();
             var detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
-                Cantidad = 131,
+                Cantidad = 147,
                 Nombre = "Cajón AFECTO",
-                Precio = 1372,
+                Precio = 2294,
                 Afecto = true
             });
             detalles.Add(new ItemBoleta()
             {
-                Cantidad = 56,
+                Cantidad = 63,
                 Nombre = "Relleno AFECTO",
-                Precio = 2232,
+                Precio = 3792,
                 Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
@@ -444,25 +383,25 @@ namespace SIMPLEAPI_Demo
             /********************************/
 
             /********************************/
-            handler.Folio = 26;
-            handler.idDte = "A_26";
-            handler.casoPruebas = "1057727-2";
+            handler.Folio = folios[1];
+            handler.idDte = "A_" + folios[1];
+            handler.casoPruebas = "CASO " + nAtencion + "-2";
             dte = handler.GenerateDTE();
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
-                Cantidad = 326,
+                Cantidad = 515,
                 Nombre = "Pañuelo AFECTO",
-                Precio = 2616,
-                Descuento = 5,
+                Precio = 4035,
+                Descuento = 7,
                 Afecto = true
             });
             detalles.Add(new ItemBoleta()
             {
-                Cantidad = 256,
+                Cantidad = 451,
                 Nombre = "ITEM 2 AFECTO",
-                Precio = 1678,
-                Descuento = 8,
+                Precio = 3092,
+                Descuento = 15,
                 Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
@@ -473,30 +412,30 @@ namespace SIMPLEAPI_Demo
             /********************************/
 
             /********************************/
-            handler.Folio = 27;
-            handler.idDte = "A_27";
-            handler.casoPruebas = "1057727-3";
+            handler.Folio = folios[2];
+            handler.idDte = "A_" + folios[2];
+            handler.casoPruebas = "CASO " + nAtencion + "-3";
             dte = handler.GenerateDTE();
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
-                Cantidad = 27,
+                Cantidad = 39,
                 Nombre = "Pintura B&W AFECTO",
-                Precio = 2879,
+                Precio = 4703,
                 Afecto = true
             });
             detalles.Add(new ItemBoleta()
             {
-                Cantidad = 164,
+                Cantidad = 195,
                 Nombre = "ITEM 2 AFECTO",
-                Precio = 3099,
+                Precio = 3446,
                 Afecto = true
             });
             detalles.Add(new ItemBoleta()
             {
                 Cantidad = 1,
                 Nombre = "ITEM 3 SERVICIO EXENTO",
-                Precio = 34807,
+                Precio = 35018,
                 Afecto = false
             });
             handler.GenerateDetails(dte, detalles);
@@ -507,30 +446,30 @@ namespace SIMPLEAPI_Demo
             /********************************/
 
             /********************************/
-            handler.Folio = 28;
-            handler.idDte = "A_28";
-            handler.casoPruebas = "1057727-4";
+            handler.Folio = folios[3];
+            handler.idDte = "A_" + folios[3];
+            handler.casoPruebas = "CASO " + nAtencion + "-4";
             dte = handler.GenerateDTE();
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
-                Cantidad = 139,
+                Cantidad = 259,
                 Nombre = "ITEM 1 AFECTO",
-                Precio = 2414,
+                Precio = 3940,
                 Afecto = true
             });
             detalles.Add(new ItemBoleta()
             {
-                Cantidad = 59,
+                Cantidad = 110,
                 Nombre = "ITEM 2 AFECTO",
-                Precio = 2419,
+                Precio = 4503,
                 Afecto = true
             });
             detalles.Add(new ItemBoleta()
             {
                 Cantidad = 2,
                 Nombre = "ITEM 3 SERVICIO EXENTO",
-                Precio = 6779,
+                Precio = 6802,
                 Afecto = false
             });
 
@@ -541,7 +480,7 @@ namespace SIMPLEAPI_Demo
                 Numero = 1,
                 TipoMovimiento = ChileSystems.DTE.Engine.Enum.TipoMovimiento.TipoMovimientoEnum.Descuento,
                 TipoValor = ChileSystems.DTE.Engine.Enum.ExpresionDinero.ExpresionDineroEnum.Porcentaje,
-                Valor = 9,
+                Valor = 15
             });
 
             handler.GenerateDetails(dte, detalles);
@@ -553,14 +492,15 @@ namespace SIMPLEAPI_Demo
 
             /********************************/
             handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica;
-            handler.Folio = 4;
-            handler.idDte = "N_4";
-            handler.casoPruebas = "1057727-5";
+            handler.Folio = folios[4];
+            handler.idDte = "C_" + folios[4];
+            handler.casoPruebas = "CASO " + nAtencion + "-5";
             dte = handler.GenerateDTE();
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
-                Nombre = "CORRIGE GIRO DEL RECEPTOR"
+                Nombre = "CORRIGE GIRO DEL RECEPTOR",
+                Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
             handler.Referencias(dte);
@@ -568,7 +508,7 @@ namespace SIMPLEAPI_Demo
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeTextoDocumentoReferencia,
                 FechaDocumentoReferencia = DateTime.Now,
-                FolioReferencia = "25",
+                FolioReferencia = folios[0].ToString(),
                 IndicadorGlobal = 0,
                 Numero = 2,
                 RazonReferencia = "CORRIGE GIRO DEL RECEPTOR",
@@ -581,25 +521,25 @@ namespace SIMPLEAPI_Demo
 
             /********************************/
             handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica;
-            handler.Folio = 5;
-            handler.idDte = "N_5";
-            handler.casoPruebas = "1057727-6";
+            handler.Folio = folios[5];
+            handler.idDte = "C_" + folios[5];
+            handler.casoPruebas = "CASO " + nAtencion + "-6";
             dte = handler.GenerateDTE();
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
-                Cantidad = 120,
+                Cantidad = 189,
                 Nombre = "Pañuelo AFECTO",
-                Precio = 2616,
-                Descuento = 5,
+                Precio = 4035,
+                Descuento = 7,
                 Afecto = true
             });
             detalles.Add(new ItemBoleta()
             {
-                Cantidad = 173,
+                Cantidad = 306,
                 Nombre = "ITEM 2 AFECTO",
-                Precio = 1678,
-                Descuento = 8,
+                Precio = 3092,
+                Descuento = 15,
                 Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
@@ -608,7 +548,7 @@ namespace SIMPLEAPI_Demo
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
                 FechaDocumentoReferencia = DateTime.Now,
-                FolioReferencia = "26",
+                FolioReferencia = folios[1].ToString(),
                 IndicadorGlobal = 0,
                 Numero = 2,
                 RazonReferencia = "DEVOLUCIÓN DE MERCADERÍAS",
@@ -621,30 +561,30 @@ namespace SIMPLEAPI_Demo
 
             /********************************/
             handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica;
-            handler.Folio = 6;
-            handler.idDte = "N_6";
-            handler.casoPruebas = "1057727-7";
+            handler.Folio = folios[6];
+            handler.idDte = "C_" + folios[6];
+            handler.casoPruebas = "CASO " + nAtencion + "-7";
             dte = handler.GenerateDTE();
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
-                Cantidad = 27,
+                Cantidad = 39,
                 Nombre = "Pintura B&W AFECTO",
-                Precio = 2879,
+                Precio = 4703,
                 Afecto = true
             });
             detalles.Add(new ItemBoleta()
             {
-                Cantidad = 164,
+                Cantidad = 195,
                 Nombre = "ITEM 2 AFECTO",
-                Precio = 3099,
+                Precio = 3446,
                 Afecto = true
             });
             detalles.Add(new ItemBoleta()
             {
                 Cantidad = 1,
                 Nombre = "ITEM 3 SERVICIO EXENTO",
-                Precio = 34807,
+                Precio = 35018,
                 Afecto = false
             });
 
@@ -654,7 +594,7 @@ namespace SIMPLEAPI_Demo
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia,
                 FechaDocumentoReferencia = DateTime.Now,
-                FolioReferencia = "27",
+                FolioReferencia = folios[2].ToString(),
                 IndicadorGlobal = 0,
                 Numero = 2,
                 RazonReferencia = "ANULA FACTURA",
@@ -668,14 +608,15 @@ namespace SIMPLEAPI_Demo
 
             /********************************/
             handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica;
-            handler.Folio = 2;
-            handler.idDte = "D_2";
-            handler.casoPruebas = "1057727-8";
+            handler.Folio = folios[7];
+            handler.idDte = "D_" + folios[7];
+            handler.casoPruebas = "CASO " + nAtencion + "-8";
             dte = handler.GenerateDTE();
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
-                Nombre = "CORRIGE GIRO DEL RECEPTOR"
+                Nombre = "CORRIGE GIRO DEL RECEPTOR",
+                Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
             handler.Referencias(dte);
@@ -683,7 +624,7 @@ namespace SIMPLEAPI_Demo
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia,
                 FechaDocumentoReferencia = DateTime.Now,
-                FolioReferencia = "4",
+                FolioReferencia = folios[4].ToString(),
                 IndicadorGlobal = 0,
                 Numero = 2,
                 RazonReferencia = "ANULA NOTA DE CREDITO",
@@ -715,10 +656,10 @@ namespace SIMPLEAPI_Demo
 
             #region Libro de VENTAS
 
-            var libroVentas = handler.GenerateLibroVentas(EnvioSII);
-            path = libroVentas.Firmar(handler.nombreCertificado, "out\\temp\\", handler.serialKEY);
+            //var libroVentas = handler.GenerateLibroVentas(EnvioSII);
+           // path = libroVentas.Firmar(handler.nombreCertificado, "out\\temp\\", handler.serialKEY);
 
-            MessageBox.Show("Libro guardado en " + path);
+            //MessageBox.Show("Libro guardado en " + path);
             #endregion
 
             #region Libro de COMPRAS
@@ -729,6 +670,27 @@ namespace SIMPLEAPI_Demo
             MessageBox.Show("Libro guardado en " + path);
             #endregion
             //MessageBox.Show("Documento generado exitosamente en " + path);
+        }
+
+        private void botonIntercambio_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Multiselect = false;
+            openFileDialog1.ShowDialog();
+            string pathFile = openFileDialog1.FileName;
+            string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
+            var envio = ChileSystems.DTE.Engine.XML.XmlHandler.TryDeserializeFromString<ChileSystems.DTE.Engine.Envio.EnvioDTE>(xml);
+
+            /*Respuesta de Intercambio*/
+            var filePath = handler.GenerarRespuestaEnvio(envio.SetDTE.DTEs, "ACD");
+            MessageBox.Show("Respuesta de Intercambio " + filePath);
+
+            /*Aprobación comercial de documento*/
+            filePath = handler.ResponderDTE(0, envio.SetDTE.DTEs[0], "PRUEBA");
+            MessageBox.Show("Aprobación comercial " + filePath);
+
+            /*Recibo de mercaderías*/
+            filePath = handler.AcuseReciboMercaderias(envio.SetDTE.DTEs[0]);
+            MessageBox.Show("Acuse recibo " + filePath);
         }
     }
 }
