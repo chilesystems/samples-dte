@@ -23,7 +23,7 @@ namespace SIMPLEAPI_Demo
 
         public string serialKEY = "7022-A610-6371-7031-9513"; //Valida hasta el 11 de febrero de 2020
 
-        public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
+        public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica;
 
         public bool usaReferencia = false;
 
@@ -369,36 +369,55 @@ namespace SIMPLEAPI_Demo
             {
                 //DOCUMENTO - ENCABEZADO - TOTALES - CAMPOS OBLIGATORIOS
                 if (tipoDTE != ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica)
-                    dte.Documento.Encabezado.Totales.TasaIVA = Convert.ToDouble(19);
-
-                var neto = dte.Documento.Detalles
-                    .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet)
-                    .Sum(x => x.MontoItem);
-
-                var exento = dte.Documento.Detalles
-                    .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
-                    .Sum(x => x.MontoItem);
-
-                var descuentos = dte.Documento.DescuentosRecargos?
-                    .Where(x => x.TipoMovimiento == ChileSystems.DTE.Engine.Enum.TipoMovimiento.TipoMovimientoEnum.Descuento
-                    && x.TipoValor == ChileSystems.DTE.Engine.Enum.ExpresionDinero.ExpresionDineroEnum.Porcentaje)
-                    .Sum(x => x.Valor);
-
-                if (descuentos.HasValue && descuentos.Value > 0)
                 {
-                    var montoDescuentoAfecto = (int)Math.Round(neto * (descuentos.Value / 100), 0, MidpointRounding.AwayFromZero);
-                    neto -= montoDescuentoAfecto;
+                    dte.Documento.Encabezado.Totales.TasaIVA = Convert.ToDouble(19);
+                    var neto = dte.Documento.Detalles
+                        .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet)
+                        .Sum(x => x.MontoItem);
 
-                    //var montoDescuentoExento = exento * (descuentos / 100);
-                    //exento -= (int)Math.Round(montoDescuentoExento.Value, 0);
-                }  
-                var iva = (int)Math.Round(neto * 0.19, 0);
+                    var exento = dte.Documento.Detalles
+                        .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
+                        .Sum(x => x.MontoItem);
 
-                dte.Documento.Encabezado.Totales.MontoNeto = neto;
-                dte.Documento.Encabezado.Totales.MontoExento = exento;
-                dte.Documento.Encabezado.Totales.IVA = iva;
-                dte.Documento.Encabezado.Totales.MontoTotal = neto + exento + iva;
+                    var descuentos = dte.Documento.DescuentosRecargos?
+                        .Where(x => x.TipoMovimiento == ChileSystems.DTE.Engine.Enum.TipoMovimiento.TipoMovimientoEnum.Descuento
+                        && x.TipoValor == ChileSystems.DTE.Engine.Enum.ExpresionDinero.ExpresionDineroEnum.Porcentaje)
+                        .Sum(x => x.Valor);
+
+                    if (descuentos.HasValue && descuentos.Value > 0)
+                    {
+                        var montoDescuentoAfecto = (int)Math.Round(neto * (descuentos.Value / 100), 0, MidpointRounding.AwayFromZero);
+                        neto -= montoDescuentoAfecto;
+
+                        //var montoDescuentoExento = exento * (descuentos / 100);
+                        //exento -= (int)Math.Round(montoDescuentoExento.Value, 0);
+                    }
+                    var iva = (int)Math.Round(neto * 0.19, 0);
+
+                    dte.Documento.Encabezado.Totales.MontoNeto = neto;
+                    dte.Documento.Encabezado.Totales.MontoExento = exento;
+                    dte.Documento.Encabezado.Totales.IVA = iva;
+                    dte.Documento.Encabezado.Totales.MontoTotal = neto + exento + iva;
+                }
+                else
+                {
+                    var totalBrutoAfecto = dte.Documento.Detalles
+                        .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet)
+                        .Sum(x => x.MontoItem);
+
+                    var totalExento = dte.Documento.Detalles
+                        .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
+                        .Sum(x => x.MontoItem);
+
+                    //var iva = (int)Math.Round(neto * 0.19, 0);
+
+                    dte.Documento.Encabezado.Totales.MontoNeto = (int)Math.Round(totalBrutoAfecto / 1.19, 0, MidpointRounding.AwayFromZero);
+                    dte.Documento.Encabezado.Totales.MontoExento = totalExento;
+                    dte.Documento.Encabezado.Totales.IVA = (int)Math.Round(dte.Documento.Encabezado.Totales.MontoNeto * 0.19, 0, MidpointRounding.AwayFromZero);
+                    dte.Documento.Encabezado.Totales.MontoTotal = dte.Documento.Encabezado.Totales.MontoNeto + totalExento + dte.Documento.Encabezado.Totales.IVA;
+                }
             }
+                    
             catch {  }
         }
 
