@@ -19,6 +19,7 @@ namespace SIMPLEAPI_Demo
         public string rutEmpresa = "79628730-6";
         public string rutCertificado = "5750735-7";
         public string nombreCertificado = "ROELOF";
+        public DateTime fechaEmision = new DateTime(2019, 2, 19);
 
         public string serialKEY = "7022-A610-6371-7031-9513"; //Valida hasta el 11 de febrero de 2020
 
@@ -40,7 +41,7 @@ namespace SIMPLEAPI_Demo
             // DOCUMENTO - ENCABEZADO - IDENTIFICADOR DEL DOCUMENTO - CAMPOS OBLIGATORIOS
             //TipoDTE = Se indica el tipo de documento. Este SDK soporta:
             dte.Documento.Encabezado.IdentificacionDTE.TipoDTE = tipoDTE;
-            dte.Documento.Encabezado.IdentificacionDTE.FechaEmision = DateTime.Now;
+            dte.Documento.Encabezado.IdentificacionDTE.FechaEmision = fechaEmision;
             dte.Documento.Encabezado.IdentificacionDTE.Folio = Folio;
             //Para boletas electrónicas
             if(tipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica)
@@ -586,7 +587,7 @@ namespace SIMPLEAPI_Demo
         {
             var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta();
             libro.EnvioLibro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.EnvioLibro();
-            libro.EnvioLibro.Id = "ID_LIBRO1";
+            libro.EnvioLibro.Id = "ID_LIBRO7";
 
             /*Si el libro tiene código de autorización para rectificación, se debe ingresar en la carátula
              * del EnvioLibro. Esto es: libro.EnvioLibro.Caratula.CodigoAutorizacionRectificacionLibro*/
@@ -595,13 +596,15 @@ namespace SIMPLEAPI_Demo
             {
                 RutEmisor = rutEmpresa,
                 RutEnvia = rutCertificado,
-                PeriodoTributario = "2019-02",
+                PeriodoTributario = fechaEmision.Year + "-0" + fechaEmision.Month,
                 FechaResolucion = new DateTime(2018, 7, 13),
                 NumeroResolucion = 0,
                 TipoOperacion = ChileSystems.DTE.Engine.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Venta,
                 TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
                 TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
-                FolioNotificacion = 1 //Para cuando es SET de pruebas, siempre es 1
+                FolioNotificacion = 200,
+                //Para cuando es SET de pruebas, siempre es 1,,                
+               
             };
 
             libro.EnvioLibro.ResumenPeriodo = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ResumenPeriodo();
@@ -739,12 +742,10 @@ namespace SIMPLEAPI_Demo
         {
             var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta();
             libro.EnvioLibro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.EnvioLibro();
-            libro.EnvioLibro.Id = "ID_LIBRO4";
+            libro.EnvioLibro.Id = "ID_LIBRO6";
 
             /*Si el libro tiene código de autorización para rectificación, se debe ingresar en la carátula
              * del EnvioLibro. Esto es: libro.EnvioLibro.Caratula.CodigoAutorizacionRectificacionLibro*/
-
-            DateTime fechaEmision = new DateTime(2019, 2, 1);
 
             libro.EnvioLibro.Caratula = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Caratula()
             {
@@ -756,82 +757,11 @@ namespace SIMPLEAPI_Demo
                 TipoOperacion = ChileSystems.DTE.Engine.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Compra,
                 TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
                 TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
-                FolioNotificacion = 2, //Para cuando es SET de pruebas, siempre es 1
+                FolioNotificacion = 200, //Para cuando es SET de pruebas, siempre es 1
                 //CodigoAutorizacionRectificacionLibro = "1NLKZLFX4S"
 
             };
 
-            libro.EnvioLibro.ResumenPeriodo = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ResumenPeriodo();
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo>();
-
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
-            {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaManual,
-                CantidadDocumentos = 2,
-                CantidadDocumentosAnulados = 0,
-                TotalMontoExento = 0,
-                TotalMontoNeto = 60718,
-                TotalMontoIva = 5855,
-                TotalIVAUsoComun = 5681,
-                TotalMonto = 72254,
-                FactorProporcionalidadIVA = 0.6,
-                TotalCreditoIVAUsoComun = 3409,
-                CantidadOperacionesConIvaUsoComun = 1
-            });
-
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
-            {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica,
-                CantidadDocumentos = 2,
-                CantidadDocumentosAnulados = 0,
-                TotalMontoExento = 9377,
-                TotalMontoNeto = 18655,
-                TotalMontoIva = 1520,
-                TotalMonto = 31576,
-                TotalIVANoRecuperable = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalIVANoRecuperable>()
-                {
-                    new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalIVANoRecuperable()
-                    {
-                        CantidadOperacionesIVANoRecuperable = 1,
-                        CodigoIVANoRecuperable = ChileSystems.DTE.Engine.Enum.CodigoIVANoRecuperable.CodigoIVANoRecuperableEnum.EntregaGratuita,
-                        TotalMontoIVANoRecuperable = 2024
-                    }
-                }
-            });
-
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
-            {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.NotaCredito,
-                CantidadDocumentos = 2,
-                CantidadDocumentosAnulados = 0,
-                TotalMontoExento = 0,
-                TotalMontoNeto = 8613,
-                TotalMontoIva = 1636,
-                TotalMonto = 10249
-            });
-
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
-            {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaCompraElectronica,
-                CantidadDocumentos = 1,
-                CantidadDocumentosAnulados = 0,
-                TotalMontoExento = 0,
-                TotalMontoNeto = 9890,
-                TotalMontoIva = 1879,
-                TotalMonto = 9890,
-                TotalIVARetenidoTotal = 1879,
-                Impuestos = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.ImpuestosPeriodo>()
-                {
-                    new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ImpuestosPeriodo()
-                    {
-                        CodigoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal,
-                        TotalMontoImpuesto = 1879                        
-                    }
-                }
-            });
-            /**************************************************/
-
-            /**************************************************/
             libro.EnvioLibro.Detalles = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle>();
 
             libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
@@ -843,9 +773,9 @@ namespace SIMPLEAPI_Demo
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
                 MontoExento = 0,
-                MontoNeto = 30818,
-                MontoIva = 5855,
-                MontoTotal = 36673
+                MontoNeto = 64134,
+                MontoIva = 12185,
+                MontoTotal = 76319
             });
             libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
             {
@@ -855,10 +785,13 @@ namespace SIMPLEAPI_Demo
                 FechaDocumento = fechaEmision,
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
-                MontoExento = 9377,
-                MontoNeto = 8001,
-                MontoIva = 1520,
-                MontoTotal = 18898
+                MontoExento = 11242,
+                MontoNeto = 13157,
+                MontoIva = 2500,
+                MontoTotal = 26899,
+                IVANoRecuperable = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalIVANoRecuperableDetalle>()
+                {
+                }
             });
             libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
             {
@@ -869,12 +802,12 @@ namespace SIMPLEAPI_Demo
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
                 MontoExento = 0,
-                MontoNeto = 29900,
+                MontoNeto = 30302,
                 //MontoIva = 5681,
-                IVAUsoComun = 5681, //Neto * 0.19 * 0.6 (factor de proporcionalidad)
-                MontoTotal = 29900 + 5681,                
+                IVAUsoComun = 5757, //Neto * 0.19 
+                MontoTotal = 36059,
                 TipoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoResumido.Iva
-                
+
             });
             libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
             {
@@ -885,9 +818,9 @@ namespace SIMPLEAPI_Demo
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
                 MontoExento = 0,
-                MontoNeto = 2781,
-                MontoIva = 528,
-                MontoTotal = 3309,
+                MontoNeto = 2999,
+                MontoIva = 570,
+                MontoTotal = 3569,
                 TipoDocumentoReferencia = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaManual,
                 FolioDocumentoReferencia = 234
             });
@@ -900,14 +833,14 @@ namespace SIMPLEAPI_Demo
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
                 MontoExento = 0,
-                MontoNeto = 10654,
-                MontoTotal = 12678,
+                MontoNeto = 12853,
+                MontoTotal = 15295,
                 IVANoRecuperable = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalIVANoRecuperableDetalle>()
                 {
                     new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalIVANoRecuperableDetalle()
                     {
                         CodigoIVANoRecuperable = ChileSystems.DTE.Engine.Enum.CodigoIVANoRecuperable.CodigoIVANoRecuperableEnum.EntregaGratuita,
-                        TotalMontoIVANoRecuperable = 2024
+                        TotalMontoIVANoRecuperable = 2442
                     }
                 }
             });
@@ -920,16 +853,16 @@ namespace SIMPLEAPI_Demo
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
                 MontoExento = 0,
-                MontoNeto = 9890,
-                MontoIva = 1879,
-                MontoTotal = 9890,
-                IVARetenidoTotal = 1879,
+                MontoNeto = 10992,
+                MontoIva = 2088,
+                MontoTotal = 10992,
+                IVARetenidoTotal = 2088,
                 Impuestos = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.ImpuestosDetalle>()
                 {
                     new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ImpuestosDetalle()
                     {
                         CodigoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal,
-                        TotalMontoImpuesto = 1879,
+                        TotalMontoImpuesto = 2088,
                         TasaImpuesto = 19
                     }
                 }
@@ -943,12 +876,93 @@ namespace SIMPLEAPI_Demo
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
                 MontoExento = 0,
-                MontoNeto = 5832,
-                MontoIva = 1108,
-                MontoTotal = 6940,
+                MontoNeto = 10615,
+                MontoIva = 2017,
+                MontoTotal = 12632,
                 TipoDocumentoReferencia = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica,
                 FolioDocumentoReferencia = 32
             });
+
+
+
+
+            libro.EnvioLibro.ResumenPeriodo = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ResumenPeriodo();
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo>();
+
+            var manuales = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaManual);
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
+            {
+                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaManual,
+                CantidadDocumentos = manuales.Count(),
+                CantidadDocumentosAnulados = 0,
+                TotalMontoExento = manuales.Sum(x=>x.MontoExento),
+                TotalMontoNeto = manuales.Sum(x => x.MontoNeto),
+                TotalMontoIva = manuales.Sum(x => x.MontoIva),
+                TotalIVAUsoComun = manuales.Sum(x => x.IVAUsoComun),
+                TotalMonto = manuales.Sum(x => x.MontoTotal),
+                FactorProporcionalidadIVA = 0.6,
+                TotalCreditoIVAUsoComun = (int)Math.Round(manuales.Sum(x => x.IVAUsoComun) * 0.6, 0, MidpointRounding.AwayFromZero),
+                CantidadOperacionesConIvaUsoComun = 1
+            });
+
+            var electronicas = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica);
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
+            {
+                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica,
+                CantidadDocumentos = electronicas.Count(),
+                CantidadDocumentosAnulados = 0,
+                TotalMontoExento = electronicas.Sum(x=>x.MontoExento),
+                TotalMontoNeto = electronicas.Sum(x => x.MontoNeto),
+                TotalMontoIva = electronicas.Sum(x => x.MontoIva),
+                TotalIVAUsoComun = electronicas.Sum(x => x.IVAUsoComun),
+                TotalMonto = electronicas.Sum(x => x.MontoTotal),
+                TotalIVANoRecuperable = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalIVANoRecuperable>()
+                {
+                    new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalIVANoRecuperable()
+                    {
+                        CantidadOperacionesIVANoRecuperable = 1,
+                        CodigoIVANoRecuperable = ChileSystems.DTE.Engine.Enum.CodigoIVANoRecuperable.CodigoIVANoRecuperableEnum.EntregaGratuita,
+                        TotalMontoIVANoRecuperable = electronicas.Sum(x=>x.IVANoRecuperable.Sum(y=>y.TotalMontoIVANoRecuperable))
+                    }
+                }
+            });
+
+            var nc = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.NotaCredito);
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
+            {
+                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.NotaCredito,
+                CantidadDocumentos = nc.Count(),
+                CantidadDocumentosAnulados = 0,
+                TotalMontoExento = nc.Sum(x => x.MontoExento),
+                TotalMontoNeto = nc.Sum(x => x.MontoNeto),
+                TotalMontoIva = nc.Sum(x => x.MontoIva),
+                TotalMonto = nc.Sum(x => x.MontoTotal),
+            });
+
+            var fce = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaCompraElectronica);
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
+            {
+                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaCompraElectronica,
+                CantidadDocumentos = fce.Count(),
+                CantidadDocumentosAnulados = 0,
+                TotalMontoExento = fce.Sum(x => x.MontoExento),
+                TotalMontoNeto = fce.Sum(x => x.MontoNeto),
+                TotalMontoIva = fce.Sum(x => x.MontoIva),
+                TotalMonto = fce.Sum(x => x.MontoTotal),
+                TotalIVARetenidoTotal = fce.Sum(x => x.IVARetenidoTotal),
+                Impuestos = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.ImpuestosPeriodo>()
+                {
+                    new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ImpuestosPeriodo()
+                    {
+                        CodigoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal,
+                        TotalMontoImpuesto = fce.Sum(x=>x.IVARetenidoTotal)
+                    }
+                }
+            });
+            /**************************************************/
+
+            /**************************************************/
+           
             return libro;
         }
 
@@ -989,6 +1003,35 @@ namespace SIMPLEAPI_Demo
 
             dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(512250);
             dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(519000);
+
+            if (tipo == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
+            {
+                dte.Documento.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
+                dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+                {
+                    CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia,
+                    FechaDocumentoReferencia = DateTime.Now,
+                    FolioReferencia = "213",
+                    IndicadorGlobal = 0,
+                    Numero = 1,
+                    RazonReferencia = "ANULA FACTURA",
+                    TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.FacturaElectronica
+                });
+            }
+            else if (tipo == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
+            {
+                dte.Documento.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
+                dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+                {
+                    CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
+                    FechaDocumentoReferencia = DateTime.Now,
+                    FolioReferencia = "214",
+                    IndicadorGlobal = 0,
+                    Numero = 1,
+                    RazonReferencia = "CORRIGE MONTOS",
+                    TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.FacturaElectronica
+                });
+            }
 
             //DOCUMENTO - DETALLES
             dte.Documento.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
@@ -1106,7 +1149,7 @@ namespace SIMPLEAPI_Demo
             recepcionEnvio.RutReceptor = result.Caratula.RutResponde;
             recepcionEnvio.EstadoRecepcionEnvio = ChileSystems.DTE.Engine.Enum.EstadoEnvioEmpresa.EstadoEnvioEmpresaEnum.OK;
             recepcionEnvio.GlosaEstadoRecepcionEnvio = "ENVIO OK";
-            recepcionEnvio.NombreArchivoEnvio = "ENVIO_DTE_1071913";
+            recepcionEnvio.NombreArchivoEnvio = "ENVIO_DTE_1072427";
             recepcionEnvio.RecepcionDTE = new List<RecepcionDTE>();
 
             //foreach (var dte in dtes)
@@ -1235,9 +1278,9 @@ namespace SIMPLEAPI_Demo
                 resultadoDTE.RutEmisor = "88888888-8"; 
                 resultadoDTE.RutReceptor = rutEmpresa;
                 resultadoDTE.TipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
-                resultadoDTE.Folio = 52576;
+                resultadoDTE.Folio = 52455;
                 resultadoDTE.FechaEmision = new DateTime(2019, 2, 19);
-                resultadoDTE.MontoTotal = 18635;
+                resultadoDTE.MontoTotal = 11842;
 
                 result.ResultadoDTE.Add(resultadoDTE);
 
