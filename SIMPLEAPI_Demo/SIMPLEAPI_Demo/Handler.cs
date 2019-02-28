@@ -409,12 +409,10 @@ namespace SIMPLEAPI_Demo
                         .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
                         .Sum(x => x.MontoItem);
 
-                    //var iva = (int)Math.Round(neto * 0.19, 0);
-
-                    dte.Documento.Encabezado.Totales.MontoNeto = (int)Math.Round(totalBrutoAfecto / 1.19, 0, MidpointRounding.AwayFromZero);
-                    dte.Documento.Encabezado.Totales.MontoExento = totalExento;
-                    dte.Documento.Encabezado.Totales.IVA = (int)Math.Round(dte.Documento.Encabezado.Totales.MontoNeto * 0.19, 0, MidpointRounding.AwayFromZero);
-                    dte.Documento.Encabezado.Totales.MontoTotal = dte.Documento.Encabezado.Totales.MontoNeto + totalExento + dte.Documento.Encabezado.Totales.IVA;
+                    /*En las boletas, sólo es necesario informar el monto total*/
+                    var neto = (int)Math.Round(totalBrutoAfecto / 1.19, 0, MidpointRounding.AwayFromZero);
+                    var iva = (int)Math.Round(dte.Documento.Encabezado.Totales.MontoNeto * 0.19, 0, MidpointRounding.AwayFromZero);
+                    dte.Documento.Encabezado.Totales.MontoTotal = neto + totalExento + iva;
                 }
             }
                     

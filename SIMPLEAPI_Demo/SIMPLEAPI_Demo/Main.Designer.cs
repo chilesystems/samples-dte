@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.botonSetPruebas = new System.Windows.Forms.Button();
+            this.botonIntercambio = new System.Windows.Forms.Button();
             this.botonValidador = new System.Windows.Forms.Button();
             this.botonMuestraImpresa = new System.Windows.Forms.Button();
             this.botonAceptacion = new System.Windows.Forms.Button();
             this.botonSimulacion = new System.Windows.Forms.Button();
             this.botonConsultarEstadoDTE = new System.Windows.Forms.Button();
+            this.botonSetPruebas = new System.Windows.Forms.Button();
             this.radioProduccion = new System.Windows.Forms.RadioButton();
             this.radioCertificacion = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -50,7 +51,6 @@
             this.botonGenerarDocumento = new System.Windows.Forms.Button();
             this.botonIngresarTimbraje = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.botonIntercambio = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -71,15 +71,15 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Utilidades";
             // 
-            // botonSetPruebas
+            // botonIntercambio
             // 
-            this.botonSetPruebas.Location = new System.Drawing.Point(6, 135);
-            this.botonSetPruebas.Name = "botonSetPruebas";
-            this.botonSetPruebas.Size = new System.Drawing.Size(151, 23);
-            this.botonSetPruebas.TabIndex = 18;
-            this.botonSetPruebas.Text = "SET de Pruebas";
-            this.botonSetPruebas.UseVisualStyleBackColor = true;
-            this.botonSetPruebas.Click += new System.EventHandler(this.botonSetPruebas_Click);
+            this.botonIntercambio.Location = new System.Drawing.Point(6, 163);
+            this.botonIntercambio.Name = "botonIntercambio";
+            this.botonIntercambio.Size = new System.Drawing.Size(151, 23);
+            this.botonIntercambio.TabIndex = 18;
+            this.botonIntercambio.Text = "Intercambio";
+            this.botonIntercambio.UseVisualStyleBackColor = true;
+            this.botonIntercambio.Click += new System.EventHandler(this.botonIntercambio_Click);
             // 
             // botonValidador
             // 
@@ -131,6 +131,16 @@
             this.botonConsultarEstadoDTE.UseVisualStyleBackColor = true;
             this.botonConsultarEstadoDTE.Click += new System.EventHandler(this.botonConsultarEstadoDTE_Click);
             // 
+            // botonSetPruebas
+            // 
+            this.botonSetPruebas.Location = new System.Drawing.Point(6, 135);
+            this.botonSetPruebas.Name = "botonSetPruebas";
+            this.botonSetPruebas.Size = new System.Drawing.Size(151, 23);
+            this.botonSetPruebas.TabIndex = 18;
+            this.botonSetPruebas.Text = "SET de Pruebas";
+            this.botonSetPruebas.UseVisualStyleBackColor = true;
+            this.botonSetPruebas.Click += new System.EventHandler(this.botonSetPruebas_Click);
+            // 
             // radioProduccion
             // 
             this.radioProduccion.AutoSize = true;
@@ -174,7 +184,7 @@
             this.botonGenerarEnvioBoleta.Name = "botonGenerarEnvioBoleta";
             this.botonGenerarEnvioBoleta.Size = new System.Drawing.Size(151, 23);
             this.botonGenerarEnvioBoleta.TabIndex = 5;
-            this.botonGenerarEnvioBoleta.Text = "Generar Sobre Envío";
+            this.botonGenerarEnvioBoleta.Text = "Envío para Boletas";
             this.botonGenerarEnvioBoleta.UseVisualStyleBackColor = true;
             this.botonGenerarEnvioBoleta.Click += new System.EventHandler(this.botonGenerarEnvioBoleta_Click);
             // 
@@ -285,16 +295,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // botonIntercambio
-            // 
-            this.botonIntercambio.Location = new System.Drawing.Point(6, 163);
-            this.botonIntercambio.Name = "botonIntercambio";
-            this.botonIntercambio.Size = new System.Drawing.Size(151, 23);
-            this.botonIntercambio.TabIndex = 18;
-            this.botonIntercambio.Text = "Intercambio";
-            this.botonIntercambio.UseVisualStyleBackColor = true;
-            this.botonIntercambio.Click += new System.EventHandler(this.botonIntercambio_Click);
             // 
             // Main
             // 
