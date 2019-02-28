@@ -6,7 +6,7 @@ SAMPLES-DTE es una solución Visual Studio, que pretende ejemplificar, la mayor 
 
 ## Comenzando 🚀
 
-Para utilizar *SIMPLE SDK*, es necesario contar con un código de activación tipo Serial Key. La que viene incluída en el archivo Handler.cs, tiene una duración limitada y cuenta con un tope de 100 documentos. #Pero servirá para que la pruebes ;)
+Para utilizar *SIMPLE SDK*, es necesario contar con un código de activación tipo Serial Key. La que viene incluída en el archivo Handler.cs, tiene una duración limitada y cuenta con un tope de 100 documentos. **Pero servirá para que la pruebes ;)**
 
 Más información en [www.chilesystems.com](http://www.chilesystems.com) o solicitandola a contacto@chilesystems.com
 
