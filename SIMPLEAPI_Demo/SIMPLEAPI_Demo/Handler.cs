@@ -50,10 +50,10 @@ namespace SIMPLEAPI_Demo
 
             //DOCUMENTO - ENCABEZADO - EMISOR - CAMPOS OBLIGATORIOS          
             dte.Documento.Encabezado.Emisor.Rut = rutEmpresa;
-            dte.Documento.Encabezado.Emisor.RazonSocial = "MERA VENNIK LIMITADA";
-            dte.Documento.Encabezado.Emisor.Giro = "VENTA AL POR MENOR DE OTROS PRODUCTOS EN PEQUENOS ALMACENES NO ESPECIA";
-            dte.Documento.Encabezado.Emisor.DireccionOrigen = "COLON 1148";
-            dte.Documento.Encabezado.Emisor.ComunaOrigen = "TALCAHUANO";
+            dte.Documento.Encabezado.Emisor.RazonSocial = "GONZALO BUSTAMANTE";
+            dte.Documento.Encabezado.Emisor.Giro = "GIRO GIRO";
+            dte.Documento.Encabezado.Emisor.DireccionOrigen = "DOMICILIO 787";
+            dte.Documento.Encabezado.Emisor.ComunaOrigen = "ALTO HOSPICIO";
             //dte.Documento.Encabezado.Emisor.RazonSocialBoleta = "TRANSPORTE DISTRIBUCION Y COMERCIALIZACION DE PRODUCTOS D&V LIMITADA";
             //dte.Documento.Encabezado.Emisor.GiroBoleta = "VENTA AL POR MAYOR DE CONFITES";
 
@@ -154,7 +154,7 @@ namespace SIMPLEAPI_Demo
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.SetPruebas
             });
 
-            /*Ejemplo de referencia a una orden de compra*/
+            /*Ejemplo de referencia a una factura exenta*/
             if (usaReferencia)
             {
                 //c++;
@@ -193,10 +193,13 @@ namespace SIMPLEAPI_Demo
              * cuando antes debías ir con las facturas en papel para que te las timbraran */
             string messageOut = string.Empty;
             dte.Documento.Timbrar(
-                EnsureExists
-                ((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE,
-                dte.Documento.Encabezado.IdentificacionDTE.Folio,
-                pathCaf), pathResult, serialKEY, out messageOut);
+                EnsureExists((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, dte.Documento.Encabezado.IdentificacionDTE.Folio, pathCaf), 
+                pathResult, 
+                serialKEY, 
+                out messageOut);
+
+            /*El documento timbrado se guarda en la variable pathResult*/
+
             /*Finalmente, el documento timbrado debe firmarse con el certificado digital*/
             /*Se debe entregar en el argumento del método Firmar, el "FriendlyName" o Nombre descriptivo del certificado*/
             /*Retorna el filePath donde estará el archivo XML timbrado y firmado, listo para ser enviado al SII*/

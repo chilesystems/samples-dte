@@ -34,6 +34,7 @@ namespace SIMPLEAPI_Demo
             handler.Folio = 101;
             //El Id debe ser alfanumerico. Remitirse a letras y números
             handler.idDte = "TESTPRUEBA1";
+            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
             var dte = handler.GenerateDTE();
             handler.GenerateDetails(dte);
 
@@ -371,6 +372,7 @@ namespace SIMPLEAPI_Demo
             handler.idDte = "A_" + folios[0];
             handler.casoPruebas = "CASO " + nAtencion + "-1";
             var dte = handler.GenerateDTE();
+
             var detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
