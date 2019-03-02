@@ -16,10 +16,13 @@ namespace SIMPLEAPI_Demo
 
         public string casoPruebas;
         public string idDte;
-        public string rutEmpresa = "79628730-6";
-        public string rutCertificado = "5750735-7";
-        public string nombreCertificado = "ROELOF";
-        public DateTime fechaEmision = new DateTime(2019, 2, 19);
+        public string rutEmpresa = "14684925-3";
+        public string rutCertificado = "14684925-3";
+        public string nombreCertificado = "ALBERTO MAMANI CHOQUE";
+        public DateTime fechaEmision = DateTime.Now;
+        public DateTime fechaResolucion = new DateTime(2016, 7, 28);
+        public int numeroResolucion = 0;
+
 
         public string serialKEY = "7022-A610-6371-7031-9513"; //Valida hasta el 11 de febrero de 2020
 
@@ -50,15 +53,15 @@ namespace SIMPLEAPI_Demo
 
             //DOCUMENTO - ENCABEZADO - EMISOR - CAMPOS OBLIGATORIOS          
             dte.Documento.Encabezado.Emisor.Rut = rutEmpresa;
-            dte.Documento.Encabezado.Emisor.RazonSocial = "GONZALO BUSTAMANTE";
-            dte.Documento.Encabezado.Emisor.Giro = "GIRO GIRO";
-            dte.Documento.Encabezado.Emisor.DireccionOrigen = "DOMICILIO 787";
+            dte.Documento.Encabezado.Emisor.RazonSocial = "ALBERTO MAMANI CHOQUE";
+            dte.Documento.Encabezado.Emisor.Giro = "FABRICACIO ARTESANAL CONFITES VENTA DE BEBIDAS HELADOS Y LACTEOS SUPE";
+            dte.Documento.Encabezado.Emisor.DireccionOrigen = " AV LOS AROMOS PARCELA 29 L 16-A";
             dte.Documento.Encabezado.Emisor.ComunaOrigen = "ALTO HOSPICIO";
             //dte.Documento.Encabezado.Emisor.RazonSocialBoleta = "TRANSPORTE DISTRIBUCION Y COMERCIALIZACION DE PRODUCTOS D&V LIMITADA";
             //dte.Documento.Encabezado.Emisor.GiroBoleta = "VENTA AL POR MAYOR DE CONFITES";
 
-            dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(319010);
-            dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(521900);
+            dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(107300);
+            dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(463020);
 
             //DOCUMENTO - ENCABEZADO - RECEPTOR - CAMPOS OBLIGATORIOS
 
@@ -274,8 +277,8 @@ namespace SIMPLEAPI_Demo
             EnvioSII.SetDTE.Caratula = new ChileSystems.DTE.Engine.Envio.Caratula();
             EnvioSII.SetDTE.Caratula.FechaEnvio = DateTime.Now;
             /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
-            EnvioSII.SetDTE.Caratula.FechaResolucion = new DateTime(2018, 7, 13);
-            EnvioSII.SetDTE.Caratula.NumeroResolucion = 0;
+            EnvioSII.SetDTE.Caratula.FechaResolucion = fechaResolucion;
+            EnvioSII.SetDTE.Caratula.NumeroResolucion = numeroResolucion;
 
             EnvioSII.SetDTE.Caratula.RutEmisor = rutEmpresa;
             EnvioSII.SetDTE.Caratula.RutEnvia = rutCertificado;
@@ -305,8 +308,8 @@ namespace SIMPLEAPI_Demo
             EnvioCustomer.SetDTE.Caratula = new ChileSystems.DTE.Engine.Envio.Caratula();
             EnvioCustomer.SetDTE.Caratula.FechaEnvio = DateTime.Now;
             /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
-            EnvioCustomer.SetDTE.Caratula.FechaResolucion = DateTime.Now;
-            EnvioCustomer.SetDTE.Caratula.NumeroResolucion = 80;
+            EnvioCustomer.SetDTE.Caratula.FechaResolucion = fechaResolucion;
+            EnvioCustomer.SetDTE.Caratula.NumeroResolucion = numeroResolucion;
 
             EnvioCustomer.SetDTE.Caratula.RutEmisor = rutEmpresa;
             EnvioCustomer.SetDTE.Caratula.RutEnvia = rutCertificado;
@@ -444,8 +447,8 @@ namespace SIMPLEAPI_Demo
             EnvioSII.SetDTE.Caratula = new ChileSystems.DTE.Engine.Envio.Caratula();
             EnvioSII.SetDTE.Caratula.FechaEnvio = DateTime.Now;
             /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
-            EnvioSII.SetDTE.Caratula.FechaResolucion = new DateTime(2013, 5, 30);
-            EnvioSII.SetDTE.Caratula.NumeroResolucion = 0;
+            EnvioSII.SetDTE.Caratula.FechaResolucion = fechaResolucion;
+            EnvioSII.SetDTE.Caratula.NumeroResolucion = numeroResolucion;
 
             EnvioSII.SetDTE.Caratula.RutEmisor = rutEmpresa;
             EnvioSII.SetDTE.Caratula.RutEnvia = rutCertificado;
@@ -474,8 +477,8 @@ namespace SIMPLEAPI_Demo
 
             rcof.DocumentoConsumoFolios.Caratula.FechaFinal = fechaInicio;
             rcof.DocumentoConsumoFolios.Caratula.FechaInicio = fechaFinal;
-            rcof.DocumentoConsumoFolios.Caratula.FechaResolucion = DateTime.Now;
-            rcof.DocumentoConsumoFolios.Caratula.NroResol = 50;
+            rcof.DocumentoConsumoFolios.Caratula.FechaResolucion = fechaResolucion;
+            rcof.DocumentoConsumoFolios.Caratula.NroResol = numeroResolucion;
             rcof.DocumentoConsumoFolios.Caratula.RutEmisor = rutEmpresa;
             rcof.DocumentoConsumoFolios.Caratula.RutEnvia = rutCertificado;
             rcof.DocumentoConsumoFolios.Caratula.SecEnvio = "1";
@@ -539,8 +542,6 @@ namespace SIMPLEAPI_Demo
 
             /*Datos para confeccion de caratula*/
             string periodoTributario = "2018-05";
-            DateTime fechaResolucion = new DateTime(2016, 4, 28);
-            int nResolucion = 0;
             /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
             /*El tipo de libro debe ser "Especial" cuando se trata del set de pruebas*/
             /*El folio de notificacion lo entrega el SII al momento de solicitar el libro, para el set de pruebas no es necesario agregarlo*/
@@ -550,7 +551,7 @@ namespace SIMPLEAPI_Demo
                 RutEnvia = rutCertificado,
                 PeriodoTributario = periodoTributario,
                 FechaResolucion = fechaResolucion,
-                NumeroResolucion = nResolucion,
+                NumeroResolucion = numeroResolucion,
                 TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
                 TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total
             };
@@ -617,8 +618,8 @@ namespace SIMPLEAPI_Demo
                 RutEmisor = rutEmpresa,
                 RutEnvia = rutCertificado,
                 PeriodoTributario = fechaEmision.Year + "-0" + fechaEmision.Month,
-                FechaResolucion = new DateTime(2018, 7, 13),
-                NumeroResolucion = 0,
+                FechaResolucion = fechaResolucion,
+                NumeroResolucion = numeroResolucion,
                 TipoOperacion = ChileSystems.DTE.Engine.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Venta,
                 TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
                 TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
@@ -772,8 +773,8 @@ namespace SIMPLEAPI_Demo
                 RutEmisor = rutEmpresa,
                 RutEnvia = rutCertificado,
                 PeriodoTributario = fechaEmision.Year + "-0" + fechaEmision.Month,
-                FechaResolucion = new DateTime(2018, 7, 13),
-                NumeroResolucion = 0,
+                FechaResolucion = fechaResolucion,
+                NumeroResolucion = numeroResolucion,
                 TipoOperacion = ChileSystems.DTE.Engine.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Compra,
                 TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
                 TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
