@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SIMPLE_SDK, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\SIMPLE_API\SIMPLE_API\bin\Debug\SIMPLE_SDK.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -123,12 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\View.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\SIMPLE_API\SIMPLE_API\SIMPLE_API.csproj">
-      <Project>{db72ca7e-c862-4146-a04f-25dfc9f027b0}</Project>
-      <Name>SIMPLE_API</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
