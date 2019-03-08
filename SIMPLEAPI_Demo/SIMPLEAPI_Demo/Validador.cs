@@ -71,8 +71,6 @@ namespace SIMPLEAPI_Demo
                         tipoFirma = SIMPLE_SDK.Security.Firma.Firma.TipoXML.LibroBoletas;
                     }
 
-                    
-
                     string messageResultSchema = string.Empty;
                     string messageResultFirma = string.Empty;
                     if (ChileSystems.DTE.Engine.XML.XmlHandler.ValidateWithSchema(openFileDialog1.FileName, out messageResultSchema, tipoSchema))

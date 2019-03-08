@@ -16,9 +16,9 @@ namespace SIMPLEAPI_Demo
 
         public string casoPruebas;
         public string idDte;
-        public string rutEmpresa = "14684925-3";
-        public string rutCertificado = "14684925-3";
-        public string nombreCertificado = "ALBERTO MAMANI CHOQUE";
+        public string rutEmpresa = "11111111-1";
+        public string rutCertificado = "22222222-2";
+        public string nombreCertificado = "NOMBRE_DESCRIPTIVO";
         public DateTime fechaEmision = DateTime.Now;
         public DateTime fechaResolucion = new DateTime(2016, 7, 28);
         public int numeroResolucion = 0;
@@ -197,7 +197,6 @@ namespace SIMPLEAPI_Demo
             string messageOut = string.Empty;
             dte.Documento.Timbrar(
                 EnsureExists((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, dte.Documento.Encabezado.IdentificacionDTE.Folio, pathCaf), 
-                pathResult, 
                 serialKEY, 
                 out messageOut);
 
@@ -486,10 +485,16 @@ namespace SIMPLEAPI_Demo
             List<ChileSystems.DTE.Engine.RCOF.Resumen> resumenes = new List<ChileSystems.DTE.Engine.RCOF.Resumen>();
 
             /*datos de boletas electrónicas afectas*/
-            int totalNeto = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoNeto);
-            int totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoExento);
-            int totalIva = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.IVA);
-            int totalTotal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoTotal);
+            /* Estos datos se deben calcular, debido a que no se informa IVA en boletas electrónicas 
+             */
+            int totalNeto = 0;
+            int totalExento = 0;
+            int totalIva = 0;
+            int totalTotal = 0;
+            //int totalNeto = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoNeto);
+            //int totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoExento);
+            //int totalIva = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.IVA);
+            //int totalTotal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoTotal);
             int rangoInicial = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Min(x => x.Documento.Encabezado.IdentificacionDTE.Folio);
             int rangoFinal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Max(x => x.Documento.Encabezado.IdentificacionDTE.Folio);
             resumenes.Add(new ChileSystems.DTE.Engine.RCOF.Resumen
