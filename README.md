@@ -34,8 +34,9 @@ En la carpeta _temp_ se guardarán los archivos XML. En la carpeta _caf_ los có
 
 En 3 videos distintos, se muestra cómo utilizar este mismo proyecto (el de los videos es un poco más antiguo, pero las variaciones son mínimas).
 
-* [Simulación y generación de Timbre impreso con API Simple](https://www.youtube.com/watch?v=ZLRxZ58b-w4)
-* [Generación y envío de documentos al SII Chile con Simple API](https://www.youtube.com/watch?v=q20kf8eke50)
-* [Certificación de boletas electrónicas con Simple API](https://www.youtube.com/watch?v=gq5mBIAyf6o)
+* [Simulación y generación de Timbre impreso con SDK Simple](https://www.youtube.com/watch?v=ZLRxZ58b-w4)
+* [Generación y envío de documentos al SII Chile con Simple SDK](https://www.youtube.com/watch?v=q20kf8eke50)
+* [Certificación de boletas electrónicas con Simple SDK](https://www.youtube.com/watch?v=gq5mBIAyf6o)
+* [Certificacion set de pruebas SII Chile con Simple SDK](https://www.youtube.com/watch?v=m_udVOpiP6M)
 
 
