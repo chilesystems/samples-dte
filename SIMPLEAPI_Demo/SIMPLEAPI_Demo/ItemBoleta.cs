@@ -15,5 +15,11 @@ namespace SIMPLEAPI_Demo
         public bool Afecto { get; set; }
         public string UnidadMedida { get; set; }
         public double Descuento { get; set; }
+        public int _tipoImpuesto;
+        public ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum TipoImpuesto
+        {
+            get { return _tipoImpuesto != 0 ? (ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum)_tipoImpuesto : ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.NotSet; }
+            set { _tipoImpuesto = (int)value; }
+        }
     }
 }
