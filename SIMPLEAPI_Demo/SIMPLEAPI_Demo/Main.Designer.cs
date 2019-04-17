@@ -51,6 +51,7 @@
             this.botonGenerarDocumento = new System.Windows.Forms.Button();
             this.botonIngresarTimbraje = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.botonCesion = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -58,6 +59,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.botonCesion);
             this.groupBox5.Controls.Add(this.botonIntercambio);
             this.groupBox5.Controls.Add(this.botonValidador);
             this.groupBox5.Controls.Add(this.botonMuestraImpresa);
@@ -66,7 +68,7 @@
             this.groupBox5.Controls.Add(this.botonConsultarEstadoDTE);
             this.groupBox5.Location = new System.Drawing.Point(350, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(163, 197);
+            this.groupBox5.Size = new System.Drawing.Size(163, 221);
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Utilidades";
@@ -296,11 +298,21 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // botonCesion
+            // 
+            this.botonCesion.Location = new System.Drawing.Point(6, 192);
+            this.botonCesion.Name = "botonCesion";
+            this.botonCesion.Size = new System.Drawing.Size(151, 23);
+            this.botonCesion.TabIndex = 19;
+            this.botonCesion.Text = "Cesión de Documentos";
+            this.botonCesion.UseVisualStyleBackColor = true;
+            this.botonCesion.Click += new System.EventHandler(this.botonCesion_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 210);
+            this.ClientSize = new System.Drawing.Size(518, 239);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.radioProduccion);
             this.Controls.Add(this.radioCertificacion);
@@ -344,6 +356,7 @@
         private System.Windows.Forms.Button botonValidador;
         private System.Windows.Forms.Button botonSetPruebas;
         private System.Windows.Forms.Button botonIntercambio;
+        private System.Windows.Forms.Button botonCesion;
     }
 }
 

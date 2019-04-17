@@ -15,13 +15,13 @@ namespace SIMPLEAPI_Demo
 
         public string casoPruebas;
         public string idDte;
-        public string rutEmpresa = "11111111-1";
-        public string rutCertificado = "12345678-6";
-        public string nombreCertificado = "TEST TEST";
+        public string rutEmpresa = "22222222-2";
+        public string rutCertificado = "11111111-1";
+        public string nombreCertificado = "NOMBRE_CERTIFICADO";
         public string RazonSocial = "RAZON_SOCIAL";
         public string Giro = "GIRO";
         public string Direccion = "DIRECCION";
-        public string Comuna = "IQUIQUE GLORIOSO";
+        public string Comuna = "COMUNA";
         public List<int> CodigosActividades = new List<int>() { 331900, 432900, 479909 };
         public DateTime fechaEmision = DateTime.Now;
         public DateTime fechaResolucion = new DateTime(2019, 4, 10);

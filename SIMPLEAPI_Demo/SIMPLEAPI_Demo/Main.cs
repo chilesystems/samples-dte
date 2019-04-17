@@ -852,5 +852,110 @@ namespace SIMPLEAPI_Demo
 
            
         }
+
+        private void botonCesion_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Multiselect = false;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                /*La cesión se debe realizar a partir de un DTE existente
+                 Para ello, se carga el correspondiente XML. Puede ser un <EnvioDTE> o <DTE>,
+                 Sin embargo, al usar el primero, hay que hacer la respectiva modificación 
+                 de Tipo en XmlHandler.DeserializeFromString<T>*/
+
+                string pathFile = openFileDialog1.FileName;
+                string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
+                
+
+                /*Creo el objeto AEC*/
+                var AEC = new SIMPLE_SDK.Cesion.AEC();
+
+                /*Creo el objeto DteCedido a partir del XML leído. En caso del XML haber sido del
+                 tipo <EnvioDTE>, hay que rescatar sólo el XML desde el tag <DTE>, según el DTE que
+                 se quiera ceder.
+
+                 La variable xmlDteCedido me indica el Path donde está el DteCedido firmado.
+                 */
+
+                var dteCedido = new SIMPLE_SDK.Cesion.DTECedido(xml);
+                var xmlDteCedido = dteCedido.Firmar(handler.nombreCertificado, out string message);
+
+
+                /*Creo el objeto cesion a partir de DTE leído, se le indica el número de secuencia de
+                  la cesión. Pueden existir varias cesiones.*/
+                var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
+                var cesion = new SIMPLE_SDK.Cesion.Cesion(dte, 1);
+
+                /*Datos del factoring*/
+                var cesionario = new SIMPLE_SDK.Cesion.Cesionario()
+                {
+                    Direccion = "Dirección Cesionario",
+                    eMail = "Email Cesionario",
+                    RazonSocial = "Factoring LTDA",
+                    RUT = "11111111-1"
+                };
+
+                var cedente = new SIMPLE_SDK.Cesion.Cedente()
+                {
+                    RUT = dte.Documento.Encabezado.Emisor.Rut,
+                    RazonSocial = dte.Documento.Encabezado.Emisor.RazonSocial,
+                    Direccion = dte.Documento.Encabezado.Emisor.DireccionOrigen +", " + dte.Documento.Encabezado.Emisor.ComunaOrigen,
+                    eMail = dte.Documento.Encabezado.Emisor.CorreoElectronico,
+                    RUTsAutorizados = new List<SIMPLE_SDK.Cesion.RUTAutorizado>()
+                    {
+                        new SIMPLE_SDK.Cesion.RUTAutorizado()
+                        {
+                            Nombre = "Nombre Autorizado",
+                            RUT = "RUT Autorizado"
+                        }
+                    }
+                };
+
+                string declaracionJurada = string.Format(
+                 @"Se declara bajo juramento que {0}, RUT {1} ha puesto a disposición del 
+                    cesionario {2}, RUT {3}, el o los documentos donde constan los recibos 
+                    de las mercaderías entregadas o servicios prestados, entregados por parte 
+                    del deudor de la factura {4}, RUT {5}, de acuerdo a lo establecido en la 
+                    Ley N° 19.983", 
+                 cedente.RazonSocial, 
+                 cedente.RUT, 
+                 cesionario.RazonSocial,
+                 cesionario.RUT,
+                 dte.Documento.Encabezado.Receptor.RazonSocial,
+                 dte.Documento.Encabezado.Receptor.Rut);
+
+                cedente.DeclaracionJurada = declaracionJurada;
+
+                cesion.DocumentoCesion.Cedente = cedente;
+                cesion.DocumentoCesion.Cesionario = cesionario;
+
+                /*la variable cesionXML contiene el path de la cesión firmada*/
+                var cesionXML = cesion.Firmar(handler.nombreCertificado, out message);
+
+                AEC.DocumentoAEC.Caratula = new SIMPLE_SDK.Cesion.Caratula()
+                {
+                    MailContacto = cedente.eMail,
+                    NombreContacto = cedente.RUTsAutorizados[0].Nombre,
+                    RutCedente = cedente.RUT,
+                    RutCesionario = cesionario.RUT,
+                    TmstFirmaEnvio = DateTime.Now
+                };
+
+                /*Las cesiones y el Dte cedido, deben agregarse al objeto AEC como strings*/
+                AEC.signedXMLCedido = File.ReadAllText(xmlDteCedido, Encoding.GetEncoding("ISO-8859-1"));
+                AEC.signedXMLCesion.Add(File.ReadAllText(cesionXML, Encoding.GetEncoding("ISO-8859-1")));
+                AEC.DocumentoAEC.ID = "ID_TEST";
+                var filePathAEC = AEC.Firmar(handler.nombreCertificado, out message);
+                File.Delete(xmlDteCedido);
+                File.Delete(cesionXML);
+
+                MessageBox.Show("AEC generado exitosamente en " + filePathAEC);
+
+                //var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
+
+            }
+
+        }
     }
 }
