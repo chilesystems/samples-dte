@@ -17,7 +17,7 @@ namespace SIMPLEAPI_Demo
         public string idDte;
         public string rutEmpresa = "22222222-2";
         public string rutCertificado = "11111111-1";
-        public string nombreCertificado = "NOMBRE_CERTIFICADO";
+        public string nombreCertificado = "ALBERTO MAMANI CHOQUE";
         public string RazonSocial = "RAZON_SOCIAL";
         public string Giro = "GIRO";
         public string Direccion = "DIRECCION";
@@ -773,16 +773,16 @@ namespace SIMPLEAPI_Demo
             libro.EnvioLibro.Detalles = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle>();
             foreach (var dteAux in envioAux.SetDTE.DTEs)
             {
-                ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.NotSet;
+                ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotSet;
 
                 if (dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica)
-                    tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica;
+                    tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
 
                 else if (dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
-                    tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.NotaCreditoElectronica;
+                    tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica;
 
                 else if (dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
-                    tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.NotaDebitoElectronica;
+                    tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica;
 
                 libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
                 {
@@ -835,7 +835,7 @@ namespace SIMPLEAPI_Demo
             int total = neto + iva + exento;
             libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaManual,
+                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.Factura,
                 NumeroDocumento = 234,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = fechaEmision,
@@ -852,7 +852,7 @@ namespace SIMPLEAPI_Demo
             total = neto + iva + exento;
             libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica,
+                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica,
                 NumeroDocumento = 32,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = fechaEmision,
@@ -872,7 +872,7 @@ namespace SIMPLEAPI_Demo
             total = neto + iva + exento;
             libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaManual,
+                TipoDocumento =  ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.Factura,
                 NumeroDocumento = 781,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = fechaEmision,
@@ -893,7 +893,7 @@ namespace SIMPLEAPI_Demo
             total = neto + iva + exento;
             libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.NotaCredito,
+                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCredito,
                 NumeroDocumento = 451,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = fechaEmision,
@@ -913,7 +913,7 @@ namespace SIMPLEAPI_Demo
             total = neto + iva + exento;
             libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica,
+                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica,
                 NumeroDocumento = 67,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = fechaEmision,
@@ -938,7 +938,7 @@ namespace SIMPLEAPI_Demo
             total = neto + exento;
             libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaCompraElectronica,
+                TipoDocumento =  ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaCompraElectronica,
                 NumeroDocumento = 9,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = fechaEmision,
@@ -966,7 +966,7 @@ namespace SIMPLEAPI_Demo
             total = neto + iva + exento;
             libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.NotaCredito,
+                TipoDocumento =  ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCredito,
                 NumeroDocumento = 211,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = fechaEmision,
@@ -986,7 +986,7 @@ namespace SIMPLEAPI_Demo
             libro.EnvioLibro.ResumenPeriodo = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ResumenPeriodo();
             libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo>();
 
-            var manuales = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaManual);
+            var manuales = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.Factura);
             libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
             {
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaManual,
@@ -1002,7 +1002,7 @@ namespace SIMPLEAPI_Demo
                 CantidadOperacionesConIvaUsoComun = 1
             });
 
-            var electronicas = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica);
+            var electronicas = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica);
             libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
             {
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica,
@@ -1024,7 +1024,7 @@ namespace SIMPLEAPI_Demo
                 }
             });
 
-            var nc = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.NotaCredito);
+            var nc = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCredito);
             libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
             {
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.NotaCredito,
@@ -1036,7 +1036,7 @@ namespace SIMPLEAPI_Demo
                 TotalMonto = nc.Sum(x => x.MontoTotal),
             });
 
-            var fce = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaCompraElectronica);
+            var fce = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaCompraElectronica);
             libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
             {
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaCompraElectronica,
@@ -1332,7 +1332,6 @@ namespace SIMPLEAPI_Demo
 
             return filepath;
         }
-
 
         public string ResponderIntercambio(int estado, ChileSystems.DTE.Engine.Documento.DTE dte, string motivo)
         {
