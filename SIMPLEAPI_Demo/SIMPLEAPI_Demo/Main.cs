@@ -74,7 +74,6 @@ namespace SIMPLEAPI_Demo
             /*Generar envio para el cliente
             En esencia es lo mismo que para el SII */
             //var EnvioCliente = GenerarEnvioCliente(dte, xml);
-
             /*Puede ser el EnvioSII o EnvioCliente, pues es el mismo tipo de objeto*/
             var filePath = EnvioSII.Firmar(handler.nombreCertificado, handler.serialKEY, true);
             handler.Validate(filePath, SIMPLE_SDK.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);

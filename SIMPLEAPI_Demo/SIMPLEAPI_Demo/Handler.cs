@@ -15,12 +15,12 @@ namespace SIMPLEAPI_Demo
 
         public string casoPruebas;
         public string idDte;
-        public string rutEmpresa = "22222222-2";
-        public string rutCertificado = "11111111-1";
-        public string nombreCertificado = "ALBERTO MAMANI CHOQUE";
+        public string rutEmpresa = "11111111-1";
+        public string rutCertificado = "17096073-4";
+        public string nombreCertificado = "NOMBRE_CERTIFICADO";
         public string RazonSocial = "RAZON_SOCIAL";
-        public string Giro = "GIRO";
-        public string Direccion = "DIRECCION";
+        public string Giro = "GIRO_EMISOR";
+        public string Direccion = "DOMICILIO_EMISOR";
         public string Comuna = "COMUNA";
         public List<int> CodigosActividades = new List<int>() { 331900, 432900, 479909 };
         public DateTime fechaEmision = DateTime.Now;
@@ -28,7 +28,7 @@ namespace SIMPLEAPI_Demo
         public int numeroResolucion = 0;
 
 
-        public string serialKEY = "7022-A610-6371-7031-9513"; //Valida hasta el 11 de febrero de 2020
+        public string serialKEY = "6195-3480-6372-4077-3792"; //Valida hasta 27 de mayo de 2020
 
         public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica;
 
@@ -538,17 +538,17 @@ namespace SIMPLEAPI_Demo
             int rangoFinal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Max(x => x.Documento.Encabezado.IdentificacionDTE.Folio);
             resumenes.Add(new ChileSystems.DTE.Engine.RCOF.Resumen
             {
-                FoliosAnulados = "0",
-                FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Count().ToString(),
-                FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Count().ToString(),
+                FoliosAnulados = 0,
+                FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Count(),
+                FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Count(),
                 MntExento = totalExento,
                 MntIva = totalIVA,
                 MntNeto = totalNeto,
                 MntTotal = totalTotal,
                 TasaIVA = 19,
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica,
-                RangoUtilizados = new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = rangoInicial, Final = rangoFinal },
-                RangoAnulados = new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Inicial = 0, Final = 0 }
+                RangoUtilizados = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>() { new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = rangoInicial, Final = rangoFinal } },
+                RangoAnulados = new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
             });
 
             /*datos de notas de credito electronicas*/
@@ -561,17 +561,17 @@ namespace SIMPLEAPI_Demo
             rangoFinal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Max(x => x.Documento.Encabezado.IdentificacionDTE.Folio);
             resumenes.Add(new ChileSystems.DTE.Engine.RCOF.Resumen
             {
-                FoliosAnulados = "0",
-                FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Count().ToString(),
-                FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Count().ToString(),
+                FoliosAnulados = 0,
+                FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Count(),
+                FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Count(),
                 MntExento = totalExento,
                 MntIva = totalIVA,
                 MntNeto = totalNeto,
                 MntTotal = totalTotal,
                 TasaIVA = 19,
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica,
-                RangoUtilizados = new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = rangoInicial, Final = rangoFinal },
-                RangoAnulados = new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Inicial = 0, Final = 0 }
+                RangoUtilizados = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>() { new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = rangoInicial, Final = rangoFinal } },
+                RangoAnulados =new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
             });
 
             rcof.DocumentoConsumoFolios.Resumen = resumenes;
