@@ -14,6 +14,7 @@ Más información en [www.chilesystems.com](http://www.chilesystems.com) o solic
 
 ```
 .NET Framework 4.6
+Certificado Digital
 ```
 ### Instalación 🔧
 
@@ -32,7 +33,7 @@ En la carpeta _temp_ se guardarán los archivos XML. En la carpeta _caf_ los có
 
 ### Apoyo externo 🔩
 
-En 3 videos distintos, se muestra cómo utilizar este mismo proyecto (el de los videos es un poco más antiguo, pero las variaciones son mínimas).
+En 4 videos distintos, se muestra cómo utilizar este mismo proyecto (el de los videos es un poco más antiguo, pero las variaciones son mínimas).
 
 * [Simulación y generación de Timbre impreso con SDK Simple](https://www.youtube.com/watch?v=ZLRxZ58b-w4)
 * [Generación y envío de documentos al SII Chile con Simple SDK](https://www.youtube.com/watch?v=q20kf8eke50)
