@@ -31,6 +31,10 @@ En la carpeta _temp_ se guardarán los archivos XML. En la carpeta _caf_ los có
 
 2. Debes agregar la referencia a [SIMPLE SDK](http://www.chilesystems.com/SDK/SIMPLE_SDK.dll) a tu proyecto.
 
+3. Reemplaza los valores que están en Handler.cs por los que corresponden a la empresa en cuestión.
+
+4. Descarga un código de autorización de folios (CAF) desde el [SII](http://www.sii.cl)
+
 ### Apoyo externo 🔩
 
 En 4 videos distintos, se muestra cómo utilizar este mismo proyecto (el de los videos es un poco más antiguo, pero las variaciones son mínimas).
