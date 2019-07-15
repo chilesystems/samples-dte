@@ -15,16 +15,17 @@ namespace SIMPLEAPI_Demo
 
         public string casoPruebas;
         public string idDte;
-        public string rutEmpresa = "11111111-1";
-        public string rutCertificado = "17096073-4";
+        public string rutEmpresa = "14684925-3";
+        public string rutCertificado = "14684925-3";
         public string nombreCertificado = "NOMBRE_CERTIFICADO";
         public string RazonSocial = "RAZON_SOCIAL";
         public string Giro = "GIRO_EMISOR";
         public string Direccion = "DOMICILIO_EMISOR";
         public string Comuna = "COMUNA";
-        public List<int> CodigosActividades = new List<int>() { 331900, 432900, 479909 };
+        
+        public List<int> CodigosActividades = new List<int>() { 107300, 463020, 471100 };
         public DateTime fechaEmision = DateTime.Now;
-        public DateTime fechaResolucion = new DateTime(2019, 4, 10);
+        public DateTime fechaResolucion = new DateTime(2016, 7, 28);
         public int numeroResolucion = 0;
 
 
@@ -78,6 +79,59 @@ namespace SIMPLEAPI_Demo
             dte.Documento.Encabezado.Receptor.Giro = "Giro de cliente";
 
             return dte;
+        }
+
+        public ChileSystems.DTE.Engine.Documento.DTE GenerateDTEExportacionBase()
+        {
+            // DOCUMENTO
+            var dte = new ChileSystems.DTE.Engine.Documento.DTE();
+            dte.Exportaciones = new SIMPLE_SDK.Documento.Exportaciones();
+            dte.Exportaciones.Id = idDte;
+
+            dte.Exportaciones.Encabezado.IdentificacionDTE.TipoDTE = tipoDTE;
+            dte.Exportaciones.Encabezado.IdentificacionDTE.FechaEmision = fechaEmision;
+            dte.Exportaciones.Encabezado.IdentificacionDTE.Folio = Folio;
+            
+            dte.Exportaciones.Encabezado.Emisor.Rut = rutEmpresa;
+            dte.Exportaciones.Encabezado.Emisor.RazonSocial = RazonSocial;
+            dte.Exportaciones.Encabezado.Emisor.Giro = Giro;
+            dte.Exportaciones.Encabezado.Emisor.DireccionOrigen = Direccion;
+            dte.Exportaciones.Encabezado.Emisor.ComunaOrigen = Comuna;
+            dte.Exportaciones.Encabezado.Emisor.ActividadEconomica = CodigosActividades;
+
+            //DOCUMENTO - ENCABEZADO - RECEPTOR - CAMPOS OBLIGATORIOS
+
+            dte.Exportaciones.Encabezado.Receptor.Rut = "55555555-5";
+            dte.Exportaciones.Encabezado.Receptor.RazonSocial = "Razon Social de Cliente";
+            dte.Exportaciones.Encabezado.Receptor.Direccion = "Dirección de cliente";
+            dte.Exportaciones.Encabezado.Receptor.Comuna = "Comuna de cliente";
+            dte.Exportaciones.Encabezado.Receptor.Ciudad = "Ciudad de cliente";
+            dte.Exportaciones.Encabezado.Receptor.Giro = "Giro de cliente";
+
+            dte.Exportaciones.Encabezado.Transporte = new ChileSystems.DTE.Engine.Documento.Transporte();
+            dte.Exportaciones.Encabezado.Transporte.Aduana = new ChileSystems.DTE.Engine.Documento.Aduana();           
+
+         
+
+            return dte;
+        }
+
+        public void CalculateTotalesExportacion(ChileSystems.DTE.Engine.Documento.DTE dte, double adicional = 0)
+        {
+            int total = (int)Math.Round(dte.Exportaciones.Detalles.Sum(x => x.MontoItem) + dte.Exportaciones.Encabezado.Transporte.Aduana.MontoFlete + dte.Exportaciones.Encabezado.Transporte.Aduana.MontoSeguro + adicional, 0);
+            //int total = (int)Math.Round((decimal)dte.Exportaciones.Detalles.Sum(x => x.MontoItem), 0);
+           
+            dte.Exportaciones.Encabezado.Totales.MontoExento = total;
+            dte.Exportaciones.Encabezado.Totales.MontoTotal = total;
+
+            try {
+                int totalOtraMoneda = (int)Math.Round((dte.Exportaciones.Detalles.Sum(x => x.MontoItem) + dte.Exportaciones.Encabezado.Transporte.Aduana.MontoFlete + dte.Exportaciones.Encabezado.Transporte.Aduana.MontoSeguro + adicional) * dte.Exportaciones.Encabezado.OtraMoneda.TipoCambio, 0);
+                //int totalOtraMoneda = (int)Math.Round(dte.Exportaciones.Detalles.Sum(x => x.MontoItem) * dte.Exportaciones.Encabezado.OtraMoneda.TipoCambio, 0);
+                dte.Exportaciones.Encabezado.OtraMoneda.MontoExento = totalOtraMoneda;
+                dte.Exportaciones.Encabezado.OtraMoneda.MontoTotal = totalOtraMoneda;
+            }
+            catch { }
+           
         }
 
         public void GenerateDetails(ChileSystems.DTE.Engine.Documento.DTE dte)
@@ -296,6 +350,25 @@ namespace SIMPLEAPI_Demo
             return dte.Firmar(nombreCertificado, serialKEY, out messageOut, "out\\temp\\");
         }
 
+        public string TimbrarYFirmarXMLDTEExportacion(ChileSystems.DTE.Engine.Documento.DTE dte, string pathResult, string pathCaf)
+        {
+            
+            /*En primer lugar, el documento debe timbrarse con el CAF que descargas desde el SII, es simular
+             * cuando antes debías ir con las facturas en papel para que te las timbraran */
+            string messageOut = string.Empty;
+            dte.Exportaciones.Timbrar(
+                EnsureExists((int)dte.Exportaciones.Encabezado.IdentificacionDTE.TipoDTE, dte.Exportaciones.Encabezado.IdentificacionDTE.Folio, pathCaf),
+                serialKEY,
+                out messageOut);
+
+            /*El documento timbrado se guarda en la variable pathResult*/
+
+            /*Finalmente, el documento timbrado debe firmarse con el certificado digital*/
+            /*Se debe entregar en el argumento del método Firmar, el "FriendlyName" o Nombre descriptivo del certificado*/
+            /*Retorna el filePath donde estará el archivo XML timbrado y firmado, listo para ser enviado al SII*/
+            return dte.FirmarExportacion(nombreCertificado, serialKEY, out messageOut, "out\\temp\\");
+        }
+
         //public bool ValidateEnvio(string filePath, ChileSystems.DTE.Security.Firma.Firma.TipoXML tipo)
         //{
         //    string messageResult = string.Empty;
@@ -373,14 +446,30 @@ namespace SIMPLEAPI_Demo
             EnvioSII.SetDTE.Caratula.SubTotalesDTE = new List<ChileSystems.DTE.Engine.Envio.SubTotalesDTE>();
 
             /*En la carátula del envío, se debe indicar cuantos documentos de cada tipo se están enviando*/
-            var tipos = EnvioSII.SetDTE.DTEs.GroupBy(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE);
-            foreach (var a in tipos)
+            
+            if (EnvioSII.SetDTE.DTEs.Any(x=> !string.IsNullOrEmpty(x.Documento.Id)))
             {
-                EnvioSII.SetDTE.Caratula.SubTotalesDTE.Add(new ChileSystems.DTE.Engine.Envio.SubTotalesDTE()
+                var tipos = EnvioSII.SetDTE.DTEs.GroupBy(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE);
+                foreach (var a in tipos)
                 {
-                    Cantidad = a.Count(),
-                    TipoDTE = a.ElementAt(0).Documento.Encabezado.IdentificacionDTE.TipoDTE
-                });
+                    EnvioSII.SetDTE.Caratula.SubTotalesDTE.Add(new ChileSystems.DTE.Engine.Envio.SubTotalesDTE()
+                    {
+                        Cantidad = a.Count(),
+                        TipoDTE = a.ElementAt(0).Documento.Encabezado.IdentificacionDTE.TipoDTE
+                    });
+                }
+            }
+            else if (EnvioSII.SetDTE.DTEs.Any(x => !string.IsNullOrEmpty(x.Exportaciones.Id)))
+            {
+                var tipos = EnvioSII.SetDTE.DTEs.GroupBy(x => x.Exportaciones.Encabezado.IdentificacionDTE.TipoDTE);
+                foreach (var a in tipos)
+                {
+                    EnvioSII.SetDTE.Caratula.SubTotalesDTE.Add(new ChileSystems.DTE.Engine.Envio.SubTotalesDTE()
+                    {
+                        Cantidad = a.Count(),
+                        TipoDTE = a.ElementAt(0).Exportaciones.Encabezado.IdentificacionDTE.TipoDTE
+                    });
+                }
             }
 
             return EnvioSII;

@@ -956,5 +956,445 @@ namespace SIMPLEAPI_Demo
             }
 
         }
+
+        private void BotonSetExportacion_Click(object sender, EventArgs e)
+        {
+            var n_atencion = "1133094";
+            int folioFactura = 22;
+            int folioNC = 20;
+            int folioND = 20;
+            #region SET EXPORTACION 1
+
+            #region FACTURA EXPORTACION
+            //El folio es obligatorio
+            handler.Folio = folioFactura;
+            //El Id debe ser alfanumerico. Remitirse a letras y números
+            handler.idDte = "FAC_EXP_1";
+            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaExportacionElectronica;
+            var dte = handler.GenerateDTEExportacionBase();
+            dte.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion = SIMPLE_SDK.Enum.CodigosAduana.FormaPagoExportacionEnum.ACRED;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoModalidadVenta = SIMPLE_SDK.Enum.CodigosAduana.ModalidadVenta.A_FIRME;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoClausulaVenta = SIMPLE_SDK.Enum.CodigosAduana.ClausulaCompraVenta.FOB;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.TotalClausulaVenta = 887.17;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoViaTransporte = SIMPLE_SDK.Enum.CodigosAduana.ViasdeTransporte.AEREO;
+
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPuertoEmbarque = SIMPLE_SDK.Enum.CodigosAduana.Puertos.ANTOFAGASTA;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPuertoDesembarque = SIMPLE_SDK.Enum.CodigosAduana.Puertos.BREMEN;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoUnidadMedidaTara = SIMPLE_SDK.Enum.CodigosAduana.UnidadMedida.U;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoUnidadPesoBruto = SIMPLE_SDK.Enum.CodigosAduana.UnidadMedida.U;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoUnidadPesoNeto = SIMPLE_SDK.Enum.CodigosAduana.UnidadMedida.U;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CantidadBultos = 25;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.TipoBultos = new List<ChileSystems.DTE.Engine.Documento.TipoBulto>();
+            dte.Exportaciones.Encabezado.Transporte.Aduana.TipoBultos.Add(new ChileSystems.DTE.Engine.Documento.TipoBulto()
+            {
+                CantidadBultos = 25,
+                CodigoTipoBulto = SIMPLE_SDK.Enum.CodigosAduana.TipoBultoEnum.CONTENEDOR_REFRIGERADO,
+                IdContainer = "erer787df",
+                Sello = "SelloTest"
+            });
+            dte.Exportaciones.Encabezado.Transporte.Aduana.MontoFlete = 131.18;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.MontoSeguro = 19.4;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPaisDestino = SIMPLE_SDK.Enum.CodigosAduana.Paises.ALEMANIA;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPaisReceptor = SIMPLE_SDK.Enum.CodigosAduana.Paises.ALEMANIA;
+
+
+            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
+            var detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+            detalle.NumeroLinea = 1;
+            detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
+            detalle.Nombre = "CHATARRA DE ALUMINIO";
+            detalle.Cantidad = 248;
+            detalle.UnidadMedida = "U";
+            detalle.Precio = 115;
+            detalle.MontoItem = 248 * 115;
+            dte.Exportaciones.Detalles.Add(detalle);
+
+            dte.Exportaciones.DescuentosRecargos = new List<ChileSystems.DTE.Engine.Documento.DescuentosRecargos>();
+
+            var descuentoFlete = new ChileSystems.DTE.Engine.Documento.DescuentosRecargos();
+            descuentoFlete.Numero = 1;
+            descuentoFlete.TipoMovimiento = ChileSystems.DTE.Engine.Enum.TipoMovimiento.TipoMovimientoEnum.Recargo;
+            descuentoFlete.Descripcion = "Recargo flete";
+            descuentoFlete.TipoValor = ChileSystems.DTE.Engine.Enum.ExpresionDinero.ExpresionDineroEnum.Pesos;
+            descuentoFlete.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorExento.IndicadorExentoEnum.Exento;
+            descuentoFlete.Valor = dte.Exportaciones.Encabezado.Transporte.Aduana.MontoFlete;
+            dte.Exportaciones.DescuentosRecargos.Add(descuentoFlete);
+
+            var descuentoSeguro = new ChileSystems.DTE.Engine.Documento.DescuentosRecargos();
+            descuentoSeguro.Numero = 2;
+            descuentoSeguro.TipoMovimiento = ChileSystems.DTE.Engine.Enum.TipoMovimiento.TipoMovimientoEnum.Recargo;
+            descuentoSeguro.Descripcion = "Recargo seguro";
+            descuentoSeguro.TipoValor = ChileSystems.DTE.Engine.Enum.ExpresionDinero.ExpresionDineroEnum.Pesos;
+            descuentoSeguro.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorExento.IndicadorExentoEnum.Exento;
+            descuentoSeguro.Valor = dte.Exportaciones.Encabezado.Transporte.Aduana.MontoSeguro;
+            dte.Exportaciones.DescuentosRecargos.Add(descuentoSeguro);
+
+            dte.Exportaciones.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
+            var referenciaSetPruebas = new ChileSystems.DTE.Engine.Documento.Referencia();
+            referenciaSetPruebas.Numero = 1;
+            referenciaSetPruebas.TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.SetPruebas;
+            referenciaSetPruebas.FolioReferencia = dte.Exportaciones.Encabezado.IdentificacionDTE.Folio.ToString();
+            referenciaSetPruebas.FechaDocumentoReferencia = DateTime.Now;
+            referenciaSetPruebas.RazonReferencia = "CASO " + n_atencion + "-1";
+            dte.Exportaciones.Referencias.Add(referenciaSetPruebas);
+
+            var referenciaManifiesto = new ChileSystems.DTE.Engine.Documento.Referencia();
+            referenciaManifiesto.Numero = 2;
+            referenciaManifiesto.TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.MIC;
+            referenciaManifiesto.FolioReferencia = "asdasd47df";
+            referenciaManifiesto.FechaDocumentoReferencia = DateTime.Now;
+            referenciaManifiesto.RazonReferencia = "MANIFIESTO INTERNACIONAL";
+            dte.Exportaciones.Referencias.Add(referenciaManifiesto);
+
+            dte.Exportaciones.Encabezado.Totales.TipoMoneda = SIMPLE_SDK.Enum.CodigosAduana.Moneda.DOLAR_ESTADOUNIDENSE;
+            dte.Exportaciones.Encabezado.OtraMoneda.TipoMoneda = SIMPLE_SDK.Enum.CodigosAduana.Moneda.PESO_CHILENO;
+            dte.Exportaciones.Encabezado.OtraMoneda.TipoCambio = 681.07;
+
+            handler.CalculateTotalesExportacion(dte);
+            var path = handler.TimbrarYFirmarXMLDTEExportacion(dte, "out\\temp\\", "out\\caf\\");
+
+            handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+            MessageBox.Show("Documento generado exitosamente en " + path);
+            #endregion
+
+            #region NOTA CREDITO EXPORTACION
+            //El folio es obligatorio
+            handler.Folio = folioNC;
+            //El Id debe ser alfanumerico. Remitirse a letras y números
+            handler.idDte = "NC_EXP_1";
+            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoExportacionElectronica;
+            var dteNC = handler.GenerateDTEExportacionBase();
+            dteNC.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion = dte.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion;
+            dteNC.Exportaciones.Encabezado.Transporte.Aduana = dte.Exportaciones.Encabezado.Transporte.Aduana;
+            dteNC.Exportaciones.Encabezado.Transporte.Aduana.MontoFlete = 0;
+            dteNC.Exportaciones.Encabezado.Transporte.Aduana.MontoSeguro = 0;
+            dteNC.Exportaciones.Encabezado.Transporte.Aduana.CantidadBultos = 0;
+
+            dteNC.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
+            var detalleNC = new ChileSystems.DTE.Engine.Documento.Detalle();
+            detalleNC.NumeroLinea = 1;
+            detalleNC.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
+            detalleNC.Nombre = detalle.Nombre;
+            detalleNC.Cantidad = 83;
+            detalleNC.UnidadMedida = detalle.UnidadMedida;
+            detalleNC.Precio = detalle.Precio;
+            detalleNC.MontoItem = (int)Math.Round(detalleNC.Cantidad * detalleNC.Precio, 0);
+            dteNC.Exportaciones.Detalles.Add(detalleNC);
+
+            dteNC.Exportaciones.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
+            referenciaSetPruebas = new ChileSystems.DTE.Engine.Documento.Referencia();
+            referenciaSetPruebas.Numero = 1;
+            referenciaSetPruebas.TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.SetPruebas;
+            referenciaSetPruebas.FolioReferencia = dteNC.Exportaciones.Encabezado.IdentificacionDTE.Folio.ToString();
+            referenciaSetPruebas.FechaDocumentoReferencia = DateTime.Now;
+            referenciaSetPruebas.RazonReferencia = "CASO " + n_atencion + "-2";
+            dteNC.Exportaciones.Referencias.Add(referenciaSetPruebas);
+
+            var referenciaNC = new ChileSystems.DTE.Engine.Documento.Referencia();
+            referenciaNC.Numero = 2;
+            referenciaNC.CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos;
+            referenciaNC.TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.FacturaExportacionElectronica;
+            referenciaNC.FolioReferencia = dte.Exportaciones.Encabezado.IdentificacionDTE.Folio.ToString();
+            referenciaNC.FechaDocumentoReferencia = DateTime.Now;
+            referenciaNC.RazonReferencia = "ANULACION DE FACTURA DE EXPORTACIÓN";
+            dteNC.Exportaciones.Referencias.Add(referenciaNC);
+
+            dteNC.Exportaciones.Encabezado.Totales.TipoMoneda = SIMPLE_SDK.Enum.CodigosAduana.Moneda.DOLAR_ESTADOUNIDENSE;
+            dteNC.Exportaciones.Encabezado.OtraMoneda.TipoMoneda = SIMPLE_SDK.Enum.CodigosAduana.Moneda.PESO_CHILENO;
+            dteNC.Exportaciones.Encabezado.OtraMoneda.TipoCambio = 681.07;
+            handler.CalculateTotalesExportacion(dteNC);
+            var pathNC = handler.TimbrarYFirmarXMLDTEExportacion(dteNC, "out\\temp\\", "out\\caf\\");
+
+            handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+            MessageBox.Show("NC generada exitosamente en " + pathNC);
+            #endregion
+
+            #region NOTA DEBITO EXPORTACION
+            //El folio es obligatorio
+            handler.Folio = folioND;
+            //El Id debe ser alfanumerico. Remitirse a letras y números
+            handler.idDte = "ND_EXP_1";
+            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebidoExportacionElectronica;
+            var dteND = handler.GenerateDTEExportacionBase();
+            dteND.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion = dteNC.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion;
+            dteND.Exportaciones.Encabezado.Transporte.Aduana = dteNC.Exportaciones.Encabezado.Transporte.Aduana;
+           
+
+
+            dteND.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
+            var detalleND = detalleNC;
+            dteND.Exportaciones.Detalles.Add(detalleND);
+
+            dteND.Exportaciones.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
+            referenciaSetPruebas = new ChileSystems.DTE.Engine.Documento.Referencia();
+            referenciaSetPruebas.Numero = 1;
+            referenciaSetPruebas.TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.SetPruebas;
+            referenciaSetPruebas.FolioReferencia = dteNC.Exportaciones.Encabezado.IdentificacionDTE.Folio.ToString();
+            referenciaSetPruebas.FechaDocumentoReferencia = DateTime.Now;
+            referenciaSetPruebas.RazonReferencia = "CASO " + n_atencion + "-3";
+            dteND.Exportaciones.Referencias.Add(referenciaSetPruebas);
+
+            var referenciaND = new ChileSystems.DTE.Engine.Documento.Referencia();
+            referenciaND.Numero = 2;
+            referenciaND.CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia;
+            referenciaND.TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.NotaCreditoExportacionElectronica;
+            referenciaND.FolioReferencia = dteNC.Exportaciones.Encabezado.IdentificacionDTE.Folio.ToString();
+            referenciaND.FechaDocumentoReferencia = DateTime.Now;
+            referenciaNC.RazonReferencia = "ANULACION NOTA DE CREDITO DE EXPORTACION";
+            dteND.Exportaciones.Referencias.Add(referenciaND);
+
+            dteND.Exportaciones.Encabezado.Totales.TipoMoneda = SIMPLE_SDK.Enum.CodigosAduana.Moneda.DOLAR_ESTADOUNIDENSE;
+            dteND.Exportaciones.Encabezado.OtraMoneda.TipoMoneda = SIMPLE_SDK.Enum.CodigosAduana.Moneda.PESO_CHILENO;
+            dteND.Exportaciones.Encabezado.OtraMoneda.TipoCambio = 681.07;
+            handler.CalculateTotalesExportacion(dteND);
+            var pathND = handler.TimbrarYFirmarXMLDTEExportacion(dteND, "out\\temp\\", "out\\caf\\");
+
+            handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+            MessageBox.Show("NC generada exitosamente en " + pathND);
+            #endregion
+            #endregion
+
+        }
+
+        private void BotonSetExportacion2_Click(object sender, EventArgs e)
+        {
+            var n_atencion = "1133095";
+            int folioFactura = 36;
+            #region SET EXPORTACION 1
+
+            #region FACTURA EXPORTACION 1
+            //El folio es obligatorio
+            handler.Folio = folioFactura;
+            //El Id debe ser alfanumerico. Remitirse a letras y números
+            handler.idDte = "FAC_EXP_1";
+            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaExportacionElectronica;
+            var dte = handler.GenerateDTEExportacionBase();
+            dte.Exportaciones.Encabezado.IdentificacionDTE.IndicadorServicio = ChileSystems.DTE.Engine.Enum.IndicadorServicio.IndicadorServicioEnum.FacturaServicios2;
+            dte.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion = SIMPLE_SDK.Enum.CodigosAduana.FormaPagoExportacionEnum.COBRANZA;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoClausulaVenta = SIMPLE_SDK.Enum.CodigosAduana.ClausulaCompraVenta.CIF;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoViaTransporte = SIMPLE_SDK.Enum.CodigosAduana.ViasdeTransporte.CARRETERO_O_TERRESTRE;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoModalidadVenta = SIMPLE_SDK.Enum.CodigosAduana.ModalidadVenta.SIN_PAGO;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPuertoEmbarque = SIMPLE_SDK.Enum.CodigosAduana.Puertos.CALDERA;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPuertoDesembarque = SIMPLE_SDK.Enum.CodigosAduana.Puertos.SIDNEY;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPaisDestino = SIMPLE_SDK.Enum.CodigosAduana.Paises.AUSTRALIA;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPaisReceptor = SIMPLE_SDK.Enum.CodigosAduana.Paises.AUSTRALIA;
+
+
+            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
+            var detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+            detalle.NumeroLinea = 1;
+            detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
+            detalle.Nombre = "ASESORIAS Y PROYECTOS PROFESIONALES";
+            detalle.Cantidad = 1;
+            detalle.Precio = 26;
+            detalle.Recargo = 3;
+            detalle.RecargoPorcentaje = 10;
+            detalle.MontoItem = 26 + 3; //26*1 + 10%            
+            dte.Exportaciones.Detalles.Add(detalle);
+
+            dte.Exportaciones.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
+            var referenciaSetPruebas = new ChileSystems.DTE.Engine.Documento.Referencia();
+            referenciaSetPruebas.Numero = 1;
+            referenciaSetPruebas.TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.SetPruebas;
+            referenciaSetPruebas.FolioReferencia = dte.Exportaciones.Encabezado.IdentificacionDTE.Folio.ToString();
+            referenciaSetPruebas.FechaDocumentoReferencia = DateTime.Now;
+            referenciaSetPruebas.RazonReferencia = "CASO " + n_atencion + "-1";
+            dte.Exportaciones.Referencias.Add(referenciaSetPruebas);
+
+            var referenciaManifiesto = new ChileSystems.DTE.Engine.Documento.Referencia();
+            referenciaManifiesto.Numero = 2;
+            referenciaManifiesto.TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.ResolucionSNA;
+            referenciaManifiesto.FolioReferencia = "erere4f7d54";
+            referenciaManifiesto.FechaDocumentoReferencia = DateTime.Now;
+            referenciaManifiesto.RazonReferencia = "RESOLUCION SNA";
+            dte.Exportaciones.Referencias.Add(referenciaManifiesto);
+
+            dte.Exportaciones.Encabezado.Totales.TipoMoneda = SIMPLE_SDK.Enum.CodigosAduana.Moneda.EURO;
+            dte.Exportaciones.Encabezado.OtraMoneda.TipoMoneda = SIMPLE_SDK.Enum.CodigosAduana.Moneda.PESO_CHILENO;
+            dte.Exportaciones.Encabezado.OtraMoneda.TipoCambio = 700;
+
+            handler.CalculateTotalesExportacion(dte);
+            var path = handler.TimbrarYFirmarXMLDTEExportacion(dte, "out\\temp\\", "out\\caf\\");
+
+            handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+            MessageBox.Show("Documento generado exitosamente en " + path);
+            #endregion
+
+            folioFactura++;
+            #region FACTURA EXPORTACION 2
+            //El folio es obligatorio
+            handler.Folio = folioFactura;
+            //El Id debe ser alfanumerico. Remitirse a letras y números
+            handler.idDte = "FAC_EXP_2";
+            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaExportacionElectronica;
+            dte = handler.GenerateDTEExportacionBase();
+            dte.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion = SIMPLE_SDK.Enum.CodigosAduana.FormaPagoExportacionEnum.COBRANZA;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoModalidadVenta = SIMPLE_SDK.Enum.CodigosAduana.ModalidadVenta.BAJO_CONDICION;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoClausulaVenta = SIMPLE_SDK.Enum.CodigosAduana.ClausulaCompraVenta.CIF;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.TotalClausulaVenta = 1546.57;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoViaTransporte = SIMPLE_SDK.Enum.CodigosAduana.ViasdeTransporte.CARRETERO_O_TERRESTRE;
+
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPuertoEmbarque = SIMPLE_SDK.Enum.CodigosAduana.Puertos.CALDERA;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPuertoDesembarque = SIMPLE_SDK.Enum.CodigosAduana.Puertos.SIDNEY;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoUnidadMedidaTara = SIMPLE_SDK.Enum.CodigosAduana.UnidadMedida.U;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoUnidadPesoBruto = SIMPLE_SDK.Enum.CodigosAduana.UnidadMedida.KN;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoUnidadPesoNeto = SIMPLE_SDK.Enum.CodigosAduana.UnidadMedida.KN;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CantidadBultos = 36;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.TipoBultos = new List<ChileSystems.DTE.Engine.Documento.TipoBulto>();
+            dte.Exportaciones.Encabezado.Transporte.Aduana.TipoBultos.Add(new ChileSystems.DTE.Engine.Documento.TipoBulto()
+            {
+                CantidadBultos = 36,
+                CodigoTipoBulto = SIMPLE_SDK.Enum.CodigosAduana.TipoBultoEnum.PALLET,
+                Marcas = "MARCA CHANCHO"
+            });
+            dte.Exportaciones.Encabezado.Transporte.Aduana.MontoFlete = 398.65;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.MontoSeguro = 102.76;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPaisDestino = SIMPLE_SDK.Enum.CodigosAduana.Paises.AUSTRALIA;
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPaisReceptor = SIMPLE_SDK.Enum.CodigosAduana.Paises.AUSTRALIA;
+
+
+            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
+            detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+            detalle.NumeroLinea = 1;
+            detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
+            detalle.Nombre = "CAJAS CIRUELAS TIERNIZADAS SIN CAROZO CALIBRE 60/70";
+            detalle.Cantidad = 358;
+            detalle.UnidadMedida = "KN";
+            detalle.Precio = 126;
+            detalle.DescuentoPorcentaje = 5;
+            detalle.Descuento = 2255;
+            detalle.MontoItem = (int)Math.Round((detalle.Cantidad * detalle.Precio) - detalle.Descuento, 0);
+            dte.Exportaciones.Detalles.Add(detalle);
+
+            detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+            detalle.NumeroLinea = 2;
+            detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
+            detalle.Nombre = "CAJAS DE PASAS DE UVA FLAME MORENA SIN SEMILLA MEDIANAS";
+            detalle.Cantidad = 176;
+            detalle.UnidadMedida = "KN";
+            detalle.Precio = 73;
+            detalle.MontoItem = (int)Math.Round(detalle.Cantidad * detalle.Precio, 0);
+            dte.Exportaciones.Detalles.Add(detalle);
+
+            dte.Exportaciones.DescuentosRecargos = new List<ChileSystems.DTE.Engine.Documento.DescuentosRecargos>();
+
+            var comisionExtranjero = new ChileSystems.DTE.Engine.Documento.DescuentosRecargos();
+            comisionExtranjero.Numero = 1;
+            comisionExtranjero.TipoMovimiento = ChileSystems.DTE.Engine.Enum.TipoMovimiento.TipoMovimientoEnum.Recargo;
+            comisionExtranjero.Descripcion = "COMISIONES EN EL EXTRANJERO";
+            comisionExtranjero.TipoValor = ChileSystems.DTE.Engine.Enum.ExpresionDinero.ExpresionDineroEnum.Pesos;
+            comisionExtranjero.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorExento.IndicadorExentoEnum.Exento;
+            comisionExtranjero.Valor = 170.12; //11% de 1546.57
+            dte.Exportaciones.DescuentosRecargos.Add(comisionExtranjero);
+
+            var descuentoFlete = new ChileSystems.DTE.Engine.Documento.DescuentosRecargos();
+            descuentoFlete.Numero = 2;
+            descuentoFlete.TipoMovimiento = ChileSystems.DTE.Engine.Enum.TipoMovimiento.TipoMovimientoEnum.Recargo;
+            descuentoFlete.Descripcion = "Recargo flete";
+            descuentoFlete.TipoValor = ChileSystems.DTE.Engine.Enum.ExpresionDinero.ExpresionDineroEnum.Pesos;
+            descuentoFlete.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorExento.IndicadorExentoEnum.Exento;
+            descuentoFlete.Valor = dte.Exportaciones.Encabezado.Transporte.Aduana.MontoFlete;
+            dte.Exportaciones.DescuentosRecargos.Add(descuentoFlete);
+
+            var descuentoSeguro = new ChileSystems.DTE.Engine.Documento.DescuentosRecargos();
+            descuentoSeguro.Numero = 3;
+            descuentoSeguro.TipoMovimiento = ChileSystems.DTE.Engine.Enum.TipoMovimiento.TipoMovimientoEnum.Recargo;
+            descuentoSeguro.Descripcion = "Recargo seguro";
+            descuentoSeguro.TipoValor = ChileSystems.DTE.Engine.Enum.ExpresionDinero.ExpresionDineroEnum.Pesos;
+            descuentoSeguro.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorExento.IndicadorExentoEnum.Exento;
+            descuentoSeguro.Valor = dte.Exportaciones.Encabezado.Transporte.Aduana.MontoSeguro;
+            dte.Exportaciones.DescuentosRecargos.Add(descuentoSeguro);
+
+            dte.Exportaciones.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
+            referenciaSetPruebas = new ChileSystems.DTE.Engine.Documento.Referencia();
+            referenciaSetPruebas.Numero = 1;
+            referenciaSetPruebas.TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.SetPruebas;
+            referenciaSetPruebas.FolioReferencia = dte.Exportaciones.Encabezado.IdentificacionDTE.Folio.ToString();
+            referenciaSetPruebas.FechaDocumentoReferencia = DateTime.Now;
+            referenciaSetPruebas.RazonReferencia = "CASO " + n_atencion + "-2";
+            dte.Exportaciones.Referencias.Add(referenciaSetPruebas);
+
+            var referenciaDUS = new ChileSystems.DTE.Engine.Documento.Referencia();
+            referenciaDUS.Numero = 2;
+            referenciaDUS.TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.DUS;
+            referenciaDUS.FolioReferencia = "343fdf47";
+            referenciaDUS.FechaDocumentoReferencia = DateTime.Now;
+            referenciaDUS.RazonReferencia = "DUS";
+            dte.Exportaciones.Referencias.Add(referenciaDUS);
+
+            var referenciaAWB = new ChileSystems.DTE.Engine.Documento.Referencia();
+            referenciaAWB.Numero = 3;
+            referenciaAWB.TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.AWB;
+            referenciaAWB.FolioReferencia = "FDD7741E";
+            referenciaAWB.FechaDocumentoReferencia = DateTime.Now;
+            referenciaAWB.RazonReferencia = "AWB";
+            dte.Exportaciones.Referencias.Add(referenciaAWB);
+
+            dte.Exportaciones.Encabezado.Totales.TipoMoneda = SIMPLE_SDK.Enum.CodigosAduana.Moneda.EURO;
+            dte.Exportaciones.Encabezado.OtraMoneda.TipoMoneda = SIMPLE_SDK.Enum.CodigosAduana.Moneda.PESO_CHILENO;
+            dte.Exportaciones.Encabezado.OtraMoneda.TipoCambio = 700;
+
+            handler.CalculateTotalesExportacion(dte, 170.12);
+
+            path = handler.TimbrarYFirmarXMLDTEExportacion(dte, "out\\temp\\", "out\\caf\\");
+
+            handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+            MessageBox.Show("Documento generado exitosamente en " + path);
+            #endregion
+
+            folioFactura++;
+            #region FACTURA EXPORTACION 3
+            //El folio es obligatorio
+            handler.Folio = folioFactura;
+            //El Id debe ser alfanumerico. Remitirse a letras y números
+            handler.idDte = "FAC_EXP_3";
+            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaExportacionElectronica;
+            dte = handler.GenerateDTEExportacionBase();
+            dte.Exportaciones.Encabezado.Receptor.Extranjero = new ChileSystems.DTE.Engine.Documento.Extranjero() {
+                Nacionalidad = SIMPLE_SDK.Enum.CodigosAduana.Paises.AUSTRALIA
+            };
+            dte.Exportaciones.Encabezado.IdentificacionDTE.IndicadorServicio = ChileSystems.DTE.Engine.Enum.IndicadorServicio.IndicadorServicioEnum.ServiciosHoteleria2;
+            //dato obligatorio
+            dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoModalidadVenta = SIMPLE_SDK.Enum.CodigosAduana.ModalidadVenta.A_FIRME;
+
+            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
+            detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+            detalle.NumeroLinea = 1;
+            detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
+            detalle.Nombre = "ALOJAMIENTO HABITACIONES";
+            detalle.Cantidad = 1;
+            detalle.Precio = 77;
+            detalle.MontoItem = 77;          
+            dte.Exportaciones.Detalles.Add(detalle);
+
+            dte.Exportaciones.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
+            referenciaSetPruebas = new ChileSystems.DTE.Engine.Documento.Referencia();
+            referenciaSetPruebas.Numero = 1;
+            referenciaSetPruebas.TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.SetPruebas;
+            referenciaSetPruebas.FolioReferencia = dte.Exportaciones.Encabezado.IdentificacionDTE.Folio.ToString();
+            referenciaSetPruebas.FechaDocumentoReferencia = DateTime.Now;
+            referenciaSetPruebas.RazonReferencia = "CASO " + n_atencion + "-3";
+            dte.Exportaciones.Referencias.Add(referenciaSetPruebas);
+
+            referenciaAWB = new ChileSystems.DTE.Engine.Documento.Referencia();
+            referenciaAWB.Numero = 2;
+            referenciaAWB.TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.AWB;
+            referenciaAWB.FolioReferencia = "eer774df";
+            referenciaAWB.FechaDocumentoReferencia = DateTime.Now;
+            referenciaAWB.RazonReferencia = "AWB";
+            dte.Exportaciones.Referencias.Add(referenciaAWB);
+
+            dte.Exportaciones.Encabezado.Totales.TipoMoneda = SIMPLE_SDK.Enum.CodigosAduana.Moneda.DOLAR_ESTADOUNIDENSE;
+            dte.Exportaciones.Encabezado.OtraMoneda.TipoMoneda = SIMPLE_SDK.Enum.CodigosAduana.Moneda.PESO_CHILENO;
+            dte.Exportaciones.Encabezado.OtraMoneda.TipoCambio = 700;
+
+            handler.CalculateTotalesExportacion(dte);
+            path = handler.TimbrarYFirmarXMLDTEExportacion(dte, "out\\temp\\", "out\\caf\\");
+
+            handler.Validate(path, SIMPLE_SDK.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+            MessageBox.Show("Documento generado exitosamente en " + path);
+            #endregion
+            #endregion
+        }
     }
 }
