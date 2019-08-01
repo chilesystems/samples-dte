@@ -15,7 +15,7 @@ Más información en [www.chilesystems.com](http://www.chilesystems.com) o solic
 ```
 .NET Framework 4.6
 Certificado Digital
-[SIMPLE SDK](http://www.chilesystems.com/Productos)
+SIMPLE SDK
 ```
 ### Instalación 🔧
 
