@@ -22,8 +22,8 @@ SIMPLE SDK
 1. Dentro de la carpeta donde correrá el proyecto (Debug o Release según corresponda en el caso del entorno de VS), debes tener la siguiente estructura de carpetas:
 
 * out
-* XML (El contenido de esta carpeta, lo puedes descargar desde [aquí](http://www.chilesystems.com/SDK/XML.rar) 
-* itextsharp 5.5.9.0 (Este DLL lo puedes descargar desde [aquí](http://www.chilesystems.com/SDK/itextsharp.dll) 
+* XML (El contenido de esta carpeta, lo puedes descargar desde [aquí](http://www.chilesystems.com/SDK/XML.rar))
+* itextsharp 5.5.9.0 (Este DLL lo puedes descargar desde [aquí](http://www.chilesystems.com/SDK/itextsharp.dll)) 
 
 Dentro de **out** las carpetas
  * caf
