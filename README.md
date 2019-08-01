@@ -15,6 +15,7 @@ Más información en [www.chilesystems.com](http://www.chilesystems.com) o solic
 ```
 .NET Framework 4.6
 Certificado Digital
+[SIMPLE SDK](http://www.chilesystems.com/Productos)
 ```
 ### Instalación 🔧
 
@@ -22,6 +23,7 @@ Certificado Digital
 
 * out
 * XML (El contenido de esta carpeta, lo puedes descargar desde [aquí](http://www.chilesystems.com/SDK/XML.rar) 
+* itextsharp 5.5.9.0 (Este DLL lo puedes descargar desde [aquí](http://www.chilesystems.com/SDK/itextsharp.dll) 
 
 Dentro de **out** las carpetas
  * caf
@@ -29,9 +31,11 @@ Dentro de **out** las carpetas
 
 En la carpeta _temp_ se guardarán los archivos XML. En la carpeta _caf_ los códigos de autorización de folios que entrega el SII. **Estas rutas son alternativas**.
 
-2. Debes agregar la referencia a [SIMPLE SDK](http://www.chilesystems.com/SDK/SIMPLE_SDK.dll) a tu proyecto.
+2. Debes agregar la referencia a [SIMPLE SDK](http://www.chilesystems.com/SDK/SIMPLE_SDK.dll) y la de [itextsharp] (http://www.chilesystems.com/SDK/itextsharp.dll)  a tu proyecto.
 
 3. Reemplaza los valores que están en Handler.cs por los que corresponden a la empresa en cuestión.
+
+4. Instala tu certificado digital. Debes buscar su nombre descriptivo o "Friendly Name" y reemplazar ese valor en la clase Handler.cs
 
 4. Descarga un código de autorización de folios (CAF) desde el [SII](http://www.sii.cl)
 
