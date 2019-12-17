@@ -108,6 +108,7 @@
             this.comboTipo.Name = "comboTipo";
             this.comboTipo.Size = new System.Drawing.Size(131, 21);
             this.comboTipo.TabIndex = 5;
+            this.comboTipo.SelectedIndexChanged += new System.EventHandler(this.ComboTipo_SelectedIndexChanged);
             // 
             // label3
             // 

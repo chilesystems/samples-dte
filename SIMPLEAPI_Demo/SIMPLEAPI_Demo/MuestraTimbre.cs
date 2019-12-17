@@ -28,7 +28,7 @@ namespace SIMPLEAPI_Demo
             //var envioBoleta = ChileSystems.DTE.Engine.XML.XmlHandler.TryDeserializeFromString<ChileSystems.DTE.Engine.Envio.EnvioBoleta>(xml);
             //pictureBoxTimbre.Image = envioBoleta.SetDTE.DTEs[0].Documento.TimbrePDF417(out outMessage);
             var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);            
-            pictureBoxTimbre.Image = dte.Documento.TimbrePDF417(out outMessage);
+            pictureBoxTimbre.BackgroundImage = dte.Documento.TimbrePDF417(out outMessage);
 
             
         }

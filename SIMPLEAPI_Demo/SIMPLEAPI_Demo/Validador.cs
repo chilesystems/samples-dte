@@ -99,5 +99,10 @@ namespace SIMPLEAPI_Demo
         {
             comboTipo.SelectedIndex = 0;  
         }
+
+        private void ComboTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

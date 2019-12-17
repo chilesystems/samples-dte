@@ -37,7 +37,7 @@
             // 
             // botonCargarDTE
             // 
-            this.botonCargarDTE.Location = new System.Drawing.Point(395, 12);
+            this.botonCargarDTE.Location = new System.Drawing.Point(240, 12);
             this.botonCargarDTE.Name = "botonCargarDTE";
             this.botonCargarDTE.Size = new System.Drawing.Size(75, 23);
             this.botonCargarDTE.TabIndex = 3;
@@ -47,9 +47,10 @@
             // 
             // pictureBoxTimbre
             // 
-            this.pictureBoxTimbre.Location = new System.Drawing.Point(14, 41);
+            this.pictureBoxTimbre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxTimbre.Location = new System.Drawing.Point(16, 58);
             this.pictureBoxTimbre.Name = "pictureBoxTimbre";
-            this.pictureBoxTimbre.Size = new System.Drawing.Size(567, 253);
+            this.pictureBoxTimbre.Size = new System.Drawing.Size(414, 170);
             this.pictureBoxTimbre.TabIndex = 2;
             this.pictureBoxTimbre.TabStop = false;
             // 
@@ -59,7 +60,7 @@
             // 
             // botonValidar
             // 
-            this.botonValidar.Location = new System.Drawing.Point(476, 12);
+            this.botonValidar.Location = new System.Drawing.Point(321, 12);
             this.botonValidar.Name = "botonValidar";
             this.botonValidar.Size = new System.Drawing.Size(105, 23);
             this.botonValidar.TabIndex = 4;
@@ -71,7 +72,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 303);
+            this.ClientSize = new System.Drawing.Size(442, 254);
             this.Controls.Add(this.botonValidar);
             this.Controls.Add(this.botonCargarDTE);
             this.Controls.Add(this.pictureBoxTimbre);

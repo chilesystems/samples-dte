@@ -17,7 +17,8 @@ namespace SIMPLEAPI_Demo
         public string idDte;
         public string rutEmpresa = "14684925-3";
         public string rutCertificado = "14684925-3";
-        public string nombreCertificado = "NOMBRE_CERTIFICADO";
+        //public string nombreCertificado = "NOMBRE_CERTIFICADO";
+        public string nombreCertificado = "ALBERTO MAMANI CHOQUE";
         public string RazonSocial = "RAZON_SOCIAL";
         public string Giro = "GIRO_EMISOR";
         public string Direccion = "DOMICILIO_EMISOR";
@@ -47,28 +48,34 @@ namespace SIMPLEAPI_Demo
             dte.Documento.Id = idDte;
 
             // DOCUMENTO - ENCABEZADO - IDENTIFICADOR DEL DOCUMENTO - CAMPOS OBLIGATORIOS
-            //TipoDTE = Se indica el tipo de documento. Este SDK soporta:
             dte.Documento.Encabezado.IdentificacionDTE.TipoDTE = tipoDTE;
             dte.Documento.Encabezado.IdentificacionDTE.FechaEmision = fechaEmision;
             dte.Documento.Encabezado.IdentificacionDTE.Folio = Folio;
-            //Para boletas electrónicas
-            if(tipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica)
-                dte.Documento.Encabezado.IdentificacionDTE.IndicadorServicio = ChileSystems.DTE.Engine.Enum.IndicadorServicio.IndicadorServicioEnum.BoletaVentasYServicios;
-
 
             //DOCUMENTO - ENCABEZADO - EMISOR - CAMPOS OBLIGATORIOS          
             dte.Documento.Encabezado.Emisor.Rut = rutEmpresa;
-            dte.Documento.Encabezado.Emisor.RazonSocial = RazonSocial;
-            dte.Documento.Encabezado.Emisor.Giro = Giro;
             dte.Documento.Encabezado.Emisor.DireccionOrigen = Direccion;
             dte.Documento.Encabezado.Emisor.ComunaOrigen = Comuna;
-            //dte.Documento.Encabezado.Emisor.RazonSocialBoleta = "TRANSPORTE DISTRIBUCION Y COMERCIALIZACION DE PRODUCTOS D&V LIMITADA";
-            //dte.Documento.Encabezado.Emisor.GiroBoleta = "VENTA AL POR MAYOR DE CONFITES";
-
-            //dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(107300);
-            //dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(463020);
             dte.Documento.Encabezado.Emisor.ActividadEconomica = CodigosActividades;
 
+            //Para boletas electrónicas
+            if (tipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica)
+            {
+                dte.Documento.Encabezado.IdentificacionDTE.IndicadorServicio = ChileSystems.DTE.Engine.Enum.IndicadorServicio.IndicadorServicioEnum.BoletaVentasYServicios;
+                dte.Documento.Encabezado.Emisor.RazonSocialBoleta = RazonSocial;
+                dte.Documento.Encabezado.Emisor.GiroBoleta = Giro;
+            }
+            else
+            {
+                dte.Documento.Encabezado.Emisor.RazonSocial = RazonSocial;
+                dte.Documento.Encabezado.Emisor.Giro = Giro;
+            }
+
+            if (tipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.GuiaDespachoElectronica)
+            {
+                dte.Documento.Encabezado.IdentificacionDTE.TipoTraslado = ChileSystems.DTE.Engine.Enum.TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta;
+                dte.Documento.Encabezado.IdentificacionDTE.TipoDespacho = ChileSystems.DTE.Engine.Enum.TipoDespacho.TipoDespachoEnum.EmisorACliente;
+            }
             //DOCUMENTO - ENCABEZADO - RECEPTOR - CAMPOS OBLIGATORIOS
 
             dte.Documento.Encabezado.Receptor.Rut = "66666666-6";
@@ -1567,6 +1574,18 @@ namespace SIMPLEAPI_Demo
             }
         }
 
+        public string ObtenerCertificados()
+        {
+            var certificadosMaquina = ChileSystems.DTE.Engine.Utilidades.ObtenerCertificadosMaquinas();
+            var certificadosUsuario = ChileSystems.DTE.Engine.Utilidades.ObtenerCertificadosUsuario();
+            string result = "Máquina:\n";
+            foreach (var a in certificadosMaquina)
+                result += a + "\n";
+            result += "Usuario:\n";
+            foreach (var a in certificadosUsuario)
+                result += a + "\n";
+            return result;
+        }
         #endregion  
 
     }

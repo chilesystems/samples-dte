@@ -48,9 +48,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\..\..\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="SIMPLE_SDK, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\SIMPLE_API\SIMPLE_API\bin\Debug\SIMPLE_SDK.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Desktop\API\Confused\SIMPLE_SDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
