@@ -1394,5 +1394,18 @@ namespace SIMPLEAPI_Demo
             #endregion
             #endregion
         }
+
+        private void botonLibroGuias_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            if (File.Exists(openFileDialog1.FileName))
+            {
+                string xml = File.ReadAllText(openFileDialog1.FileName, Encoding.GetEncoding("ISO-8859-1"));
+                var envio = ChileSystems.DTE.Engine.XML.XmlHandler.TryDeserializeFromString<ChileSystems.DTE.Engine.Envio.EnvioDTE>(xml);
+                var libroGuias = handler.GenerateLibroGuias(envio);
+                var filePathArchivo = libroGuias.Firmar(handler.nombreCertificado, "out\\temp\\", handler.serialKEY);
+                MessageBox.Show("Libro de Guías Generado correctamente en " + filePathArchivo);
+            }
+        }
     }
 }

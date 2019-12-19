@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.botonSetExportacion2 = new System.Windows.Forms.Button();
-            this.botonSetExportacion = new System.Windows.Forms.Button();
-            this.botonCesion = new System.Windows.Forms.Button();
-            this.botonIntercambio = new System.Windows.Forms.Button();
+            this.botonGetCertificados = new System.Windows.Forms.Button();
             this.botonValidador = new System.Windows.Forms.Button();
             this.botonMuestraImpresa = new System.Windows.Forms.Button();
             this.botonAceptacion = new System.Windows.Forms.Button();
             this.botonSimulacion = new System.Windows.Forms.Button();
             this.botonConsultarEstadoDTE = new System.Windows.Forms.Button();
+            this.botonSetExportacion2 = new System.Windows.Forms.Button();
+            this.botonSetExportacion = new System.Windows.Forms.Button();
+            this.botonCesion = new System.Windows.Forms.Button();
+            this.botonIntercambio = new System.Windows.Forms.Button();
             this.botonSetPruebas = new System.Windows.Forms.Button();
             this.radioProduccion = new System.Windows.Forms.RadioButton();
             this.radioCertificacion = new System.Windows.Forms.RadioButton();
@@ -54,8 +55,8 @@
             this.botonGenerarDocumento = new System.Windows.Forms.Button();
             this.botonIngresarTimbraje = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.botonGetCertificados = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.botonLibroGuias = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -63,6 +64,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.botonLibroGuias);
             this.groupBox5.Controls.Add(this.botonGetCertificados);
             this.groupBox5.Controls.Add(this.botonValidador);
             this.groupBox5.Controls.Add(this.botonMuestraImpresa);
@@ -71,50 +73,19 @@
             this.groupBox5.Controls.Add(this.botonConsultarEstadoDTE);
             this.groupBox5.Location = new System.Drawing.Point(350, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(163, 197);
+            this.groupBox5.Size = new System.Drawing.Size(163, 226);
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Utilidades";
             // 
-            // botonSetExportacion2
+            // botonGetCertificados
             // 
-            this.botonSetExportacion2.Location = new System.Drawing.Point(5, 251);
-            this.botonSetExportacion2.Name = "botonSetExportacion2";
-            this.botonSetExportacion2.Size = new System.Drawing.Size(151, 23);
-            this.botonSetExportacion2.TabIndex = 20;
-            this.botonSetExportacion2.Text = "SET de Exportación (2)";
-            this.botonSetExportacion2.UseVisualStyleBackColor = true;
-            this.botonSetExportacion2.Click += new System.EventHandler(this.BotonSetExportacion2_Click);
-            // 
-            // botonSetExportacion
-            // 
-            this.botonSetExportacion.Location = new System.Drawing.Point(6, 222);
-            this.botonSetExportacion.Name = "botonSetExportacion";
-            this.botonSetExportacion.Size = new System.Drawing.Size(151, 23);
-            this.botonSetExportacion.TabIndex = 17;
-            this.botonSetExportacion.Text = "SET de Exportación (1)";
-            this.botonSetExportacion.UseVisualStyleBackColor = true;
-            this.botonSetExportacion.Click += new System.EventHandler(this.BotonSetExportacion_Click);
-            // 
-            // botonCesion
-            // 
-            this.botonCesion.Location = new System.Drawing.Point(6, 193);
-            this.botonCesion.Name = "botonCesion";
-            this.botonCesion.Size = new System.Drawing.Size(151, 23);
-            this.botonCesion.TabIndex = 19;
-            this.botonCesion.Text = "Cesión de Documentos";
-            this.botonCesion.UseVisualStyleBackColor = true;
-            this.botonCesion.Click += new System.EventHandler(this.botonCesion_Click);
-            // 
-            // botonIntercambio
-            // 
-            this.botonIntercambio.Location = new System.Drawing.Point(6, 164);
-            this.botonIntercambio.Name = "botonIntercambio";
-            this.botonIntercambio.Size = new System.Drawing.Size(151, 23);
-            this.botonIntercambio.TabIndex = 18;
-            this.botonIntercambio.Text = "Intercambio";
-            this.botonIntercambio.UseVisualStyleBackColor = true;
-            this.botonIntercambio.Click += new System.EventHandler(this.botonIntercambio_Click);
+            this.botonGetCertificados.Location = new System.Drawing.Point(6, 164);
+            this.botonGetCertificados.Name = "botonGetCertificados";
+            this.botonGetCertificados.Size = new System.Drawing.Size(151, 23);
+            this.botonGetCertificados.TabIndex = 17;
+            this.botonGetCertificados.Text = "Certificados Instalados";
+            this.botonGetCertificados.UseVisualStyleBackColor = true;
             // 
             // botonValidador
             // 
@@ -165,6 +136,46 @@
             this.botonConsultarEstadoDTE.Text = "Consultar Estado DTE";
             this.botonConsultarEstadoDTE.UseVisualStyleBackColor = true;
             this.botonConsultarEstadoDTE.Click += new System.EventHandler(this.botonConsultarEstadoDTE_Click);
+            // 
+            // botonSetExportacion2
+            // 
+            this.botonSetExportacion2.Location = new System.Drawing.Point(5, 251);
+            this.botonSetExportacion2.Name = "botonSetExportacion2";
+            this.botonSetExportacion2.Size = new System.Drawing.Size(151, 23);
+            this.botonSetExportacion2.TabIndex = 20;
+            this.botonSetExportacion2.Text = "SET de Exportación (2)";
+            this.botonSetExportacion2.UseVisualStyleBackColor = true;
+            this.botonSetExportacion2.Click += new System.EventHandler(this.BotonSetExportacion2_Click);
+            // 
+            // botonSetExportacion
+            // 
+            this.botonSetExportacion.Location = new System.Drawing.Point(6, 222);
+            this.botonSetExportacion.Name = "botonSetExportacion";
+            this.botonSetExportacion.Size = new System.Drawing.Size(151, 23);
+            this.botonSetExportacion.TabIndex = 17;
+            this.botonSetExportacion.Text = "SET de Exportación (1)";
+            this.botonSetExportacion.UseVisualStyleBackColor = true;
+            this.botonSetExportacion.Click += new System.EventHandler(this.BotonSetExportacion_Click);
+            // 
+            // botonCesion
+            // 
+            this.botonCesion.Location = new System.Drawing.Point(6, 193);
+            this.botonCesion.Name = "botonCesion";
+            this.botonCesion.Size = new System.Drawing.Size(151, 23);
+            this.botonCesion.TabIndex = 19;
+            this.botonCesion.Text = "Cesión de Documentos";
+            this.botonCesion.UseVisualStyleBackColor = true;
+            this.botonCesion.Click += new System.EventHandler(this.botonCesion_Click);
+            // 
+            // botonIntercambio
+            // 
+            this.botonIntercambio.Location = new System.Drawing.Point(6, 164);
+            this.botonIntercambio.Name = "botonIntercambio";
+            this.botonIntercambio.Size = new System.Drawing.Size(151, 23);
+            this.botonIntercambio.TabIndex = 18;
+            this.botonIntercambio.Text = "Intercambio";
+            this.botonIntercambio.UseVisualStyleBackColor = true;
+            this.botonIntercambio.Click += new System.EventHandler(this.botonIntercambio_Click);
             // 
             // botonSetPruebas
             // 
@@ -335,15 +346,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // botonGetCertificados
-            // 
-            this.botonGetCertificados.Location = new System.Drawing.Point(6, 164);
-            this.botonGetCertificados.Name = "botonGetCertificados";
-            this.botonGetCertificados.Size = new System.Drawing.Size(151, 23);
-            this.botonGetCertificados.TabIndex = 17;
-            this.botonGetCertificados.Text = "Certificados Instalados";
-            this.botonGetCertificados.UseVisualStyleBackColor = true;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -352,6 +354,16 @@
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 17;
             this.label1.Text = "Ambiente:";
+            // 
+            // botonLibroGuias
+            // 
+            this.botonLibroGuias.Location = new System.Drawing.Point(6, 193);
+            this.botonLibroGuias.Name = "botonLibroGuias";
+            this.botonLibroGuias.Size = new System.Drawing.Size(151, 23);
+            this.botonLibroGuias.TabIndex = 18;
+            this.botonLibroGuias.Text = "Libro de Guías";
+            this.botonLibroGuias.UseVisualStyleBackColor = true;
+            this.botonLibroGuias.Click += new System.EventHandler(this.botonLibroGuias_Click);
             // 
             // Main
             // 
@@ -407,6 +419,7 @@
         private System.Windows.Forms.Button botonSetExportacion2;
         private System.Windows.Forms.Button botonGetCertificados;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button botonLibroGuias;
     }
 }
 

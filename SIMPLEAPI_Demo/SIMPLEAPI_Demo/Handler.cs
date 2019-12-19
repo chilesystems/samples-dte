@@ -1159,8 +1159,87 @@ namespace SIMPLEAPI_Demo
             return libro;
         }
 
-        #endregion  
+        #endregion
 
+        #region Guias de despacho
+
+        public ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroGuia GenerateLibroGuias(ChileSystems.DTE.Engine.Envio.EnvioDTE envioAux)
+        {
+            var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroGuia();
+            libro.EnvioLibro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.EnvioLibro();
+            libro.EnvioLibro.Id = "ID_LIBRO_GUIAS_";
+
+
+            libro.EnvioLibro.Caratula = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Caratula()
+            {
+                RutEmisor = rutEmpresa,
+                RutEnvia = rutCertificado,
+                PeriodoTributario = fechaEmision.Year + "-0" + fechaEmision.Month,
+                FechaResolucion = fechaResolucion,
+                NumeroResolucion = numeroResolucion,
+                TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
+                TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
+                FolioNotificacion = 100
+            };
+
+            libro.EnvioLibro.ResumenPeriodo = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ResumenPeriodo()
+            {
+                TotalesGuiasDeVentas = envioAux.SetDTE.DTEs.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoTraslado == ChileSystems.DTE.Engine.Enum.TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta).Count(),
+                MontoTotalVentasGuia = envioAux.SetDTE.DTEs.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoTraslado == ChileSystems.DTE.Engine.Enum.TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta).Sum(x => x.Documento.Encabezado.Totales.MontoTotal),
+                TotalesGuiasAnuladas = 0, //Dato opcional. No hay un indicador en el DTE para establecer que está anulado. Se debe entregar según datos del propio desarrollador,
+                TotalesFoliosAnulados = 0, //Dato opcional. No hay un indicador en el DTE para establecer que su folio está anulado. Se debe entregar según datos del propio desarrollador,               
+
+                //El traslado es opcional. Se repite hasta 6 veces, según los códigos de NO venta (2, 3, 4, 5, 6, 7).
+                //Traslados = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalTraslado>()
+                //{
+                //    new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalTraslado()
+                //    {
+                //        TipoTraslado = ChileSystems.DTE.Engine.Enum.TipoTraslado.TipoTrasladoEnum.TrasladosInternos,
+                //        CantidadGuia = 1,
+                //        MontoGuia = 0
+                //    }
+                //}
+            };
+
+            //El resumen del segmento es identico al resumen del período. No conozco las diferencias legales que puedan tener.
+            //Cualquier información se agradece :)
+            libro.EnvioLibro.ResumenSegmentoLibro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ResumenSegmento()
+            {
+                TotalesGuiasDeVentas = envioAux.SetDTE.DTEs.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoTraslado == ChileSystems.DTE.Engine.Enum.TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta).Count(),
+                MontoTotalVentasGuia = envioAux.SetDTE.DTEs.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoTraslado == ChileSystems.DTE.Engine.Enum.TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta).Sum(x => x.Documento.Encabezado.Totales.MontoTotal),
+                TotalesGuiasAnuladas = 0, //Dato opcional. No hay un indicador en el DTE para establecer que está anulado. Se debe entregar según datos del propio desarrollador,
+                TotalesFoliosAnulados = 0, //Dato opcional. No hay un indicador en el DTE para establecer que su folio está anulado. Se debe entregar según datos del propio desarrollador,               
+
+                //El traslado es opcional. Se repite hasta 6 veces, según los códigos de NO venta (2, 3, 4, 5, 6, 7).
+                //Traslados = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalTraslado>()
+                //{
+                //    new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalTraslado()
+                //    {
+                //        TipoTraslado = ChileSystems.DTE.Engine.Enum.TipoTraslado.TipoTrasladoEnum.TrasladosInternos,
+                //        CantidadGuia = 1,
+                //        MontoGuia = 0
+                //    }
+                //}
+            };
+
+            libro.EnvioLibro.Detalles = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle>();
+            foreach (var dte in envioAux.SetDTE.DTEs)
+            {
+                libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
+                {
+                    MontoTotal = dte.Documento.Encabezado.Totales.MontoTotal,
+                    Folio = dte.Documento.Encabezado.IdentificacionDTE.Folio,
+                    TipoOperacion = dte.Documento.Encabezado.IdentificacionDTE.TipoTraslado,
+                    //Para indicar que la guía está anulada se debe utilizar este atributo. Por defecto se omitirá
+                    IndicadorAnulado = ChileSystems.DTE.Engine.Enum.IndicadorAnulado.IndicadorAnuladoEnum.NotSet
+                });
+            }
+
+            return libro;
+        }
+
+
+        #endregion
 
 
         #region Utilidades
