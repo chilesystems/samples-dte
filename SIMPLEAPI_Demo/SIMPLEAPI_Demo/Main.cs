@@ -996,8 +996,8 @@ namespace SIMPLEAPI_Demo
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPaisReceptor = SIMPLE_SDK.Enum.CodigosAduana.Paises.ALEMANIA;
 
 
-            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
-            var detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.DetalleExportacion>();
+            var detalle = new ChileSystems.DTE.Engine.Documento.DetalleExportacion();
             detalle.NumeroLinea = 1;
             detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
             detalle.Nombre = "CHATARRA DE ALUMINIO";
@@ -1068,8 +1068,8 @@ namespace SIMPLEAPI_Demo
             dteNC.Exportaciones.Encabezado.Transporte.Aduana.MontoSeguro = 0;
             dteNC.Exportaciones.Encabezado.Transporte.Aduana.CantidadBultos = 0;
 
-            dteNC.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
-            var detalleNC = new ChileSystems.DTE.Engine.Documento.Detalle();
+            dteNC.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.DetalleExportacion>();
+            var detalleNC = new ChileSystems.DTE.Engine.Documento.DetalleExportacion();
             detalleNC.NumeroLinea = 1;
             detalleNC.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
             detalleNC.Nombre = detalle.Nombre;
@@ -1119,7 +1119,7 @@ namespace SIMPLEAPI_Demo
            
 
 
-            dteND.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
+            dteND.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.DetalleExportacion>();
             var detalleND = detalleNC;
             dteND.Exportaciones.Detalles.Add(detalleND);
 
@@ -1178,8 +1178,8 @@ namespace SIMPLEAPI_Demo
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPaisReceptor = SIMPLE_SDK.Enum.CodigosAduana.Paises.AUSTRALIA;
 
 
-            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
-            var detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.DetalleExportacion>();
+            var detalle = new ChileSystems.DTE.Engine.Documento.DetalleExportacion();
             detalle.NumeroLinea = 1;
             detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
             detalle.Nombre = "ASESORIAS Y PROYECTOS PROFESIONALES";
@@ -1251,8 +1251,8 @@ namespace SIMPLEAPI_Demo
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPaisReceptor = SIMPLE_SDK.Enum.CodigosAduana.Paises.AUSTRALIA;
 
 
-            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
-            detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.DetalleExportacion>();
+            detalle = new ChileSystems.DTE.Engine.Documento.DetalleExportacion();
             detalle.NumeroLinea = 1;
             detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
             detalle.Nombre = "CAJAS CIRUELAS TIERNIZADAS SIN CAROZO CALIBRE 60/70";
@@ -1264,7 +1264,7 @@ namespace SIMPLEAPI_Demo
             detalle.MontoItem = (int)Math.Round((detalle.Cantidad * detalle.Precio) - detalle.Descuento, 0);
             dte.Exportaciones.Detalles.Add(detalle);
 
-            detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+            detalle = new ChileSystems.DTE.Engine.Documento.DetalleExportacion();
             detalle.NumeroLinea = 2;
             detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
             detalle.Nombre = "CAJAS DE PASAS DE UVA FLAME MORENA SIN SEMILLA MEDIANAS";
@@ -1355,8 +1355,8 @@ namespace SIMPLEAPI_Demo
             //dato obligatorio
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoModalidadVenta = SIMPLE_SDK.Enum.CodigosAduana.ModalidadVenta.A_FIRME;
 
-            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
-            detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.DetalleExportacion>();
+            detalle = new ChileSystems.DTE.Engine.Documento.DetalleExportacion();
             detalle.NumeroLinea = 1;
             detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
             detalle.Nombre = "ALOJAMIENTO HABITACIONES";

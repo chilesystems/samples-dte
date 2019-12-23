@@ -30,6 +30,8 @@ namespace SIMPLEAPI_Demo
             var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);            
             pictureBoxTimbre.BackgroundImage = dte.Documento.TimbrePDF417(out outMessage);
 
+            //dte.Exportaciones.TimbrePDF417(out outMessage);
+
             
         }
 

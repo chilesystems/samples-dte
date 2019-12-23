@@ -15,10 +15,9 @@ namespace SIMPLEAPI_Demo
 
         public string casoPruebas;
         public string idDte;
-        public string rutEmpresa = "14684925-3";
-        public string rutCertificado = "14684925-3";
-        //public string nombreCertificado = "NOMBRE_CERTIFICADO";
-        public string nombreCertificado = "ALBERTO MAMANI CHOQUE";
+        public string rutEmpresa = "11111111-1";
+        public string rutCertificado = "11111111-1";
+        public string nombreCertificado = "NOMBRE_CERTIFICADO";        
         public string RazonSocial = "RAZON_SOCIAL";
         public string Giro = "GIRO_EMISOR";
         public string Direccion = "DOMICILIO_EMISOR";
@@ -29,8 +28,7 @@ namespace SIMPLEAPI_Demo
         public DateTime fechaResolucion = new DateTime(2016, 7, 28);
         public int numeroResolucion = 0;
 
-
-        public string serialKEY = "6195-3480-6372-4077-3792"; //Valida hasta 27 de mayo de 2020
+        public string serialKEY = "3992-A650-6374-5817-4836"; //Valida hasta 19 de diciembre de 2020
 
         public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica;
 
@@ -237,9 +235,6 @@ namespace SIMPLEAPI_Demo
                     {
                         var montoDescuentoAfecto = (int)Math.Round(neto * (descuentos.Value / 100), 0, MidpointRounding.AwayFromZero);
                         neto -= montoDescuentoAfecto;
-
-                        //var montoDescuentoExento = exento * (descuentos / 100);
-                        //exento -= (int)Math.Round(montoDescuentoExento.Value, 0);
                     }
                     var iva = (int)Math.Round(neto * 0.19, 0);
                     int retenido = 0;
