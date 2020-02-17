@@ -90,7 +90,7 @@ namespace SIMPLEAPI_Demo
         {
             // DOCUMENTO
             var dte = new ChileSystems.DTE.Engine.Documento.DTE();
-            dte.Exportaciones = new SIMPLE_SDK.Documento.Exportaciones();
+            dte.Exportaciones = new SIMPLE_API.Documento.Exportaciones();
             dte.Exportaciones.Id = idDte;
 
             dte.Exportaciones.Encabezado.IdentificacionDTE.TipoDTE = tipoDTE;
@@ -382,11 +382,11 @@ namespace SIMPLEAPI_Demo
         //    throw new Exception(messageResult);
         //}
 
-        public bool Validate(string filePath, SIMPLE_SDK.Security.Firma.Firma.TipoXML tipo, string schema)
+        public bool Validate(string filePath, SIMPLE_API.Security.Firma.Firma.TipoXML tipo, string schema)
         {
             string messageResult = string.Empty;
             if (ChileSystems.DTE.Engine.XML.XmlHandler.ValidateWithSchema(filePath, out messageResult, schema))
-                if (SIMPLE_SDK.Security.Firma.Firma.VerificarFirma(filePath, tipo, out string messageOutFirma))
+                if (SIMPLE_API.Security.Firma.Firma.VerificarFirma(filePath, tipo, out string messageOutFirma))
                     return true;
                 else
                     throw new Exception("NO SE HA PODIDO VERIFICAR LA FIRMA DEL ENVÍO");

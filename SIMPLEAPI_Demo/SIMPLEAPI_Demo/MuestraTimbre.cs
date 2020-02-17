@@ -68,7 +68,7 @@ namespace SIMPLEAPI_Demo
             string privateKey = ChileSystems.DTE.Engine.CAFHandler.CAFHandler.GetPrivateKey(pathFileCaf);
 
 
-            string firmaResultante = SIMPLE_SDK.Security.Timbre.Timbre.Timbrar(envioBoleta.SetDTE.DTEs[0].Documento.TED.DatosBasicos.ToString(), privateKey);
+            string firmaResultante = SIMPLE_API.Security.Timbre.Timbre.Timbrar(envioBoleta.SetDTE.DTEs[0].Documento.TED.DatosBasicos.ToString(), privateKey);
 
             MessageBox.Show((firmaResultante == firmadelDD).ToString());
         }

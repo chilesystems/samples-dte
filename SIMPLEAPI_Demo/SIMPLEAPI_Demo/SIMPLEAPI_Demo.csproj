@@ -51,6 +51,10 @@
     <Reference Include="itextsharp">
       <HintPath>..\..\..\..\..\itextsharp.dll</HintPath>
     </Reference>
+    <Reference Include="SIMPLE_API, Version=1.0.2.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Desktop\API\Confused\SIMPLE_API.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -153,12 +157,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\SIMPLE_API\SIMPLE_API\API_SIMPLE_API.csproj">
-      <Project>{db72ca7e-c862-4146-a04f-25dfc9f027b0}</Project>
-      <Name>API_SIMPLE_API</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
