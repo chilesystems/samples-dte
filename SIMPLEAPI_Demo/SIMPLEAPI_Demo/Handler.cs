@@ -15,10 +15,10 @@ namespace SIMPLEAPI_Demo
 
         public string casoPruebas;
         public string idDte;
-        public string rutEmpresa = "11111111-1";
-        public string rutCertificado = "11111111-1";
-        public string nombreCertificado = "NOMBRE_CERTIFICADO";        
-        public string RazonSocial = "RAZON_SOCIAL";
+        public string rutEmpresa = "1111111-1";
+        public string rutCertificado = "1111111-1";
+        public string nombreCertificado = "NOMBRE DESCRIPTIVO DEL CERTIFICADO";        
+        public string RazonSocial = "RAZON SOCIAL";
         public string Giro = "GIRO_EMISOR";
         public string Direccion = "DOMICILIO_EMISOR";
         public string Comuna = "COMUNA";
@@ -167,6 +167,22 @@ namespace SIMPLEAPI_Demo
 
             //DOCUMENTO - ENCABEZADO - TOTALES - CAMPOS OBLIGATORIOS
             calculosTotales(dte);
+        }
+
+        public void GenerateDetailsExportacion(ChileSystems.DTE.Engine.Documento.DTE dte)
+        {
+            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.DetalleExportacion>();
+            var detalle = new ChileSystems.DTE.Engine.Documento.DetalleExportacion();
+            detalle.NumeroLinea = 1;
+            detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
+            detalle.Nombre = "CHATARRA DE ALUMINIO";
+            detalle.Cantidad = 148;
+            detalle.UnidadMedida = "U";
+            detalle.Precio = 105;
+            detalle.MontoItem = 148 * 105;
+            dte.Exportaciones.Detalles.Add(detalle);
+
+            CalculateTotalesExportacion(dte);
         }
 
         public void GenerateDetails(ChileSystems.DTE.Engine.Documento.DTE dte, List<ItemBoleta> detalles)

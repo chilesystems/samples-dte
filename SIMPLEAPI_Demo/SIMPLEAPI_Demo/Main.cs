@@ -31,17 +31,19 @@ namespace SIMPLEAPI_Demo
         private void botonGenerarDocumento_Click(object sender, EventArgs e)
         {
             //El folio es obligatorio
-            handler.Folio = 380;
+            handler.Folio = 50;
             //El Id debe ser alfanumerico. Remitirse a letras y números
             handler.idDte = "TESTPRUEBA2";
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
-            var dte = handler.GenerateDTE();
-            handler.GenerateDetails(dte);
+            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaExportacionElectronica;
+            var dte = handler.GenerateDTEExportacionBase();
+            handler.GenerateDetailsExportacion(dte);
 
             handler.usaReferencia = false;
             handler.Referencias(dte);
 
-            var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
+            var path = handler.TimbrarYFirmarXMLDTEExportacion(dte, "out\\temp\\", "out\\caf\\");
+
+            string contenido = dte.ToString();
 
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             MessageBox.Show("Documento generado exitosamente en " + path);
