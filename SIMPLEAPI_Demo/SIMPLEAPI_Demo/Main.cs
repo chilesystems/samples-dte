@@ -327,12 +327,6 @@ namespace SIMPLEAPI_Demo
             var respuesta = handler.EnviarAceptacionReclamo(tipoDocumento, folio, accion, rutProveedor, dvProveedor, true);
             MessageBox.Show(respuesta);
         }
-
-        private void botonMuestraImpresa_Click(object sender, EventArgs e)
-        {
-            MuestraTimbre formulario = new MuestraTimbre();
-            formulario.ShowDialog();
-        }
         private void botonConsultarEstadoDTE_Click(object sender, EventArgs e)
         {
             var responseEstadoDTE = handler.ConsultarEstadoDTE(radioProduccion.Checked);
@@ -1411,6 +1405,18 @@ namespace SIMPLEAPI_Demo
                 var filePathArchivo = libroGuias.Firmar(handler.nombreCertificado, "out\\temp\\", handler.serialKEY);
                 MessageBox.Show("Libro de Guías Generado correctamente en " + filePathArchivo);
             }
+        }
+
+        private void botonTimbre_Click(object sender, EventArgs e)
+        {
+            MuestraTimbre formulario = new MuestraTimbre();
+            formulario.ShowDialog();
+        }
+
+        private void botonMuestraImpresa_Click(object sender, EventArgs e)
+        {
+            MuestraImpresa formulario = new MuestraImpresa();
+            formulario.ShowDialog();
         }
     }
 }

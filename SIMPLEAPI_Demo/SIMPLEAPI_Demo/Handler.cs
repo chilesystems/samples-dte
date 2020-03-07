@@ -125,7 +125,7 @@ namespace SIMPLEAPI_Demo
         {
             int total = (int)Math.Round(dte.Exportaciones.Detalles.Sum(x => x.MontoItem) + dte.Exportaciones.Encabezado.Transporte.Aduana.MontoFlete + dte.Exportaciones.Encabezado.Transporte.Aduana.MontoSeguro + adicional, 0);
             //int total = (int)Math.Round((decimal)dte.Exportaciones.Detalles.Sum(x => x.MontoItem), 0);
-           
+
             dte.Exportaciones.Encabezado.Totales.MontoExento = total;
             dte.Exportaciones.Encabezado.Totales.MontoTotal = total;
 
@@ -1675,6 +1675,29 @@ namespace SIMPLEAPI_Demo
             foreach (var a in certificadosUsuario)
                 result += a + "\n";
             return result;
+        }
+
+        public static byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            return ms.ToArray();
+        }
+
+        public static string TipoDTEString(ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipo)
+        {
+            switch (tipo)
+            {
+                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaCompraElectronica: return "FACTURA DE COMPRA ELECTRÓNICA";
+                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica: return "FACTURA ELECTRÓNICA";
+                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronicaExenta: return "FACTURA ELECTRÓNICA EXENTA";
+                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.GuiaDespachoElectronica: return "GUIA DE DESPACHO ELECTRÓNICA";
+                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica: return "NOTA DE CRÉDITO ELECTRÓNICA";
+                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica: return "NOTA DE DÉBITO ELECTRÓNICA";
+                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.Factura: return "FACTURA MANUAL";
+                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCredito: return "NOTA DE CRÉDITO MANUAL";
+            }
+            return "Not Set";
         }
         #endregion  
 

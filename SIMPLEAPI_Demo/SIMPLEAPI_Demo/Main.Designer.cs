@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.botonLibroGuias = new System.Windows.Forms.Button();
             this.botonGetCertificados = new System.Windows.Forms.Button();
             this.botonValidador = new System.Windows.Forms.Button();
-            this.botonMuestraImpresa = new System.Windows.Forms.Button();
+            this.botonTimbre = new System.Windows.Forms.Button();
             this.botonAceptacion = new System.Windows.Forms.Button();
             this.botonSimulacion = new System.Windows.Forms.Button();
             this.botonConsultarEstadoDTE = new System.Windows.Forms.Button();
@@ -56,7 +57,7 @@
             this.botonIngresarTimbraje = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
-            this.botonLibroGuias = new System.Windows.Forms.Button();
+            this.botonMuestraImpresa = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -64,19 +65,30 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.botonMuestraImpresa);
             this.groupBox5.Controls.Add(this.botonLibroGuias);
             this.groupBox5.Controls.Add(this.botonGetCertificados);
             this.groupBox5.Controls.Add(this.botonValidador);
-            this.groupBox5.Controls.Add(this.botonMuestraImpresa);
+            this.groupBox5.Controls.Add(this.botonTimbre);
             this.groupBox5.Controls.Add(this.botonAceptacion);
             this.groupBox5.Controls.Add(this.botonSimulacion);
             this.groupBox5.Controls.Add(this.botonConsultarEstadoDTE);
             this.groupBox5.Location = new System.Drawing.Point(350, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(163, 226);
+            this.groupBox5.Size = new System.Drawing.Size(163, 245);
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Utilidades";
+            // 
+            // botonLibroGuias
+            // 
+            this.botonLibroGuias.Location = new System.Drawing.Point(6, 193);
+            this.botonLibroGuias.Name = "botonLibroGuias";
+            this.botonLibroGuias.Size = new System.Drawing.Size(151, 23);
+            this.botonLibroGuias.TabIndex = 18;
+            this.botonLibroGuias.Text = "Libro de Guías";
+            this.botonLibroGuias.UseVisualStyleBackColor = true;
+            this.botonLibroGuias.Click += new System.EventHandler(this.botonLibroGuias_Click);
             // 
             // botonGetCertificados
             // 
@@ -97,15 +109,15 @@
             this.botonValidador.UseVisualStyleBackColor = true;
             this.botonValidador.Click += new System.EventHandler(this.botonValidador_Click);
             // 
-            // botonMuestraImpresa
+            // botonTimbre
             // 
-            this.botonMuestraImpresa.Location = new System.Drawing.Point(6, 106);
-            this.botonMuestraImpresa.Name = "botonMuestraImpresa";
-            this.botonMuestraImpresa.Size = new System.Drawing.Size(151, 23);
-            this.botonMuestraImpresa.TabIndex = 12;
-            this.botonMuestraImpresa.Text = "Imagen del Timbre";
-            this.botonMuestraImpresa.UseVisualStyleBackColor = true;
-            this.botonMuestraImpresa.Click += new System.EventHandler(this.botonMuestraImpresa_Click);
+            this.botonTimbre.Location = new System.Drawing.Point(6, 106);
+            this.botonTimbre.Name = "botonTimbre";
+            this.botonTimbre.Size = new System.Drawing.Size(151, 23);
+            this.botonTimbre.TabIndex = 12;
+            this.botonTimbre.Text = "Imagen del Timbre";
+            this.botonTimbre.UseVisualStyleBackColor = true;
+            this.botonTimbre.Click += new System.EventHandler(this.botonTimbre_Click);
             // 
             // botonAceptacion
             // 
@@ -355,15 +367,15 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Ambiente:";
             // 
-            // botonLibroGuias
+            // botonMuestraImpresa
             // 
-            this.botonLibroGuias.Location = new System.Drawing.Point(6, 193);
-            this.botonLibroGuias.Name = "botonLibroGuias";
-            this.botonLibroGuias.Size = new System.Drawing.Size(151, 23);
-            this.botonLibroGuias.TabIndex = 18;
-            this.botonLibroGuias.Text = "Libro de Guías";
-            this.botonLibroGuias.UseVisualStyleBackColor = true;
-            this.botonLibroGuias.Click += new System.EventHandler(this.botonLibroGuias_Click);
+            this.botonMuestraImpresa.Location = new System.Drawing.Point(6, 222);
+            this.botonMuestraImpresa.Name = "botonMuestraImpresa";
+            this.botonMuestraImpresa.Size = new System.Drawing.Size(151, 23);
+            this.botonMuestraImpresa.TabIndex = 19;
+            this.botonMuestraImpresa.Text = "Muestra Impresa";
+            this.botonMuestraImpresa.UseVisualStyleBackColor = true;
+            this.botonMuestraImpresa.Click += new System.EventHandler(this.botonMuestraImpresa_Click);
             // 
             // Main
             // 
@@ -392,7 +404,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button botonMuestraImpresa;
+        private System.Windows.Forms.Button botonTimbre;
         private System.Windows.Forms.Button botonAceptacion;
         private System.Windows.Forms.Button botonSimulacion;
         private System.Windows.Forms.Button botonConsultarEstadoDTE;
@@ -420,6 +432,7 @@
         private System.Windows.Forms.Button botonGetCertificados;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button botonLibroGuias;
+        private System.Windows.Forms.Button botonMuestraImpresa;
     }
 }
 
