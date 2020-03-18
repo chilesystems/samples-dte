@@ -654,8 +654,8 @@ namespace SIMPLEAPI_Demo
                 MntTotal = totalTotal,
                 TasaIVA = 19,
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica,
-                RangoUtilizados = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>() { new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = rangoInicial, Final = rangoFinal } },
-                RangoAnulados = new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
+                RangoUtilizados = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>() { new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = rangoInicial, Final = rangoFinal } }
+                //RangoAnulados = new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
             });
 
             /*datos de notas de credito electronicas*/
@@ -677,8 +677,8 @@ namespace SIMPLEAPI_Demo
                 MntTotal = totalTotal,
                 TasaIVA = 19,
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica,
-                RangoUtilizados = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>() { new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = rangoInicial, Final = rangoFinal } },
-                RangoAnulados =new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
+                RangoUtilizados = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>() { new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = rangoInicial, Final = rangoFinal } }
+                //RangoAnulados =new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
             });
 
             rcof.DocumentoConsumoFolios.Resumen = resumenes;
