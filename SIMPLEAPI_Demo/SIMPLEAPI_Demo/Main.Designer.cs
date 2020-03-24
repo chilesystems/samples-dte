@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.botonMuestraImpresa = new System.Windows.Forms.Button();
             this.botonLibroGuias = new System.Windows.Forms.Button();
             this.botonGetCertificados = new System.Windows.Forms.Button();
             this.botonValidador = new System.Windows.Forms.Button();
@@ -56,29 +57,38 @@
             this.botonGenerarDocumento = new System.Windows.Forms.Button();
             this.botonIngresarTimbraje = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
-            this.botonMuestraImpresa = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.botonMuestraImpresa);
-            this.groupBox5.Controls.Add(this.botonLibroGuias);
             this.groupBox5.Controls.Add(this.botonGetCertificados);
             this.groupBox5.Controls.Add(this.botonValidador);
             this.groupBox5.Controls.Add(this.botonTimbre);
             this.groupBox5.Controls.Add(this.botonAceptacion);
-            this.groupBox5.Controls.Add(this.botonSimulacion);
             this.groupBox5.Controls.Add(this.botonConsultarEstadoDTE);
-            this.groupBox5.Location = new System.Drawing.Point(350, 12);
+            this.groupBox5.Location = new System.Drawing.Point(519, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(163, 245);
+            this.groupBox5.Size = new System.Drawing.Size(163, 166);
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Utilidades";
+            // 
+            // botonMuestraImpresa
+            // 
+            this.botonMuestraImpresa.Location = new System.Drawing.Point(6, 222);
+            this.botonMuestraImpresa.Name = "botonMuestraImpresa";
+            this.botonMuestraImpresa.Size = new System.Drawing.Size(151, 23);
+            this.botonMuestraImpresa.TabIndex = 19;
+            this.botonMuestraImpresa.Text = "Muestra Impresa";
+            this.botonMuestraImpresa.UseVisualStyleBackColor = true;
+            this.botonMuestraImpresa.Click += new System.EventHandler(this.botonMuestraImpresa_Click);
             // 
             // botonLibroGuias
             // 
@@ -92,7 +102,7 @@
             // 
             // botonGetCertificados
             // 
-            this.botonGetCertificados.Location = new System.Drawing.Point(6, 164);
+            this.botonGetCertificados.Location = new System.Drawing.Point(6, 135);
             this.botonGetCertificados.Name = "botonGetCertificados";
             this.botonGetCertificados.Size = new System.Drawing.Size(151, 23);
             this.botonGetCertificados.TabIndex = 17;
@@ -101,7 +111,7 @@
             // 
             // botonValidador
             // 
-            this.botonValidador.Location = new System.Drawing.Point(6, 135);
+            this.botonValidador.Location = new System.Drawing.Point(6, 106);
             this.botonValidador.Name = "botonValidador";
             this.botonValidador.Size = new System.Drawing.Size(151, 23);
             this.botonValidador.TabIndex = 17;
@@ -111,7 +121,7 @@
             // 
             // botonTimbre
             // 
-            this.botonTimbre.Location = new System.Drawing.Point(6, 106);
+            this.botonTimbre.Location = new System.Drawing.Point(6, 77);
             this.botonTimbre.Name = "botonTimbre";
             this.botonTimbre.Size = new System.Drawing.Size(151, 23);
             this.botonTimbre.TabIndex = 12;
@@ -131,7 +141,7 @@
             // 
             // botonSimulacion
             // 
-            this.botonSimulacion.Location = new System.Drawing.Point(6, 77);
+            this.botonSimulacion.Location = new System.Drawing.Point(6, 48);
             this.botonSimulacion.Name = "botonSimulacion";
             this.botonSimulacion.Size = new System.Drawing.Size(151, 23);
             this.botonSimulacion.TabIndex = 10;
@@ -151,7 +161,7 @@
             // 
             // botonSetExportacion2
             // 
-            this.botonSetExportacion2.Location = new System.Drawing.Point(5, 251);
+            this.botonSetExportacion2.Location = new System.Drawing.Point(6, 164);
             this.botonSetExportacion2.Name = "botonSetExportacion2";
             this.botonSetExportacion2.Size = new System.Drawing.Size(151, 23);
             this.botonSetExportacion2.TabIndex = 20;
@@ -161,7 +171,7 @@
             // 
             // botonSetExportacion
             // 
-            this.botonSetExportacion.Location = new System.Drawing.Point(6, 222);
+            this.botonSetExportacion.Location = new System.Drawing.Point(6, 135);
             this.botonSetExportacion.Name = "botonSetExportacion";
             this.botonSetExportacion.Size = new System.Drawing.Size(151, 23);
             this.botonSetExportacion.TabIndex = 17;
@@ -171,7 +181,7 @@
             // 
             // botonCesion
             // 
-            this.botonCesion.Location = new System.Drawing.Point(6, 193);
+            this.botonCesion.Location = new System.Drawing.Point(6, 106);
             this.botonCesion.Name = "botonCesion";
             this.botonCesion.Size = new System.Drawing.Size(151, 23);
             this.botonCesion.TabIndex = 19;
@@ -181,7 +191,7 @@
             // 
             // botonIntercambio
             // 
-            this.botonIntercambio.Location = new System.Drawing.Point(6, 164);
+            this.botonIntercambio.Location = new System.Drawing.Point(6, 77);
             this.botonIntercambio.Name = "botonIntercambio";
             this.botonIntercambio.Size = new System.Drawing.Size(151, 23);
             this.botonIntercambio.TabIndex = 18;
@@ -191,7 +201,7 @@
             // 
             // botonSetPruebas
             // 
-            this.botonSetPruebas.Location = new System.Drawing.Point(6, 135);
+            this.botonSetPruebas.Location = new System.Drawing.Point(6, 19);
             this.botonSetPruebas.Name = "botonSetPruebas";
             this.botonSetPruebas.Size = new System.Drawing.Size(151, 23);
             this.botonSetPruebas.TabIndex = 18;
@@ -202,7 +212,7 @@
             // radioProduccion
             // 
             this.radioProduccion.AutoSize = true;
-            this.radioProduccion.Location = new System.Drawing.Point(434, 263);
+            this.radioProduccion.Location = new System.Drawing.Point(16, 48);
             this.radioProduccion.Name = "radioProduccion";
             this.radioProduccion.Size = new System.Drawing.Size(79, 17);
             this.radioProduccion.TabIndex = 15;
@@ -213,7 +223,7 @@
             // 
             this.radioCertificacion.AutoSize = true;
             this.radioCertificacion.Checked = true;
-            this.radioCertificacion.Location = new System.Drawing.Point(345, 263);
+            this.radioCertificacion.Location = new System.Drawing.Point(16, 25);
             this.radioCertificacion.Name = "radioCertificacion";
             this.radioCertificacion.Size = new System.Drawing.Size(83, 17);
             this.radioCertificacion.TabIndex = 14;
@@ -229,7 +239,7 @@
             this.groupBox2.Controls.Add(this.botonGenerarRCOF);
             this.groupBox2.Controls.Add(this.botonGenerarBoleta);
             this.groupBox2.Controls.Add(this.botonLibroBoletas);
-            this.groupBox2.Location = new System.Drawing.Point(181, 12);
+            this.groupBox2.Location = new System.Drawing.Point(350, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(163, 197);
             this.groupBox2.TabIndex = 13;
@@ -298,21 +308,16 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.botonSetExportacion2);
-            this.groupBox1.Controls.Add(this.botonSetPruebas);
-            this.groupBox1.Controls.Add(this.botonSetExportacion);
             this.groupBox1.Controls.Add(this.botonEnviarSii);
-            this.groupBox1.Controls.Add(this.botonCesion);
             this.groupBox1.Controls.Add(this.botonGenerarEnvio);
-            this.groupBox1.Controls.Add(this.botonIntercambio);
             this.groupBox1.Controls.Add(this.botonGenerarDocumento);
             this.groupBox1.Controls.Add(this.botonIngresarTimbraje);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(163, 281);
+            this.groupBox1.Size = new System.Drawing.Size(163, 140);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "General";
+            this.groupBox1.Text = "Básicos";
             // 
             // botonEnviarSii
             // 
@@ -358,46 +363,56 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // label1
+            // groupBox3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(284, 265);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Ambiente:";
+            this.groupBox3.Controls.Add(this.botonMuestraImpresa);
+            this.groupBox3.Controls.Add(this.botonSetPruebas);
+            this.groupBox3.Controls.Add(this.botonLibroGuias);
+            this.groupBox3.Controls.Add(this.botonSetExportacion2);
+            this.groupBox3.Controls.Add(this.botonIntercambio);
+            this.groupBox3.Controls.Add(this.botonCesion);
+            this.groupBox3.Controls.Add(this.botonSimulacion);
+            this.groupBox3.Controls.Add(this.botonSetExportacion);
+            this.groupBox3.Location = new System.Drawing.Point(181, 12);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(163, 251);
+            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Certificación";
             // 
-            // botonMuestraImpresa
+            // groupBox4
             // 
-            this.botonMuestraImpresa.Location = new System.Drawing.Point(6, 222);
-            this.botonMuestraImpresa.Name = "botonMuestraImpresa";
-            this.botonMuestraImpresa.Size = new System.Drawing.Size(151, 23);
-            this.botonMuestraImpresa.TabIndex = 19;
-            this.botonMuestraImpresa.Text = "Muestra Impresa";
-            this.botonMuestraImpresa.UseVisualStyleBackColor = true;
-            this.botonMuestraImpresa.Click += new System.EventHandler(this.botonMuestraImpresa_Click);
+            this.groupBox4.Controls.Add(this.radioCertificacion);
+            this.groupBox4.Controls.Add(this.radioProduccion);
+            this.groupBox4.Location = new System.Drawing.Point(12, 157);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(163, 81);
+            this.groupBox4.TabIndex = 22;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Ambiente";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(518, 301);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(693, 272);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.radioProduccion);
-            this.Controls.Add(this.radioCertificacion);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Main";
+            this.Text = "Demostración uso SIMPLE API";
             this.Load += new System.EventHandler(this.Main_Load);
             this.groupBox5.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -430,9 +445,10 @@
         private System.Windows.Forms.Button botonSetExportacion;
         private System.Windows.Forms.Button botonSetExportacion2;
         private System.Windows.Forms.Button botonGetCertificados;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button botonLibroGuias;
         private System.Windows.Forms.Button botonMuestraImpresa;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }
 
