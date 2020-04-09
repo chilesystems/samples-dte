@@ -6,7 +6,7 @@ SAMPLES-DTE es una solución Visual Studio, que pretende ejemplificar, la mayor 
 
 ## Comenzando 🚀
 
-Para utilizar *SIMPLE API*, es necesario contar con un código de activación tipo Serial Key. La que viene incluída en el archivo Handler.cs, tiene una duración limitada y cuenta con un tope de 100 documentos. **Pero servirá para que la pruebes ;)**
+Para utilizar *SIMPLE API*, es necesario contar con un código de activación tipo Serial Key. Este código se te entrega al momento de [descargar](https://www.simple-api.cl/Descarga) la API. Tiene una duración ilimitada y cuenta con un tope de 100 documentos mensuales. **Pero servirá para que la pruebes ;)**
 
 Más información en [www.simple-api.cl](http://www.simple-api.cl) o solicitandola a contacto@chilesystems.com
 
