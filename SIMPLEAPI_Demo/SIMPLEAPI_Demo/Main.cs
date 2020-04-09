@@ -35,13 +35,13 @@ namespace SIMPLEAPI_Demo
             //El Id debe ser alfanumerico. Remitirse a letras y números
             handler.idDte = "TESTPRUEBA2";
             handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaExportacionElectronica;
-            var dte = handler.GenerateDTEExportacionBase();
-            handler.GenerateDetailsExportacion(dte);
+            var dte = handler.GenerateDTE();
+            handler.GenerateDetails(dte);
 
             handler.usaReferencia = false;
             handler.Referencias(dte);
 
-            var path = handler.TimbrarYFirmarXMLDTEExportacion(dte, "out\\temp\\", "out\\caf\\");
+            var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
 
             string contenido = dte.ToString();
 

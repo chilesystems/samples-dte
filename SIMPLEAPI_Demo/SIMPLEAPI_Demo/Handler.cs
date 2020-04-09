@@ -28,7 +28,7 @@ namespace SIMPLEAPI_Demo
         public DateTime fechaResolucion = new DateTime(2016, 7, 28);
         public int numeroResolucion = 0;
 
-        public string serialKEY = "3992-A650-6374-5817-4836"; //Valida hasta 19 de diciembre de 2020
+        public string serialKEY = "La debes obtener al momento de descargar la API";
 
         public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica;
 
