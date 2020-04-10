@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.botonMuestraImpresa = new System.Windows.Forms.Button();
-            this.botonLibroGuias = new System.Windows.Forms.Button();
             this.botonGetCertificados = new System.Windows.Forms.Button();
             this.botonValidador = new System.Windows.Forms.Button();
             this.botonTimbre = new System.Windows.Forms.Button();
             this.botonAceptacion = new System.Windows.Forms.Button();
-            this.botonSimulacion = new System.Windows.Forms.Button();
             this.botonConsultarEstadoDTE = new System.Windows.Forms.Button();
+            this.botonMuestraImpresa = new System.Windows.Forms.Button();
+            this.botonLibroGuias = new System.Windows.Forms.Button();
+            this.botonSimulacion = new System.Windows.Forms.Button();
             this.botonSetExportacion2 = new System.Windows.Forms.Button();
             this.botonSetExportacion = new System.Windows.Forms.Button();
             this.botonCesion = new System.Windows.Forms.Button();
@@ -59,6 +59,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.botonConfiguracion = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -79,26 +80,6 @@
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Utilidades";
-            // 
-            // botonMuestraImpresa
-            // 
-            this.botonMuestraImpresa.Location = new System.Drawing.Point(6, 222);
-            this.botonMuestraImpresa.Name = "botonMuestraImpresa";
-            this.botonMuestraImpresa.Size = new System.Drawing.Size(151, 23);
-            this.botonMuestraImpresa.TabIndex = 19;
-            this.botonMuestraImpresa.Text = "Muestra Impresa";
-            this.botonMuestraImpresa.UseVisualStyleBackColor = true;
-            this.botonMuestraImpresa.Click += new System.EventHandler(this.botonMuestraImpresa_Click);
-            // 
-            // botonLibroGuias
-            // 
-            this.botonLibroGuias.Location = new System.Drawing.Point(6, 193);
-            this.botonLibroGuias.Name = "botonLibroGuias";
-            this.botonLibroGuias.Size = new System.Drawing.Size(151, 23);
-            this.botonLibroGuias.TabIndex = 18;
-            this.botonLibroGuias.Text = "Libro de Guías";
-            this.botonLibroGuias.UseVisualStyleBackColor = true;
-            this.botonLibroGuias.Click += new System.EventHandler(this.botonLibroGuias_Click);
             // 
             // botonGetCertificados
             // 
@@ -139,16 +120,6 @@
             this.botonAceptacion.UseVisualStyleBackColor = true;
             this.botonAceptacion.Click += new System.EventHandler(this.botonAceptacion_Click);
             // 
-            // botonSimulacion
-            // 
-            this.botonSimulacion.Location = new System.Drawing.Point(6, 48);
-            this.botonSimulacion.Name = "botonSimulacion";
-            this.botonSimulacion.Size = new System.Drawing.Size(151, 23);
-            this.botonSimulacion.TabIndex = 10;
-            this.botonSimulacion.Text = "Simular N Documentos";
-            this.botonSimulacion.UseVisualStyleBackColor = true;
-            this.botonSimulacion.Click += new System.EventHandler(this.botonSimulacion_Click);
-            // 
             // botonConsultarEstadoDTE
             // 
             this.botonConsultarEstadoDTE.Location = new System.Drawing.Point(6, 19);
@@ -158,6 +129,36 @@
             this.botonConsultarEstadoDTE.Text = "Consultar Estado DTE";
             this.botonConsultarEstadoDTE.UseVisualStyleBackColor = true;
             this.botonConsultarEstadoDTE.Click += new System.EventHandler(this.botonConsultarEstadoDTE_Click);
+            // 
+            // botonMuestraImpresa
+            // 
+            this.botonMuestraImpresa.Location = new System.Drawing.Point(6, 222);
+            this.botonMuestraImpresa.Name = "botonMuestraImpresa";
+            this.botonMuestraImpresa.Size = new System.Drawing.Size(151, 23);
+            this.botonMuestraImpresa.TabIndex = 19;
+            this.botonMuestraImpresa.Text = "Muestra Impresa";
+            this.botonMuestraImpresa.UseVisualStyleBackColor = true;
+            this.botonMuestraImpresa.Click += new System.EventHandler(this.botonMuestraImpresa_Click);
+            // 
+            // botonLibroGuias
+            // 
+            this.botonLibroGuias.Location = new System.Drawing.Point(6, 193);
+            this.botonLibroGuias.Name = "botonLibroGuias";
+            this.botonLibroGuias.Size = new System.Drawing.Size(151, 23);
+            this.botonLibroGuias.TabIndex = 18;
+            this.botonLibroGuias.Text = "Libro de Guías";
+            this.botonLibroGuias.UseVisualStyleBackColor = true;
+            this.botonLibroGuias.Click += new System.EventHandler(this.botonLibroGuias_Click);
+            // 
+            // botonSimulacion
+            // 
+            this.botonSimulacion.Location = new System.Drawing.Point(6, 48);
+            this.botonSimulacion.Name = "botonSimulacion";
+            this.botonSimulacion.Size = new System.Drawing.Size(151, 23);
+            this.botonSimulacion.TabIndex = 10;
+            this.botonSimulacion.Text = "Simular N Documentos";
+            this.botonSimulacion.UseVisualStyleBackColor = true;
+            this.botonSimulacion.Click += new System.EventHandler(this.botonSimulacion_Click);
             // 
             // botonSetExportacion2
             // 
@@ -382,14 +383,25 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.botonConfiguracion);
             this.groupBox4.Controls.Add(this.radioCertificacion);
             this.groupBox4.Controls.Add(this.radioProduccion);
-            this.groupBox4.Location = new System.Drawing.Point(12, 157);
+            this.groupBox4.Location = new System.Drawing.Point(12, 158);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(163, 81);
+            this.groupBox4.Size = new System.Drawing.Size(163, 105);
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Ambiente";
+            // 
+            // botonConfiguracion
+            // 
+            this.botonConfiguracion.Location = new System.Drawing.Point(6, 76);
+            this.botonConfiguracion.Name = "botonConfiguracion";
+            this.botonConfiguracion.Size = new System.Drawing.Size(151, 23);
+            this.botonConfiguracion.TabIndex = 20;
+            this.botonConfiguracion.Text = "Configuración";
+            this.botonConfiguracion.UseVisualStyleBackColor = true;
+            this.botonConfiguracion.Click += new System.EventHandler(this.botonConfiguracion_Click);
             // 
             // Main
             // 
@@ -449,6 +461,7 @@
         private System.Windows.Forms.Button botonMuestraImpresa;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button botonConfiguracion;
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using ChileSystems.DTE.Engine.RespuestaEnvio;
 using ChileSystems.DTE.WS.EstadoDTE;
+using SIMPLEAPI_Demo.Clases;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,24 +16,10 @@ namespace SIMPLEAPI_Demo
 
         public string casoPruebas;
         public string idDte;
-        public string rutEmpresa = "1111111-1";
-        public string rutCertificado = "1111111-1";
-        public string nombreCertificado = "NOMBRE DESCRIPTIVO DEL CERTIFICADO";        
-        public string RazonSocial = "RAZON SOCIAL";
-        public string Giro = "GIRO_EMISOR";
-        public string Direccion = "DOMICILIO_EMISOR";
-        public string Comuna = "COMUNA";
-        
-        public List<int> CodigosActividades = new List<int>() { 107300, 463020, 471100 };
-        public DateTime fechaEmision = DateTime.Now;
-        public DateTime fechaResolucion = new DateTime(2016, 7, 28);
-        public int numeroResolucion = 0;
-
-        public string serialKEY = "La debes obtener al momento de descargar la API";
 
         public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica;
 
-        public bool usaReferencia = false;
+        public Configuracion configuracion;
 
         #region Generar Documento
 
@@ -47,26 +34,26 @@ namespace SIMPLEAPI_Demo
 
             // DOCUMENTO - ENCABEZADO - IDENTIFICADOR DEL DOCUMENTO - CAMPOS OBLIGATORIOS
             dte.Documento.Encabezado.IdentificacionDTE.TipoDTE = tipoDTE;
-            dte.Documento.Encabezado.IdentificacionDTE.FechaEmision = fechaEmision;
+            dte.Documento.Encabezado.IdentificacionDTE.FechaEmision = DateTime.Now;
             dte.Documento.Encabezado.IdentificacionDTE.Folio = Folio;
 
             //DOCUMENTO - ENCABEZADO - EMISOR - CAMPOS OBLIGATORIOS          
-            dte.Documento.Encabezado.Emisor.Rut = rutEmpresa;
-            dte.Documento.Encabezado.Emisor.DireccionOrigen = Direccion;
-            dte.Documento.Encabezado.Emisor.ComunaOrigen = Comuna;
-            dte.Documento.Encabezado.Emisor.ActividadEconomica = CodigosActividades;
+            dte.Documento.Encabezado.Emisor.Rut = configuracion.Empresa.RutEmpresa;
+            dte.Documento.Encabezado.Emisor.DireccionOrigen = configuracion.Empresa.Direccion;
+            dte.Documento.Encabezado.Emisor.ComunaOrigen = configuracion.Empresa.Comuna;
+            dte.Documento.Encabezado.Emisor.ActividadEconomica = configuracion.Empresa.CodigosActividades.Select(x => x.Codigo).ToList();
 
             //Para boletas electrónicas
             if (tipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica)
             {
                 dte.Documento.Encabezado.IdentificacionDTE.IndicadorServicio = ChileSystems.DTE.Engine.Enum.IndicadorServicio.IndicadorServicioEnum.BoletaVentasYServicios;
-                dte.Documento.Encabezado.Emisor.RazonSocialBoleta = RazonSocial;
-                dte.Documento.Encabezado.Emisor.GiroBoleta = Giro;
+                dte.Documento.Encabezado.Emisor.RazonSocialBoleta = configuracion.Empresa.RazonSocial;
+                dte.Documento.Encabezado.Emisor.GiroBoleta = configuracion.Empresa.Giro;
             }
             else
             {
-                dte.Documento.Encabezado.Emisor.RazonSocial = RazonSocial;
-                dte.Documento.Encabezado.Emisor.Giro = Giro;
+                dte.Documento.Encabezado.Emisor.RazonSocial = configuracion.Empresa.RazonSocial; 
+                dte.Documento.Encabezado.Emisor.Giro = configuracion.Empresa.Giro;
             }
 
             if (tipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.GuiaDespachoElectronica)
@@ -94,15 +81,15 @@ namespace SIMPLEAPI_Demo
             dte.Exportaciones.Id = idDte;
 
             dte.Exportaciones.Encabezado.IdentificacionDTE.TipoDTE = tipoDTE;
-            dte.Exportaciones.Encabezado.IdentificacionDTE.FechaEmision = fechaEmision;
+            dte.Exportaciones.Encabezado.IdentificacionDTE.FechaEmision = DateTime.Now;
             dte.Exportaciones.Encabezado.IdentificacionDTE.Folio = Folio;
             
-            dte.Exportaciones.Encabezado.Emisor.Rut = rutEmpresa;
-            dte.Exportaciones.Encabezado.Emisor.RazonSocial = RazonSocial;
-            dte.Exportaciones.Encabezado.Emisor.Giro = Giro;
-            dte.Exportaciones.Encabezado.Emisor.DireccionOrigen = Direccion;
-            dte.Exportaciones.Encabezado.Emisor.ComunaOrigen = Comuna;
-            dte.Exportaciones.Encabezado.Emisor.ActividadEconomica = CodigosActividades;
+            dte.Exportaciones.Encabezado.Emisor.Rut = configuracion.Empresa.RutEmpresa;
+            dte.Exportaciones.Encabezado.Emisor.RazonSocial = configuracion.Empresa.RazonSocial;
+            dte.Exportaciones.Encabezado.Emisor.Giro = configuracion.Empresa.Giro;
+            dte.Exportaciones.Encabezado.Emisor.DireccionOrigen = configuracion.Empresa.Direccion;
+            dte.Exportaciones.Encabezado.Emisor.ComunaOrigen = configuracion.Empresa.Comuna;
+            dte.Exportaciones.Encabezado.Emisor.ActividadEconomica = configuracion.Empresa.CodigosActividades.Select(x => x.Codigo).ToList();
 
             //DOCUMENTO - ENCABEZADO - RECEPTOR - CAMPOS OBLIGATORIOS
 
@@ -318,21 +305,18 @@ namespace SIMPLEAPI_Demo
             });
 
             /*Ejemplo de referencia a una factura exenta*/
-            if (usaReferencia)
+            c++;
+            dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
             {
-                //c++;
-                dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
-                {
-                    CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
-                    FechaDocumentoReferencia = DateTime.Now,
-                    //Folio de Referencia = Debe ir el folio de la factura o documento que estás refenciando
-                    FolioReferencia = "39",
-                    IndicadorGlobal = 0,
-                    Numero = c,
-                    RazonReferencia = "FACTURA EXENTA ELECTRÓNICA N° 39 del " + dte.Documento.Encabezado.IdentificacionDTE.FechaEmisionString + " - CORRIGE MONTOS",
-                    TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.FacturaExentaElectronica
-                });
-            }
+                CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
+                FechaDocumentoReferencia = DateTime.Now,
+                //Folio de Referencia = Debe ir el folio de la factura o documento que estás refenciando
+                FolioReferencia = "39",
+                IndicadorGlobal = 0,
+                Numero = c,
+                RazonReferencia = "FACTURA EXENTA ELECTRÓNICA N° 39 del " + dte.Documento.Encabezado.IdentificacionDTE.FechaEmisionString + " - CORRIGE MONTOS",
+                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.FacturaExentaElectronica
+            });
         }
 
         public void ReferenciasBoleta(ChileSystems.DTE.Engine.Documento.DTE dte)
@@ -357,7 +341,7 @@ namespace SIMPLEAPI_Demo
             string messageOut = string.Empty;
             dte.Documento.Timbrar(
                 EnsureExists((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, dte.Documento.Encabezado.IdentificacionDTE.Folio, pathCaf), 
-                serialKEY, 
+                configuracion.SerialKeyAPI, 
                 out messageOut);
 
             /*El documento timbrado se guarda en la variable pathResult*/
@@ -365,7 +349,7 @@ namespace SIMPLEAPI_Demo
             /*Finalmente, el documento timbrado debe firmarse con el certificado digital*/
             /*Se debe entregar en el argumento del método Firmar, el "FriendlyName" o Nombre descriptivo del certificado*/
             /*Retorna el filePath donde estará el archivo XML timbrado y firmado, listo para ser enviado al SII*/
-            return dte.Firmar(nombreCertificado, serialKEY, out messageOut, "out\\temp\\");
+            return dte.Firmar(configuracion.Certificado.Nombre, configuracion.SerialKeyAPI, out messageOut, "out\\temp\\");
         }
 
         public string TimbrarYFirmarXMLDTEExportacion(ChileSystems.DTE.Engine.Documento.DTE dte, string pathResult, string pathCaf)
@@ -376,7 +360,7 @@ namespace SIMPLEAPI_Demo
             string messageOut = string.Empty;
             dte.Exportaciones.Timbrar(
                 EnsureExists((int)dte.Exportaciones.Encabezado.IdentificacionDTE.TipoDTE, dte.Exportaciones.Encabezado.IdentificacionDTE.Folio, pathCaf),
-                serialKEY,
+                configuracion.SerialKeyAPI,
                 out messageOut);
 
             /*El documento timbrado se guarda en la variable pathResult*/
@@ -384,7 +368,7 @@ namespace SIMPLEAPI_Demo
             /*Finalmente, el documento timbrado debe firmarse con el certificado digital*/
             /*Se debe entregar en el argumento del método Firmar, el "FriendlyName" o Nombre descriptivo del certificado*/
             /*Retorna el filePath donde estará el archivo XML timbrado y firmado, listo para ser enviado al SII*/
-            return dte.FirmarExportacion(nombreCertificado, serialKEY, out messageOut, "out\\temp\\");
+            return dte.FirmarExportacion(configuracion.Certificado.Nombre, configuracion.SerialKeyAPI, out messageOut, "out\\temp\\");
         }
 
         //public bool ValidateEnvio(string filePath, ChileSystems.DTE.Security.Firma.Firma.TipoXML tipo)
@@ -455,11 +439,11 @@ namespace SIMPLEAPI_Demo
             EnvioSII.SetDTE.Caratula = new ChileSystems.DTE.Engine.Envio.Caratula();
             EnvioSII.SetDTE.Caratula.FechaEnvio = DateTime.Now;
             /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
-            EnvioSII.SetDTE.Caratula.FechaResolucion = fechaResolucion;
-            EnvioSII.SetDTE.Caratula.NumeroResolucion = numeroResolucion;
+            EnvioSII.SetDTE.Caratula.FechaResolucion = configuracion.Empresa.FechaResolucion;
+            EnvioSII.SetDTE.Caratula.NumeroResolucion = configuracion.Empresa.NumeroResolucion;
 
-            EnvioSII.SetDTE.Caratula.RutEmisor = rutEmpresa;
-            EnvioSII.SetDTE.Caratula.RutEnvia = rutCertificado;
+            EnvioSII.SetDTE.Caratula.RutEmisor = configuracion.Empresa.RutEmpresa;
+            EnvioSII.SetDTE.Caratula.RutEnvia = configuracion.Certificado.Rut;
             EnvioSII.SetDTE.Caratula.RutReceptor = "60803000-K"; //Este es el RUT del SII
             EnvioSII.SetDTE.Caratula.SubTotalesDTE = new List<ChileSystems.DTE.Engine.Envio.SubTotalesDTE>();
 
@@ -502,11 +486,11 @@ namespace SIMPLEAPI_Demo
             EnvioCustomer.SetDTE.Caratula = new ChileSystems.DTE.Engine.Envio.Caratula();
             EnvioCustomer.SetDTE.Caratula.FechaEnvio = DateTime.Now;
             /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
-            EnvioCustomer.SetDTE.Caratula.FechaResolucion = fechaResolucion;
-            EnvioCustomer.SetDTE.Caratula.NumeroResolucion = numeroResolucion;
+            EnvioCustomer.SetDTE.Caratula.FechaResolucion = configuracion.Empresa.FechaResolucion;
+            EnvioCustomer.SetDTE.Caratula.NumeroResolucion = configuracion.Empresa.NumeroResolucion;
 
-            EnvioCustomer.SetDTE.Caratula.RutEmisor = rutEmpresa;
-            EnvioCustomer.SetDTE.Caratula.RutEnvia = rutCertificado;
+            EnvioCustomer.SetDTE.Caratula.RutEmisor = configuracion.Empresa.RutEmpresa;
+            EnvioCustomer.SetDTE.Caratula.RutEnvia = configuracion.Certificado.Rut;
             EnvioCustomer.SetDTE.Caratula.RutReceptor = dte.Documento.Encabezado.Receptor.Rut;
             /*Generalmente al cliente se le envía una sola factura, sin embargo si no es el caso, 
              se pueden agregar varias tal cual como está el método GenerarEnvioDTEToSII()*/
@@ -522,7 +506,7 @@ namespace SIMPLEAPI_Demo
             return EnvioCustomer;
         }
 
-        public long EnviarEnvioDTEToSII(string filePathEnvio, string serialKey, bool produccion)
+        public long EnviarEnvioDTEToSII(string filePathEnvio, bool produccion)
         {
             string messageResult = string.Empty;
             long trackID = -1;
@@ -531,11 +515,11 @@ namespace SIMPLEAPI_Demo
             {
                 for (i = 1; i <= 5; i++)
                 {
-                    string rutEmisorNumero = rutEmpresa.Substring(0, rutEmpresa.Length - 2);
-                    string rutEmisorDigito = rutEmpresa.Substring(rutEmpresa.Length - 1);
-                    string rutEmpresaNumero = rutEmpresa.Substring(0, rutEmpresa.Length - 2);
-                    string rutEmpresaDigito = rutEmpresa.Substring(rutEmpresa.Length - 1);
-                    var responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(rutEmisorNumero, rutEmisorDigito, rutEmpresaNumero, rutEmpresaDigito, filePathEnvio, filePathEnvio, nombreCertificado, produccion, serialKey, out messageResult, ".\\out\\tkn.dat");
+                    string rutEmisorNumero = configuracion.Empresa.RutEmpresa.Substring(0, configuracion.Empresa.RutEmpresa.Length - 2);
+                    string rutEmisorDigito = configuracion.Empresa.RutEmpresa.Substring(configuracion.Empresa.RutEmpresa.Length - 1);
+                    string rutEmpresaNumero = configuracion.Empresa.RutEmpresa.Substring(0, configuracion.Empresa.RutEmpresa.Length - 2);
+                    string rutEmpresaDigito = configuracion.Empresa.RutEmpresa.Substring(configuracion.Empresa.RutEmpresa.Length - 1);
+                    var responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(rutEmisorNumero, rutEmisorDigito, rutEmpresaNumero, rutEmpresaDigito, filePathEnvio, filePathEnvio, configuracion.Certificado.Nombre, produccion, configuracion.SerialKeyAPI, out messageResult, ".\\out\\tkn.dat");
 
                     if (responseEnvio != null || string.IsNullOrEmpty(messageResult))
                     {
@@ -586,11 +570,11 @@ namespace SIMPLEAPI_Demo
             EnvioSII.SetDTE.Caratula = new ChileSystems.DTE.Engine.Envio.Caratula();
             EnvioSII.SetDTE.Caratula.FechaEnvio = DateTime.Now;
             /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
-            EnvioSII.SetDTE.Caratula.FechaResolucion = fechaResolucion;
-            EnvioSII.SetDTE.Caratula.NumeroResolucion = numeroResolucion;
+            EnvioSII.SetDTE.Caratula.FechaResolucion = configuracion.Empresa.FechaResolucion;
+            EnvioSII.SetDTE.Caratula.NumeroResolucion = configuracion.Empresa.NumeroResolucion;
 
-            EnvioSII.SetDTE.Caratula.RutEmisor = rutEmpresa;
-            EnvioSII.SetDTE.Caratula.RutEnvia = rutCertificado;
+            EnvioSII.SetDTE.Caratula.RutEmisor = configuracion.Empresa.RutEmpresa;
+            EnvioSII.SetDTE.Caratula.RutEnvia = configuracion.Certificado.Rut;
             EnvioSII.SetDTE.Caratula.RutReceptor = "60803000-K"; //Este es el RUT del SII
             EnvioSII.SetDTE.Caratula.SubTotalesDTE = new List<ChileSystems.DTE.Engine.Envio.SubTotalesDTE>();
 
@@ -616,10 +600,10 @@ namespace SIMPLEAPI_Demo
 
             rcof.DocumentoConsumoFolios.Caratula.FechaFinal = fechaInicio;
             rcof.DocumentoConsumoFolios.Caratula.FechaInicio = fechaFinal;
-            rcof.DocumentoConsumoFolios.Caratula.FechaResolucion = fechaResolucion;
-            rcof.DocumentoConsumoFolios.Caratula.NroResol = numeroResolucion;
-            rcof.DocumentoConsumoFolios.Caratula.RutEmisor = rutEmpresa;
-            rcof.DocumentoConsumoFolios.Caratula.RutEnvia = rutCertificado;
+            rcof.DocumentoConsumoFolios.Caratula.FechaResolucion = configuracion.Empresa.FechaResolucion;
+            rcof.DocumentoConsumoFolios.Caratula.NroResol = configuracion.Empresa.NumeroResolucion;
+            rcof.DocumentoConsumoFolios.Caratula.RutEmisor = configuracion.Empresa.RutEmpresa;
+            rcof.DocumentoConsumoFolios.Caratula.RutEnvia = configuracion.Certificado.Rut;
             rcof.DocumentoConsumoFolios.Caratula.SecEnvio = "1";
             rcof.DocumentoConsumoFolios.Caratula.FechaEnvio = DateTime.Now;
             List<ChileSystems.DTE.Engine.RCOF.Resumen> resumenes = new List<ChileSystems.DTE.Engine.RCOF.Resumen>();
@@ -698,11 +682,11 @@ namespace SIMPLEAPI_Demo
             /*El folio de notificacion lo entrega el SII al momento de solicitar el libro, para el set de pruebas no es necesario agregarlo*/
             libro.EnvioLibro.Caratula = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Caratula
             {
-                RutEmisor = rutEmpresa,
-                RutEnvia = rutCertificado,
+                RutEmisor = configuracion.Empresa.RutEmpresa,
+                RutEnvia = configuracion.Certificado.Rut,
                 PeriodoTributario = periodoTributario,
-                FechaResolucion = fechaResolucion,
-                NumeroResolucion = numeroResolucion,
+                FechaResolucion = configuracion.Empresa.FechaResolucion,
+                NumeroResolucion = configuracion.Empresa.NumeroResolucion,
                 TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
                 TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total
             };
@@ -766,11 +750,11 @@ namespace SIMPLEAPI_Demo
 
             libro.EnvioLibro.Caratula = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Caratula()
             {
-                RutEmisor = rutEmpresa,
-                RutEnvia = rutCertificado,
-                PeriodoTributario = fechaEmision.Year + "-0" + fechaEmision.Month,
-                FechaResolucion = fechaResolucion,
-                NumeroResolucion = numeroResolucion,
+                RutEmisor = configuracion.Empresa.RutEmpresa,
+                RutEnvia = configuracion.Certificado.Rut,
+                PeriodoTributario = DateTime.Now.Year + "-0" + DateTime.Now.Month,
+                FechaResolucion = configuracion.Empresa.FechaResolucion,
+                NumeroResolucion = configuracion.Empresa.NumeroResolucion,
                 TipoOperacion = ChileSystems.DTE.Engine.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Venta,
                 TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
                 TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
@@ -921,11 +905,11 @@ namespace SIMPLEAPI_Demo
 
             libro.EnvioLibro.Caratula = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Caratula()
             {
-                RutEmisor = rutEmpresa,
-                RutEnvia = rutCertificado,
-                PeriodoTributario = fechaEmision.Year + "-0" + fechaEmision.Month,
-                FechaResolucion = fechaResolucion,
-                NumeroResolucion = numeroResolucion,
+                RutEmisor = configuracion.Empresa.RutEmpresa,
+                RutEnvia = configuracion.Certificado.Rut,
+                PeriodoTributario = DateTime.Now.Year + "-0" + DateTime.Now.Month,
+                FechaResolucion = configuracion.Empresa.FechaResolucion,
+                NumeroResolucion = configuracion.Empresa.NumeroResolucion,
                 TipoOperacion = ChileSystems.DTE.Engine.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Compra,
                 TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
                 TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
@@ -945,7 +929,7 @@ namespace SIMPLEAPI_Demo
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.Factura,
                 NumeroDocumento = 234,
                 TasaImpuestoOperacion = 19,
-                FechaDocumento = fechaEmision,
+                FechaDocumento = DateTime.Now,
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
                 MontoExento = 0,
@@ -962,7 +946,7 @@ namespace SIMPLEAPI_Demo
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica,
                 NumeroDocumento = 32,
                 TasaImpuestoOperacion = 19,
-                FechaDocumento = fechaEmision,
+                FechaDocumento = DateTime.Now,
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
                 MontoExento = exento,
@@ -982,7 +966,7 @@ namespace SIMPLEAPI_Demo
                 TipoDocumento =  ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.Factura,
                 NumeroDocumento = 781,
                 TasaImpuestoOperacion = 19,
-                FechaDocumento = fechaEmision,
+                FechaDocumento = DateTime.Now,
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
                 MontoExento = exento,
@@ -1003,7 +987,7 @@ namespace SIMPLEAPI_Demo
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCredito,
                 NumeroDocumento = 451,
                 TasaImpuestoOperacion = 19,
-                FechaDocumento = fechaEmision,
+                FechaDocumento = DateTime.Now,
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
                 MontoExento = exento,
@@ -1023,7 +1007,7 @@ namespace SIMPLEAPI_Demo
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica,
                 NumeroDocumento = 67,
                 TasaImpuestoOperacion = 19,
-                FechaDocumento = fechaEmision,
+                FechaDocumento = DateTime.Now,
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
                 MontoExento = exento,
@@ -1048,7 +1032,7 @@ namespace SIMPLEAPI_Demo
                 TipoDocumento =  ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaCompraElectronica,
                 NumeroDocumento = 9,
                 TasaImpuestoOperacion = 19,
-                FechaDocumento = fechaEmision,
+                FechaDocumento = DateTime.Now,
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
                 MontoExento = exento,
@@ -1076,7 +1060,7 @@ namespace SIMPLEAPI_Demo
                 TipoDocumento =  ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCredito,
                 NumeroDocumento = 211,
                 TasaImpuestoOperacion = 19,
-                FechaDocumento = fechaEmision,
+                FechaDocumento = DateTime.Now,
                 RutDocumento = "17096073-4",
                 RazonSocial = "Razón Social",
                 MontoExento = exento,
@@ -1183,11 +1167,11 @@ namespace SIMPLEAPI_Demo
 
             libro.EnvioLibro.Caratula = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Caratula()
             {
-                RutEmisor = rutEmpresa,
-                RutEnvia = rutCertificado,
-                PeriodoTributario = fechaEmision.Year + "-0" + fechaEmision.Month,
-                FechaResolucion = fechaResolucion,
-                NumeroResolucion = numeroResolucion,
+                RutEmisor = configuracion.Empresa.RutEmpresa,
+                RutEnvia = configuracion.Certificado.Rut,
+                PeriodoTributario = DateTime.Now.Year + "-0" + DateTime.Now.Month,
+                FechaResolucion = configuracion.Empresa.FechaResolucion,
+                NumeroResolucion = configuracion.Empresa.NumeroResolucion,
                 TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
                 TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
                 FolioNotificacion = 100
@@ -1266,15 +1250,14 @@ namespace SIMPLEAPI_Demo
             dte.Documento.Encabezado.IdentificacionDTE.Folio = folio;
 
             //DOCUMENTO - ENCABEZADO - EMISOR - CAMPOS OBLIGATORIOS          
-            dte.Documento.Encabezado.Emisor.Rut = rutEmpresa;
-            dte.Documento.Encabezado.Emisor.RazonSocial = RazonSocial;
-            dte.Documento.Encabezado.Emisor.Giro = Giro;
-            dte.Documento.Encabezado.Emisor.DireccionOrigen = Direccion;
-            dte.Documento.Encabezado.Emisor.ComunaOrigen = Comuna;
+            dte.Documento.Encabezado.Emisor.Rut = configuracion.Empresa.RutEmpresa;
+            dte.Documento.Encabezado.Emisor.RazonSocial = configuracion.Empresa.RazonSocial;
+            dte.Documento.Encabezado.Emisor.Giro = configuracion.Empresa.Giro;
+            dte.Documento.Encabezado.Emisor.DireccionOrigen = configuracion.Empresa.Direccion;
+            dte.Documento.Encabezado.Emisor.ComunaOrigen = configuracion.Empresa.Comuna;
 
 
-            dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(319010);
-            dte.Documento.Encabezado.Emisor.ActividadEconomica.Add(521900);
+            dte.Documento.Encabezado.Emisor.ActividadEconomica = configuracion.Empresa.CodigosActividades.Select(x => x.Codigo).ToList();
 
             //DOCUMENTO - ENCABEZADO - RECEPTOR - CAMPOS OBLIGATORIOS
 
@@ -1284,8 +1267,6 @@ namespace SIMPLEAPI_Demo
             dte.Documento.Encabezado.Receptor.Comuna = "Comuna de cliente";
             dte.Documento.Encabezado.Receptor.Ciudad = "Ciudad de cliente";
             dte.Documento.Encabezado.Receptor.Giro = "Giro de cliente";
-
-            dte.Documento.Encabezado.Emisor.ActividadEconomica = CodigosActividades;
 
             dte.Documento.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
 
@@ -1353,18 +1334,7 @@ namespace SIMPLEAPI_Demo
                 //DOCUMENTO - DETALLES
 
                 int max_detalles = r.Next(1, 5);
-                List<string> detallesRandom = new List<string>();
-                detallesRandom.Add("SERVICIO DE FACTURACION ELECT");
-                detallesRandom.Add("ASESORIA COMPUTACIONAL");
-                detallesRandom.Add("CAPACITACION AL PERSONAL");
-                detallesRandom.Add("IMPLEMENTACION DE ERP");
-                detallesRandom.Add("SERVICIO DE LIMPIEZA");
-                detallesRandom.Add("SERVICIO DE ASESORIA INFORMATICA");
-                detallesRandom.Add("DESARROLLO DE SITIOS WEB");
-                detallesRandom.Add("QA DE DESARROLLOS EXTERNOS");
-                detallesRandom.Add("LIMPIEZA DE COMPUTADORES");
-                detallesRandom.Add("AUTOMATIZACION DE DATOS");
-                detallesRandom.Add("DESARROLLO DE ETL");
+                List<string> detallesRandom = configuracion.ProductosSimulacion.Select(x => x.Nombre).ToList();
 
                 for (int i = 1; i <= max_detalles; i++)
                 {
@@ -1377,7 +1347,6 @@ namespace SIMPLEAPI_Demo
                     detalle.MontoItem = (int)detalle.Cantidad * (int)detalle.Precio;
                     dte.Documento.Detalles.Add(detalle);
                 }
-
             }
             
             
@@ -1395,7 +1364,7 @@ namespace SIMPLEAPI_Demo
                 for (i = 1; i <= 5; i++)
                 {
                     var responseEnvio = ChileSystems.DTE.WS.AceptacionReclamo.AceptacionReclamoWS.NotificarAceptacionReclamo
-                        (rutProveedor, dvProveedor.ToString(), tipoDocumento, folio, accion, nombreCertificado, produccion, ".\\out\\tkn.dat", serialKEY);
+                        (rutProveedor, dvProveedor.ToString(), tipoDocumento, folio, accion, configuracion.Certificado.Nombre, produccion, ".\\out\\tkn.dat", configuracion.SerialKeyAPI);
 
                     if (responseEnvio != null && string.IsNullOrEmpty(messageResult))
                     {
@@ -1434,7 +1403,7 @@ namespace SIMPLEAPI_Demo
 
             var responseEstadoDTE = EstadoDTE.GetEstado
                 (rutTrabajador, rutTrabajadorDigito, rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
-                tipoDte, folio, fechaEmision, total, nombreCertificado, produccion, ".\\out\\tkn.dat", serialKEY, out error);
+                tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, produccion, ".\\out\\tkn.dat", configuracion.SerialKeyAPI, out error);
 
             return responseEstadoDTE;
         }
@@ -1453,7 +1422,7 @@ namespace SIMPLEAPI_Demo
             result.Caratula.IdRespuesta = 1;
             result.Caratula.MailContacto = "mailcontacto@mail.com";
             result.Caratula.NombreContacto = "Contacto";
-            result.Caratula.RutResponde = rutEmpresa;
+            result.Caratula.RutResponde = configuracion.Empresa.RutEmpresa;
 
             result.Caratula.NumeroDetalles = 1;
             result.Caratula.RutRecibe = "88888888-8";
@@ -1514,7 +1483,7 @@ namespace SIMPLEAPI_Demo
 
             result.RecepcionEnvio.Add(recepcionEnvio);
 
-            var filepath = response.Firmar(nombreCertificado);
+            var filepath = response.Firmar(configuracion.Certificado.Nombre);
 
             return filepath;
         }
@@ -1534,7 +1503,7 @@ namespace SIMPLEAPI_Demo
                 result.Caratula.IdRespuesta = 1;
                 result.Caratula.MailContacto = "test@test.cl";
                 result.Caratula.NombreContacto = "Nombre Contacto";
-                result.Caratula.RutResponde = rutEmpresa;
+                result.Caratula.RutResponde = configuracion.Empresa.RutEmpresa;
 
                 result.Caratula.NumeroDetalles = 1;
                 result.Caratula.RutRecibe = "88888888-8";
@@ -1549,7 +1518,7 @@ namespace SIMPLEAPI_Demo
                 resultadoDTE.GlosaEstadoDTE = string.IsNullOrEmpty(motivo) ? resultadoDTE.EstadoDTE.ToString() : motivo;
 
                 resultadoDTE.RutEmisor = "88888888-8";
-                resultadoDTE.RutReceptor = rutEmpresa;
+                resultadoDTE.RutReceptor = configuracion.Empresa.RutEmpresa;
                 resultadoDTE.TipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
                 resultadoDTE.Folio = 52576;
                 resultadoDTE.FechaEmision = new DateTime(2019, 2, 19);
@@ -1557,7 +1526,7 @@ namespace SIMPLEAPI_Demo
 
                 result.ResultadoDTE.Add(resultadoDTE);
 
-                string resultFilePath = response.Firmar(nombreCertificado);
+                string resultFilePath = response.Firmar(configuracion.Certificado.Nombre);
                 return resultFilePath;
             }
             catch (Exception ex)
@@ -1581,7 +1550,7 @@ namespace SIMPLEAPI_Demo
                 result.Caratula.IdRespuesta = 1;
                 result.Caratula.MailContacto = "test@test.cl";
                 result.Caratula.NombreContacto = "Nombre Contacto";
-                result.Caratula.RutResponde = rutEmpresa;
+                result.Caratula.RutResponde = configuracion.Empresa.RutEmpresa;
 
                 result.Caratula.NumeroDetalles = 1;
                 result.Caratula.RutRecibe = "88888888-8";
@@ -1596,7 +1565,7 @@ namespace SIMPLEAPI_Demo
                 resultadoDTE.GlosaEstadoDTE = string.IsNullOrEmpty(motivo) ? resultadoDTE.EstadoDTE.ToString() : motivo;
 
                 resultadoDTE.RutEmisor = "88888888-8"; 
-                resultadoDTE.RutReceptor = rutEmpresa;
+                resultadoDTE.RutReceptor = configuracion.Empresa.RutEmpresa;
                 resultadoDTE.TipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
                 resultadoDTE.Folio = 52725;
                 resultadoDTE.FechaEmision = new DateTime(2019, 4, 13);
@@ -1604,7 +1573,7 @@ namespace SIMPLEAPI_Demo
 
                 result.ResultadoDTE.Add(resultadoDTE);
 
-                string resultFilePath = response.Firmar(nombreCertificado);
+                string resultFilePath = response.Firmar(configuracion.Certificado.Nombre);
                 return resultFilePath;
             }
             catch (Exception ex)
@@ -1624,7 +1593,7 @@ namespace SIMPLEAPI_Demo
                     Caratula = new ChileSystems.DTE.Engine.ReciboMercaderia.Caratula()
                     {
                         RutRecibe = "88888888-8",
-                        RutResponde = rutEmpresa,
+                        RutResponde = configuracion.Empresa.RutEmpresa,
                         NombreContacto = "Nombre Contacto"
                     }
                 };
@@ -1637,13 +1606,13 @@ namespace SIMPLEAPI_Demo
                          {
                             Id = "R01",
                             RutEmisor = "88888888-8",
-                            RutReceptor = rutEmpresa,
+                            RutReceptor = configuracion.Empresa.RutEmpresa,
                             FechaEmision = dte.Documento.Encabezado.IdentificacionDTE.FechaEmision,
                             Folio = dte.Documento.Encabezado.IdentificacionDTE.Folio,
                             MontoTotal = dte.Documento.Encabezado.Totales.MontoTotal,
                             TipoDocumento = dte.Documento.Encabezado.IdentificacionDTE.TipoDTE,
                             Recinto = "Recinto",
-                            RutFirma = rutCertificado
+                            RutFirma = configuracion.Certificado.Rut
                          }
                     }
                 };
@@ -1653,8 +1622,8 @@ namespace SIMPLEAPI_Demo
                 envio.SetRecibos.Id = "EARM" + id;
                 recibo.DocumentoRecibo.Id = "RM" + id;
 
-                envio.SetRecibos.signedXmls.Add(recibo.Firmar(nombreCertificado));
-                string filePath = envio.Firmar(nombreCertificado);
+                envio.SetRecibos.signedXmls.Add(recibo.Firmar(configuracion.Certificado.Nombre));
+                string filePath = envio.Firmar(configuracion.Certificado.Nombre);
                 return filePath;
 
             }

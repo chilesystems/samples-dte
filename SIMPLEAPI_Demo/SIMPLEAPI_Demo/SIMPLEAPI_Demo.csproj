@@ -55,6 +55,9 @@
     <Reference Include="itextsharp">
       <HintPath>..\..\..\..\..\itextsharp.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\SIMPLE_ERP\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Services" />
@@ -69,6 +72,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\CertificadoDigital.cs" />
+    <Compile Include="Clases\Configuracion.cs" />
+    <Compile Include="Clases\Empresa.cs" />
+    <Compile Include="ConfiguracionSistema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfiguracionSistema.Designer.cs">
+      <DependentUpon>ConfiguracionSistema.cs</DependentUpon>
+    </Compile>
     <Compile Include="GenerarBoletaElectronica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +138,9 @@
     <Compile Include="Validador.Designer.cs">
       <DependentUpon>Validador.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ConfiguracionSistema.resx">
+      <DependentUpon>ConfiguracionSistema.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GenerarBoletaElectronica.resx">
       <DependentUpon>GenerarBoletaElectronica.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +177,7 @@
     <EmbeddedResource Include="Validador.resx">
       <DependentUpon>Validador.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -212,6 +228,15 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guardar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Agregar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eliminar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
