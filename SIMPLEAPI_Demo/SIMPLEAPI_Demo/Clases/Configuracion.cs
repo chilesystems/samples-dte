@@ -42,13 +42,13 @@ namespace SIMPLEAPI_Demo.Clases
         {
             Contribuyente empresa = new Contribuyente()
             {
-                RazonSocial = "JULIO GERARDO JORQUERA LARAYA",
-                Giro = "VENTA AL POR MAYOR Y MENOR DE BEBIDAS, LICORES, DULCES Y CONFITES.",
-                Direccion = "21 DE MAYO 1599",
-                Comuna = "IQUIQUE",
+                RazonSocial = "RAZÓN SOCIAL",
+                Giro = "GIRO GLOSA DESCRIPTIVA",
+                Direccion = "DIRECCION 787",
+                Comuna = "COMUNA",
                 FechaResolucion = new DateTime(2016, 4, 28),
                 NumeroResolucion = 0,
-                RutEmpresa = "3671414-K",
+                RutEmpresa = "77777777-7",
                 CodigosActividades = new List<ActividadEconomica>()
                 {
                     new ActividadEconomica() { Codigo =  463020},
@@ -60,10 +60,10 @@ namespace SIMPLEAPI_Demo.Clases
             Empresa = empresa;
             Certificado = new CertificadoDigital()
             {
-                Nombre = "CLAUDIA TERESA DEL CAR JORQUERA TAMBURRINO",
-                Rut = "8472300-2"
+                Nombre = "NOMBRE CERTIFICADO DIGITAL",
+                Rut = "55555555-5"
             };
-            SerialKeyAPI = "3519-A940-6375-1137-4287";
+            SerialKeyAPI = "SERIAL-KEY";
             ProductosSimulacion = new List<ProductoSimulacion>() 
             { 
                 new ProductoSimulacion() { Nombre = "SERVICIO DE FACTURACION ELECT" },
