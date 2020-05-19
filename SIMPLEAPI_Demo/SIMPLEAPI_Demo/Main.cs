@@ -75,7 +75,7 @@ namespace SIMPLEAPI_Demo
             En esencia es lo mismo que para el SII */
             //var EnvioCliente = GenerarEnvioCliente(dte, xml);
             /*Puede ser el EnvioSII o EnvioCliente, pues es el mismo tipo de objeto*/
-            var filePath = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.SerialKeyAPI, true);
+            var filePath = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, true);
             handler.Validate(filePath, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);
             MessageBox.Show("Envío generado exitosamente en " + filePath);
         }
@@ -128,7 +128,7 @@ namespace SIMPLEAPI_Demo
             xmlDtes.Add(xml4);
 
             var EnvioSII = handler.GenerarEnvioDTEToSII(dtes, xmlDtes);
-            string filePathEnvio = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.SerialKeyAPI, true);
+            string filePathEnvio = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, true);
             MessageBox.Show("Envío generado exitosamente en " + filePathEnvio);
         }
 
@@ -168,7 +168,7 @@ namespace SIMPLEAPI_Demo
             rcof.DocumentoConsumoFolios.Id = "RCOF_" + DateTime.Now.Ticks.ToString();
             /*Firmar retorna además a través de un out, el XML formado*/
             string xmlString = string.Empty;
-            var filePathArchivo = rcof.Firmar(configuracion.Certificado.Nombre, configuracion.SerialKeyAPI, out xmlString);
+            var filePathArchivo = rcof.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, out xmlString);
             MessageBox.Show("RCOF Generado correctamente en " + filePathArchivo);
         }
 
@@ -187,7 +187,7 @@ namespace SIMPLEAPI_Demo
             var libro = handler.GenerateLibroBoletas(dtes);
             libro.EnvioLibro.Caratula.FolioNotificacion = 1;
             libro.EnvioLibro.Id = "L_BOLETAS_" + DateTime.Now.Ticks.ToString();
-            var filePathArchivo = libro.Firmar(configuracion.Certificado.Nombre, configuracion.SerialKeyAPI);
+            var filePathArchivo = libro.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey);
             MessageBox.Show("Libro boletas Generado correctamente en " + filePathArchivo);
         }
 
@@ -295,7 +295,7 @@ namespace SIMPLEAPI_Demo
                 xmlDtes.Add(xml);
             }
             var EnvioSII = handler.GenerarEnvioBoletaDTEToSII(dtes, xmlDtes);
-            var filePath = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.SerialKeyAPI, true);
+            var filePath = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, true);
             try
             {
                 handler.Validate(filePath, SIMPLE_API.Security.Firma.Firma.TipoXML.EnvioBoleta, ChileSystems.DTE.Engine.XML.Schemas.EnvioBoleta);
@@ -664,7 +664,7 @@ namespace SIMPLEAPI_Demo
                 xmlDtes.Add(xml);
             }
             var EnvioSII = handler.GenerarEnvioDTEToSII(dtes, xmlDtes);
-            path = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.SerialKeyAPI, true);
+            path = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, true);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);
             MessageBox.Show("Envío generado exitosamente en " + path);
 
@@ -673,7 +673,7 @@ namespace SIMPLEAPI_Demo
             #region Libro de VENTAS
 
             var libroVentas = handler.GenerateLibroVentas(EnvioSII);
-            path = libroVentas.Firmar(configuracion.Certificado.Nombre, "out\\temp\\", configuracion.SerialKeyAPI);
+            path = libroVentas.Firmar(configuracion.Certificado.Nombre, "out\\temp\\", configuracion.APIKey);
 
             MessageBox.Show("Libro ventas guardado en " + path);
             #endregion
@@ -681,7 +681,7 @@ namespace SIMPLEAPI_Demo
             #region Libro de COMPRAS
 
             var libroCompras = handler.GenerateLibroCompras();
-            path = libroCompras.Firmar(configuracion.Certificado.Nombre, "out\\temp\\", configuracion.SerialKeyAPI);
+            path = libroCompras.Firmar(configuracion.Certificado.Nombre, "out\\temp\\", configuracion.APIKey);
 
             MessageBox.Show("Libro compras guardado en " + path);
             #endregion
@@ -816,7 +816,7 @@ namespace SIMPLEAPI_Demo
                 xmlDtes.Add(xml);
             }
             EnvioSII = handler.GenerarEnvioDTEToSII(dtes, xmlDtes);
-            path = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.SerialKeyAPI, true);
+            path = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, true);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);
             MessageBox.Show("Envío generado exitosamente en " + path);
             #endregion
@@ -1401,7 +1401,7 @@ namespace SIMPLEAPI_Demo
                 string xml = File.ReadAllText(openFileDialog1.FileName, Encoding.GetEncoding("ISO-8859-1"));
                 var envio = ChileSystems.DTE.Engine.XML.XmlHandler.TryDeserializeFromString<ChileSystems.DTE.Engine.Envio.EnvioDTE>(xml);
                 var libroGuias = handler.GenerateLibroGuias(envio);
-                var filePathArchivo = libroGuias.Firmar(configuracion.Certificado.Nombre, "out\\temp\\", configuracion.SerialKeyAPI);
+                var filePathArchivo = libroGuias.Firmar(configuracion.Certificado.Nombre, "out\\temp\\", configuracion.APIKey);
                 MessageBox.Show("Libro de Guías Generado correctamente en " + filePathArchivo);
             }
         }
@@ -1422,6 +1422,11 @@ namespace SIMPLEAPI_Demo
         {
             ConfiguracionSistema formulario = new ConfiguracionSistema();
             formulario.ShowDialog();
+        }
+
+        private void groupBox5_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

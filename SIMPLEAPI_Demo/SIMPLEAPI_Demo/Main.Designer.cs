@@ -80,6 +80,7 @@
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Utilidades";
+            this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
             // 
             // botonGetCertificados
             // 

@@ -59,6 +59,15 @@ namespace SIMPLEAPI_Demo
                     case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronicaExenta:
                         tipo = "BOLETA ELECTRÓNICA EXENTA";
                         break;
+                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaExportacionElectronica:
+                        tipo = "FACTURA DE EXPORTACIÓN ELECTRÓNICA";
+                        break;
+                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoExportacionElectronica:
+                        tipo = "NOTA DE CRÉDITO DE EXPORTACIÓN ELECTRÓNICA";
+                        break;
+                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebidoExportacionElectronica:
+                        tipo = "NOTA DE DÉBITO DE EXPORTACIÓN ELECTRÓNICA";
+                        break;
                 }
                 textTipoCAF.Text = tipo;
                 // xml = File.ReadAllBytes(openFileDialog1.FileName);

@@ -53,7 +53,7 @@
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="itextsharp">
-      <HintPath>..\..\..\..\..\itextsharp.dll</HintPath>
+      <HintPath>E:\ChileSystems\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\SIMPLE_ERP\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -221,12 +221,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\SIMPLE_API\SIMPLE_API\SIMPLE_API.csproj">
-      <Project>{db72ca7e-c862-4146-a04f-25dfc9f027b0}</Project>
-      <Name>SIMPLE_API</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
@@ -237,6 +231,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\SIMPLE_API\SIMPLE_API\SIMPLE_API.csproj">
+      <Project>{db72ca7e-c862-4146-a04f-25dfc9f027b0}</Project>
+      <Name>SIMPLE_API</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

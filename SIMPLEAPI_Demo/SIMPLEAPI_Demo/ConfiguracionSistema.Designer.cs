@@ -39,7 +39,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textRutCertificado = new System.Windows.Forms.TextBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.botonGuardarActividad = new System.Windows.Forms.Button();
             this.gridResultados = new System.Windows.Forms.DataGridView();
+            this.Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.textNumeroActividad = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -53,18 +56,17 @@
             this.label55 = new System.Windows.Forms.Label();
             this.textDireccionEmpresa = new System.Windows.Forms.TextBox();
             this.label54 = new System.Windows.Forms.Label();
-            this.Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.botonGuardar = new System.Windows.Forms.Button();
-            this.botonGuardarActividad = new System.Windows.Forms.Button();
-            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.botonAgregarProducto = new System.Windows.Forms.Button();
             this.gridProductos = new System.Windows.Forms.DataGridView();
-            this.textNombreProducto = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.textNombreProducto = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textAPIKey = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericNResolucion)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -182,6 +184,16 @@
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Actividades Económicas";
             // 
+            // botonGuardarActividad
+            // 
+            this.botonGuardarActividad.Image = global::SIMPLEAPI_Demo.Properties.Resources.Agregar1;
+            this.botonGuardarActividad.Location = new System.Drawing.Point(164, 22);
+            this.botonGuardarActividad.Name = "botonGuardarActividad";
+            this.botonGuardarActividad.Size = new System.Drawing.Size(31, 23);
+            this.botonGuardarActividad.TabIndex = 6;
+            this.botonGuardarActividad.UseVisualStyleBackColor = true;
+            this.botonGuardarActividad.Click += new System.EventHandler(this.botonGuardarActividad_Click);
+            // 
             // gridResultados
             // 
             this.gridResultados.AllowUserToAddRows = false;
@@ -200,6 +212,21 @@
             this.gridResultados.Size = new System.Drawing.Size(184, 129);
             this.gridResultados.TabIndex = 5;
             this.gridResultados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridResultados_CellContentClick);
+            // 
+            // Numero
+            // 
+            this.Numero.DataPropertyName = "Codigo";
+            this.Numero.HeaderText = "Numero";
+            this.Numero.Name = "Numero";
+            this.Numero.ReadOnly = true;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "";
+            this.Eliminar.Image = global::SIMPLEAPI_Demo.Properties.Resources.Eliminar;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Width = 35;
             // 
             // textNumeroActividad
             // 
@@ -321,13 +348,6 @@
             this.label54.TabIndex = 36;
             this.label54.Text = "Dirección:";
             // 
-            // Numero
-            // 
-            this.Numero.DataPropertyName = "Codigo";
-            this.Numero.HeaderText = "Numero";
-            this.Numero.Name = "Numero";
-            this.Numero.ReadOnly = true;
-            // 
             // dataGridViewImageColumn1
             // 
             this.dataGridViewImageColumn1.HeaderText = "";
@@ -347,24 +367,6 @@
             this.botonGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.botonGuardar.UseVisualStyleBackColor = true;
             this.botonGuardar.Click += new System.EventHandler(this.botonGuardar_Click);
-            // 
-            // botonGuardarActividad
-            // 
-            this.botonGuardarActividad.Image = global::SIMPLEAPI_Demo.Properties.Resources.Agregar1;
-            this.botonGuardarActividad.Location = new System.Drawing.Point(164, 22);
-            this.botonGuardarActividad.Name = "botonGuardarActividad";
-            this.botonGuardarActividad.Size = new System.Drawing.Size(31, 23);
-            this.botonGuardarActividad.TabIndex = 6;
-            this.botonGuardarActividad.UseVisualStyleBackColor = true;
-            this.botonGuardarActividad.Click += new System.EventHandler(this.botonGuardarActividad_Click);
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.HeaderText = "";
-            this.Eliminar.Image = global::SIMPLEAPI_Demo.Properties.Resources.Eliminar;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.ReadOnly = true;
-            this.Eliminar.Width = 35;
             // 
             // groupBox4
             // 
@@ -408,22 +410,6 @@
             this.gridProductos.TabIndex = 5;
             this.gridProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProductos_CellContentClick);
             // 
-            // textNombreProducto
-            // 
-            this.textNombreProducto.Location = new System.Drawing.Point(61, 23);
-            this.textNombreProducto.Name = "textNombreProducto";
-            this.textNombreProducto.Size = new System.Drawing.Size(205, 20);
-            this.textNombreProducto.TabIndex = 3;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Nombre:";
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Nombre";
@@ -440,11 +426,46 @@
             this.dataGridViewImageColumn2.ReadOnly = true;
             this.dataGridViewImageColumn2.Width = 35;
             // 
+            // textNombreProducto
+            // 
+            this.textNombreProducto.Location = new System.Drawing.Point(61, 23);
+            this.textNombreProducto.Name = "textNombreProducto";
+            this.textNombreProducto.Size = new System.Drawing.Size(205, 20);
+            this.textNombreProducto.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Nombre:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(682, 217);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 13);
+            this.label6.TabIndex = 34;
+            this.label6.Text = "API Key:";
+            // 
+            // textAPIKey
+            // 
+            this.textAPIKey.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textAPIKey.Location = new System.Drawing.Point(736, 214);
+            this.textAPIKey.Name = "textAPIKey";
+            this.textAPIKey.Size = new System.Drawing.Size(154, 20);
+            this.textAPIKey.TabIndex = 33;
+            // 
             // ConfiguracionSistema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 337);
+            this.ClientSize = new System.Drawing.Size(900, 336);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textAPIKey);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -472,6 +493,7 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProductos)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -514,5 +536,7 @@
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         private System.Windows.Forms.TextBox textNombreProducto;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textAPIKey;
     }
 }

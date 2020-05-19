@@ -12,7 +12,7 @@ namespace SIMPLEAPI_Demo.Clases
     {
         public Contribuyente Empresa { get; set; }
         public CertificadoDigital Certificado { get; set; }
-        public string SerialKeyAPI { get; set; }
+        public string APIKey { get; set; }
         public List<ProductoSimulacion> ProductosSimulacion{ get; set; }
 
         public void GenerarArchivo()
@@ -27,7 +27,7 @@ namespace SIMPLEAPI_Demo.Clases
                 var conf = JsonConvert.DeserializeObject<Configuracion>(File.ReadAllText("configuracion.json", Encoding.GetEncoding("ISO-8859-1")));
                 this.Empresa = conf.Empresa;
                 this.Certificado = conf.Certificado;
-                this.SerialKeyAPI = conf.SerialKeyAPI;
+                this.APIKey = conf.APIKey;
                 this.ProductosSimulacion = conf.ProductosSimulacion;
                 return true;
             }
@@ -63,7 +63,7 @@ namespace SIMPLEAPI_Demo.Clases
                 Nombre = "NOMBRE CERTIFICADO DIGITAL",
                 Rut = "55555555-5"
             };
-            SerialKeyAPI = "SERIAL-KEY";
+            APIKey = "API-KEY";
             ProductosSimulacion = new List<ProductoSimulacion>() 
             { 
                 new ProductoSimulacion() { Nombre = "SERVICIO DE FACTURACION ELECT" },

@@ -341,7 +341,7 @@ namespace SIMPLEAPI_Demo
             string messageOut = string.Empty;
             dte.Documento.Timbrar(
                 EnsureExists((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, dte.Documento.Encabezado.IdentificacionDTE.Folio, pathCaf), 
-                configuracion.SerialKeyAPI, 
+                configuracion.APIKey, 
                 out messageOut);
 
             /*El documento timbrado se guarda en la variable pathResult*/
@@ -349,7 +349,7 @@ namespace SIMPLEAPI_Demo
             /*Finalmente, el documento timbrado debe firmarse con el certificado digital*/
             /*Se debe entregar en el argumento del método Firmar, el "FriendlyName" o Nombre descriptivo del certificado*/
             /*Retorna el filePath donde estará el archivo XML timbrado y firmado, listo para ser enviado al SII*/
-            return dte.Firmar(configuracion.Certificado.Nombre, configuracion.SerialKeyAPI, out messageOut, "out\\temp\\");
+            return dte.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, out messageOut, "out\\temp\\");
         }
 
         public string TimbrarYFirmarXMLDTEExportacion(ChileSystems.DTE.Engine.Documento.DTE dte, string pathResult, string pathCaf)
@@ -360,7 +360,7 @@ namespace SIMPLEAPI_Demo
             string messageOut = string.Empty;
             dte.Exportaciones.Timbrar(
                 EnsureExists((int)dte.Exportaciones.Encabezado.IdentificacionDTE.TipoDTE, dte.Exportaciones.Encabezado.IdentificacionDTE.Folio, pathCaf),
-                configuracion.SerialKeyAPI,
+                configuracion.APIKey,
                 out messageOut);
 
             /*El documento timbrado se guarda en la variable pathResult*/
@@ -368,7 +368,7 @@ namespace SIMPLEAPI_Demo
             /*Finalmente, el documento timbrado debe firmarse con el certificado digital*/
             /*Se debe entregar en el argumento del método Firmar, el "FriendlyName" o Nombre descriptivo del certificado*/
             /*Retorna el filePath donde estará el archivo XML timbrado y firmado, listo para ser enviado al SII*/
-            return dte.FirmarExportacion(configuracion.Certificado.Nombre, configuracion.SerialKeyAPI, out messageOut, "out\\temp\\");
+            return dte.FirmarExportacion(configuracion.Certificado.Nombre, configuracion.APIKey, out messageOut, "out\\temp\\");
         }
 
         //public bool ValidateEnvio(string filePath, ChileSystems.DTE.Security.Firma.Firma.TipoXML tipo)
@@ -519,7 +519,7 @@ namespace SIMPLEAPI_Demo
                     string rutEmisorDigito = configuracion.Empresa.RutEmpresa.Substring(configuracion.Empresa.RutEmpresa.Length - 1);
                     string rutEmpresaNumero = configuracion.Empresa.RutEmpresa.Substring(0, configuracion.Empresa.RutEmpresa.Length - 2);
                     string rutEmpresaDigito = configuracion.Empresa.RutEmpresa.Substring(configuracion.Empresa.RutEmpresa.Length - 1);
-                    var responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(rutEmisorNumero, rutEmisorDigito, rutEmpresaNumero, rutEmpresaDigito, filePathEnvio, filePathEnvio, configuracion.Certificado.Nombre, produccion, configuracion.SerialKeyAPI, out messageResult, ".\\out\\tkn.dat");
+                    var responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(rutEmisorNumero, rutEmisorDigito, rutEmpresaNumero, rutEmpresaDigito, filePathEnvio, filePathEnvio, configuracion.Certificado.Nombre, produccion, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
 
                     if (responseEnvio != null || string.IsNullOrEmpty(messageResult))
                     {
@@ -762,6 +762,10 @@ namespace SIMPLEAPI_Demo
                 //Para cuando es SET de pruebas, siempre es 1,,                
                
             };
+
+            libro.EnvioLibro.Caratula.TipoOperacion = ChileSystems.DTE.Engine.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Venta;
+            libro.EnvioLibro.Caratula.TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial;
+            libro.EnvioLibro.Caratula.TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total;
 
             libro.EnvioLibro.ResumenPeriodo = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ResumenPeriodo();
             libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo>();
@@ -1364,7 +1368,7 @@ namespace SIMPLEAPI_Demo
                 for (i = 1; i <= 5; i++)
                 {
                     var responseEnvio = ChileSystems.DTE.WS.AceptacionReclamo.AceptacionReclamoWS.NotificarAceptacionReclamo
-                        (rutProveedor, dvProveedor.ToString(), tipoDocumento, folio, accion, configuracion.Certificado.Nombre, produccion, ".\\out\\tkn.dat", configuracion.SerialKeyAPI);
+                        (rutProveedor, dvProveedor.ToString(), tipoDocumento, folio, accion, configuracion.Certificado.Nombre, produccion, ".\\out\\tkn.dat", configuracion.APIKey);
 
                     if (responseEnvio != null && string.IsNullOrEmpty(messageResult))
                     {
@@ -1403,7 +1407,7 @@ namespace SIMPLEAPI_Demo
 
             var responseEstadoDTE = EstadoDTE.GetEstado
                 (rutTrabajador, rutTrabajadorDigito, rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
-                tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, produccion, ".\\out\\tkn.dat", configuracion.SerialKeyAPI, out error);
+                tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, produccion, ".\\out\\tkn.dat", configuracion.APIKey, out error);
 
             return responseEstadoDTE;
         }
