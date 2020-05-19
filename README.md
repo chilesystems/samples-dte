@@ -6,7 +6,7 @@ SAMPLES-DTE es una solución Visual Studio, que pretende ejemplificar, la mayor 
 
 ## Comenzando 🚀
 
-Para utilizar *SIMPLE API*, es necesario contar con un código de activación tipo Serial Key. Este código se te entrega al momento de [descargar](https://www.simple-api.cl/Descarga) la API. Tiene una duración ilimitada y cuenta con un tope de 100 documentos mensuales. **Pero servirá para que la pruebes ;)**
+Para utilizar *SIMPLE API*, es necesario contar con un API Key. Este código se te entrega al momento de [descargar](https://www.simple-api.cl/Descarga) la API. Tiene una duración ilimitada y cuenta con un tope de 100 documentos mensuales. **Pero servirá para que la pruebes ;)**
 
 Más información en [www.simple-api.cl](http://www.simple-api.cl) o solicitandola a contacto@chilesystems.com
 
@@ -33,15 +33,17 @@ En la carpeta _temp_ se guardarán los archivos XML. En la carpeta _caf_ los có
 
 2. Debes agregar la referencia a [SIMPLE API](http://www.simple-api.cl/Descarga) y la de [itextsharp](http://www.chilesystems.com/SDK/itextsharp.dll)  a tu proyecto.
 
-3. Reemplaza los valores que están en Handler.cs por los que corresponden a la empresa en cuestión.
+3. Instala tu certificado digital.
 
-4. Instala tu certificado digital. Debes buscar su nombre descriptivo o "Friendly Name" y reemplazar ese valor en la clase Handler.cs
+4. Configura tu entorno de trabajo en el formulario de Configuración. Allí deberás ingresar tu API Key y los datos del contribuyente en cuestión y seleccionar el certificado digital a utilizar.
 
-4. Descarga un código de autorización de folios (CAF) desde el [SII](http://www.sii.cl)
+5. Descarga un código de autorización de folios (CAF) desde el [SII](http://www.sii.cl)
 
 ### Apoyo externo 🔩
 
-En 4 videos, se muestra cómo utilizar este mismo proyecto (el de los videos es un poco más antiguo, pero las variaciones son mínimas).
+[Este artículo](https://www.simple-api.cl/Tutoriales/Instalacion) muestra la instalación de esta API de forma más detallada.
+
+Además, en 4 videos se muestra cómo utilizar este mismo proyecto (el de los videos es un poco más antiguo, pero las variaciones son mínimas).
 
 * [Simulación y generación de Timbre impreso de DTE con API Simple](https://www.youtube.com/watch?v=ZLRxZ58b-w4)
 * [Generación y envío de DTE al SII Chile con Simple API](https://www.youtube.com/watch?v=q20kf8eke50)
