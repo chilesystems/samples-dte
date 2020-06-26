@@ -1544,11 +1544,11 @@ namespace SIMPLEAPI_Demo
             try
             {
                 RespuestaDTE response = new RespuestaDTE();
-                response.Resultado = new Resultado();
+                response.Resultado = new ChileSystems.DTE.Engine.RespuestaEnvio.Resultado();
 
                 var result = response.Resultado;
 
-                result.Id = "R_001";
+                result.Id = "APROBACION_COMERCIAL_";
                 result.Caratula = new ChileSystems.DTE.Engine.RespuestaEnvio.Caratula();
                 result.Caratula.Fecha = DateTime.Now;
                 result.Caratula.IdRespuesta = 1;
@@ -1568,12 +1568,12 @@ namespace SIMPLEAPI_Demo
                 resultadoDTE.EstadoDTE = (ChileSystems.DTE.Engine.Enum.EstadoResultadoDTE.EstadoResultadoDTEEnum)estado;
                 resultadoDTE.GlosaEstadoDTE = string.IsNullOrEmpty(motivo) ? resultadoDTE.EstadoDTE.ToString() : motivo;
 
-                resultadoDTE.RutEmisor = "88888888-8"; 
+                resultadoDTE.RutEmisor = "88888888-8";
                 resultadoDTE.RutReceptor = configuracion.Empresa.RutEmpresa;
-                resultadoDTE.TipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
-                resultadoDTE.Folio = 52725;
-                resultadoDTE.FechaEmision = new DateTime(2019, 4, 13);
-                resultadoDTE.MontoTotal = 22999;
+                resultadoDTE.TipoDTE = dte.Documento.Encabezado.IdentificacionDTE.TipoDTE;
+                resultadoDTE.Folio = dte.Documento.Encabezado.IdentificacionDTE.Folio;
+                resultadoDTE.FechaEmision = dte.Documento.Encabezado.IdentificacionDTE.FechaEmision;
+                resultadoDTE.MontoTotal = dte.Documento.Encabezado.Totales.MontoTotal;
 
                 result.ResultadoDTE.Add(resultadoDTE);
 

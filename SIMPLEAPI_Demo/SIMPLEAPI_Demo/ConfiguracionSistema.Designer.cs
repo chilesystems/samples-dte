@@ -291,7 +291,6 @@
             // 
             // textRazonSocial
             // 
-            this.textRazonSocial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textRazonSocial.Location = new System.Drawing.Point(118, 45);
             this.textRazonSocial.Name = "textRazonSocial";
             this.textRazonSocial.Size = new System.Drawing.Size(226, 20);

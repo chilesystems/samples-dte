@@ -33,10 +33,10 @@ namespace SIMPLEAPI_Demo
         private void botonGenerarDocumento_Click(object sender, EventArgs e)
         {
             //El folio es obligatorio
-            handler.Folio = 50;
+            handler.Folio = 105;
             //El Id debe ser alfanumerico. Remitirse a letras y números
             handler.idDte = "TESTPRUEBA2";
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaExportacionElectronica;
+            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
             var dte = handler.GenerateDTE();
             handler.GenerateDetails(dte);
             handler.Referencias(dte);

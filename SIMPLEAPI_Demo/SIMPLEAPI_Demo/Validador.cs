@@ -47,7 +47,7 @@ namespace SIMPLEAPI_Demo
                         tipoFirma = SIMPLE_API.Security.Firma.Firma.TipoXML.Envio;
 
                         var envio = ChileSystems.DTE.Engine.XML.XmlHandler.TryDeserializeFromString<ChileSystems.DTE.Engine.Envio.EnvioDTE>(xml);
-                        textDocumento.Text = "DOCUMENTOS: " + String.Join(",", envio.SetDTE.DTEs);
+                       // textDocumento.Text = "DOCUMENTOS: " + String.Join(",", envio.SetDTE.DTEs);
 
                     }
                     else if (tipo == "ENVIOBOLETA")
