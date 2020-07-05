@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MuestraImpresa));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBoxTimbre = new System.Windows.Forms.PictureBox();
@@ -180,6 +180,9 @@
             this.gridDetalles.RowHeadersWidth = 10;
             this.gridDetalles.Size = new System.Drawing.Size(760, 167);
             this.gridDetalles.TabIndex = 50;
+            this.gridDetalles.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDetalles_CellEndEdit);
+            this.gridDetalles.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridDetalles_RowsAdded);
+            this.gridDetalles.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gridDetalles_RowsRemoved);
             // 
             // IS_EXENTO
             // 
@@ -189,8 +192,8 @@
             // 
             // CANTIDAD
             // 
-            dataGridViewCellStyle1.Format = "N0";
-            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Format = "N0";
+            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle11;
             this.CANTIDAD.HeaderText = "CANT.";
             this.CANTIDAD.Name = "CANTIDAD";
             // 
@@ -207,16 +210,16 @@
             // 
             // PRECIO
             // 
-            dataGridViewCellStyle2.Format = "N0";
-            this.PRECIO.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Format = "N0";
+            this.PRECIO.DefaultCellStyle = dataGridViewCellStyle12;
             this.PRECIO.HeaderText = "PRECIO";
             this.PRECIO.Name = "PRECIO";
             // 
             // dataGridViewTextBoxColumn4
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N0";
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.Format = "N0";
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewTextBoxColumn4.HeaderText = "TOTAL";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
@@ -262,6 +265,9 @@
             this.gridDescuentosRecargos.RowHeadersWidth = 10;
             this.gridDescuentosRecargos.Size = new System.Drawing.Size(228, 109);
             this.gridDescuentosRecargos.TabIndex = 53;
+            this.gridDescuentosRecargos.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDescuentosRecargos_CellEndEdit);
+            this.gridDescuentosRecargos.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridDescuentosRecargos_RowsAdded);
+            this.gridDescuentosRecargos.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gridDescuentosRecargos_RowsRemoved);
             // 
             // TIPO
             // 
@@ -278,9 +284,9 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N0";
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle14.Format = "N0";
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridViewTextBoxColumn2.HeaderText = "TOTAL";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.Width = 75;
@@ -298,6 +304,7 @@
             this.txtNeto.TabIndex = 52;
             this.txtNeto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNeto.ThousandsSeparator = true;
+            this.txtNeto.ValueChanged += new System.EventHandler(this.Number_ValueChanged);
             // 
             // label25
             // 
@@ -328,6 +335,9 @@
             this.gridAdicionales.RowHeadersWidth = 10;
             this.gridAdicionales.Size = new System.Drawing.Size(228, 102);
             this.gridAdicionales.TabIndex = 49;
+            this.gridAdicionales.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAdicionales_CellEndEdit);
+            this.gridAdicionales.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridAdicionales_RowsAdded);
+            this.gridAdicionales.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gridAdicionales_RowsRemoved);
             // 
             // NOMBRE
             // 
@@ -337,9 +347,9 @@
             // 
             // TOTAL
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
-            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle15.Format = "N0";
+            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle15;
             this.TOTAL.HeaderText = "TOTAL";
             this.TOTAL.Name = "TOTAL";
             this.TOTAL.Width = 95;
@@ -357,6 +367,7 @@
             this.txtIva.TabIndex = 48;
             this.txtIva.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtIva.ThousandsSeparator = true;
+            this.txtIva.ValueChanged += new System.EventHandler(this.Number_ValueChanged);
             // 
             // label23
             // 
@@ -380,6 +391,7 @@
             this.txtExento.TabIndex = 46;
             this.txtExento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtExento.ThousandsSeparator = true;
+            this.txtExento.ValueChanged += new System.EventHandler(this.Number_ValueChanged);
             // 
             // txtTotal
             // 
@@ -394,6 +406,7 @@
             this.txtTotal.TabIndex = 45;
             this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTotal.ThousandsSeparator = true;
+            this.txtTotal.ValueChanged += new System.EventHandler(this.Number_ValueChanged);
             // 
             // label19
             // 
@@ -434,6 +447,7 @@
             this.dateFechaResolucion.Name = "dateFechaResolucion";
             this.dateFechaResolucion.Size = new System.Drawing.Size(228, 20);
             this.dateFechaResolucion.TabIndex = 35;
+            this.dateFechaResolucion.ValueChanged += new System.EventHandler(this.Date_ValueChanged);
             // 
             // txtNumeroResolucion
             // 
@@ -453,6 +467,7 @@
             0,
             0,
             0});
+            this.txtNumeroResolucion.ValueChanged += new System.EventHandler(this.Number_ValueChanged);
             // 
             // label21
             // 
@@ -522,6 +537,7 @@
             this.txtFolio.TabIndex = 31;
             this.txtFolio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtFolio.ThousandsSeparator = true;
+            this.txtFolio.ValueChanged += new System.EventHandler(this.Number_ValueChanged);
             // 
             // dateFechaEmision
             // 
@@ -529,14 +545,17 @@
             this.dateFechaEmision.Name = "dateFechaEmision";
             this.dateFechaEmision.Size = new System.Drawing.Size(228, 20);
             this.dateFechaEmision.TabIndex = 22;
+            this.dateFechaEmision.ValueChanged += new System.EventHandler(this.Date_ValueChanged);
             // 
             // comboTipoDocumento
             // 
+            this.comboTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTipoDocumento.FormattingEnabled = true;
             this.comboTipoDocumento.Location = new System.Drawing.Point(138, 18);
             this.comboTipoDocumento.Name = "comboTipoDocumento";
             this.comboTipoDocumento.Size = new System.Drawing.Size(228, 21);
             this.comboTipoDocumento.TabIndex = 21;
+            this.comboTipoDocumento.SelectedIndexChanged += new System.EventHandler(this.comboTipoDocumento_SelectedIndexChanged);
             // 
             // checkShowUM
             // 
@@ -546,6 +565,7 @@
             this.checkShowUM.Size = new System.Drawing.Size(15, 14);
             this.checkShowUM.TabIndex = 21;
             this.checkShowUM.UseVisualStyleBackColor = true;
+            this.checkShowUM.CheckedChanged += new System.EventHandler(this.Check_CheckedChanged);
             // 
             // checkIsDTE
             // 
@@ -555,6 +575,7 @@
             this.checkIsDTE.Size = new System.Drawing.Size(15, 14);
             this.checkIsDTE.TabIndex = 20;
             this.checkIsDTE.UseVisualStyleBackColor = true;
+            this.checkIsDTE.CheckedChanged += new System.EventHandler(this.Check_CheckedChanged);
             // 
             // label8
             // 
