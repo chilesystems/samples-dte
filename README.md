@@ -31,7 +31,7 @@ Dentro de **out** las carpetas
 
 En la carpeta _temp_ se guardarán los archivos XML. En la carpeta _caf_ los códigos de autorización de folios que entrega el SII. **Estas rutas son alternativas**.
 
-2. Debes agregar la referencia a [SIMPLE API](http://www.simple-api.cl/Descarga) y la de [itextsharp](http://www.chilesystems.com/SDK/itextsharp.dll)  a tu proyecto.
+2. Debes agregar la referencia a [SIMPLE API](http://www.simple-api.cl/Descarga) a tu proyecto.
 
 3. Instala tu certificado digital.
 
