@@ -953,7 +953,6 @@
         }
 
         #endregion
-        private Reports.FacturaElectronicaPlantillaCedible FacturaElectronicaPlantillaCedible1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.DataGridView gridDetalles;

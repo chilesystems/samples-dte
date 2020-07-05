@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThermalPrinting.Core;
-using ThermalPrinting.XmlUtils;
+using ThermalPrinting.Core.Helpers;
 
 namespace SIMPLEAPI_Demo
 {
