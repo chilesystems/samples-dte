@@ -117,10 +117,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <metadata name="IS_EXENTO.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
-  <metadata name="FacturaElectronicaPlantilla1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>157, 17</value>
+  <metadata name="CANTIDAD.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="UM.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dataGridViewTextBoxColumn3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="PRECIO.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dataGridViewTextBoxColumn4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="TIPO.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dataGridViewTextBoxColumn1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dataGridViewTextBoxColumn2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="NOMBRE.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="TOTAL.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnSelectXml.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAmJJREFUOE+V
+        kF1IU2EYxw92041QEERdSCRoISOhiyIigi4KBC+KPgaFaEZqtg3R0qCItC7sYhm2nObEmhVpq1A3tcks
+        bXPOL8pRsyy3KW1Nne7snM2znf17kZfkEJX94L153uf3f573Zf5Gf69tm7HDqta/dHAtzwfZ+kf9UY2m
+        82mDWn+ItvyZNz22vU9eOdA08B11A/Oof7eAO70BVL1wo0JtQWVJTSlt/Z32NkvyM4Md7Z94mFxLaBv2
+        weoJY8gfRr83gqZhFpdvdUOVX7WHKlL02o7m15MLGA3G0fc1hPEfPKxuFvOiCG9UwKAvgrtdPhQW1Oqo
+        IqXhgfHtZAL4HBLgYgVMczFYvWHExARiAMYCHFqdIopLdHGqSGnU9Qz5SeNsOAYPJ8AfEeEJx2EnIRby
+        pL6pILrdQHHZQ44qUiqvtzjiJCAkiAgux1eC/FERU2Qb+ywH48QczDNAbsG9KFWkHJdrlL4gRyIALp7A
+        Agn5ForhI7sMk3Me5i9hGJwcDhxUGqgipfaKKv9qtZ3o4krIHNnETf7jwyIPhy8KF6nJC7WQpWenUWUV
+        /w1mHC1bYO6yQVHaCl4QVkJYcgLkvI8CpwvrkJpyJIcqqzgvMnY4TwExMxZvb0TeyTKFbNd5fZGi1l1+
+        8zF7Vqn1Zew8YUlNOZxJlVWsucwIXOfIDD8i7VmYucDY6RWTKZOvT99+dGtaavYGWpJiOkYme64ReRp8
+        cwbaspgRevVvTHKmC0vNRB4DX7MZ9/cn/Zq8Jhrz9gETKojVm1CxI2mUltfOmSJDzqXdyXx5+rpOWvoP
+        GOYnnlqjwoDFMa8AAAAASUVORK5CYII=
+</value>
+  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>37</value>
   </metadata>
 </root>

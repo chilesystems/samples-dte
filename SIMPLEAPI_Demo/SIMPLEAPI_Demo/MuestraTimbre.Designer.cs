@@ -30,8 +30,8 @@
         {
             this.botonCargarDTE = new System.Windows.Forms.Button();
             this.pictureBoxTimbre = new System.Windows.Forms.PictureBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.botonValidar = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTimbre)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,10 +54,6 @@
             this.pictureBoxTimbre.TabIndex = 2;
             this.pictureBoxTimbre.TabStop = false;
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // botonValidar
             // 
             this.botonValidar.Location = new System.Drawing.Point(321, 12);
@@ -67,6 +63,10 @@
             this.botonValidar.Text = "Validar Timbre";
             this.botonValidar.UseVisualStyleBackColor = true;
             this.botonValidar.Click += new System.EventHandler(this.botonValidar_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // MuestraTimbre
             // 
@@ -90,7 +90,7 @@
 
         private System.Windows.Forms.Button botonCargarDTE;
         private System.Windows.Forms.PictureBox pictureBoxTimbre;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button botonValidar;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

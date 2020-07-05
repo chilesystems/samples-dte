@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>SIMPLEAPI_Demo</RootNamespace>
     <AssemblyName>SIMPLEAPI_Demo</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -27,6 +27,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -236,10 +237,21 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Downloads\ThermalPrinting\ThermalPrinting\ThermalPrinting.Core\ThermalPrinting.Core.csproj">
+      <Project>{ee9eae04-36c8-452f-b7ec-91574a104343}</Project>
+      <Name>ThermalPrinting.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Downloads\ThermalPrinting\ThermalPrinting\ThermalPrinting.XmlUtils\ThermalPrinting.XmlUtils.csproj">
+      <Project>{3a957caa-3da6-41e0-a6aa-af8c051d9864}</Project>
+      <Name>ThermalPrinting.XmlUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\SIMPLE_API\SIMPLE_API\SIMPLE_API.csproj">
       <Project>{db72ca7e-c862-4146-a04f-25dfc9f027b0}</Project>
       <Name>SIMPLE_API</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Imprimir.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIMPLEAPI_Demo", "SIMPLEAPI_Demo\SIMPLEAPI_Demo.csproj", "{352E7F8A-82D1-4C21-94E9-CB1A4F2DF139}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThermalPrinting.Core", "..\..\..\..\..\Downloads\ThermalPrinting\ThermalPrinting\ThermalPrinting.Core\ThermalPrinting.Core.csproj", "{EE9EAE04-36C8-452F-B7EC-91574A104343}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThermalPrinting.XmlUtils", "..\..\..\..\..\Downloads\ThermalPrinting\ThermalPrinting\ThermalPrinting.XmlUtils\ThermalPrinting.XmlUtils.csproj", "{3A957CAA-3DA6-41E0-A6AA-AF8C051D9864}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{352E7F8A-82D1-4C21-94E9-CB1A4F2DF139}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{352E7F8A-82D1-4C21-94E9-CB1A4F2DF139}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{352E7F8A-82D1-4C21-94E9-CB1A4F2DF139}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE9EAE04-36C8-452F-B7EC-91574A104343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE9EAE04-36C8-452F-B7EC-91574A104343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE9EAE04-36C8-452F-B7EC-91574A104343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE9EAE04-36C8-452F-B7EC-91574A104343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A957CAA-3DA6-41E0-A6AA-AF8C051D9864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A957CAA-3DA6-41E0-A6AA-AF8C051D9864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A957CAA-3DA6-41E0-A6AA-AF8C051D9864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A957CAA-3DA6-41E0-A6AA-AF8C051D9864}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
