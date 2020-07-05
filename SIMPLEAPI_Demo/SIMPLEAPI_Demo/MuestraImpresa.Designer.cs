@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MuestraImpresa));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBoxTimbre = new System.Windows.Forms.PictureBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.gridDetalles = new System.Windows.Forms.DataGridView();
             this.IS_EXENTO = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -64,13 +65,10 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dateFechaResolucion = new System.Windows.Forms.DateTimePicker();
             this.txtNumeroResolucion = new System.Windows.Forms.NumericUpDown();
-            this.btnSelectTimbre = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.txtWebVerificacion = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtPathTimbre = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtFolio = new System.Windows.Forms.NumericUpDown();
             this.dateFechaEmision = new System.Windows.Forms.DateTimePicker();
@@ -103,16 +101,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtRutEmisor = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnSelectXml = new System.Windows.Forms.Button();
             this.btnCargarXml = new System.Windows.Forms.Button();
             this.txtXmlFilePath = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.radioPrinter = new System.Windows.Forms.RadioButton();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.comboPrinters = new System.Windows.Forms.ComboBox();
             this.radioDebug = new System.Windows.Forms.RadioButton();
-            this.pictureBoxTimbre = new System.Windows.Forms.PictureBox();
-            this.btnSelectXml = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTimbre)).BeginInit();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetalles)).BeginInit();
             this.groupBox7.SuspendLayout();
@@ -130,7 +128,6 @@
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTimbre)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -147,6 +144,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(786, 508);
             this.panel1.TabIndex = 27;
+            // 
+            // pictureBoxTimbre
+            // 
+            this.pictureBoxTimbre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxTimbre.Location = new System.Drawing.Point(3, 389);
+            this.pictureBoxTimbre.Name = "pictureBoxTimbre";
+            this.pictureBoxTimbre.Size = new System.Drawing.Size(380, 147);
+            this.pictureBoxTimbre.TabIndex = 51;
+            this.pictureBoxTimbre.TabStop = false;
             // 
             // groupBox8
             // 
@@ -411,30 +417,27 @@
             // 
             this.groupBox4.Controls.Add(this.dateFechaResolucion);
             this.groupBox4.Controls.Add(this.txtNumeroResolucion);
-            this.groupBox4.Controls.Add(this.btnSelectTimbre);
             this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.txtWebVerificacion);
             this.groupBox4.Controls.Add(this.label22);
             this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Controls.Add(this.txtPathTimbre);
             this.groupBox4.Location = new System.Drawing.Point(0, 279);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(380, 133);
+            this.groupBox4.Size = new System.Drawing.Size(380, 104);
             this.groupBox4.TabIndex = 25;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Otros";
             // 
             // dateFechaResolucion
             // 
-            this.dateFechaResolucion.Location = new System.Drawing.Point(138, 76);
+            this.dateFechaResolucion.Location = new System.Drawing.Point(138, 50);
             this.dateFechaResolucion.Name = "dateFechaResolucion";
             this.dateFechaResolucion.Size = new System.Drawing.Size(228, 20);
             this.dateFechaResolucion.TabIndex = 35;
             // 
             // txtNumeroResolucion
             // 
-            this.txtNumeroResolucion.Location = new System.Drawing.Point(138, 50);
+            this.txtNumeroResolucion.Location = new System.Drawing.Point(138, 24);
             this.txtNumeroResolucion.Maximum = new decimal(new int[] {
             1410065408,
             2,
@@ -451,19 +454,10 @@
             0,
             0});
             // 
-            // btnSelectTimbre
-            // 
-            this.btnSelectTimbre.Location = new System.Drawing.Point(308, 22);
-            this.btnSelectTimbre.Name = "btnSelectTimbre";
-            this.btnSelectTimbre.Size = new System.Drawing.Size(58, 20);
-            this.btnSelectTimbre.TabIndex = 3;
-            this.btnSelectTimbre.Text = "<Lupa>";
-            this.btnSelectTimbre.UseVisualStyleBackColor = true;
-            // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(22, 104);
+            this.label21.Location = new System.Drawing.Point(22, 78);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(102, 13);
             this.label21.TabIndex = 15;
@@ -471,7 +465,7 @@
             // 
             // txtWebVerificacion
             // 
-            this.txtWebVerificacion.Location = new System.Drawing.Point(138, 101);
+            this.txtWebVerificacion.Location = new System.Drawing.Point(138, 75);
             this.txtWebVerificacion.Name = "txtWebVerificacion";
             this.txtWebVerificacion.Size = new System.Drawing.Size(228, 20);
             this.txtWebVerificacion.TabIndex = 14;
@@ -479,7 +473,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(22, 80);
+            this.label22.Location = new System.Drawing.Point(22, 54);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(93, 13);
             this.label22.TabIndex = 13;
@@ -488,27 +482,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 52);
+            this.label1.Location = new System.Drawing.Point(22, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 13);
             this.label1.TabIndex = 11;
             this.label1.Text = "Numero Resolucion";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(22, 26);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(90, 13);
-            this.label20.TabIndex = 9;
-            this.label20.Text = "Path Timbre (Img)";
-            // 
-            // txtPathTimbre
-            // 
-            this.txtPathTimbre.Location = new System.Drawing.Point(138, 23);
-            this.txtPathTimbre.Name = "txtPathTimbre";
-            this.txtPathTimbre.Size = new System.Drawing.Size(164, 20);
-            this.txtPathTimbre.TabIndex = 8;
             // 
             // groupBox3
             // 
@@ -813,6 +791,16 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Cargar XML";
             // 
+            // btnSelectXml
+            // 
+            this.btnSelectXml.Image = ((System.Drawing.Image)(resources.GetObject("btnSelectXml.Image")));
+            this.btnSelectXml.Location = new System.Drawing.Point(282, 26);
+            this.btnSelectXml.Name = "btnSelectXml";
+            this.btnSelectXml.Size = new System.Drawing.Size(28, 25);
+            this.btnSelectXml.TabIndex = 2;
+            this.btnSelectXml.UseVisualStyleBackColor = true;
+            this.btnSelectXml.Click += new System.EventHandler(this.btnSelectXml_Click);
+            // 
             // btnCargarXml
             // 
             this.btnCargarXml.Location = new System.Drawing.Point(316, 26);
@@ -855,6 +843,20 @@
             this.radioPrinter.UseVisualStyleBackColor = true;
             this.radioPrinter.CheckedChanged += new System.EventHandler(this.radioPrinter_CheckedChanged);
             // 
+            // btnPrint
+            // 
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.Image = global::SIMPLEAPI_Demo.Properties.Resources.Imprimir;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(291, 64);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.TabIndex = 0;
+            this.btnPrint.Text = "Imprimir";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // comboPrinters
             // 
             this.comboPrinters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -876,39 +878,6 @@
             this.radioDebug.Text = "Debug dialog";
             this.radioDebug.UseVisualStyleBackColor = true;
             // 
-            // pictureBoxTimbre
-            // 
-            this.pictureBoxTimbre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxTimbre.Location = new System.Drawing.Point(0, 418);
-            this.pictureBoxTimbre.Name = "pictureBoxTimbre";
-            this.pictureBoxTimbre.Size = new System.Drawing.Size(380, 147);
-            this.pictureBoxTimbre.TabIndex = 51;
-            this.pictureBoxTimbre.TabStop = false;
-            // 
-            // btnSelectXml
-            // 
-            this.btnSelectXml.Image = ((System.Drawing.Image)(resources.GetObject("btnSelectXml.Image")));
-            this.btnSelectXml.Location = new System.Drawing.Point(282, 26);
-            this.btnSelectXml.Name = "btnSelectXml";
-            this.btnSelectXml.Size = new System.Drawing.Size(28, 25);
-            this.btnSelectXml.TabIndex = 2;
-            this.btnSelectXml.UseVisualStyleBackColor = true;
-            this.btnSelectXml.Click += new System.EventHandler(this.btnSelectXml_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint.Image = global::SIMPLEAPI_Demo.Properties.Resources.Imprimir;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(291, 64);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(75, 23);
-            this.btnPrint.TabIndex = 0;
-            this.btnPrint.Text = "Imprimir";
-            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
             // MuestraImpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -923,6 +892,7 @@
             this.Text = "MuestraImpresa";
             this.Load += new System.EventHandler(this.MuestraImpresa_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTimbre)).EndInit();
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridDetalles)).EndInit();
             this.groupBox7.ResumeLayout(false);
@@ -947,7 +917,6 @@
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTimbre)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -980,16 +949,6 @@
         private System.Windows.Forms.NumericUpDown txtTotal;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DateTimePicker dateFechaResolucion;
-        private System.Windows.Forms.NumericUpDown txtNumeroResolucion;
-        private System.Windows.Forms.Button btnSelectTimbre;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox txtWebVerificacion;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox txtPathTimbre;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.NumericUpDown txtFolio;
         private System.Windows.Forms.DateTimePicker dateFechaEmision;
@@ -1031,5 +990,12 @@
         private System.Windows.Forms.ComboBox comboPrinters;
         private System.Windows.Forms.RadioButton radioDebug;
         private System.Windows.Forms.PictureBox pictureBoxTimbre;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.DateTimePicker dateFechaResolucion;
+        private System.Windows.Forms.NumericUpDown txtNumeroResolucion;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox txtWebVerificacion;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label1;
     }
 }

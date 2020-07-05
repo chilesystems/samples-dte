@@ -34,17 +34,5 @@ namespace SIMPLEAPI_Demo.Properties {
                 this["xmlFilePath"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string timbreFilePath {
-            get {
-                return ((string)(this["timbreFilePath"]));
-            }
-            set {
-                this["timbreFilePath"] = value;
-            }
-        }
     }
 }

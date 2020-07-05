@@ -76,7 +76,6 @@ namespace SIMPLEAPI_Demo
         private void MuestraImpresa_Load(object sender, EventArgs e)
         {
             txtXmlFilePath.Text = Settings.Default.xmlFilePath;
-            txtPathTimbre.Text = Settings.Default.timbreFilePath;
 
             comboTipoDocumento.ValueMember = "Key";
             comboTipoDocumento.DisplayMember = "Value";
@@ -135,15 +134,11 @@ namespace SIMPLEAPI_Demo
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            if (document.TimbreImage == null && !string.IsNullOrEmpty(txtPathTimbre.Text))
-                try
-                {
-                    document.TimbreImage = Image.FromFile(txtPathTimbre.Text);
-                }
-                catch { }
-
             ThermalPrintHandler handler = new ThermalPrintHandler(document);
 
+            document.WebVerificación = txtWebVerificacion.Text;
+            document.NumeroResolucion = (int)txtNumeroResolucion.Value;
+            document.FechaResolucion = dateFechaResolucion.Value;
             handler.NombreImpresora = radioPrinter.Checked ? comboPrinters.Text : "DEBUG";
 
             handler.Print(radioPrinter.Checked);
