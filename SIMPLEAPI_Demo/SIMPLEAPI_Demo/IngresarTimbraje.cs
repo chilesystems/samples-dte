@@ -65,7 +65,7 @@ namespace SIMPLEAPI_Demo
                     case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoExportacionElectronica:
                         tipo = "NOTA DE CRÉDITO DE EXPORTACIÓN ELECTRÓNICA";
                         break;
-                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebidoExportacionElectronica:
+                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoExportacionElectronica:
                         tipo = "NOTA DE DÉBITO DE EXPORTACIÓN ELECTRÓNICA";
                         break;
                 }

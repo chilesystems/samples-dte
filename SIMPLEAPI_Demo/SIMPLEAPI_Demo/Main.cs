@@ -1,4 +1,5 @@
-﻿using SIMPLEAPI_Demo.Clases;
+﻿using ChileSystems.DTE.Engine.Enum;
+using SIMPLEAPI_Demo.Clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,15 +33,8 @@ namespace SIMPLEAPI_Demo
 
         private void botonGenerarDocumento_Click(object sender, EventArgs e)
         {
-            //El folio es obligatorio
-            handler.Folio = 105;
-            //El Id debe ser alfanumerico. Remitirse a letras y números
-            handler.idDte = "TESTPRUEBA2";
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
-            var dte = handler.GenerateDTE();
+            var dte = handler.GenerateDTE(ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica, 105);
             handler.GenerateDetails(dte);
-            handler.Referencias(dte);
-
             var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
 
             string contenido = dte.ToString();
@@ -199,11 +193,7 @@ namespace SIMPLEAPI_Demo
             string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
             var dteBoleta = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
 
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica;
-            handler.Folio = 9;
-            handler.idDte = "NC_BOLELEC_3";
-
-            var dteNC = handler.GenerateDTE();
+            var dteNC = handler.GenerateDTE(TipoDTE.DTEType.NotaCreditoElectronica, 8);
             /*En el caso de las anulaciones, los detalles y totales son los mismos que el documento de origen*/
             dteNC.Documento.Detalles = dteBoleta.Documento.Detalles;
             dteNC.Documento.Encabezado.Totales = dteBoleta.Documento.Encabezado.Totales;
@@ -234,10 +224,7 @@ namespace SIMPLEAPI_Demo
             string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
             var dteBoleta = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
 
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica;
-            handler.Folio = 11;
-            handler.idDte = "NC_BOLELEC_6";
-            var dteNC = handler.GenerateDTE();
+            var dteNC = handler.GenerateDTE(TipoDTE.DTEType.NotaCreditoElectronica, 11);
             /*En el caso de las anulaciones, los detalles y totales son los mismos que el documento de origen*/
             dteNC.Documento.Detalles = dteBoleta.Documento.Detalles;
             dteNC.Documento.Encabezado.Totales = dteBoleta.Documento.Encabezado.Totales;
@@ -329,15 +316,8 @@ namespace SIMPLEAPI_Demo
         }
         private void botonConsultarEstadoDTE_Click(object sender, EventArgs e)
         {
-            var responseEstadoDTE = handler.ConsultarEstadoDTE(radioProduccion.Checked);
-            if (responseEstadoDTE != null)
-            {
-                MessageBox.Show(responseEstadoDTE.ResponseXml);
-            }
-            else
-            {
-                MessageBox.Show("Ha ocurrido un error");
-            }
+            ConsultaEstadoDTE formulario = new ConsultaEstadoDTE();
+            formulario.ShowDialog();
         }
         #endregion
 
@@ -364,17 +344,12 @@ namespace SIMPLEAPI_Demo
                 folios.Add(i);
             for (int i = 14; i <= 16; i++) // 3 notas de credito
                 folios.Add(i);            
-            folios.Add(6); //1 nota de debito
-
-           
+            folios.Add(6); //1 nota de debito           
 
             #region DTEs
             /******************************/
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
-            handler.Folio = folios[0]; 
-            handler.idDte = "A_" + folios[0];
-            handler.casoPruebas = "CASO " + nAtencion + "-1";
-            var dte = handler.GenerateDTE();
+            string casoPruebas = "CASO " + nAtencion + "-1";
+            var dte = handler.GenerateDTE(TipoDTE.DTEType.FacturaElectronica, folios[0]);
 
             var detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
@@ -392,17 +367,15 @@ namespace SIMPLEAPI_Demo
                 Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
             var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
             pathFiles.Add(path);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
             /********************************/
-            handler.Folio = folios[1];
-            handler.idDte = "A_" + folios[1];
-            handler.casoPruebas = "CASO " + nAtencion + "-2";
-            dte = handler.GenerateDTE();
+            casoPruebas = "CASO " + nAtencion + "-2";
+            dte = handler.GenerateDTE(TipoDTE.DTEType.FacturaElectronica, folios[1]);
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
@@ -421,17 +394,15 @@ namespace SIMPLEAPI_Demo
                 Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
             pathFiles.Add(path);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
             /********************************/
-            handler.Folio = folios[2];
-            handler.idDte = "A_" + folios[2];
-            handler.casoPruebas = "CASO " + nAtencion + "-3";
-            dte = handler.GenerateDTE();
+            casoPruebas = "CASO " + nAtencion + "-3";
+            dte = handler.GenerateDTE(TipoDTE.DTEType.FacturaElectronica, folios[2]);
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
@@ -455,17 +426,15 @@ namespace SIMPLEAPI_Demo
                 Afecto = false
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
             pathFiles.Add(path);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
             /********************************/
-            handler.Folio = folios[3];
-            handler.idDte = "A_" + folios[3];
-            handler.casoPruebas = "CASO " + nAtencion + "-4";
-            dte = handler.GenerateDTE();
+            casoPruebas = "CASO " + nAtencion + "-4";
+            dte = handler.GenerateDTE(TipoDTE.DTEType.FacturaElectronica, folios[3]);
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
@@ -500,18 +469,15 @@ namespace SIMPLEAPI_Demo
             });
 
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
             pathFiles.Add(path);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
             /********************************/
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica;
-            handler.Folio = folios[4];
-            handler.idDte = "C_" + folios[4];
-            handler.casoPruebas = "CASO " + nAtencion + "-5";
-            dte = handler.GenerateDTE();
+            casoPruebas = "CASO " + nAtencion + "-5";
+            dte = handler.GenerateDTE(TipoDTE.DTEType.NotaCreditoElectronica, folios[4]);
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
@@ -519,7 +485,7 @@ namespace SIMPLEAPI_Demo
                 Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
             dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeTextoDocumentoReferencia,
@@ -536,11 +502,8 @@ namespace SIMPLEAPI_Demo
             /********************************/
 
             /********************************/
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica;
-            handler.Folio = folios[5];
-            handler.idDte = "C_" + folios[5];
-            handler.casoPruebas = "CASO " + nAtencion + "-6";
-            dte = handler.GenerateDTE();
+            casoPruebas = "CASO " + nAtencion + "-6"; 
+            dte = handler.GenerateDTE(TipoDTE.DTEType.NotaCreditoElectronica, folios[5]);
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
@@ -559,7 +522,7 @@ namespace SIMPLEAPI_Demo
                 Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
             dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
@@ -576,11 +539,8 @@ namespace SIMPLEAPI_Demo
             /********************************/
 
             /********************************/
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica;
-            handler.Folio = folios[6];
-            handler.idDte = "C_" + folios[6];
-            handler.casoPruebas = "CASO " + nAtencion + "-7";
-            dte = handler.GenerateDTE();
+            casoPruebas = "CASO " + nAtencion + "-7";
+            dte = handler.GenerateDTE(TipoDTE.DTEType.NotaCreditoElectronica, folios[6]);
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
@@ -605,7 +565,7 @@ namespace SIMPLEAPI_Demo
             });
 
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
             dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia,
@@ -623,11 +583,8 @@ namespace SIMPLEAPI_Demo
 
 
             /********************************/
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica;
-            handler.Folio = folios[7];
-            handler.idDte = "D_" + folios[7];
-            handler.casoPruebas = "CASO " + nAtencion + "-8";
-            dte = handler.GenerateDTE();
+            casoPruebas = "CASO " + nAtencion + "-8";
+            dte = handler.GenerateDTE(TipoDTE.DTEType.NotaDebitoElectronica, folios[7]);
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
@@ -635,7 +592,7 @@ namespace SIMPLEAPI_Demo
                 Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
             dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia,
@@ -696,11 +653,8 @@ namespace SIMPLEAPI_Demo
             folios.Add(22); //ND    
             nAtencion = "1092647";
 
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaCompraElectronica;
-            handler.Folio = folios[0];
-            handler.idDte = "A_" + folios[0];
-            handler.casoPruebas = "CASO " + nAtencion + "-1";
-            dte = handler.GenerateDTE();
+            casoPruebas = "CASO " + nAtencion + "-1";
+            dte = handler.GenerateDTE(TipoDTE.DTEType.FacturaCompraElectronica, folios[0]);
 
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
@@ -720,18 +674,14 @@ namespace SIMPLEAPI_Demo
                 TipoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
             pathFiles.Add(path);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
             /********************************/
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica;
-            handler.Folio = folios[1];
-            handler.idDte = "C_" + folios[1];
-            handler.casoPruebas = "CASO " + nAtencion + "-2";
-            dte = handler.GenerateDTE();
+            dte = handler.GenerateDTE(TipoDTE.DTEType.NotaCreditoElectronica, folios[1]);
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
@@ -750,7 +700,7 @@ namespace SIMPLEAPI_Demo
                 TipoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
             dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
@@ -766,11 +716,7 @@ namespace SIMPLEAPI_Demo
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica;
-            handler.Folio = folios[2];
-            handler.idDte = "D_" + folios[2];
-            handler.casoPruebas = "CASO " + nAtencion + "-3";
-            dte = handler.GenerateDTE();
+            dte = handler.GenerateDTE(TipoDTE.DTEType.NotaDebitoElectronica, folios[2]);
             detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
@@ -790,7 +736,7 @@ namespace SIMPLEAPI_Demo
                 TipoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
             dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia,
@@ -959,12 +905,8 @@ namespace SIMPLEAPI_Demo
             #region SET EXPORTACION 1
 
             #region FACTURA EXPORTACION
-            //El folio es obligatorio
-            handler.Folio = folioFactura;
-            //El Id debe ser alfanumerico. Remitirse a letras y números
-            handler.idDte = "FAC_EXP_1";
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaExportacionElectronica;
-            var dte = handler.GenerateDTEExportacionBase();
+            var dte = handler.GenerateDTEExportacionBase(TipoDTE.DTEType.FacturaExportacionElectronica, folioFactura);
+
             dte.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion = SIMPLE_API.Enum.CodigosAduana.FormaPagoExportacionEnum.ACRED;
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoModalidadVenta = SIMPLE_API.Enum.CodigosAduana.ModalidadVenta.A_FIRME;
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoClausulaVenta = SIMPLE_API.Enum.CodigosAduana.ClausulaCompraVenta.FOB;
@@ -1051,12 +993,7 @@ namespace SIMPLEAPI_Demo
             #endregion
 
             #region NOTA CREDITO EXPORTACION
-            //El folio es obligatorio
-            handler.Folio = folioNC;
-            //El Id debe ser alfanumerico. Remitirse a letras y números
-            handler.idDte = "NC_EXP_1";
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoExportacionElectronica;
-            var dteNC = handler.GenerateDTEExportacionBase();
+            var dteNC = handler.GenerateDTEExportacionBase(TipoDTE.DTEType.NotaCreditoExportacionElectronica, folioNC);
             dteNC.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion = dte.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion;
             dteNC.Exportaciones.Encabezado.Transporte.Aduana = dte.Exportaciones.Encabezado.Transporte.Aduana;
             dteNC.Exportaciones.Encabezado.Transporte.Aduana.MontoFlete = 0;
@@ -1103,16 +1040,9 @@ namespace SIMPLEAPI_Demo
             #endregion
 
             #region NOTA DEBITO EXPORTACION
-            //El folio es obligatorio
-            handler.Folio = folioND;
-            //El Id debe ser alfanumerico. Remitirse a letras y números
-            handler.idDte = "ND_EXP_1";
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebidoExportacionElectronica;
-            var dteND = handler.GenerateDTEExportacionBase();
+            var dteND = handler.GenerateDTEExportacionBase(TipoDTE.DTEType.NotaDebitoExportacionElectronica, folioND);
             dteND.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion = dteNC.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion;
-            dteND.Exportaciones.Encabezado.Transporte.Aduana = dteNC.Exportaciones.Encabezado.Transporte.Aduana;
-           
-
+            dteND.Exportaciones.Encabezado.Transporte.Aduana = dteNC.Exportaciones.Encabezado.Transporte.Aduana;     
 
             dteND.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.DetalleExportacion>();
             var detalleND = detalleNC;
@@ -1156,12 +1086,7 @@ namespace SIMPLEAPI_Demo
             #region SET EXPORTACION 1
 
             #region FACTURA EXPORTACION 1
-            //El folio es obligatorio
-            handler.Folio = folioFactura;
-            //El Id debe ser alfanumerico. Remitirse a letras y números
-            handler.idDte = "FAC_EXP_1";
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaExportacionElectronica;
-            var dte = handler.GenerateDTEExportacionBase();
+            var dte = handler.GenerateDTEExportacionBase(TipoDTE.DTEType.FacturaExportacionElectronica, folioFactura);
             dte.Exportaciones.Encabezado.IdentificacionDTE.IndicadorServicio = ChileSystems.DTE.Engine.Enum.IndicadorServicio.IndicadorServicioEnum.FacturaServicios2;
             dte.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion = SIMPLE_API.Enum.CodigosAduana.FormaPagoExportacionEnum.ACRED;
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoClausulaVenta = SIMPLE_API.Enum.CodigosAduana.ClausulaCompraVenta.FOB;
@@ -1215,12 +1140,7 @@ namespace SIMPLEAPI_Demo
 
             folioFactura++;
             #region FACTURA EXPORTACION 2
-            //El folio es obligatorio
-            handler.Folio = folioFactura;
-            //El Id debe ser alfanumerico. Remitirse a letras y números
-            handler.idDte = "FAC_EXP_2";
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaExportacionElectronica;
-            dte = handler.GenerateDTEExportacionBase();
+            dte = handler.GenerateDTEExportacionBase(TipoDTE.DTEType.FacturaExportacionElectronica, folioFactura);
             dte.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion = SIMPLE_API.Enum.CodigosAduana.FormaPagoExportacionEnum.ACRED;
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoModalidadVenta = SIMPLE_API.Enum.CodigosAduana.ModalidadVenta.A_FIRME;
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoClausulaVenta = SIMPLE_API.Enum.CodigosAduana.ClausulaCompraVenta.FOB;
@@ -1340,12 +1260,7 @@ namespace SIMPLEAPI_Demo
 
             folioFactura++;
             #region FACTURA EXPORTACION 3
-            //El folio es obligatorio
-            handler.Folio = folioFactura;
-            //El Id debe ser alfanumerico. Remitirse a letras y números
-            handler.idDte = "FAC_EXP_3";
-            handler.tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaExportacionElectronica;
-            dte = handler.GenerateDTEExportacionBase();
+            dte = handler.GenerateDTEExportacionBase(TipoDTE.DTEType.FacturaExportacionElectronica, folioFactura);
             dte.Exportaciones.Encabezado.Receptor.Extranjero = new ChileSystems.DTE.Engine.Documento.Extranjero() {
                 Nacionalidad = SIMPLE_API.Enum.CodigosAduana.Paises.ARGENTINA
             };
@@ -1422,11 +1337,29 @@ namespace SIMPLEAPI_Demo
         {
             ConfiguracionSistema formulario = new ConfiguracionSistema();
             formulario.ShowDialog();
+            handler.configuracion.LeerArchivo();
         }
 
-        private void groupBox5_Enter(object sender, EventArgs e)
+        private void botonAgregarRef_Click(object sender, EventArgs e)
         {
+            var dte = handler.GenerateDTE(TipoDTE.DTEType.NotaCreditoElectronica, 105);
+            handler.GenerateDetails(dte);
 
+            //Esta referencia indica que se está corrigiendo el monto de la factura electrónica N° 50
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.CorrigeMontos, TipoDTE.TipoReferencia.FacturaElectronica, DateTime.Now, 50);
+
+            //Esta referencia indica que se está anulando la factura electrónica N° 50
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia, TipoDTE.TipoReferencia.FacturaElectronica, DateTime.Now, 50);
+
+            //Esta referencia indica que se trata de un set de pruebas
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, "CASO X");
+
+            var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
+
+            string contenido = dte.ToString();
+
+            handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+            MessageBox.Show("Documento generado exitosamente en " + path);
         }
     }
 }

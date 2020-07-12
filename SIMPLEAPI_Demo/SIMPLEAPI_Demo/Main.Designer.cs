@@ -52,6 +52,7 @@
             this.botonGenerarBoleta = new System.Windows.Forms.Button();
             this.botonLibroBoletas = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.botonAgregarRef = new System.Windows.Forms.Button();
             this.botonEnviarSii = new System.Windows.Forms.Button();
             this.botonGenerarEnvio = new System.Windows.Forms.Button();
             this.botonGenerarDocumento = new System.Windows.Forms.Button();
@@ -80,7 +81,6 @@
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Utilidades";
-            this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
             // 
             // botonGetCertificados
             // 
@@ -264,7 +264,7 @@
             this.botonRebajaDocumento.Name = "botonRebajaDocumento";
             this.botonRebajaDocumento.Size = new System.Drawing.Size(151, 23);
             this.botonRebajaDocumento.TabIndex = 4;
-            this.botonRebajaDocumento.Text = "Rebajar Documento";
+            this.botonRebajaDocumento.Text = "Rebajar Documento (NC)";
             this.botonRebajaDocumento.UseVisualStyleBackColor = true;
             this.botonRebajaDocumento.Click += new System.EventHandler(this.botonRebajaDocumento_Click);
             // 
@@ -310,20 +310,31 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.botonAgregarRef);
             this.groupBox1.Controls.Add(this.botonEnviarSii);
             this.groupBox1.Controls.Add(this.botonGenerarEnvio);
             this.groupBox1.Controls.Add(this.botonGenerarDocumento);
             this.groupBox1.Controls.Add(this.botonIngresarTimbraje);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(163, 140);
+            this.groupBox1.Size = new System.Drawing.Size(163, 166);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Básicos";
             // 
+            // botonAgregarRef
+            // 
+            this.botonAgregarRef.Location = new System.Drawing.Point(6, 77);
+            this.botonAgregarRef.Name = "botonAgregarRef";
+            this.botonAgregarRef.Size = new System.Drawing.Size(151, 23);
+            this.botonAgregarRef.TabIndex = 4;
+            this.botonAgregarRef.Text = "Agregar Referencias";
+            this.botonAgregarRef.UseVisualStyleBackColor = true;
+            this.botonAgregarRef.Click += new System.EventHandler(this.botonAgregarRef_Click);
+            // 
             // botonEnviarSii
             // 
-            this.botonEnviarSii.Location = new System.Drawing.Point(6, 106);
+            this.botonEnviarSii.Location = new System.Drawing.Point(6, 135);
             this.botonEnviarSii.Name = "botonEnviarSii";
             this.botonEnviarSii.Size = new System.Drawing.Size(151, 23);
             this.botonEnviarSii.TabIndex = 3;
@@ -333,7 +344,7 @@
             // 
             // botonGenerarEnvio
             // 
-            this.botonGenerarEnvio.Location = new System.Drawing.Point(6, 77);
+            this.botonGenerarEnvio.Location = new System.Drawing.Point(6, 106);
             this.botonGenerarEnvio.Name = "botonGenerarEnvio";
             this.botonGenerarEnvio.Size = new System.Drawing.Size(151, 23);
             this.botonGenerarEnvio.TabIndex = 2;
@@ -387,7 +398,7 @@
             this.groupBox4.Controls.Add(this.botonConfiguracion);
             this.groupBox4.Controls.Add(this.radioCertificacion);
             this.groupBox4.Controls.Add(this.radioProduccion);
-            this.groupBox4.Location = new System.Drawing.Point(12, 158);
+            this.groupBox4.Location = new System.Drawing.Point(12, 184);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(163, 105);
             this.groupBox4.TabIndex = 22;
@@ -408,7 +419,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 272);
+            this.ClientSize = new System.Drawing.Size(693, 295);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox5);
@@ -463,6 +474,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button botonConfiguracion;
+        private System.Windows.Forms.Button botonAgregarRef;
     }
 }
 

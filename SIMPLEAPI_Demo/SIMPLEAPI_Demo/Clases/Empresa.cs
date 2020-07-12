@@ -16,7 +16,10 @@ namespace SIMPLEAPI_Demo.Clases
         public List<ActividadEconomica> CodigosActividades { get; set; }
         public DateTime FechaResolucion { get; set; }
         public int NumeroResolucion { get; set; }
-    
+
+        public int RutCuerpo { get { return int.Parse(RutEmpresa.Substring(0, RutEmpresa.Length - 2)); } }
+        public string DV { get { return RutEmpresa.Substring(RutEmpresa.Length - 1, 1); } }
+
     }
 
     public class ActividadEconomica

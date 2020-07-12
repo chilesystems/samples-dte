@@ -360,7 +360,7 @@
             this.MaximizeBox = false;
             this.Name = "GenerarBoletaElectronica";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Generar Boleta Electronica";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.GenerarBoletaElectronica_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericFolio)).EndInit();
             this.groupBox2.ResumeLayout(false);

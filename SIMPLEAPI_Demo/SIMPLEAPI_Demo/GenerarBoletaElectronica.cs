@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChileSystems.DTE.Engine.Enum;
+using SIMPLEAPI_Demo.Clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +26,8 @@ namespace SIMPLEAPI_Demo
         private void GenerarBoletaElectronica_Load(object sender, EventArgs e)
         {
             gridResultados.AutoGenerateColumns = false;
+            handler.configuracion = new Configuracion();
+            handler.configuracion.LeerArchivo();
         }
 
         private void botonAgregarLinea_Click(object sender, EventArgs e)
@@ -59,12 +63,10 @@ namespace SIMPLEAPI_Demo
 
         private void botonGenerar_Click(object sender, EventArgs e)
         {
-            handler.casoPruebas = "CASO " + numericCasoPrueba.Value.ToString();
-            handler.Folio = (int)numericFolio.Value;
-            handler.idDte = "BE_CERT_" + numericFolio.Value.ToString();
-            var dte = handler.GenerateDTE();
+            var dte = handler.GenerateDTE(ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica, (int)numericFolio.Value);
             handler.GenerateDetails(dte, items);
-            handler.ReferenciasBoleta(dte);
+            string casoPrueba = "CASO-" + numericCasoPrueba.Value.ToString("N0");
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.BoletaElectronica, null, 0, casoPrueba);
             var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             MessageBox.Show("Documento generado exitosamente");

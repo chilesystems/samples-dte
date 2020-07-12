@@ -1,5 +1,9 @@
-﻿using ChileSystems.DTE.Engine.RespuestaEnvio;
+﻿using ChileSystems.DTE.Engine.Documento;
+using ChileSystems.DTE.Engine.Enum;
+using ChileSystems.DTE.Engine.Envio;
+using ChileSystems.DTE.Engine.RespuestaEnvio;
 using ChileSystems.DTE.WS.EstadoDTE;
+using SIMPLE_API.Security.Firma;
 using SIMPLEAPI_Demo.Clases;
 using System;
 using System.Collections.Generic;
@@ -7,44 +11,43 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SIMPLEAPI_Demo
 {
     public class Handler
     {
-        public int Folio;
-
-        public string casoPruebas;
-        public string idDte;
-
-        public ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica;
 
         public Configuracion configuracion;
 
+        public Handler()
+        {
+            this.configuracion = new Configuracion();
+        }
+
         #region Generar Documento
 
-        public ChileSystems.DTE.Engine.Documento.DTE GenerateDTE()
+        public DTE GenerateDTE(TipoDTE.DTEType tipoDTE, int folio, string idDTE = "")
         {
             // DOCUMENTO
-            var dte = new ChileSystems.DTE.Engine.Documento.DTE();
+            var dte = new DTE();
             //
             // DOCUMENTO - ENCABEZADO - CAMPO OBLIGATORIO
-            //Id = puede ser compuesto según tus propios requerimientos pero debe ser único         
-            dte.Documento.Id = idDte;
+            //Id = puede ser compuesto según tus propios requerimientos pero debe ser único                  
+            dte.Documento.Id = string.IsNullOrEmpty(idDTE) ? "DTE_" + DateTime.Now.Ticks.ToString() : idDTE;
 
             // DOCUMENTO - ENCABEZADO - IDENTIFICADOR DEL DOCUMENTO - CAMPOS OBLIGATORIOS
             dte.Documento.Encabezado.IdentificacionDTE.TipoDTE = tipoDTE;
             dte.Documento.Encabezado.IdentificacionDTE.FechaEmision = DateTime.Now;
-            dte.Documento.Encabezado.IdentificacionDTE.Folio = Folio;
+            dte.Documento.Encabezado.IdentificacionDTE.Folio = folio;
 
             //DOCUMENTO - ENCABEZADO - EMISOR - CAMPOS OBLIGATORIOS          
             dte.Documento.Encabezado.Emisor.Rut = configuracion.Empresa.RutEmpresa;
             dte.Documento.Encabezado.Emisor.DireccionOrigen = configuracion.Empresa.Direccion;
             dte.Documento.Encabezado.Emisor.ComunaOrigen = configuracion.Empresa.Comuna;
-            dte.Documento.Encabezado.Emisor.ActividadEconomica = configuracion.Empresa.CodigosActividades.Select(x => x.Codigo).ToList();
 
             //Para boletas electrónicas
-            if (tipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica)
+            if (tipoDTE == TipoDTE.DTEType.BoletaElectronica)
             {
                 dte.Documento.Encabezado.IdentificacionDTE.IndicadorServicio = ChileSystems.DTE.Engine.Enum.IndicadorServicio.IndicadorServicioEnum.BoletaVentasYServicios;
                 dte.Documento.Encabezado.Emisor.RazonSocialBoleta = configuracion.Empresa.RazonSocial;
@@ -52,14 +55,15 @@ namespace SIMPLEAPI_Demo
             }
             else
             {
+                dte.Documento.Encabezado.Emisor.ActividadEconomica = configuracion.Empresa.CodigosActividades.Select(x => x.Codigo).ToList();
                 dte.Documento.Encabezado.Emisor.RazonSocial = configuracion.Empresa.RazonSocial; 
                 dte.Documento.Encabezado.Emisor.Giro = configuracion.Empresa.Giro;
             }
 
-            if (tipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.GuiaDespachoElectronica)
+            if (tipoDTE == TipoDTE.DTEType.GuiaDespachoElectronica)
             {
-                dte.Documento.Encabezado.IdentificacionDTE.TipoTraslado = ChileSystems.DTE.Engine.Enum.TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta;
-                dte.Documento.Encabezado.IdentificacionDTE.TipoDespacho = ChileSystems.DTE.Engine.Enum.TipoDespacho.TipoDespachoEnum.EmisorACliente;
+                dte.Documento.Encabezado.IdentificacionDTE.TipoTraslado = TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta;
+                dte.Documento.Encabezado.IdentificacionDTE.TipoDespacho = TipoDespacho.TipoDespachoEnum.EmisorACliente;
             }
             //DOCUMENTO - ENCABEZADO - RECEPTOR - CAMPOS OBLIGATORIOS
 
@@ -67,22 +71,28 @@ namespace SIMPLEAPI_Demo
             dte.Documento.Encabezado.Receptor.RazonSocial = "Razon Social de Cliente";
             dte.Documento.Encabezado.Receptor.Direccion = "Dirección de cliente";
             dte.Documento.Encabezado.Receptor.Comuna = "Comuna de cliente";
-            dte.Documento.Encabezado.Receptor.Ciudad = "Ciudad de cliente";
-            dte.Documento.Encabezado.Receptor.Giro = "Giro de cliente";
+            if (tipoDTE != TipoDTE.DTEType.BoletaElectronica)
+            {
+                dte.Documento.Encabezado.Receptor.Ciudad = "Ciudad de cliente";
+                dte.Documento.Encabezado.Receptor.Giro = "Giro de cliente";
+            }
+
+
+            dte.Documento.Referencias = new List<Referencia>();
 
             return dte;
         }
 
-        public ChileSystems.DTE.Engine.Documento.DTE GenerateDTEExportacionBase()
+        public DTE GenerateDTEExportacionBase(TipoDTE.DTEType tipoDTE, int folio, string idDTE = "")
         {
             // DOCUMENTO
             var dte = new ChileSystems.DTE.Engine.Documento.DTE();
             dte.Exportaciones = new SIMPLE_API.Documento.Exportaciones();
-            dte.Exportaciones.Id = idDte;
+            dte.Exportaciones.Id = string.IsNullOrEmpty(idDTE) ? "DTE_" + DateTime.Now.Ticks.ToString() : idDTE;
 
             dte.Exportaciones.Encabezado.IdentificacionDTE.TipoDTE = tipoDTE;
             dte.Exportaciones.Encabezado.IdentificacionDTE.FechaEmision = DateTime.Now;
-            dte.Exportaciones.Encabezado.IdentificacionDTE.Folio = Folio;
+            dte.Exportaciones.Encabezado.IdentificacionDTE.Folio = folio;
             
             dte.Exportaciones.Encabezado.Emisor.Rut = configuracion.Empresa.RutEmpresa;
             dte.Exportaciones.Encabezado.Emisor.RazonSocial = configuracion.Empresa.RazonSocial;
@@ -103,12 +113,13 @@ namespace SIMPLEAPI_Demo
             dte.Exportaciones.Encabezado.Transporte = new ChileSystems.DTE.Engine.Documento.Transporte();
             dte.Exportaciones.Encabezado.Transporte.Aduana = new ChileSystems.DTE.Engine.Documento.Aduana();           
 
-         
+            dte.Exportaciones.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
+           
 
             return dte;
         }
 
-        public void CalculateTotalesExportacion(ChileSystems.DTE.Engine.Documento.DTE dte, double adicional = 0)
+        public void CalculateTotalesExportacion(DTE dte, double adicional = 0)
         {
             int total = (int)Math.Round(dte.Exportaciones.Detalles.Sum(x => x.MontoItem) + dte.Exportaciones.Encabezado.Transporte.Aduana.MontoFlete + dte.Exportaciones.Encabezado.Transporte.Aduana.MontoSeguro + adicional, 0);
             //int total = (int)Math.Round((decimal)dte.Exportaciones.Detalles.Sum(x => x.MontoItem), 0);
@@ -126,7 +137,7 @@ namespace SIMPLEAPI_Demo
            
         }
 
-        public void GenerateDetails(ChileSystems.DTE.Engine.Documento.DTE dte)
+        public void GenerateDetails(DTE dte)
         {
             //DOCUMENTO - DETALLES
             dte.Documento.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
@@ -156,7 +167,7 @@ namespace SIMPLEAPI_Demo
             calculosTotales(dte);
         }
 
-        public void GenerateDetailsExportacion(ChileSystems.DTE.Engine.Documento.DTE dte)
+        public void GenerateDetailsExportacion(DTE dte)
         {
             dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.DetalleExportacion>();
             var detalle = new ChileSystems.DTE.Engine.Documento.DetalleExportacion();
@@ -172,7 +183,7 @@ namespace SIMPLEAPI_Demo
             CalculateTotalesExportacion(dte);
         }
 
-        public void GenerateDetails(ChileSystems.DTE.Engine.Documento.DTE dte, List<ItemBoleta> detalles)
+        public void GenerateDetails(DTE dte, List<ItemBoleta> detalles)
         {
             //DOCUMENTO - DETALLES
             dte.Documento.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
@@ -213,7 +224,7 @@ namespace SIMPLEAPI_Demo
             calculosTotales(dte);
         }
 
-        private void calculosTotales(ChileSystems.DTE.Engine.Documento.DTE dte)
+        private void calculosTotales(DTE dte)
         {
             try
             {
@@ -279,6 +290,8 @@ namespace SIMPLEAPI_Demo
                     /*En las boletas, sólo es necesario informar el monto total*/
                     var neto = (int)Math.Round(totalBrutoAfecto / 1.19, 0, MidpointRounding.AwayFromZero);
                     var iva = (int)Math.Round(neto * 0.19, 0, MidpointRounding.AwayFromZero);
+                    dte.Documento.Encabezado.Totales.IVA = iva;
+                    dte.Documento.Encabezado.Totales.MontoNeto = neto;
                     dte.Documento.Encabezado.Totales.MontoTotal = neto + totalExento + iva;
                 }
             }
@@ -287,54 +300,56 @@ namespace SIMPLEAPI_Demo
         }
 
 
-        public void Referencias(ChileSystems.DTE.Engine.Documento.DTE dte)
+        /// <summary>
+        /// Permite agregar referencias a un DTE
+        /// </summary>
+        /// <param name="dte">Objeto DTE que tendrá una nueva Referencia</param>
+        /// <param name="operacionReferencia">Corresponde a Anulación, Corrige Montos, Corrige Texto o SET de pruebas</param>
+        /// <param name="tipoDocumentoReferencia">Tipo de documento que se desea referenciar, como notas de crédito, ordenes de compra, entre otros.</param>
+        /// <param name="fechaDocReferencia">Fecha del documento de referencia. NO de cuándo se genera la referencia.</param>
+        /// <param name="folioReferencia">Folio del documento de referencia.</param>
+        /// <param name="casoPrueba">N° de caso de prueba</param>        
+        public void Referencias(DTE dte, TipoReferencia.TipoReferenciaEnum operacionReferencia, TipoDTE.TipoReferencia tipoDocumentoReferencia, DateTime? fechaDocReferencia, int? folioReferencia = 0, string casoPrueba = "")
         {
-            dte.Documento.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
-            var c = 1;
-            /*Si estás en modo certificación, necesitas agregar esta referencia*/
-            //REFERENCIA A SET DE PRUEBAS
-            dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+            if (operacionReferencia == TipoReferencia.TipoReferenciaEnum.SetPruebas)  //REFERENCIA A SET DE PRUEBAS
             {
-                CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.NotSet,
-                FechaDocumentoReferencia = DateTime.Now,
-                FolioReferencia = Folio.ToString(),
-                IndicadorGlobal = 0,
-                Numero = c,
-                RazonReferencia = casoPruebas,
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.SetPruebas
-            });
-
-            /*Ejemplo de referencia a una factura exenta*/
-            c++;
-            dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+                if (tipoDocumentoReferencia == TipoDTE.TipoReferencia.BoletaElectronica || tipoDocumentoReferencia == TipoDTE.TipoReferencia.BoletaExentaElectronica)
+                {
+                    dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+                    {
+                        CodigoReferencia = TipoReferencia.TipoReferenciaEnum.SetPruebas,
+                        Numero = dte.Documento.Referencias.Count + 1,
+                        RazonReferencia = casoPrueba,
+                    });
+                }
+                else
+                {
+                    dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+                    {
+                        CodigoReferencia = operacionReferencia,
+                        FechaDocumentoReferencia = fechaDocReferencia.Value,
+                        FolioReferencia = folioReferencia.ToString(),
+                        Numero = dte.Documento.Referencias.Count + 1,
+                        RazonReferencia = casoPrueba,
+                        TipoDocumento = tipoDocumentoReferencia
+                    });
+                }
+            }
+            else 
             {
-                CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
-                FechaDocumentoReferencia = DateTime.Now,
-                //Folio de Referencia = Debe ir el folio de la factura o documento que estás refenciando
-                FolioReferencia = "39",
-                IndicadorGlobal = 0,
-                Numero = c,
-                RazonReferencia = "FACTURA EXENTA ELECTRÓNICA N° 39 del " + dte.Documento.Encabezado.IdentificacionDTE.FechaEmisionString + " - CORRIGE MONTOS",
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.FacturaExentaElectronica
-            });
+                dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+                {
+                    CodigoReferencia = operacionReferencia,
+                    FechaDocumentoReferencia = fechaDocReferencia.Value,
+                    FolioReferencia = folioReferencia.ToString(),
+                    Numero = dte.Documento.Referencias.Count + 1,
+                    RazonReferencia = operacionReferencia == TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia ? "ANULA" : "CORRIGE" + " DOCUMENTO N° " + folioReferencia.ToString(),
+                    TipoDocumento = tipoDocumentoReferencia
+                });
+            }            
         }
 
-        public void ReferenciasBoleta(ChileSystems.DTE.Engine.Documento.DTE dte)
-        {
-            dte.Documento.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
-            var c = 1;
-            /*Si estás en modo certificación, necesitas agregar esta referencia*/
-            // REFERENCIA A SET DE PRUEBAS
-            dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
-            {
-                CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.NotSet,
-                Numero = c,
-                RazonReferencia = casoPruebas,
-
-            });
-        }
-
-        public string TimbrarYFirmarXMLDTE(ChileSystems.DTE.Engine.Documento.DTE dte, string pathResult, string pathCaf)
+        public string TimbrarYFirmarXMLDTE(DTE dte, string pathResult, string pathCaf)
         {
             /*En primer lugar, el documento debe timbrarse con el CAF que descargas desde el SII, es simular
              * cuando antes debías ir con las facturas en papel para que te las timbraran */
@@ -352,7 +367,7 @@ namespace SIMPLEAPI_Demo
             return dte.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, out messageOut, "out\\temp\\", "");
         }
 
-        public string TimbrarYFirmarXMLDTEExportacion(ChileSystems.DTE.Engine.Documento.DTE dte, string pathResult, string pathCaf)
+        public string TimbrarYFirmarXMLDTEExportacion(DTE dte, string pathResult, string pathCaf)
         {
             
             /*En primer lugar, el documento debe timbrarse con el CAF que descargas desde el SII, es simular
@@ -382,15 +397,17 @@ namespace SIMPLEAPI_Demo
         //    throw new Exception(messageResult);
         //}
 
-        public bool Validate(string filePath, SIMPLE_API.Security.Firma.Firma.TipoXML tipo, string schema)
+        public bool Validate(string filePath, Firma.TipoXML tipo, string schema)
         {
             string messageResult = string.Empty;
             if (ChileSystems.DTE.Engine.XML.XmlHandler.ValidateWithSchema(filePath, out messageResult, schema))
                 if (SIMPLE_API.Security.Firma.Firma.VerificarFirma(filePath, tipo, out string messageOutFirma))
                     return true;
                 else
-                    throw new Exception("NO SE HA PODIDO VERIFICAR LA FIRMA DEL ENVÍO");
-            throw new Exception(messageResult);
+                    MessageBox.Show("Error al validar firma electrónica: " + messageResult + "", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        
+            MessageBox.Show("Error: " + messageResult + ". Verifique que contiene la carpeta XML con los XSD para validación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
         }
 
         private string EnsureExists(int tipoDTE, int folio, string pathCaf)
@@ -421,7 +438,7 @@ namespace SIMPLEAPI_Demo
 
         #region Envio
 
-        public ChileSystems.DTE.Engine.Envio.EnvioDTE GenerarEnvioDTEToSII(List<ChileSystems.DTE.Engine.Documento.DTE> dtes, List<string> xmlDtes)
+        public EnvioDTE GenerarEnvioDTEToSII(List<DTE> dtes, List<string> xmlDtes)
         {
             var EnvioSII = new ChileSystems.DTE.Engine.Envio.EnvioDTE();
             EnvioSII.SetDTE = new ChileSystems.DTE.Engine.Envio.SetDTE();
@@ -477,7 +494,7 @@ namespace SIMPLEAPI_Demo
             return EnvioSII;
         }
 
-        public ChileSystems.DTE.Engine.Envio.EnvioDTE GenerarEnvioCliente(ChileSystems.DTE.Engine.Documento.DTE dte, string dteXML)
+        public EnvioDTE GenerarEnvioCliente(DTE dte, string dteXML)
         {
             var EnvioCustomer = new ChileSystems.DTE.Engine.Envio.EnvioDTE();
             EnvioCustomer.SetDTE = new ChileSystems.DTE.Engine.Envio.SetDTE();
@@ -553,7 +570,7 @@ namespace SIMPLEAPI_Demo
 
         #region Boletas Electrónicas
 
-        public ChileSystems.DTE.Engine.Envio.EnvioBoleta GenerarEnvioBoletaDTEToSII(List<ChileSystems.DTE.Engine.Documento.DTE> dtes, List<string> xmlDtes)
+        public EnvioBoleta GenerarEnvioBoletaDTEToSII(List<DTE> dtes, List<string> xmlDtes)
         {
             var EnvioSII = new ChileSystems.DTE.Engine.Envio.EnvioBoleta();
             EnvioSII.SetDTE = new ChileSystems.DTE.Engine.Envio.SetDTE();
@@ -591,7 +608,7 @@ namespace SIMPLEAPI_Demo
             return EnvioSII;
         }
 
-        public ChileSystems.DTE.Engine.RCOF.ConsumoFolios GenerarRCOF(List<ChileSystems.DTE.Engine.Documento.DTE> dtes)
+        public ChileSystems.DTE.Engine.RCOF.ConsumoFolios GenerarRCOF(List<DTE> dtes)
         {
             var rcof = new ChileSystems.DTE.Engine.RCOF.ConsumoFolios();
             //preparo los datos segun los DTE seleccionados
@@ -669,7 +686,7 @@ namespace SIMPLEAPI_Demo
             return rcof;
         }
 
-        public ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas GenerateLibroBoletas(List<ChileSystems.DTE.Engine.Documento.DTE> dtes)
+        public ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas GenerateLibroBoletas(List<DTE> dtes)
         {
             var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas();
 
@@ -739,7 +756,7 @@ namespace SIMPLEAPI_Demo
 
         #region IECV
 
-        public ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta GenerateLibroVentas(ChileSystems.DTE.Engine.Envio.EnvioDTE envioAux)
+        public ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta GenerateLibroVentas(EnvioDTE envioAux)
         {
             var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta();
             libro.EnvioLibro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.EnvioLibro();
@@ -1162,7 +1179,7 @@ namespace SIMPLEAPI_Demo
 
         #region Guias de despacho
 
-        public ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroGuia GenerateLibroGuias(ChileSystems.DTE.Engine.Envio.EnvioDTE envioAux)
+        public ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroGuia GenerateLibroGuias(EnvioDTE envioAux)
         {
             var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroGuia();
             libro.EnvioLibro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.EnvioLibro();
@@ -1223,7 +1240,7 @@ namespace SIMPLEAPI_Demo
 
         #region Utilidades
 
-        public ChileSystems.DTE.Engine.Documento.DTE GenerateRandomDTE(int folio, ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipo)
+        public DTE GenerateRandomDTE(int folio, TipoDTE.DTEType tipo)
         {
             // DOCUMENTO
             Random r = new Random();
@@ -1367,34 +1384,35 @@ namespace SIMPLEAPI_Demo
             return "Error";
         }
 
-        public EstadoDTEResult ConsultarEstadoDTE(bool produccion)
+        public EstadoDTEResult ConsultarEstadoDTE(bool produccion,int receptorRUT, string receptorDV, TipoDTE.DTEType tipo, int folio, DateTime fechaEmision, int total)
         {
             /*Datos del emisor del documento, el rut de la empresa emisora y rut del receptor*/
             /*En el caso de que el RUT termine en k, esta debe ser en mayúscula*/
-            int rutTrabajador = 17096073;
-            string rutTrabajadorDigito = "4";
-            int rutEmpresa = 17096073;
-            string rutEmpresaDigito = "4";
-            int rutReceptor = 17096073;
-            string rutReceptorDigito = "4";
+            int rutTrabajador = configuracion.Certificado.RutCuerpo;
+            string rutTrabajadorDigito = configuracion.Certificado.DV;
+            int rutEmpresa = configuracion.Empresa.RutCuerpo;
+            string rutEmpresaDigito = configuracion.Empresa.DV;
+            int rutReceptor = receptorRUT;
+            string rutReceptorDigito = receptorDV;
 
-            int tipoDte = 33;
-            int folio = 5000;
-            DateTime fechaEmision = DateTime.Now;
-            int total = 15000;
-
+            int tipoDte = (int)tipo;
             string error = string.Empty;
 
             var responseEstadoDTE = EstadoDTE.GetEstado
                 (rutTrabajador, rutTrabajadorDigito, rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
                 tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, produccion, ".\\out\\tkn.dat", configuracion.APIKey, out error);
 
+            if (!string.IsNullOrEmpty(error))
+            {
+                throw new Exception(error);
+            }
+
             return responseEstadoDTE;
         }
 
 
 
-        public string GenerarRespuestaEnvio(List<ChileSystems.DTE.Engine.Documento.DTE> dtes, string estadoDTE)
+        public string GenerarRespuestaEnvio(List<DTE> dtes, string estadoDTE)
         {
             RespuestaDTE response = new RespuestaDTE();
             response.Resultado = new Resultado();
@@ -1472,7 +1490,7 @@ namespace SIMPLEAPI_Demo
             return filepath;
         }
 
-        public string ResponderIntercambio(int estado, ChileSystems.DTE.Engine.Documento.DTE dte, string motivo)
+        public string ResponderIntercambio(int estado, DTE dte, string motivo)
         {
             try
             {
@@ -1519,7 +1537,7 @@ namespace SIMPLEAPI_Demo
             }
         }
 
-        public string ResponderDTE(int estado, ChileSystems.DTE.Engine.Documento.DTE dte, string motivo)
+        public string ResponderDTE(int estado, DTE dte, string motivo)
         {
             try
             {
@@ -1566,7 +1584,7 @@ namespace SIMPLEAPI_Demo
             }
         }
 
-        public string AcuseReciboMercaderias(ChileSystems.DTE.Engine.Documento.DTE dte)
+        public string AcuseReciboMercaderias(DTE dte)
         {
             try
             {
@@ -1637,7 +1655,7 @@ namespace SIMPLEAPI_Demo
             return ms.ToArray();
         }
 
-        public static string TipoDTEString(ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipo)
+        public static string TipoDTEString(TipoDTE.DTEType tipo)
         {
             switch (tipo)
             {
@@ -1652,6 +1670,7 @@ namespace SIMPLEAPI_Demo
             }
             return "Not Set";
         }
+
         #endregion  
 
     }

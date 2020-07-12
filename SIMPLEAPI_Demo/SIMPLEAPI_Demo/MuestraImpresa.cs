@@ -47,9 +47,9 @@ namespace SIMPLEAPI_Demo
             txtOficinaSII.Text = document.OficinaSII;
 
             gridDescuentosRecargos.Rows.Clear();
-            if (document.DescuentosRecargos != null)
-                foreach (var descrec in document.DescuentosRecargos)
-                    gridDescuentosRecargos.Rows.Add(descrec.Item1, descrec.Item2, descrec.Item3);
+            //if (document.DescuentosRecargos != null)
+            //    foreach (var descrec in document.DescuentosRecargos)
+            //        gridDescuentosRecargos.Rows.Add(descrec.Item1, descrec.Item2, descrec.Item3);
 
             txtIva.Value = document.IVA;
             txtNeto.Value = document.Neto;
@@ -57,9 +57,9 @@ namespace SIMPLEAPI_Demo
             txtExento.Value = document.TotalExento;
 
             gridAdicionales.Rows.Clear();
-            if (document.Adicionales != null)
-                foreach (var adicional in document.Adicionales)
-                    gridAdicionales.Rows.Add(adicional.Item1, adicional.Item2);
+            //if (document.Adicionales != null)
+            //    foreach (var adicional in document.Adicionales)
+            //        gridAdicionales.Rows.Add(adicional.Item1, adicional.Item2);
 
             gridDetalles.Rows.Clear();
             if (document.Detalles != null)
@@ -235,17 +235,17 @@ namespace SIMPLEAPI_Demo
                 return;
 
             int aux;
-            document.Adicionales = new List<(string, int)>();
-            foreach (DataGridViewRow row in gridAdicionales.Rows)
-            {
-                if (row.Cells[0].Value != null && row.Cells[1].Value != null)
-                    if (!string.IsNullOrEmpty(row.Cells[0].Value.ToString()) && !string.IsNullOrEmpty(row.Cells[1].Value.ToString()))
-                        if (int.TryParse(row.Cells[1].Value.ToString(), System.Globalization.NumberStyles.Number, null, out aux))
-                            document.Adicionales.Add((row.Cells[0].Value.ToString(), aux));
-            }
+            //document.Adicionales = new List<(string, int)>();
+            //foreach (DataGridViewRow row in gridAdicionales.Rows)
+            //{
+            //    if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+            //        if (!string.IsNullOrEmpty(row.Cells[0].Value.ToString()) && !string.IsNullOrEmpty(row.Cells[1].Value.ToString()))
+            //            if (int.TryParse(row.Cells[1].Value.ToString(), System.Globalization.NumberStyles.Number, null, out aux))
+            //                document.Adicionales.Add((row.Cells[0].Value.ToString(), aux));
+            //}
 
-            if (document.Adicionales.Count == 0)
-                document.Adicionales = null;
+            //if (document.Adicionales.Count == 0)
+            //    document.Adicionales = null;
         }
 
         private void gridDescuentosRecargos_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -265,17 +265,17 @@ namespace SIMPLEAPI_Demo
             if (binding)
                 return;
 
-            foreach (DataGridViewRow row in gridAdicionales.Rows)
-            {
-                if (row.Cells[0].Value != null && row.Cells[1].Value != null && row.Cells[2].Value != null)
-                    if (!string.IsNullOrEmpty(row.Cells[0].Value.ToString()) &&
-                        !string.IsNullOrEmpty(row.Cells[1].Value.ToString()) &&
-                        !string.IsNullOrEmpty(row.Cells[2].Value.ToString()))
-                        document.DescuentosRecargos.Add((row.Cells[0].Value.ToString().First(), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString()));
-            }
+            //foreach (DataGridViewRow row in gridAdicionales.Rows)
+            //{
+            //    if (row.Cells[0].Value != null && row.Cells[1].Value != null && row.Cells[2].Value != null)
+            //        if (!string.IsNullOrEmpty(row.Cells[0].Value.ToString()) &&
+            //            !string.IsNullOrEmpty(row.Cells[1].Value.ToString()) &&
+            //            !string.IsNullOrEmpty(row.Cells[2].Value.ToString()))
+            //            document.DescuentosRecargos.Add((row.Cells[0].Value.ToString().First(), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString()));
+            //}
 
-            if (document.DescuentosRecargos.Count == 0)
-                document.DescuentosRecargos = null;
+            //if (document.DescuentosRecargos.Count == 0)
+            //    document.DescuentosRecargos = null;
         }
 
         private void gridDetalles_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
