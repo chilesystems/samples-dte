@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Impresion.Core.Helpers;
+using System;
 using System.Drawing;
 using System.Linq;
 using ThermalPrinting.Core.Classes;
@@ -66,7 +67,7 @@ namespace ThermalPrinting.Core
                 {
                     Align = PrinterColumn.Aligns.Left,
                     MaxChars = FontInfo.GetMaxChars(row.FontSize, row.IsBold ? FontStyle.Bold : FontStyle.Regular),
-                    Text = _document.Rut
+                    Text = RUTHelper.Format(_document.Rut)
                 };
                 row.AddColumn(col);
 

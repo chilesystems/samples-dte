@@ -55,6 +55,7 @@
     <Compile Include="Classes\PrinterTextColumn.cs" />
     <Compile Include="Classes\PrinterWork.cs" />
     <Compile Include="Helpers\DTETypeNames.cs" />
+    <Compile Include="Helpers\RUTHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="PrintableDocument.cs" />
     <Compile Include="PrintableDocumentDetail.cs" />
