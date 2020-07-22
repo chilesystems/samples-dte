@@ -367,7 +367,7 @@ namespace SIMPLEAPI_Demo
                 Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, DateTime.Now, folios[0], casoPruebas);
             var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
             pathFiles.Add(path);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
@@ -394,7 +394,7 @@ namespace SIMPLEAPI_Demo
                 Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, DateTime.Now, folios[1], casoPruebas);
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
             pathFiles.Add(path);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
@@ -426,7 +426,7 @@ namespace SIMPLEAPI_Demo
                 Afecto = false
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, DateTime.Now, folios[2], casoPruebas);
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
             pathFiles.Add(path);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
@@ -469,7 +469,7 @@ namespace SIMPLEAPI_Demo
             });
 
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, DateTime.Now, folios[3], casoPruebas);
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
             pathFiles.Add(path);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
@@ -485,7 +485,7 @@ namespace SIMPLEAPI_Demo
                 Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, DateTime.Now, folios[4], casoPruebas);
             dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeTextoDocumentoReferencia,
@@ -522,7 +522,7 @@ namespace SIMPLEAPI_Demo
                 Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, DateTime.Now, folios[5], casoPruebas);
             dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
@@ -565,7 +565,7 @@ namespace SIMPLEAPI_Demo
             });
 
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, DateTime.Now, folios[6], casoPruebas);
             dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia,
@@ -592,7 +592,7 @@ namespace SIMPLEAPI_Demo
                 Afecto = true
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, DateTime.Now, folios[7], casoPruebas);
             dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia,
@@ -674,7 +674,7 @@ namespace SIMPLEAPI_Demo
                 TipoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, DateTime.Now, folios[0], casoPruebas);
             path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
             pathFiles.Add(path);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
@@ -700,7 +700,7 @@ namespace SIMPLEAPI_Demo
                 TipoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, DateTime.Now, folios[1], casoPruebas);
             dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
@@ -736,7 +736,7 @@ namespace SIMPLEAPI_Demo
                 TipoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal
             });
             handler.GenerateDetails(dte, detalles);
-            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, null, null, casoPruebas);
+            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, DateTime.Now, folios[2], casoPruebas);
             dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
             {
                 CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia,
