@@ -326,12 +326,11 @@ namespace SIMPLEAPI_Demo
                 {
                     dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
                     {
-                        CodigoReferencia = operacionReferencia,
                         FechaDocumentoReferencia = fechaDocReferencia.Value,
                         FolioReferencia = folioReferencia.ToString(),
                         Numero = dte.Documento.Referencias.Count + 1,
                         RazonReferencia = casoPrueba,
-                        TipoDocumento = tipoDocumentoReferencia
+                        TipoDocumento = TipoDTE.TipoReferencia.SetPruebas
                     });
                 }
             }

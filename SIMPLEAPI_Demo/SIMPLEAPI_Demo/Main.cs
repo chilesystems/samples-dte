@@ -340,7 +340,7 @@ namespace SIMPLEAPI_Demo
 
             string nAtencion = "1092644";
 
-            for (int i = 27; i<= 30; i++) //4 facturas
+            for (int i = 51; i<= 53; i++) //4 facturas
                 folios.Add(i);
             for (int i = 14; i <= 16; i++) // 3 notas de credito
                 folios.Add(i);            
