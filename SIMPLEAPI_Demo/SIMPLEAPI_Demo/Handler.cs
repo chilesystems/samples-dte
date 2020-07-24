@@ -3,11 +3,13 @@ using ChileSystems.DTE.Engine.Enum;
 using ChileSystems.DTE.Engine.Envio;
 using ChileSystems.DTE.Engine.RespuestaEnvio;
 using ChileSystems.DTE.WS.EstadoDTE;
+using ChileSystems.DTE.WS.EstadoEnvio;
 using SIMPLE_API.Security.Firma;
 using SIMPLEAPI_Demo.Clases;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -890,7 +892,7 @@ namespace SIMPLEAPI_Demo
                     tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
 
                 else if (dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
-                    tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica;
+                    tipoDocumento = TipoDTE.DTEType.NotaCreditoElectronica;
 
                 else if (dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
                     tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica;
@@ -1409,6 +1411,19 @@ namespace SIMPLEAPI_Demo
             return responseEstadoDTE;
         }
 
+        public EstadoEnvioResult ConsultarEstadoEnvio(bool produccion, long trackId)
+        {
+            //string signature = SIMPLE_API.Security.Firma.Firma.GetFirmaFromString(xmlEnvio);
+            int rutEmpresa = configuracion.Empresa.RutCuerpo;
+            string rutEmpresaDigito = configuracion.Empresa.DV;
+
+            var responseEstadoEnvio = EstadoEnvio.GetEstado(rutEmpresa, rutEmpresaDigito, trackId, configuracion.Certificado.Nombre, produccion, out string error, ".\\out\\tkn.dat");
+
+            if (!String.IsNullOrEmpty(error))
+                throw new Exception(error);
+
+            return responseEstadoEnvio;
+        }
 
 
         public string GenerarRespuestaEnvio(List<DTE> dtes, string estadoDTE)

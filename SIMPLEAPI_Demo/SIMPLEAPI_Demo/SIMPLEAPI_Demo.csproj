@@ -75,6 +75,12 @@
     <Compile Include="ConfiguracionSistema.Designer.cs">
       <DependentUpon>ConfiguracionSistema.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsultaEstadoEnvioDTE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultaEstadoEnvioDTE.Designer.cs">
+      <DependentUpon>ConsultaEstadoEnvioDTE.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsultaEstadoDTE.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </Compile>
     <EmbeddedResource Include="ConfiguracionSistema.resx">
       <DependentUpon>ConfiguracionSistema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultaEstadoEnvioDTE.resx">
+      <DependentUpon>ConsultaEstadoEnvioDTE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsultaEstadoDTE.resx">
       <DependentUpon>ConsultaEstadoDTE.cs</DependentUpon>

@@ -61,6 +61,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.botonConfiguracion = new System.Windows.Forms.Button();
+            this.botonConsultarEstadoEnvio = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -70,6 +71,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.botonConsultarEstadoEnvio);
             this.groupBox5.Controls.Add(this.botonGetCertificados);
             this.groupBox5.Controls.Add(this.botonValidador);
             this.groupBox5.Controls.Add(this.botonTimbre);
@@ -77,14 +79,14 @@
             this.groupBox5.Controls.Add(this.botonConsultarEstadoDTE);
             this.groupBox5.Location = new System.Drawing.Point(519, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(163, 166);
+            this.groupBox5.Size = new System.Drawing.Size(163, 197);
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Utilidades";
             // 
             // botonGetCertificados
             // 
-            this.botonGetCertificados.Location = new System.Drawing.Point(6, 135);
+            this.botonGetCertificados.Location = new System.Drawing.Point(6, 164);
             this.botonGetCertificados.Name = "botonGetCertificados";
             this.botonGetCertificados.Size = new System.Drawing.Size(151, 23);
             this.botonGetCertificados.TabIndex = 17;
@@ -93,7 +95,7 @@
             // 
             // botonValidador
             // 
-            this.botonValidador.Location = new System.Drawing.Point(6, 106);
+            this.botonValidador.Location = new System.Drawing.Point(6, 135);
             this.botonValidador.Name = "botonValidador";
             this.botonValidador.Size = new System.Drawing.Size(151, 23);
             this.botonValidador.TabIndex = 17;
@@ -103,7 +105,7 @@
             // 
             // botonTimbre
             // 
-            this.botonTimbre.Location = new System.Drawing.Point(6, 77);
+            this.botonTimbre.Location = new System.Drawing.Point(6, 106);
             this.botonTimbre.Name = "botonTimbre";
             this.botonTimbre.Size = new System.Drawing.Size(151, 23);
             this.botonTimbre.TabIndex = 12;
@@ -113,7 +115,7 @@
             // 
             // botonAceptacion
             // 
-            this.botonAceptacion.Location = new System.Drawing.Point(6, 48);
+            this.botonAceptacion.Location = new System.Drawing.Point(6, 77);
             this.botonAceptacion.Name = "botonAceptacion";
             this.botonAceptacion.Size = new System.Drawing.Size(151, 23);
             this.botonAceptacion.TabIndex = 3;
@@ -415,6 +417,16 @@
             this.botonConfiguracion.UseVisualStyleBackColor = true;
             this.botonConfiguracion.Click += new System.EventHandler(this.botonConfiguracion_Click);
             // 
+            // botonConsultarEstadoEnvio
+            // 
+            this.botonConsultarEstadoEnvio.Location = new System.Drawing.Point(6, 48);
+            this.botonConsultarEstadoEnvio.Name = "botonConsultarEstadoEnvio";
+            this.botonConsultarEstadoEnvio.Size = new System.Drawing.Size(151, 23);
+            this.botonConsultarEstadoEnvio.TabIndex = 18;
+            this.botonConsultarEstadoEnvio.Text = "Consultar Estado Envío";
+            this.botonConsultarEstadoEnvio.UseVisualStyleBackColor = true;
+            this.botonConsultarEstadoEnvio.Click += new System.EventHandler(this.botonConsultarEstadoEnvio_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,6 +487,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button botonConfiguracion;
         private System.Windows.Forms.Button botonAgregarRef;
+        private System.Windows.Forms.Button botonConsultarEstadoEnvio;
     }
 }
 

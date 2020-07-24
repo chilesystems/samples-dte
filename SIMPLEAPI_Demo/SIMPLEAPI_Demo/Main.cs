@@ -1361,5 +1361,11 @@ namespace SIMPLEAPI_Demo
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             MessageBox.Show("Documento generado exitosamente en " + path);
         }
+
+        private void botonConsultarEstadoEnvio_Click(object sender, EventArgs e)
+        {
+            ConsultaEstadoEnvioDTE formulario = new ConsultaEstadoEnvioDTE();
+            formulario.ShowDialog();
+        }
     }
 }
