@@ -229,7 +229,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ConsultaEstadoEnvioDTE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Consulta de Estado Avanzado DTE";
+            this.Text = "Consulta de Estado Envío de DTE";
             this.Load += new System.EventHandler(this.ConsultaEstadoAvanzadoDTE_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
