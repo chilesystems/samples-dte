@@ -24,8 +24,6 @@ namespace SIMPLEAPI_Demo
             handler.configuracion.LeerArchivo();
             textRUTEmpresa.Text = handler.configuracion.Empresa.RutCuerpo.ToString();
             textDVEmpresa.Text = handler.configuracion.Empresa.DV;
-            textRUTEnvio.Text = handler.configuracion.Certificado.RutCuerpo.ToString();
-            textDVEnvio.Text = handler.configuracion.Certificado.DV;
         }
 
         private void botonConsultar_Click(object sender, EventArgs e)

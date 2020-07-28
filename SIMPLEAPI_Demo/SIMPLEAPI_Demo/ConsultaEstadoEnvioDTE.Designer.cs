@@ -37,12 +37,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.textTrackID = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textDVEnvio = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textDVEmpresa = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textRUTEnvio = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textRUTEmpresa = new System.Windows.Forms.TextBox();
             this.groupBox3.SuspendLayout();
@@ -73,7 +69,7 @@
             this.groupBox2.Controls.Add(this.radioCertificacion);
             this.groupBox2.Controls.Add(this.radioProduccion);
             this.groupBox2.Controls.Add(this.botonConsultar);
-            this.groupBox2.Location = new System.Drawing.Point(12, 126);
+            this.groupBox2.Location = new System.Drawing.Point(12, 100);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(282, 62);
             this.groupBox2.TabIndex = 22;
@@ -116,17 +112,13 @@
             // 
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.textTrackID);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.textDVEnvio);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.textDVEmpresa);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textRUTEnvio);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textRUTEmpresa);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(282, 108);
+            this.groupBox1.Size = new System.Drawing.Size(282, 82);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del DTE";
@@ -134,7 +126,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 78);
+            this.label10.Location = new System.Drawing.Point(6, 52);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(49, 13);
             this.label10.TabIndex = 21;
@@ -142,28 +134,10 @@
             // 
             // textTrackID
             // 
-            this.textTrackID.Location = new System.Drawing.Point(117, 75);
+            this.textTrackID.Location = new System.Drawing.Point(117, 49);
             this.textTrackID.Name = "textTrackID";
             this.textTrackID.Size = new System.Drawing.Size(112, 20);
             this.textTrackID.TabIndex = 20;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(237, 52);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(10, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "-";
-            // 
-            // textDVEnvio
-            // 
-            this.textDVEnvio.Enabled = false;
-            this.textDVEnvio.Location = new System.Drawing.Point(253, 49);
-            this.textDVEnvio.Name = "textDVEnvio";
-            this.textDVEnvio.ReadOnly = true;
-            this.textDVEnvio.Size = new System.Drawing.Size(23, 20);
-            this.textDVEnvio.TabIndex = 14;
             // 
             // label6
             // 
@@ -182,24 +156,6 @@
             this.textDVEmpresa.ReadOnly = true;
             this.textDVEmpresa.Size = new System.Drawing.Size(23, 20);
             this.textDVEmpresa.TabIndex = 12;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "RUT Envío:";
-            // 
-            // textRUTEnvio
-            // 
-            this.textRUTEnvio.Enabled = false;
-            this.textRUTEnvio.Location = new System.Drawing.Point(117, 49);
-            this.textRUTEnvio.Name = "textRUTEnvio";
-            this.textRUTEnvio.ReadOnly = true;
-            this.textRUTEnvio.Size = new System.Drawing.Size(112, 20);
-            this.textRUTEnvio.TabIndex = 2;
             // 
             // label1
             // 
@@ -252,12 +208,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textTrackID;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textDVEnvio;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textDVEmpresa;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textRUTEnvio;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textRUTEmpresa;
     }
