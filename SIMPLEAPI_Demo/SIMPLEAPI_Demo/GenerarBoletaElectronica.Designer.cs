@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GenerarBoletaElectronica));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -160,11 +159,11 @@
             // 
             // botonAgregarLinea
             // 
-            this.botonAgregarLinea.Image = ((System.Drawing.Image)(resources.GetObject("botonAgregarLinea.Image")));
             this.botonAgregarLinea.Location = new System.Drawing.Point(532, 19);
             this.botonAgregarLinea.Name = "botonAgregarLinea";
             this.botonAgregarLinea.Size = new System.Drawing.Size(39, 30);
             this.botonAgregarLinea.TabIndex = 15;
+            this.botonAgregarLinea.Text = " + ";
             this.botonAgregarLinea.UseVisualStyleBackColor = true;
             this.botonAgregarLinea.Click += new System.EventHandler(this.botonAgregarLinea_Click);
             // 
@@ -314,7 +313,6 @@
             // gridEliminar
             // 
             this.gridEliminar.HeaderText = "Elim.";
-            this.gridEliminar.Image = ((System.Drawing.Image)(resources.GetObject("gridEliminar.Image")));
             this.gridEliminar.Name = "gridEliminar";
             this.gridEliminar.ReadOnly = true;
             this.gridEliminar.Width = 40;

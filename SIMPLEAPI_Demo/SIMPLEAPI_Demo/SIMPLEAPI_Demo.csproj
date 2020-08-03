@@ -149,9 +149,6 @@
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MuestraImpresa.resx">
-      <DependentUpon>MuestraImpresa.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MuestraTimbre.resx">
       <DependentUpon>MuestraTimbre.cs</DependentUpon>
     </EmbeddedResource>
