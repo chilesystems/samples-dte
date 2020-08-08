@@ -1163,7 +1163,7 @@ namespace ThermalPrinting.Core
             }
         }
 
-        public PrinterWork CreateTestWork()
+        public PrinterWork CreateNewWork()
         {
             PrinterWork work = new PrinterWork()
             {
@@ -1171,103 +1171,6 @@ namespace ThermalPrinting.Core
             };
             PrinterRow row;
             PrinterColumn col;
-
-            #region Bold
-            row = new PrinterRow()
-            {
-                TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Truncate,
-                Color = Color.Black,
-                FontSize = 12,
-                IsBold = true
-            };
-
-            col = new PrinterTextColumn()
-            {
-                Align = PrinterColumn.Aligns.Left,
-                MaxChars = 100,
-                Text = "Bold"
-            };
-            row.AddColumn(col);
-
-            work.AddRow(row);
-
-            #region Bold12
-            row = new PrinterRow()
-            {
-                TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Truncate,
-                Color = Color.Black,
-                FontSize = 12,
-                IsBold = true
-            };
-
-            col = new PrinterTextColumn()
-            {
-                Align = PrinterColumn.Aligns.Left,
-                MaxChars = 100,
-                Text = "----5----5----5----5----5----5----5----5----5----5----5----5----5----5"
-            };
-            row.AddColumn(col);
-
-            work.AddRow(row);
-            #endregion
-            #region Bold10
-            row = new PrinterRow()
-            {
-                TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Truncate,
-                Color = Color.Black,
-                FontSize = 10,
-                IsBold = true
-            };
-
-            col = new PrinterTextColumn()
-            {
-                Align = PrinterColumn.Aligns.Left,
-                MaxChars = 100,
-                Text = "----5----5----5----5----5----5----5----5----5----5----5----5----5----5"
-            };
-            row.AddColumn(col);
-
-            work.AddRow(row);
-            #endregion
-            #region Bold8
-            row = new PrinterRow()
-            {
-                TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Truncate,
-                Color = Color.Black,
-                FontSize = 8,
-                IsBold = true
-            };
-
-            col = new PrinterTextColumn()
-            {
-                Align = PrinterColumn.Aligns.Left,
-                MaxChars = 100,
-                Text = "----5----5----5----5----5----5----5----5----5----5----5----5----5----5"
-            };
-            row.AddColumn(col);
-
-            work.AddRow(row);
-            #endregion
-            #region Bold7
-            row = new PrinterRow()
-            {
-                TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Truncate,
-                Color = Color.Black,
-                FontSize = 7,
-                IsBold = true
-            };
-
-            col = new PrinterTextColumn()
-            {
-                Align = PrinterColumn.Aligns.Left,
-                MaxChars = 100,
-                Text = "----5----5----5----5----5----5----5----5----5----5----5----5----5----5"
-            };
-            row.AddColumn(col);
-
-            work.AddRow(row);
-            #endregion
-            #endregion
 
             row = new PrinterRow()
             {
@@ -1284,105 +1187,8 @@ namespace ThermalPrinting.Core
                 Text = "<<-------------------------------->>"
             };
             row.AddColumn(col);
-
             work.AddRow(row);
 
-            #region Regular
-            row = new PrinterRow()
-            {
-                TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Truncate,
-                Color = Color.Black,
-                FontSize = 12,
-                IsBold = false
-            };
-
-            col = new PrinterTextColumn()
-            {
-                Align = PrinterColumn.Aligns.Left,
-                MaxChars = 100,
-                Text = "Regular"
-            };
-            row.AddColumn(col);
-
-            work.AddRow(row);
-
-            #region Regular12
-            row = new PrinterRow()
-            {
-                TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Truncate,
-                Color = Color.Black,
-                FontSize = 12,
-                IsBold = false
-            };
-
-            col = new PrinterTextColumn()
-            {
-                Align = PrinterColumn.Aligns.Left,
-                MaxChars = 100,
-                Text = "----5----5----5----5----5----5----5----5----5----5----5----5----5----5"
-            };
-            row.AddColumn(col);
-
-            work.AddRow(row);
-            #endregion
-            #region Regular10
-            row = new PrinterRow()
-            {
-                TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Truncate,
-                Color = Color.Black,
-                FontSize = 10,
-                IsBold = false
-            };
-
-            col = new PrinterTextColumn()
-            {
-                Align = PrinterColumn.Aligns.Left,
-                MaxChars = 100,
-                Text = "----5----5----5----5----5----5----5----5----5----5----5----5----5----5"
-            };
-            row.AddColumn(col);
-
-            work.AddRow(row);
-            #endregion
-            #region Regular8
-            row = new PrinterRow()
-            {
-                TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Truncate,
-                Color = Color.Black,
-                FontSize = 8,
-                IsBold = false
-            };
-
-            col = new PrinterTextColumn()
-            {
-                Align = PrinterColumn.Aligns.Left,
-                MaxChars = 100,
-                Text = "----5----5----5----5----5----5----5----5----5----5----5----5----5----5"
-            };
-            row.AddColumn(col);
-
-            work.AddRow(row);
-            #endregion
-            #region Regular7
-            row = new PrinterRow()
-            {
-                TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Truncate,
-                Color = Color.Black,
-                FontSize = 7,
-                IsBold = false
-            };
-
-            col = new PrinterTextColumn()
-            {
-                Align = PrinterColumn.Aligns.Left,
-                MaxChars = 100,
-                Text = "----5----5----5----5----5----5----5----5----5----5----5----5----5----5"
-            };
-            row.AddColumn(col);
-
-            work.AddRow(row);
-            #endregion
-            #endregion
             return work;
         }
     }

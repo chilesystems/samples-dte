@@ -67,9 +67,9 @@ namespace ThermalPrinting.Core
                 //var xml = new XmlHandler(filePath);
 
                 doc = new PrintableDocument();
-                doc.RazonSocial = dte.Documento.Encabezado.Emisor.RazonSocial;
+                doc.RazonSocial = string.IsNullOrEmpty(dte.Documento.Encabezado.Emisor.RazonSocial) ? dte.Documento.Encabezado.Emisor.RazonSocialBoleta : dte.Documento.Encabezado.Emisor.RazonSocial;
                 doc.Rut = dte.Documento.Encabezado.Emisor.Rut;
-                doc.Giro = dte.Documento.Encabezado.Emisor.Giro;
+                doc.Giro = string.IsNullOrEmpty(dte.Documento.Encabezado.Emisor.Giro) ? dte.Documento.Encabezado.Emisor.GiroBoleta : dte.Documento.Encabezado.Emisor.Giro;
                 doc.DireccionCasaMatriz = dte.Documento.Encabezado.Emisor.DireccionOrigen;
                 doc.Sucursales = null;
                 doc.Teléfono = null;
@@ -95,7 +95,7 @@ namespace ThermalPrinting.Core
                            new PrintableDocumentDetail()
                            {
                                Cantidad = detalle.Cantidad,
-                               Descripcion = detalle.Descripcion,
+                               Descripcion = string.IsNullOrEmpty(detalle.Nombre) ? detalle.Descripcion : detalle.Nombre,
                                IsExento = detalle.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento,
                                Precio = detalle.Precio,
                                Total = detalle.MontoItem,

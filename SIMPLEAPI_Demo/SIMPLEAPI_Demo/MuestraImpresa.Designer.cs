@@ -814,7 +814,6 @@
             // 
             // btnSelectXml
             // 
-            this.btnSelectXml.Image = ((System.Drawing.Image)(resources.GetObject("btnSelectXml.Image")));
             this.btnSelectXml.Location = new System.Drawing.Point(282, 26);
             this.btnSelectXml.Name = "btnSelectXml";
             this.btnSelectXml.Size = new System.Drawing.Size(28, 25);
