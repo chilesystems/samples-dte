@@ -53,7 +53,7 @@ namespace ThermalPrinting.Core
             #endregion
 
             #region Rut
-            if (!string.IsNullOrEmpty(_document.Rut) && _document.Rut != "17096141-2")
+            if (!string.IsNullOrEmpty(_document.Rut))
             {
                 row = new PrinterRow()
                 {
