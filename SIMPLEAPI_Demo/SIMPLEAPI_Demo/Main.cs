@@ -644,19 +644,25 @@ namespace SIMPLEAPI_Demo
             #endregion
             //MessageBox.Show("Documento generado exitosamente en " + path);
 
-            #region Factura de Compra Electrónica
-            folios.Clear();
-            pathFiles.Clear();
+            
+        }
+
+        private void botonFacturaCompra_Click(object sender, EventArgs e)
+        {
+            List<string> pathFiles = new List<string>();
+            List<int> folios = new List<int>();
+
+            string nAtencion = "1092644";
 
             folios.Add(18); //factura de compra
             folios.Add(32); //NC
             folios.Add(22); //ND    
             nAtencion = "1092647";
 
-            casoPruebas = "CASO " + nAtencion + "-1";
-            dte = handler.GenerateDTE(TipoDTE.DTEType.FacturaCompraElectronica, folios[0]);
+            string casoPruebas = "CASO " + nAtencion + "-1";
+            var dte = handler.GenerateDTE(TipoDTE.DTEType.FacturaElectronica, folios[0]);
 
-            detalles = new List<ItemBoleta>();
+            var detalles = new List<ItemBoleta>();
             detalles.Add(new ItemBoleta()
             {
                 Cantidad = 521,
@@ -675,7 +681,7 @@ namespace SIMPLEAPI_Demo
             });
             handler.GenerateDetails(dte, detalles);
             handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, DateTime.Now, folios[0], casoPruebas);
-            path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
+            var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
             pathFiles.Add(path);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
@@ -752,8 +758,8 @@ namespace SIMPLEAPI_Demo
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             /********************************/
 
-            dtes = new List<ChileSystems.DTE.Engine.Documento.DTE>();
-            xmlDtes = new List<string>();
+            var dtes = new List<ChileSystems.DTE.Engine.Documento.DTE>();
+            var xmlDtes = new List<string>();
             foreach (string pathFile in pathFiles)
             {
                 string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
@@ -761,13 +767,12 @@ namespace SIMPLEAPI_Demo
                 dtes.Add(dteAux);
                 xmlDtes.Add(xml);
             }
-            EnvioSII = handler.GenerarEnvioDTEToSII(dtes, xmlDtes);
+            var EnvioSII = handler.GenerarEnvioDTEToSII(dtes, xmlDtes);
             path = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, true);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);
             MessageBox.Show("Envío generado exitosamente en " + path);
-            #endregion
-        }
 
+        }
         private void botonIntercambio_Click(object sender, EventArgs e)
         {
             openFileDialog1.Multiselect = false;
@@ -1367,5 +1372,7 @@ namespace SIMPLEAPI_Demo
             ConsultaEstadoEnvioDTE formulario = new ConsultaEstadoEnvioDTE();
             formulario.ShowDialog();
         }
+
+        
     }
 }

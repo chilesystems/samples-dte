@@ -770,7 +770,7 @@ namespace SIMPLEAPI_Demo
             {
                 RutEmisor = configuracion.Empresa.RutEmpresa,
                 RutEnvia = configuracion.Certificado.Rut,
-                PeriodoTributario = DateTime.Now.Year + "-0" + DateTime.Now.Month,
+                PeriodoTributario = $"{DateTime.Now.Year}-{(DateTime.Now.Month >= 10 ? DateTime.Now.Month.ToString() : "0" + DateTime.Now.Month)}",
                 FechaResolucion = configuracion.Empresa.FechaResolucion,
                 NumeroResolucion = configuracion.Empresa.NumeroResolucion,
                 TipoOperacion = ChileSystems.DTE.Engine.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Venta,
@@ -929,7 +929,7 @@ namespace SIMPLEAPI_Demo
             {
                 RutEmisor = configuracion.Empresa.RutEmpresa,
                 RutEnvia = configuracion.Certificado.Rut,
-                PeriodoTributario = DateTime.Now.Year + "-0" + DateTime.Now.Month,
+                PeriodoTributario = $"{DateTime.Now.Year}-{(DateTime.Now.Month >= 10 ? DateTime.Now.Month.ToString() : "0" + DateTime.Now.Month)}",
                 FechaResolucion = configuracion.Empresa.FechaResolucion,
                 NumeroResolucion = configuracion.Empresa.NumeroResolucion,
                 TipoOperacion = ChileSystems.DTE.Engine.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Compra,
