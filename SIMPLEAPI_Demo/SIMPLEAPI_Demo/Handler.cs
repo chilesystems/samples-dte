@@ -365,7 +365,7 @@ namespace SIMPLEAPI_Demo
             /*Finalmente, el documento timbrado debe firmarse con el certificado digital*/
             /*Se debe entregar en el argumento del método Firmar, el "FriendlyName" o Nombre descriptivo del certificado*/
             /*Retorna el filePath donde estará el archivo XML timbrado y firmado, listo para ser enviado al SII*/
-            return dte.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, out messageOut, "out\\temp\\", "");
+            return dte.Firmar(configuracion.Certificado.Nombre, out messageOut, "out\\temp\\", "");
         }
 
         public string TimbrarYFirmarXMLDTEExportacion(DTE dte, string pathResult, string pathCaf)
@@ -376,7 +376,6 @@ namespace SIMPLEAPI_Demo
             string messageOut = string.Empty;
             dte.Exportaciones.Timbrar(
                 EnsureExists((int)dte.Exportaciones.Encabezado.IdentificacionDTE.TipoDTE, dte.Exportaciones.Encabezado.IdentificacionDTE.Folio, pathCaf),
-                configuracion.APIKey,
                 out messageOut);
 
             /*El documento timbrado se guarda en la variable pathResult*/
@@ -384,7 +383,7 @@ namespace SIMPLEAPI_Demo
             /*Finalmente, el documento timbrado debe firmarse con el certificado digital*/
             /*Se debe entregar en el argumento del método Firmar, el "FriendlyName" o Nombre descriptivo del certificado*/
             /*Retorna el filePath donde estará el archivo XML timbrado y firmado, listo para ser enviado al SII*/
-            return dte.FirmarExportacion(configuracion.Certificado.Nombre, configuracion.APIKey, out messageOut, "out\\temp\\");
+            return dte.FirmarExportacion(configuracion.Certificado.Nombre, out messageOut, "out\\temp\\");
         }
 
         //public bool ValidateEnvio(string filePath, ChileSystems.DTE.Security.Firma.Firma.TipoXML tipo)
@@ -537,7 +536,7 @@ namespace SIMPLEAPI_Demo
                     string rutEmisorDigito = configuracion.Empresa.RutEmpresa.Substring(configuracion.Empresa.RutEmpresa.Length - 1);
                     string rutEmpresaNumero = configuracion.Empresa.RutEmpresa.Substring(0, configuracion.Empresa.RutEmpresa.Length - 2);
                     string rutEmpresaDigito = configuracion.Empresa.RutEmpresa.Substring(configuracion.Empresa.RutEmpresa.Length - 1);
-                    var responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(rutEmisorNumero, rutEmisorDigito, rutEmpresaNumero, rutEmpresaDigito, filePathEnvio, filePathEnvio, configuracion.Certificado.Nombre, produccion, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
+                    var responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(rutEmisorNumero, rutEmisorDigito, rutEmpresaNumero, rutEmpresaDigito, filePathEnvio, filePathEnvio, configuracion.Certificado.Nombre, produccion, out messageResult, ".\\out\\tkn.dat");
 
                     if (responseEnvio != null || string.IsNullOrEmpty(messageResult))
                     {
@@ -1401,7 +1400,7 @@ namespace SIMPLEAPI_Demo
 
             var responseEstadoDTE = EstadoDTE.GetEstado
                 (rutTrabajador, rutTrabajadorDigito, rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
-                tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, produccion, ".\\out\\tkn.dat", configuracion.APIKey, out error);
+                tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, produccion, ".\\out\\tkn.dat", out error);
 
             if (!string.IsNullOrEmpty(error))
             {
