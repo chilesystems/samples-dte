@@ -2,6 +2,7 @@
 using ChileSystems.DTE.Engine.Enum;
 using ChileSystems.DTE.Engine.Envio;
 using ChileSystems.DTE.Engine.RespuestaEnvio;
+using ChileSystems.DTE.WS.EnvioDTE;
 using ChileSystems.DTE.WS.EstadoDTE;
 using ChileSystems.DTE.WS.EstadoEnvio;
 using SIMPLE_API.Security.Firma;
@@ -439,7 +440,7 @@ namespace SIMPLEAPI_Demo
 
         #region Envio
 
-        public EnvioDTE GenerarEnvioDTEToSII(List<DTE> dtes, List<string> xmlDtes)
+        public ChileSystems.DTE.Engine.Envio.EnvioDTE GenerarEnvioDTEToSII(List<DTE> dtes, List<string> xmlDtes)
         {
             var EnvioSII = new ChileSystems.DTE.Engine.Envio.EnvioDTE();
             EnvioSII.SetDTE = new ChileSystems.DTE.Engine.Envio.SetDTE();
@@ -495,7 +496,7 @@ namespace SIMPLEAPI_Demo
             return EnvioSII;
         }
 
-        public EnvioDTE GenerarEnvioCliente(DTE dte, string dteXML)
+        public ChileSystems.DTE.Engine.Envio.EnvioDTE GenerarEnvioCliente(DTE dte, string dteXML)
         {
             var EnvioCustomer = new ChileSystems.DTE.Engine.Envio.EnvioDTE();
             EnvioCustomer.SetDTE = new ChileSystems.DTE.Engine.Envio.SetDTE();
@@ -524,7 +525,7 @@ namespace SIMPLEAPI_Demo
             return EnvioCustomer;
         }
 
-        public long EnviarEnvioDTEToSII(string filePathEnvio, bool produccion)
+        public long EnviarEnvioDTEToSII(string filePathEnvio, bool produccion, bool nuevaBoleta = false)
         {
             string messageResult = string.Empty;
             long trackID = -1;
@@ -537,7 +538,11 @@ namespace SIMPLEAPI_Demo
                     string rutEmisorDigito = configuracion.Empresa.RutEmpresa.Substring(configuracion.Empresa.RutEmpresa.Length - 1);
                     string rutEmpresaNumero = configuracion.Empresa.RutEmpresa.Substring(0, configuracion.Empresa.RutEmpresa.Length - 2);
                     string rutEmpresaDigito = configuracion.Empresa.RutEmpresa.Substring(configuracion.Empresa.RutEmpresa.Length - 1);
-                    var responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(rutEmisorNumero, rutEmisorDigito, rutEmpresaNumero, rutEmpresaDigito, filePathEnvio, filePathEnvio, configuracion.Certificado.Nombre, produccion, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
+                    
+                    EnvioDTEResult responseEnvio = new EnvioDTEResult();
+
+                    if(nuevaBoleta) responseEnvio = ChileSystems.DTE.WS.EnvioBoleta.EnvioBoleta.Enviar(rutEmisorNumero, rutEmisorDigito, rutEmpresaNumero, rutEmpresaDigito, filePathEnvio, filePathEnvio, configuracion.Certificado.Nombre, produccion, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
+                    else responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(rutEmisorNumero, rutEmisorDigito, rutEmpresaNumero, rutEmpresaDigito, filePathEnvio, filePathEnvio, configuracion.Certificado.Nombre, produccion, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
 
                     if (responseEnvio != null || string.IsNullOrEmpty(messageResult))
                     {
@@ -757,7 +762,7 @@ namespace SIMPLEAPI_Demo
 
         #region IECV
 
-        public ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta GenerateLibroVentas(EnvioDTE envioAux)
+        public ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta GenerateLibroVentas(ChileSystems.DTE.Engine.Envio.EnvioDTE envioAux)
         {
             var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta();
             libro.EnvioLibro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.EnvioLibro();
@@ -1180,7 +1185,7 @@ namespace SIMPLEAPI_Demo
 
         #region Guias de despacho
 
-        public ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroGuia GenerateLibroGuias(EnvioDTE envioAux)
+        public ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroGuia GenerateLibroGuias(ChileSystems.DTE.Engine.Envio.EnvioDTE envioAux)
         {
             var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroGuia();
             libro.EnvioLibro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.EnvioLibro();

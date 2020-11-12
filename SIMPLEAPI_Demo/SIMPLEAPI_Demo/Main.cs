@@ -33,11 +33,9 @@ namespace SIMPLEAPI_Demo
 
         private void botonGenerarDocumento_Click(object sender, EventArgs e)
         {
-            var dte = handler.GenerateDTE(ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica, 105);
+            var dte = handler.GenerateDTE(ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica, 105);
             handler.GenerateDetails(dte);
             var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
-
-            string contenido = dte.ToString();
 
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             MessageBox.Show("Documento generado exitosamente en " + path);
@@ -1373,6 +1371,18 @@ namespace SIMPLEAPI_Demo
             formulario.ShowDialog();
         }
 
-        
+        private void botonObtenerToken_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void botonEnviarAlSIIBoletas_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Multiselect = false;
+            openFileDialog1.ShowDialog();
+            string pathFile = openFileDialog1.FileName;
+            long trackId = handler.EnviarEnvioDTEToSII(pathFile, radioProduccion.Checked, true);
+            MessageBox.Show("Sobre enviado correctamente. TrackID: " + trackId.ToString());
+        }
     }
 }
