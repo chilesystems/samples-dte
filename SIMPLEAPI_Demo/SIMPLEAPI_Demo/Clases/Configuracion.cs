@@ -20,6 +20,11 @@ namespace SIMPLEAPI_Demo.Clases
             File.WriteAllText("configuracion.json", JsonConvert.SerializeObject(this), Encoding.GetEncoding("ISO-8859-1"));
         }
 
+        public bool VerificarCarpetasIniciales()
+        {
+            return Directory.Exists("out\\temp") && Directory.Exists("out\\caf") && Directory.Exists("XML"); 
+        }
+
         public bool LeerArchivo()
         {
             try

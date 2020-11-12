@@ -51,7 +51,6 @@
             this.botonAnularDocumento = new System.Windows.Forms.Button();
             this.botonGenerarRCOF = new System.Windows.Forms.Button();
             this.botonGenerarBoleta = new System.Windows.Forms.Button();
-            this.botonLibroBoletas = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.botonAgregarRef = new System.Windows.Forms.Button();
             this.botonGenerarEnvio = new System.Windows.Forms.Button();
@@ -255,17 +254,16 @@
             this.groupBox2.Controls.Add(this.botonAnularDocumento);
             this.groupBox2.Controls.Add(this.botonGenerarRCOF);
             this.groupBox2.Controls.Add(this.botonGenerarBoleta);
-            this.groupBox2.Controls.Add(this.botonLibroBoletas);
             this.groupBox2.Location = new System.Drawing.Point(350, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(163, 197);
+            this.groupBox2.Size = new System.Drawing.Size(163, 168);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Boletas Electrónicas";
             // 
             // botonGenerarEnvioBoleta
             // 
-            this.botonGenerarEnvioBoleta.Location = new System.Drawing.Point(6, 164);
+            this.botonGenerarEnvioBoleta.Location = new System.Drawing.Point(6, 135);
             this.botonGenerarEnvioBoleta.Name = "botonGenerarEnvioBoleta";
             this.botonGenerarEnvioBoleta.Size = new System.Drawing.Size(151, 23);
             this.botonGenerarEnvioBoleta.TabIndex = 5;
@@ -312,16 +310,6 @@
             this.botonGenerarBoleta.Text = "Generar Documento";
             this.botonGenerarBoleta.UseVisualStyleBackColor = true;
             this.botonGenerarBoleta.Click += new System.EventHandler(this.botonGenerarBoleta_Click);
-            // 
-            // botonLibroBoletas
-            // 
-            this.botonLibroBoletas.Location = new System.Drawing.Point(6, 135);
-            this.botonLibroBoletas.Name = "botonLibroBoletas";
-            this.botonLibroBoletas.Size = new System.Drawing.Size(151, 23);
-            this.botonLibroBoletas.TabIndex = 2;
-            this.botonLibroBoletas.Text = "Libro de Boletas";
-            this.botonLibroBoletas.UseVisualStyleBackColor = true;
-            this.botonLibroBoletas.Click += new System.EventHandler(this.botonLibroBoletas_Click);
             // 
             // groupBox1
             // 
@@ -503,7 +491,6 @@
         private System.Windows.Forms.Button botonAnularDocumento;
         private System.Windows.Forms.Button botonGenerarRCOF;
         private System.Windows.Forms.Button botonGenerarBoleta;
-        private System.Windows.Forms.Button botonLibroBoletas;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button botonEnviarSii;
         private System.Windows.Forms.Button botonGenerarEnvio;
