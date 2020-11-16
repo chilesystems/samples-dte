@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SIMPLE_API.Enum.Ambiente;
 
 namespace SIMPLEAPI_Demo
 {
@@ -31,7 +32,7 @@ namespace SIMPLEAPI_Demo
             long trackId = long.Parse(textTrackID.Text);
             try
             {
-                var responseEstadoDTE = handler.ConsultarEstadoEnvio(radioProduccion.Checked, trackId);
+                var responseEstadoDTE = handler.ConsultarEstadoEnvio(radioProduccion.Checked ? AmbienteEnum.Produccion : AmbienteEnum.Certificacion, trackId);
                 textRespuesta.Text = responseEstadoDTE.ResponseXml;
             }
             catch (Exception ex)

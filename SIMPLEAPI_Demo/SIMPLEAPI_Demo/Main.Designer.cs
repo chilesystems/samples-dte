@@ -62,7 +62,6 @@
             this.botonFacturaCompra = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.botonConfiguracion = new System.Windows.Forms.Button();
-            this.botonObtenerToken = new System.Windows.Forms.Button();
             this.botonEnviarAlSIIBoletas = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -249,6 +248,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.botonEnviarAlSIIBoletas);
             this.groupBox2.Controls.Add(this.botonGenerarEnvioBoleta);
             this.groupBox2.Controls.Add(this.botonRebajaDocumento);
             this.groupBox2.Controls.Add(this.botonAnularDocumento);
@@ -256,7 +256,7 @@
             this.groupBox2.Controls.Add(this.botonGenerarBoleta);
             this.groupBox2.Location = new System.Drawing.Point(350, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(163, 168);
+            this.groupBox2.Size = new System.Drawing.Size(163, 197);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Boletas Electrónicas";
@@ -428,19 +428,9 @@
             this.botonConfiguracion.UseVisualStyleBackColor = true;
             this.botonConfiguracion.Click += new System.EventHandler(this.botonConfiguracion_Click);
             // 
-            // botonObtenerToken
-            // 
-            this.botonObtenerToken.Location = new System.Drawing.Point(350, 215);
-            this.botonObtenerToken.Name = "botonObtenerToken";
-            this.botonObtenerToken.Size = new System.Drawing.Size(151, 23);
-            this.botonObtenerToken.TabIndex = 23;
-            this.botonObtenerToken.Text = "Obtener Token";
-            this.botonObtenerToken.UseVisualStyleBackColor = true;
-            this.botonObtenerToken.Click += new System.EventHandler(this.botonObtenerToken_Click);
-            // 
             // botonEnviarAlSIIBoletas
             // 
-            this.botonEnviarAlSIIBoletas.Location = new System.Drawing.Point(350, 244);
+            this.botonEnviarAlSIIBoletas.Location = new System.Drawing.Point(6, 164);
             this.botonEnviarAlSIIBoletas.Name = "botonEnviarAlSIIBoletas";
             this.botonEnviarAlSIIBoletas.Size = new System.Drawing.Size(151, 23);
             this.botonEnviarAlSIIBoletas.TabIndex = 24;
@@ -453,8 +443,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 299);
-            this.Controls.Add(this.botonEnviarAlSIIBoletas);
-            this.Controls.Add(this.botonObtenerToken);
             this.Controls.Add(this.botonConfiguracion);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -512,7 +500,6 @@
         private System.Windows.Forms.Button botonAgregarRef;
         private System.Windows.Forms.Button botonConsultarEstadoEnvio;
         private System.Windows.Forms.Button botonFacturaCompra;
-        private System.Windows.Forms.Button botonObtenerToken;
         private System.Windows.Forms.Button botonEnviarAlSIIBoletas;
     }
 }

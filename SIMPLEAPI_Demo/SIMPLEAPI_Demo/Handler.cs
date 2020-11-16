@@ -6,6 +6,7 @@ using ChileSystems.DTE.WS.EnvioDTE;
 using ChileSystems.DTE.WS.EstadoDTE;
 using ChileSystems.DTE.WS.EstadoEnvio;
 using SIMPLE_API.Security.Firma;
+using SIMPLE_API.WS;
 using SIMPLEAPI_Demo.Clases;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SIMPLE_API.Enum.Ambiente;
 
 namespace SIMPLEAPI_Demo
 {
@@ -525,7 +527,7 @@ namespace SIMPLEAPI_Demo
             return EnvioCustomer;
         }
 
-        public long EnviarEnvioDTEToSII(string filePathEnvio, bool produccion, bool nuevaBoleta = false)
+        public long EnviarEnvioDTEToSII(string filePathEnvio, AmbienteEnum ambiente, bool nuevaBoleta = false)
         {
             string messageResult = string.Empty;
             long trackID = -1;
@@ -533,16 +535,11 @@ namespace SIMPLEAPI_Demo
             try
             {
                 for (i = 1; i <= 5; i++)
-                {
-                    string rutEmisorNumero = configuracion.Empresa.RutEmpresa.Substring(0, configuracion.Empresa.RutEmpresa.Length - 2);
-                    string rutEmisorDigito = configuracion.Empresa.RutEmpresa.Substring(configuracion.Empresa.RutEmpresa.Length - 1);
-                    string rutEmpresaNumero = configuracion.Empresa.RutEmpresa.Substring(0, configuracion.Empresa.RutEmpresa.Length - 2);
-                    string rutEmpresaDigito = configuracion.Empresa.RutEmpresa.Substring(configuracion.Empresa.RutEmpresa.Length - 1);
-                    
+                {                    
                     EnvioDTEResult responseEnvio = new EnvioDTEResult();
 
-                    if(nuevaBoleta) responseEnvio = ChileSystems.DTE.WS.EnvioBoleta.EnvioBoleta.Enviar(rutEmisorNumero, rutEmisorDigito, rutEmpresaNumero, rutEmpresaDigito, filePathEnvio, filePathEnvio, configuracion.Certificado.Nombre, produccion, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
-                    else responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(rutEmisorNumero, rutEmisorDigito, rutEmpresaNumero, rutEmpresaDigito, filePathEnvio, filePathEnvio, configuracion.Certificado.Nombre, produccion, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
+                    if(nuevaBoleta) responseEnvio = ChileSystems.DTE.WS.EnvioBoleta.EnvioBoleta.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
+                    else responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
 
                     if (responseEnvio != null || string.IsNullOrEmpty(messageResult))
                     {
@@ -1361,7 +1358,7 @@ namespace SIMPLEAPI_Demo
             return dte;
         }
 
-        public string EnviarAceptacionReclamo(int tipoDocumento, int folio, string accion, string rutProveedor, int dvProveedor, bool produccion)
+        public string EnviarAceptacionReclamo(int tipoDocumento, int folio, string accion, string rutProveedor, int dvProveedor, AmbienteEnum ambiente)
         {
             string messageResult = string.Empty;
             int trackID = -1;
@@ -1371,7 +1368,7 @@ namespace SIMPLEAPI_Demo
                 for (i = 1; i <= 5; i++)
                 {
                     var responseEnvio = ChileSystems.DTE.WS.AceptacionReclamo.AceptacionReclamoWS.NotificarAceptacionReclamo
-                        (rutProveedor, dvProveedor.ToString(), tipoDocumento, folio, accion, configuracion.Certificado.Nombre, produccion, ".\\out\\tkn.dat", configuracion.APIKey);
+                        (rutProveedor, dvProveedor.ToString(), tipoDocumento, folio, accion, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", configuracion.APIKey);
 
                     if (responseEnvio != null && string.IsNullOrEmpty(messageResult))
                     {
@@ -1390,10 +1387,8 @@ namespace SIMPLEAPI_Demo
             return "Error";
         }
 
-        public EstadoDTEResult ConsultarEstadoDTE(bool produccion,int receptorRUT, string receptorDV, TipoDTE.DTEType tipo, int folio, DateTime fechaEmision, int total)
+        public EstadoDTEResult ConsultarEstadoDTE(AmbienteEnum ambiente, int receptorRUT, string receptorDV, TipoDTE.DTEType tipo, int folio, DateTime fechaEmision, int total)
         {
-            /*Datos del emisor del documento, el rut de la empresa emisora y rut del receptor*/
-            /*En el caso de que el RUT termine en k, esta debe ser en mayúscula*/
             int rutTrabajador = configuracion.Certificado.RutCuerpo;
             string rutTrabajadorDigito = configuracion.Certificado.DV;
             int rutEmpresa = configuracion.Empresa.RutCuerpo;
@@ -1404,9 +1399,30 @@ namespace SIMPLEAPI_Demo
             int tipoDte = (int)tipo;
             string error = string.Empty;
 
-            var responseEstadoDTE = EstadoDTE.GetEstado
-                (rutTrabajador, rutTrabajadorDigito, rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
-                tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, produccion, ".\\out\\tkn.dat", configuracion.APIKey, out error);
+            EstadoDTEResult responseEstadoDTE = new EstadoDTEResult();
+
+
+            if (tipo == TipoDTE.DTEType.BoletaElectronica || tipo == TipoDTE.DTEType.BoletaElectronicaExenta)
+            {
+                HttpServices httpServices = new HttpServices();
+                string response = httpServices.WSGetEstadoDTE(rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
+                   tipoDte, folio, fechaEmision, total, ambiente, ".\\out\\tkn.dat", configuracion.Certificado.Nombre, string.Empty, out error);
+                //responseEstadoDTE = new EstadoDTEResult() {}
+                dynamic respuesta = Newtonsoft.Json.JsonConvert.DeserializeObject(response);
+                responseEstadoDTE = new EstadoDTEResult()
+                {
+                    GLosa_ERR_CODE = respuesta.codigo,
+                    Estado = respuesta.codigo,
+                    GlosaEstado = respuesta.descripcion,
+                    ResponseXml = respuesta.ToString()
+                };
+            }
+            else 
+            {
+                responseEstadoDTE = EstadoDTE.GetEstado
+                   (rutTrabajador, rutTrabajadorDigito, rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
+                   tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", configuracion.APIKey, out error);
+            }
 
             if (!string.IsNullOrEmpty(error))
             {
@@ -1416,13 +1432,13 @@ namespace SIMPLEAPI_Demo
             return responseEstadoDTE;
         }
 
-        public EstadoEnvioResult ConsultarEstadoEnvio(bool produccion, long trackId)
+        public EstadoEnvioResult ConsultarEstadoEnvio(AmbienteEnum ambiente, long trackId)
         {
             //string signature = SIMPLE_API.Security.Firma.Firma.GetFirmaFromString(xmlEnvio);
             int rutEmpresa = configuracion.Empresa.RutCuerpo;
             string rutEmpresaDigito = configuracion.Empresa.DV;
 
-            var responseEstadoEnvio = EstadoEnvio.GetEstado(rutEmpresa, rutEmpresaDigito, trackId, configuracion.Certificado.Nombre, produccion, out string error, ".\\out\\tkn.dat");
+            var responseEstadoEnvio = EstadoEnvio.GetEstado(rutEmpresa, rutEmpresaDigito, trackId, configuracion.Certificado.Nombre, ambiente, out string error, ".\\out\\tkn.dat");
 
             if (!String.IsNullOrEmpty(error))
                 throw new Exception(error);

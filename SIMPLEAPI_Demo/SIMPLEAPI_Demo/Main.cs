@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SIMPLE_API.Enum.Ambiente;
 
 namespace SIMPLEAPI_Demo
 {
@@ -83,7 +84,7 @@ namespace SIMPLEAPI_Demo
             if (result == DialogResult.OK)
             {
                 string pathFile = openFileDialog1.FileName;
-                long trackId = handler.EnviarEnvioDTEToSII(pathFile, radioProduccion.Checked);
+                long trackId = handler.EnviarEnvioDTEToSII(pathFile, radioProduccion.Checked ? AmbienteEnum.Produccion : AmbienteEnum.Certificacion);
                 MessageBox.Show("Sobre enviado correctamente. TrackID: " + trackId.ToString());
             }
                 
@@ -140,7 +141,7 @@ namespace SIMPLEAPI_Demo
             if (result == DialogResult.OK)
             {
                 string pathFile = openFileDialog1.FileName;
-                handler.EnviarEnvioDTEToSII(pathFile, radioProduccion.Checked);
+                handler.EnviarEnvioDTEToSII(pathFile,  radioProduccion.Checked ? SIMPLE_API.Enum.Ambiente.AmbienteEnum.Produccion : SIMPLE_API.Enum.Ambiente.AmbienteEnum.Certificacion);
             }
                 
         }
@@ -304,7 +305,7 @@ namespace SIMPLEAPI_Demo
             string accion = "ACD";
             string rutProveedor = "88888888";
             int dvProveedor = 8;
-            var respuesta = handler.EnviarAceptacionReclamo(tipoDocumento, folio, accion, rutProveedor, dvProveedor, true);
+            var respuesta = handler.EnviarAceptacionReclamo(tipoDocumento, folio, accion, rutProveedor, dvProveedor, radioCertificacion.Checked ? AmbienteEnum.Certificacion : AmbienteEnum.Produccion);
             MessageBox.Show(respuesta);
         }
         private void botonConsultarEstadoDTE_Click(object sender, EventArgs e)
@@ -1384,7 +1385,7 @@ namespace SIMPLEAPI_Demo
             if (result == DialogResult.OK)
             {
                 string pathFile = openFileDialog1.FileName;
-                long trackId = handler.EnviarEnvioDTEToSII(pathFile, radioProduccion.Checked, true);
+                long trackId = handler.EnviarEnvioDTEToSII(pathFile, radioProduccion.Checked ? AmbienteEnum.Produccion : AmbienteEnum.Certificacion, true);
                 MessageBox.Show("Sobre enviado correctamente. TrackID: " + trackId.ToString());
             }
           
