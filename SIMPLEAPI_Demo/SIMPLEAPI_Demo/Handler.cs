@@ -1399,23 +1399,14 @@ namespace SIMPLEAPI_Demo
             int tipoDte = (int)tipo;
             string error = string.Empty;
 
-            EstadoDTEResult responseEstadoDTE = new EstadoDTEResult();
-
+            EstadoDTEResult responseEstadoDTE;
 
             if (tipo == TipoDTE.DTEType.BoletaElectronica || tipo == TipoDTE.DTEType.BoletaElectronicaExenta)
             {
-                HttpServices httpServices = new HttpServices();
-                string response = httpServices.WSGetEstadoDTE(rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
-                   tipoDte, folio, fechaEmision, total, ambiente, ".\\out\\tkn.dat", configuracion.Certificado.Nombre, string.Empty, out error);
-                //responseEstadoDTE = new EstadoDTEResult() {}
-                dynamic respuesta = Newtonsoft.Json.JsonConvert.DeserializeObject(response);
-                responseEstadoDTE = new EstadoDTEResult()
-                {
-                    GLosa_ERR_CODE = respuesta.codigo,
-                    Estado = respuesta.codigo,
-                    GlosaEstado = respuesta.descripcion,
-                    ResponseXml = respuesta.ToString()
-                };
+                responseEstadoDTE = EstadoDTE.GetEstadoBoleta
+                 (rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
+                 tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", configuracion.APIKey, out error);
+               
             }
             else 
             {
@@ -1438,7 +1429,9 @@ namespace SIMPLEAPI_Demo
             int rutEmpresa = configuracion.Empresa.RutCuerpo;
             string rutEmpresaDigito = configuracion.Empresa.DV;
 
-            var responseEstadoEnvio = EstadoEnvio.GetEstado(rutEmpresa, rutEmpresaDigito, trackId, configuracion.Certificado.Nombre, ambiente, out string error, ".\\out\\tkn.dat");
+            string error = "";
+            EstadoEnvioResult responseEstadoEnvio = EstadoEnvio.GetEstado(rutEmpresa, rutEmpresaDigito, trackId, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out error, ".\\out\\tkn.dat");
+
 
             if (!String.IsNullOrEmpty(error))
                 throw new Exception(error);
@@ -1446,6 +1439,21 @@ namespace SIMPLEAPI_Demo
             return responseEstadoEnvio;
         }
 
+        public EstadoEnvioBoletaResult ConsultarEstadoEnvioBoleta(AmbienteEnum ambiente, long trackId)
+        {
+            //string signature = SIMPLE_API.Security.Firma.Firma.GetFirmaFromString(xmlEnvio);
+            int rutEmpresa = configuracion.Empresa.RutCuerpo;
+            string rutEmpresaDigito = configuracion.Empresa.DV;
+
+            string error = "";
+            var responseEstadoEnvio = EstadoEnvio.GetEstadoEnvioBoleta(rutEmpresa, rutEmpresaDigito, trackId, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out error, ".\\out\\tkn.dat");
+
+
+            if (!String.IsNullOrEmpty(error))
+                throw new Exception(error);
+
+            return responseEstadoEnvio;
+        }
 
         public string GenerarRespuestaEnvio(List<DTE> dtes, string estadoDTE)
         {
