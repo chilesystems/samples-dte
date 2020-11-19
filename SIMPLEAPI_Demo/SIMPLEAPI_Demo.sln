@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Impresion.Core", "Impresion
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Impresion.Utils", "Impresion.Utils\Impresion.Utils.csproj", "{F44CF8CA-8C67-4A87-A6F2-3997FCB03414}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIMPLE_API", "..\..\..\SIMPLE_API\SIMPLE_API\SIMPLE_API.csproj", "{38622419-3D40-422A-90E7-BE5F132B15EC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{F44CF8CA-8C67-4A87-A6F2-3997FCB03414}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F44CF8CA-8C67-4A87-A6F2-3997FCB03414}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F44CF8CA-8C67-4A87-A6F2-3997FCB03414}.Release|Any CPU.Build.0 = Release|Any CPU
-		{38622419-3D40-422A-90E7-BE5F132B15EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38622419-3D40-422A-90E7-BE5F132B15EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38622419-3D40-422A-90E7-BE5F132B15EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38622419-3D40-422A-90E7-BE5F132B15EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
