@@ -1366,7 +1366,7 @@ namespace SIMPLEAPI_Demo
                 for (i = 1; i <= 5; i++)
                 {
                     var responseEnvio = ChileSystems.DTE.WS.AceptacionReclamo.AceptacionReclamoWS.NotificarAceptacionReclamo
-                        (rutProveedor, dvProveedor.ToString(), tipoDocumento, folio, accion, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", configuracion.APIKey);
+                        (rutProveedor, dvProveedor.ToString(), tipoDocumento, folio, accion, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat");
 
                     if (responseEnvio != null && string.IsNullOrEmpty(messageResult))
                     {

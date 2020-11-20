@@ -630,7 +630,7 @@ namespace SIMPLEAPI_Demo
             #region Libro de VENTAS
 
             var libroVentas = handler.GenerateLibroVentas(EnvioSII);
-            path = libroVentas.Firmar(configuracion.Certificado.Nombre, "out\\temp\\", configuracion.APIKey);
+            path = libroVentas.Firmar(configuracion.Certificado.Nombre, "out\\temp\\");
 
             MessageBox.Show("Libro ventas guardado en " + path);
             #endregion
@@ -638,7 +638,7 @@ namespace SIMPLEAPI_Demo
             #region Libro de COMPRAS
 
             var libroCompras = handler.GenerateLibroCompras();
-            path = libroCompras.Firmar(configuracion.Certificado.Nombre, "out\\temp\\", configuracion.APIKey);
+            path = libroCompras.Firmar(configuracion.Certificado.Nombre, "out\\temp\\");
 
             MessageBox.Show("Libro compras guardado en " + path);
             #endregion
@@ -1321,7 +1321,7 @@ namespace SIMPLEAPI_Demo
                 string xml = File.ReadAllText(openFileDialog1.FileName, Encoding.GetEncoding("ISO-8859-1"));
                 var envio = ChileSystems.DTE.Engine.XML.XmlHandler.TryDeserializeFromString<ChileSystems.DTE.Engine.Envio.EnvioDTE>(xml);
                 var libroGuias = handler.GenerateLibroGuias(envio);
-                var filePathArchivo = libroGuias.Firmar(configuracion.Certificado.Nombre, "out\\temp\\", configuracion.APIKey);
+                var filePathArchivo = libroGuias.Firmar(configuracion.Certificado.Nombre, "out\\temp\\");
                 MessageBox.Show("Libro de Guías Generado correctamente en " + filePathArchivo);
             }
         }
