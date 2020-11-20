@@ -359,8 +359,7 @@ namespace SIMPLEAPI_Demo
              * cuando antes debías ir con las facturas en papel para que te las timbraran */
             string messageOut = string.Empty;
             dte.Documento.Timbrar(
-                EnsureExists((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, dte.Documento.Encabezado.IdentificacionDTE.Folio, pathCaf), 
-                configuracion.APIKey, 
+                EnsureExists((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, dte.Documento.Encabezado.IdentificacionDTE.Folio, pathCaf),  
                 out messageOut);
 
             /*El documento timbrado se guarda en la variable pathResult*/
@@ -537,8 +536,8 @@ namespace SIMPLEAPI_Demo
                 {                    
                     EnvioDTEResult responseEnvio = new EnvioDTEResult();
 
-                    if(nuevaBoleta) responseEnvio = ChileSystems.DTE.WS.EnvioBoleta.EnvioBoleta.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
-                    else responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
+                    if(nuevaBoleta) responseEnvio = ChileSystems.DTE.WS.EnvioBoleta.EnvioBoleta.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, out messageResult, ".\\out\\tkn.dat");
+                    else responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, out messageResult, ".\\out\\tkn.dat");
 
                     if (responseEnvio != null || string.IsNullOrEmpty(messageResult))
                     {
@@ -1404,14 +1403,14 @@ namespace SIMPLEAPI_Demo
             {
                 responseEstadoDTE = EstadoDTE.GetEstadoBoleta
                  (rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
-                 tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", configuracion.APIKey, out error);
+                 tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", out error);
                
             }
             else 
             {
                 responseEstadoDTE = EstadoDTE.GetEstado
                    (rutTrabajador, rutTrabajadorDigito, rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
-                   tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", configuracion.APIKey, out error);
+                   tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", out error);
             }
 
             if (!string.IsNullOrEmpty(error))
@@ -1429,7 +1428,7 @@ namespace SIMPLEAPI_Demo
             string rutEmpresaDigito = configuracion.Empresa.DV;
 
             string error = "";
-            EstadoEnvioResult responseEstadoEnvio = EstadoEnvio.GetEstado(rutEmpresa, rutEmpresaDigito, trackId, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out error, ".\\out\\tkn.dat");
+            EstadoEnvioResult responseEstadoEnvio = EstadoEnvio.GetEstado(rutEmpresa, rutEmpresaDigito, trackId, configuracion.Certificado.Nombre, ambiente, out error, ".\\out\\tkn.dat");
 
 
             if (!String.IsNullOrEmpty(error))
@@ -1445,7 +1444,7 @@ namespace SIMPLEAPI_Demo
             string rutEmpresaDigito = configuracion.Empresa.DV;
 
             string error = "";
-            var responseEstadoEnvio = EstadoEnvio.GetEstadoEnvioBoleta(rutEmpresa, rutEmpresaDigito, trackId, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out error, ".\\out\\tkn.dat");
+            var responseEstadoEnvio = EstadoEnvio.GetEstadoEnvioBoleta(rutEmpresa, rutEmpresaDigito, trackId, configuracion.Certificado.Nombre, ambiente, out error, ".\\out\\tkn.dat");
 
 
             if (!String.IsNullOrEmpty(error))
