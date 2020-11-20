@@ -222,6 +222,10 @@
     <None Include="Resources\Imprimir.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\SIMPLE_API\SIMPLE_API\SIMPLE_API.csproj">
+      <Project>{38622419-3d40-422a-90e7-be5f132b15ec}</Project>
+      <Name>SIMPLE_API</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Impresion.Core\Impresion.Core.csproj">
       <Project>{B30F866F-30D2-42D8-AAF4-BF1F846288EA}</Project>
       <Name>Impresion.Core</Name>
