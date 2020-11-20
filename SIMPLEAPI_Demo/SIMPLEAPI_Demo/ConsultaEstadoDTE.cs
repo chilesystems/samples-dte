@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SIMPLE_API.Enum.Ambiente;
 
 namespace SIMPLEAPI_Demo
 {
@@ -25,10 +26,10 @@ namespace SIMPLEAPI_Demo
             string dvReceptor = textDVReceptor.Text;
             int folio = int.Parse(textFolio.Text);
             int total = int.Parse(textTotal.Text);
-            Enum.TryParse(comboTipoDTE.SelectedItem.ToString(), out TipoDTE.DTEType tipoDTE);
+            Enum.TryParse(comboTipoDTE.SelectedItem.ToString(), out TipoDTE.DTEType tipoDTE);            
             try 
             {
-                var responseEstadoDTE = handler.ConsultarEstadoDTE(radioProduccion.Checked, rutReceptor, dvReceptor, tipoDTE, folio, dateFechaEmision.Value.Date, total);
+                var responseEstadoDTE = handler.ConsultarEstadoDTE(radioProduccion.Checked ? AmbienteEnum.Produccion: AmbienteEnum.Certificacion, rutReceptor, dvReceptor, tipoDTE, folio, dateFechaEmision.Value.Date, total);
                 textRespuesta.Text = responseEstadoDTE.ResponseXml;
             }
             catch (Exception ex)
@@ -48,6 +49,8 @@ namespace SIMPLEAPI_Demo
             textDVEmpresa.Text = handler.configuracion.Empresa.DV;
             textRUTEnvio.Text = handler.configuracion.Certificado.RutCuerpo.ToString();
             textDVEnvio.Text = handler.configuracion.Certificado.DV;
+
+            comboTipoDTE.SelectedIndex = 0;
         }
     }
 }

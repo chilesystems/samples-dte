@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SIMPLE_API.Enum.Ambiente;
+using Newtonsoft.Json;
 
 namespace SIMPLEAPI_Demo
 {
@@ -31,8 +33,16 @@ namespace SIMPLEAPI_Demo
             long trackId = long.Parse(textTrackID.Text);
             try
             {
-                var responseEstadoDTE = handler.ConsultarEstadoEnvio(radioProduccion.Checked, trackId);
-                textRespuesta.Text = responseEstadoDTE.ResponseXml;
+                if (radioEnvioDTE.Checked)
+                {
+                    var responseEstadoDTE = handler.ConsultarEstadoEnvio(radioProduccion.Checked ? AmbienteEnum.Produccion : AmbienteEnum.Certificacion, trackId);
+                    textRespuesta.Text = responseEstadoDTE.ResponseXml;
+                }
+                else
+                {
+                    var responseEstadoDTE = handler.ConsultarEstadoEnvioBoleta(radioProduccion.Checked ? AmbienteEnum.Produccion : AmbienteEnum.Certificacion, trackId);
+                    textRespuesta.Text = JsonConvert.SerializeObject(responseEstadoDTE, Formatting.Indented);
+                }
             }
             catch (Exception ex)
             {

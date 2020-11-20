@@ -41,6 +41,8 @@
             this.textDVEmpresa = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textRUTEmpresa = new System.Windows.Forms.TextBox();
+            this.radioEnvioDTE = new System.Windows.Forms.RadioButton();
+            this.radioEnvioBoleta = new System.Windows.Forms.RadioButton();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -69,7 +71,7 @@
             this.groupBox2.Controls.Add(this.radioCertificacion);
             this.groupBox2.Controls.Add(this.radioProduccion);
             this.groupBox2.Controls.Add(this.botonConsultar);
-            this.groupBox2.Location = new System.Drawing.Point(12, 100);
+            this.groupBox2.Location = new System.Drawing.Point(12, 123);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(282, 62);
             this.groupBox2.TabIndex = 22;
@@ -110,6 +112,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radioEnvioDTE);
+            this.groupBox1.Controls.Add(this.radioEnvioBoleta);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.textTrackID);
             this.groupBox1.Controls.Add(this.label6);
@@ -118,7 +122,7 @@
             this.groupBox1.Controls.Add(this.textRUTEmpresa);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(282, 82);
+            this.groupBox1.Size = new System.Drawing.Size(282, 105);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del DTE";
@@ -175,6 +179,28 @@
             this.textRUTEmpresa.Size = new System.Drawing.Size(112, 20);
             this.textRUTEmpresa.TabIndex = 0;
             // 
+            // radioEnvioDTE
+            // 
+            this.radioEnvioDTE.AutoSize = true;
+            this.radioEnvioDTE.Checked = true;
+            this.radioEnvioDTE.Location = new System.Drawing.Point(117, 75);
+            this.radioEnvioDTE.Name = "radioEnvioDTE";
+            this.radioEnvioDTE.Size = new System.Drawing.Size(74, 17);
+            this.radioEnvioDTE.TabIndex = 22;
+            this.radioEnvioDTE.TabStop = true;
+            this.radioEnvioDTE.Text = "EnvioDTE";
+            this.radioEnvioDTE.UseVisualStyleBackColor = true;
+            // 
+            // radioEnvioBoleta
+            // 
+            this.radioEnvioBoleta.AutoSize = true;
+            this.radioEnvioBoleta.Location = new System.Drawing.Point(194, 75);
+            this.radioEnvioBoleta.Name = "radioEnvioBoleta";
+            this.radioEnvioBoleta.Size = new System.Drawing.Size(82, 17);
+            this.radioEnvioBoleta.TabIndex = 23;
+            this.radioEnvioBoleta.Text = "EnvioBoleta";
+            this.radioEnvioBoleta.UseVisualStyleBackColor = true;
+            // 
             // ConsultaEstadoEnvioDTE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,5 +238,7 @@
         private System.Windows.Forms.TextBox textDVEmpresa;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textRUTEmpresa;
+        private System.Windows.Forms.RadioButton radioEnvioDTE;
+        private System.Windows.Forms.RadioButton radioEnvioBoleta;
     }
 }

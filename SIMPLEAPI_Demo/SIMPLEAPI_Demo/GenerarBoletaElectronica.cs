@@ -51,7 +51,7 @@ namespace SIMPLEAPI_Demo
         {
             if (e.RowIndex != -1)
             {
-                if (e.ColumnIndex == 5)
+                if (e.ColumnIndex == 6)
                 {
                     var item = gridResultados.Rows[e.RowIndex].DataBoundItem as ItemBoleta;
                     items.Remove(item);

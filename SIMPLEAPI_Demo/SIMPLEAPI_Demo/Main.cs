@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SIMPLE_API.Enum.Ambiente;
 
 namespace SIMPLEAPI_Demo
 {
@@ -33,11 +34,9 @@ namespace SIMPLEAPI_Demo
 
         private void botonGenerarDocumento_Click(object sender, EventArgs e)
         {
-            var dte = handler.GenerateDTE(ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica, 105);
+            var dte = handler.GenerateDTE(ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica, 80);
             handler.GenerateDetails(dte);
             var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
-
-            string contenido = dte.ToString();
 
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
             MessageBox.Show("Documento generado exitosamente en " + path);
@@ -46,42 +45,49 @@ namespace SIMPLEAPI_Demo
         private void botonGenerarEnvio_Click(object sender, EventArgs e)
         {
             openFileDialog1.Multiselect = true;
-            openFileDialog1.ShowDialog();
-            string[] pathFiles = openFileDialog1.FileNames;
-            List<ChileSystems.DTE.Engine.Documento.DTE> dtes = new List<ChileSystems.DTE.Engine.Documento.DTE>();
-            List<string> xmlDtes = new List<string>();
-            foreach (string pathFile in pathFiles)
+            var result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
             {
-                string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
-                var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
+                string[] pathFiles = openFileDialog1.FileNames;
+                List<ChileSystems.DTE.Engine.Documento.DTE> dtes = new List<ChileSystems.DTE.Engine.Documento.DTE>();
+                List<string> xmlDtes = new List<string>();
+                foreach (string pathFile in pathFiles)
+                {
+                    string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
+                    var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
 
-                /*Generar envio para el SII
-                Un envío puede contener 1 o varios DTE. No es necesario que sean del mismo tipo,
-                es decir, en un envío pueden ir facturas electrónicas afectas, notas de crédito, guias de despacho,
-                etc.             
-                 */
-                dtes.Add(dte);
-                xmlDtes.Add(xml);
+                    /*Generar envio para el SII
+                    Un envío puede contener 1 o varios DTE. No es necesario que sean del mismo tipo,
+                    es decir, en un envío pueden ir facturas electrónicas afectas, notas de crédito, guias de despacho,
+                    etc.             
+                     */
+                    dtes.Add(dte);
+                    xmlDtes.Add(xml);
+                }
+                var EnvioSII = handler.GenerarEnvioDTEToSII(dtes, xmlDtes);
+
+                /*Generar envio para el cliente
+                En esencia es lo mismo que para el SII */
+                //var EnvioCliente = GenerarEnvioCliente(dte, xml);
+                /*Puede ser el EnvioSII o EnvioCliente, pues es el mismo tipo de objeto*/
+                var filePath = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, true);
+                handler.Validate(filePath, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);
+                MessageBox.Show("Envío generado exitosamente en " + filePath);
             }
-            var EnvioSII = handler.GenerarEnvioDTEToSII(dtes, xmlDtes);
-
-            /*Generar envio para el cliente
-            En esencia es lo mismo que para el SII */
-            //var EnvioCliente = GenerarEnvioCliente(dte, xml);
-            /*Puede ser el EnvioSII o EnvioCliente, pues es el mismo tipo de objeto*/
-            var filePath = EnvioSII.Firmar(configuracion.Certificado.Nombre, true);
-            handler.Validate(filePath, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);
-            MessageBox.Show("Envío generado exitosamente en " + filePath);
         }
 
         private void botonEnviarSii_Click(object sender, EventArgs e)
         {
             /*Procedemos a enviar el 'Envío' al SII, que no es otra cosa que simular un upload vía browser*/
             openFileDialog1.Multiselect = false;
-            openFileDialog1.ShowDialog();
-            string pathFile = openFileDialog1.FileName;
-            long trackId = handler.EnviarEnvioDTEToSII(pathFile, radioProduccion.Checked);
-            MessageBox.Show("Sobre enviado correctamente. TrackID: " + trackId.ToString());
+            var result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string pathFile = openFileDialog1.FileName;
+                long trackId = handler.EnviarEnvioDTEToSII(pathFile, radioProduccion.Checked ? AmbienteEnum.Produccion : AmbienteEnum.Certificacion);
+                MessageBox.Show("Sobre enviado correctamente. TrackID: " + trackId.ToString());
+            }
+                
         }
 
         #endregion
@@ -131,9 +137,13 @@ namespace SIMPLEAPI_Demo
         private void botonEnviarSimulacionSII_Click(object sender, EventArgs e)
         {
             openFileDialog1.Multiselect = false;
-            openFileDialog1.ShowDialog();
-            string pathFile = openFileDialog1.FileName;
-            handler.EnviarEnvioDTEToSII(pathFile, radioProduccion.Checked);
+            var result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string pathFile = openFileDialog1.FileName;
+                handler.EnviarEnvioDTEToSII(pathFile,  radioProduccion.Checked ? SIMPLE_API.Enum.Ambiente.AmbienteEnum.Produccion : SIMPLE_API.Enum.Ambiente.AmbienteEnum.Certificacion);
+            }
+                
         }
 
         #endregion
@@ -149,40 +159,24 @@ namespace SIMPLEAPI_Demo
         private void botonGenerarRCOF_Click(object sender, EventArgs e)
         {
             openFileDialog1.Multiselect = true;
-            openFileDialog1.ShowDialog();
-            string[] pathFiles = openFileDialog1.FileNames;
-            List<ChileSystems.DTE.Engine.Documento.DTE> dtes = new List<ChileSystems.DTE.Engine.Documento.DTE>();
-            foreach (string pathFile in pathFiles)
+            var result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
             {
-                string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
-                var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
-                dtes.Add(dte);
+                string[] pathFiles = openFileDialog1.FileNames;
+                List<ChileSystems.DTE.Engine.Documento.DTE> dtes = new List<ChileSystems.DTE.Engine.Documento.DTE>();
+                foreach (string pathFile in pathFiles)
+                {
+                    string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
+                    var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
+                    dtes.Add(dte);
+                }
+                var rcof = handler.GenerarRCOF(dtes);
+                rcof.DocumentoConsumoFolios.Id = "RCOF_" + DateTime.Now.Ticks.ToString();
+                /*Firmar retorna además a través de un out, el XML formado*/
+                string xmlString = string.Empty;
+                var filePathArchivo = rcof.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, out xmlString);
+                MessageBox.Show("RCOF Generado correctamente en " + filePathArchivo);
             }
-            var rcof = handler.GenerarRCOF(dtes);
-            rcof.DocumentoConsumoFolios.Id = "RCOF_" + DateTime.Now.Ticks.ToString();
-            /*Firmar retorna además a través de un out, el XML formado*/
-            string xmlString = string.Empty;
-            var filePathArchivo = rcof.Firmar(configuracion.Certificado.Nombre, out xmlString);
-            MessageBox.Show("RCOF Generado correctamente en " + filePathArchivo);
-        }
-
-        private void botonLibroBoletas_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.Multiselect = true;
-            openFileDialog1.ShowDialog();
-            string[] pathFiles = openFileDialog1.FileNames;
-            List<ChileSystems.DTE.Engine.Documento.DTE> dtes = new List<ChileSystems.DTE.Engine.Documento.DTE>();
-            foreach (string pathFile in pathFiles)
-            {
-                string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
-                var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
-                dtes.Add(dte);
-            }
-            var libro = handler.GenerateLibroBoletas(dtes);
-            libro.EnvioLibro.Caratula.FolioNotificacion = 1;
-            libro.EnvioLibro.Id = "L_BOLETAS_" + DateTime.Now.Ticks.ToString();
-            var filePathArchivo = libro.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey);
-            MessageBox.Show("Libro boletas Generado correctamente en " + filePathArchivo);
         }
 
         private void botonAnularDocumento_Click(object sender, EventArgs e)
@@ -311,7 +305,7 @@ namespace SIMPLEAPI_Demo
             string accion = "ACD";
             string rutProveedor = "88888888";
             int dvProveedor = 8;
-            var respuesta = handler.EnviarAceptacionReclamo(tipoDocumento, folio, accion, rutProveedor, dvProveedor, true);
+            var respuesta = handler.EnviarAceptacionReclamo(tipoDocumento, folio, accion, rutProveedor, dvProveedor, radioCertificacion.Checked ? AmbienteEnum.Certificacion : AmbienteEnum.Produccion);
             MessageBox.Show(respuesta);
         }
         private void botonConsultarEstadoDTE_Click(object sender, EventArgs e)
@@ -322,7 +316,13 @@ namespace SIMPLEAPI_Demo
         #endregion
 
         private void Main_Load(object sender, EventArgs e)
-        {            
+        {
+            if (!configuracion.VerificarCarpetasIniciales())
+            {
+                //Los ejemplos de este proyecto se basan en estas dos carpetas. Se pueden modificar a gusto pero son necesarias al inicio.
+                //Para más información: https://www.simple-api.cl/Tutoriales/Instalacion (Estructura de carpetas)
+                MessageBox.Show("Se deben agregar las carpetas iniciales out\\temp, out\\caf y XML", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             configuracion.LeerArchivo();
             handler.configuracion = configuracion;
         }
@@ -1373,6 +1373,22 @@ namespace SIMPLEAPI_Demo
             formulario.ShowDialog();
         }
 
-        
+        private void botonObtenerToken_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void botonEnviarAlSIIBoletas_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Multiselect = false;
+            var result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string pathFile = openFileDialog1.FileName;
+                long trackId = handler.EnviarEnvioDTEToSII(pathFile, radioProduccion.Checked ? AmbienteEnum.Produccion : AmbienteEnum.Certificacion, true);
+                MessageBox.Show("Sobre enviado correctamente. TrackID: " + trackId.ToString());
+            }
+          
+        }
     }
 }
