@@ -52,7 +52,7 @@ namespace SIMPLEAPI_Demo
             dte.Documento.Encabezado.Emisor.ComunaOrigen = configuracion.Empresa.Comuna;
 
             //Para boletas electrónicas
-            if (tipoDTE == TipoDTE.DTEType.BoletaElectronica)
+            if (tipoDTE == TipoDTE.DTEType.BoletaElectronica || tipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta)
             {
                 dte.Documento.Encabezado.IdentificacionDTE.IndicadorServicio = ChileSystems.DTE.Engine.Enum.IndicadorServicio.IndicadorServicioEnum.BoletaVentasYServicios;
                 dte.Documento.Encabezado.Emisor.RazonSocialBoleta = configuracion.Empresa.RazonSocial;
@@ -76,12 +76,11 @@ namespace SIMPLEAPI_Demo
             dte.Documento.Encabezado.Receptor.RazonSocial = "Razon Social de Cliente";
             dte.Documento.Encabezado.Receptor.Direccion = "Dirección de cliente";
             dte.Documento.Encabezado.Receptor.Comuna = "Comuna de cliente";
-            if (tipoDTE != TipoDTE.DTEType.BoletaElectronica)
+            if (tipoDTE != TipoDTE.DTEType.BoletaElectronica && tipoDTE != TipoDTE.DTEType.BoletaElectronicaExenta)
             {
                 dte.Documento.Encabezado.Receptor.Ciudad = "Ciudad de cliente";
                 dte.Documento.Encabezado.Receptor.Giro = "Giro de cliente";
             }
-
 
             dte.Documento.Referencias = new List<Referencia>();
 
