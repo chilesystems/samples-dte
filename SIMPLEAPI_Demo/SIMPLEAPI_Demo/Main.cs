@@ -70,7 +70,7 @@ namespace SIMPLEAPI_Demo
                 En esencia es lo mismo que para el SII */
                 //var EnvioCliente = GenerarEnvioCliente(dte, xml);
                 /*Puede ser el EnvioSII o EnvioCliente, pues es el mismo tipo de objeto*/
-                var filePath = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, true);
+                var filePath = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey);
                 handler.Validate(filePath, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);
                 MessageBox.Show("Envío generado exitosamente en " + filePath);
             }
@@ -128,7 +128,7 @@ namespace SIMPLEAPI_Demo
             xmlDtes.Add(xml4);
 
             var EnvioSII = handler.GenerarEnvioDTEToSII(dtes, xmlDtes);
-            string filePathEnvio = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, true);
+            string filePathEnvio = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey);
             MessageBox.Show("Envío generado exitosamente en " + filePathEnvio);
         }
 
@@ -276,7 +276,7 @@ namespace SIMPLEAPI_Demo
                 xmlDtes.Add(xml);
             }
             var EnvioSII = handler.GenerarEnvioBoletaDTEToSII(dtes, xmlDtes);
-            var filePath = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, true);
+            var filePath = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey);
             try
             {
                 handler.Validate(filePath, SIMPLE_API.Security.Firma.Firma.TipoXML.EnvioBoleta, ChileSystems.DTE.Engine.XML.Schemas.EnvioBoleta);
@@ -621,7 +621,7 @@ namespace SIMPLEAPI_Demo
                 xmlDtes.Add(xml);
             }
             var EnvioSII = handler.GenerarEnvioDTEToSII(dtes, xmlDtes);
-            path = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, true);
+            path = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);
             MessageBox.Show("Envío generado exitosamente en " + path);
 
@@ -768,7 +768,7 @@ namespace SIMPLEAPI_Demo
                 xmlDtes.Add(xml);
             }
             var EnvioSII = handler.GenerarEnvioDTEToSII(dtes, xmlDtes);
-            path = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, true);
+            path = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey);
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.Envio, ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE);
             MessageBox.Show("Envío generado exitosamente en " + path);
 
