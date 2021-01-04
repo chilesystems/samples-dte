@@ -1380,6 +1380,8 @@ namespace SIMPLEAPI_Demo
 
         private void botonEnviarAlSIIBoletas_Click(object sender, EventArgs e)
         {
+            /*Este botón no sirve si estás certificando un RUT, para ello, se debe usar el evento click del botón "botonEnviarSii". 
+             * Puedes usar este botón para probar la API REST del SII para enviar tus boletas antes de pasar a producción, no sirve para certificar.*/
             openFileDialog1.Multiselect = false;
             var result = openFileDialog1.ShowDialog();
             if (result == DialogResult.OK)
