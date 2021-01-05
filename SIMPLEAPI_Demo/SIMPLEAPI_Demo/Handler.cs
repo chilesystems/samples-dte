@@ -644,8 +644,17 @@ namespace SIMPLEAPI_Demo
             int totalIVA = (int)Math.Round(totalNeto * 0.19, 0, MidpointRounding.AwayFromZero);
             int totalTotal = totalExento + totalNeto + totalIVA;
 
-            int rangoInicial = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Min(x => x.Documento.Encabezado.IdentificacionDTE.Folio);
-            int rangoFinal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Max(x => x.Documento.Encabezado.IdentificacionDTE.Folio);
+            /*Se calculan todos los rangos según el array de DTEs*/
+            var resultRangos = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>();
+            List<int> lst = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronica).Select(x => x.Documento.Encabezado.IdentificacionDTE.Folio).ToList();
+            var minBoundaries = lst.Where(i => !lst.Contains(i - 1)).OrderBy(x => x).ToList();
+            var maxBoundaries = lst.Where(i => !lst.Contains(i + 1)).OrderBy(x => x).ToList();
+            for (int i = 0; i < maxBoundaries.Count; i++)
+            {
+                resultRangos.Add(new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = minBoundaries[i], Final = maxBoundaries[i] });
+            }
+
+
             resumenes.Add(new ChileSystems.DTE.Engine.RCOF.Resumen
             {
                 FoliosAnulados = 0,
@@ -657,7 +666,7 @@ namespace SIMPLEAPI_Demo
                 MntTotal = totalTotal,
                 TasaIVA = 19,
                 TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica,
-                RangoUtilizados = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>() { new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = rangoInicial, Final = rangoFinal } }
+                RangoUtilizados = resultRangos
                 //RangoAnulados = new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
             });
 
@@ -669,8 +678,16 @@ namespace SIMPLEAPI_Demo
                 totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoExento);
                 totalIVA = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.IVA);
                 totalTotal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoTotal);
-                rangoInicial = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Min(x => x.Documento.Encabezado.IdentificacionDTE.Folio);
-                rangoFinal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Max(x => x.Documento.Encabezado.IdentificacionDTE.Folio);
+
+                resultRangos = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>();
+                lst = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Select(x => x.Documento.Encabezado.IdentificacionDTE.Folio).ToList();
+                minBoundaries = lst.Where(i => !lst.Contains(i - 1)).OrderBy(x => x).ToList();
+                maxBoundaries = lst.Where(i => !lst.Contains(i + 1)).OrderBy(x => x).ToList();
+                for (int i = 0; i < maxBoundaries.Count; i++)
+                {
+                    resultRangos.Add(new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = minBoundaries[i], Final = maxBoundaries[i] });
+                }
+
                 resumenes.Add(new ChileSystems.DTE.Engine.RCOF.Resumen
                 {
                     FoliosAnulados = 0,
@@ -682,7 +699,7 @@ namespace SIMPLEAPI_Demo
                     MntTotal = totalTotal,
                     TasaIVA = 19,
                     TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica,
-                    RangoUtilizados = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>() { new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = rangoInicial, Final = rangoFinal } }
+                    RangoUtilizados = resultRangos
                     //RangoAnulados =new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
                 });
             }
