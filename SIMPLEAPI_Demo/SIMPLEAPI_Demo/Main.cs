@@ -78,7 +78,6 @@ namespace SIMPLEAPI_Demo
 
         private void botonEnviarSii_Click(object sender, EventArgs e)
         {
-            /*Procedemos a enviar el 'Envío' al SII, que no es otra cosa que simular un upload vía browser*/
             openFileDialog1.Multiselect = false;
             var result = openFileDialog1.ShowDialog();
             if (result == DialogResult.OK)
@@ -183,109 +182,122 @@ namespace SIMPLEAPI_Demo
         {
             openFileDialog1.Multiselect = false;
             openFileDialog1.ShowDialog();
-            string pathFile = openFileDialog1.FileName;
-            string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
-            var dteBoleta = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
-
-            var dteNC = handler.GenerateDTE(TipoDTE.DTEType.NotaCreditoElectronica, 8);
-            /*En el caso de las anulaciones, los detalles y totales son los mismos que el documento de origen*/
-            dteNC.Documento.Detalles = dteBoleta.Documento.Detalles;
-            dteNC.Documento.Encabezado.Totales = dteBoleta.Documento.Encabezado.Totales;
-            dteNC.Documento.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
-            dteNC.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+            var result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
             {
-                CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia,
-                FechaDocumentoReferencia = DateTime.Now,
-                //Folio de Referencia = Debe ir el folio del documento que estás referenciando
-                FolioReferencia = dteBoleta.Documento.Encabezado.IdentificacionDTE.Folio.ToString(),
-                IndicadorGlobal = 0,
-                Numero = 1,
-                RazonReferencia = "ANULA BOLETA ELECTRÓNICA",
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.BoletaElectronica
-            });
+                string pathFile = openFileDialog1.FileName;
+                string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
+                var dteBoleta = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
 
-            var path = handler.TimbrarYFirmarXMLDTE(dteNC, "out\\temp\\", "out\\caf\\");
-            handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+                var dteNC = handler.GenerateDTE(TipoDTE.DTEType.NotaCreditoElectronica, 8);
+                /*En el caso de las anulaciones, los detalles y totales son los mismos que el documento de origen*/
+                dteNC.Documento.Detalles = dteBoleta.Documento.Detalles;
+                dteNC.Documento.Encabezado.Totales = dteBoleta.Documento.Encabezado.Totales;
+                dteNC.Documento.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
+                dteNC.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+                {
+                    CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia,
+                    FechaDocumentoReferencia = DateTime.Now,
+                    //Folio de Referencia = Debe ir el folio del documento que estás referenciando
+                    FolioReferencia = dteBoleta.Documento.Encabezado.IdentificacionDTE.Folio.ToString(),
+                    IndicadorGlobal = 0,
+                    Numero = 1,
+                    RazonReferencia = "ANULA BOLETA ELECTRÓNICA",
+                    TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.BoletaElectronica
+                });
 
-            MessageBox.Show("Nota de crédito generada exitosamente en " + path);
+                var path = handler.TimbrarYFirmarXMLDTE(dteNC, "out\\temp\\", "out\\caf\\");
+                handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+
+                MessageBox.Show("Nota de crédito generada exitosamente en " + path);
+            }
+               
         }
 
         private void botonRebajaDocumento_Click(object sender, EventArgs e)
         {
             openFileDialog1.Multiselect = false;
-            openFileDialog1.ShowDialog();
-            string pathFile = openFileDialog1.FileName;
-            string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
-            var dteBoleta = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
-
-            var dteNC = handler.GenerateDTE(TipoDTE.DTEType.NotaCreditoElectronica, 11);
-            /*En el caso de las anulaciones, los detalles y totales son los mismos que el documento de origen*/
-            dteNC.Documento.Detalles = dteBoleta.Documento.Detalles;
-            dteNC.Documento.Encabezado.Totales = dteBoleta.Documento.Encabezado.Totales;
-            dteNC.Documento.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
-            dteNC.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+            var result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
             {
-                CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
-                FechaDocumentoReferencia = DateTime.Now,
-                //Folio de Referencia = Debe ir el folio del documento que estás refenciando
-                FolioReferencia = dteBoleta.Documento.Encabezado.IdentificacionDTE.Folio.ToString(),
-                IndicadorGlobal = 0,
-                Numero = 1,
-                RazonReferencia = "CORRIGE BOLETA ELECTRÓNICA",
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.BoletaElectronica
-            });
+                string pathFile = openFileDialog1.FileName;
+                string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
+                var dteBoleta = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
 
-            /*Calculo para el caso de una rebaja de un 40%*/
-            double porc_descuento = 0.4;
-            var neto = dteNC.Documento.Encabezado.Totales.MontoNeto - (dteNC.Documento.Encabezado.Totales.MontoNeto * porc_descuento);
-            int netoInt = (int)Math.Round(neto, 0);
-            int iva = (int)Math.Round(neto * 0.19, 0);
-            int total = netoInt + iva;
-            dteNC.Documento.Encabezado.Totales.MontoNeto = netoInt;
-            dteNC.Documento.Encabezado.Totales.IVA = iva;
-            dteNC.Documento.Encabezado.Totales.MontoTotal = total;
+                var dteNC = handler.GenerateDTE(TipoDTE.DTEType.NotaCreditoElectronica, 11);
+                /*En el caso de las anulaciones, los detalles y totales son los mismos que el documento de origen*/
+                dteNC.Documento.Detalles = dteBoleta.Documento.Detalles;
+                dteNC.Documento.Encabezado.Totales = dteBoleta.Documento.Encabezado.Totales;
+                dteNC.Documento.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
+                dteNC.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+                {
+                    CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
+                    FechaDocumentoReferencia = DateTime.Now,
+                    //Folio de Referencia = Debe ir el folio del documento que estás refenciando
+                    FolioReferencia = dteBoleta.Documento.Encabezado.IdentificacionDTE.Folio.ToString(),
+                    IndicadorGlobal = 0,
+                    Numero = 1,
+                    RazonReferencia = "CORRIGE BOLETA ELECTRÓNICA",
+                    TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.BoletaElectronica
+                });
 
-            dteNC.Documento.DescuentosRecargos = new List<ChileSystems.DTE.Engine.Documento.DescuentosRecargos>();
-            dteNC.Documento.DescuentosRecargos.Add(new ChileSystems.DTE.Engine.Documento.DescuentosRecargos()
-            {
-                Descripcion = "DESCUENTO COMERCIAL",
-                Numero = 1,
-                TipoMovimiento = ChileSystems.DTE.Engine.Enum.TipoMovimiento.TipoMovimientoEnum.Descuento,
-                TipoValor = ChileSystems.DTE.Engine.Enum.ExpresionDinero.ExpresionDineroEnum.Porcentaje,
-                Valor = porc_descuento * 100,
-            });
+                /*Calculo para el caso de una rebaja de un 40%*/
+                double porc_descuento = 0.4;
+                var neto = dteNC.Documento.Encabezado.Totales.MontoNeto - (dteNC.Documento.Encabezado.Totales.MontoNeto * porc_descuento);
+                int netoInt = (int)Math.Round(neto, 0);
+                int iva = (int)Math.Round(neto * 0.19, 0);
+                int total = netoInt + iva;
+                dteNC.Documento.Encabezado.Totales.MontoNeto = netoInt;
+                dteNC.Documento.Encabezado.Totales.IVA = iva;
+                dteNC.Documento.Encabezado.Totales.MontoTotal = total;
 
-            var path = handler.TimbrarYFirmarXMLDTE(dteNC, "out\\temp\\", "out\\caf\\");
-            handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+                dteNC.Documento.DescuentosRecargos = new List<ChileSystems.DTE.Engine.Documento.DescuentosRecargos>();
+                dteNC.Documento.DescuentosRecargos.Add(new ChileSystems.DTE.Engine.Documento.DescuentosRecargos()
+                {
+                    Descripcion = "DESCUENTO COMERCIAL",
+                    Numero = 1,
+                    TipoMovimiento = ChileSystems.DTE.Engine.Enum.TipoMovimiento.TipoMovimientoEnum.Descuento,
+                    TipoValor = ChileSystems.DTE.Engine.Enum.ExpresionDinero.ExpresionDineroEnum.Porcentaje,
+                    Valor = porc_descuento * 100,
+                });
 
-            MessageBox.Show("Nota de crédito generada exitosamente en " + path);
+                var path = handler.TimbrarYFirmarXMLDTE(dteNC, "out\\temp\\", "out\\caf\\");
+                handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+
+                MessageBox.Show("Nota de crédito generada exitosamente en " + path);
+            }
+            
         }
 
         private void botonGenerarEnvioBoleta_Click(object sender, EventArgs e)
         {
             openFileDialog1.Multiselect = true;
-            openFileDialog1.ShowDialog();
-            string[] pathFiles = openFileDialog1.FileNames;
-            List<ChileSystems.DTE.Engine.Documento.DTE> dtes = new List<ChileSystems.DTE.Engine.Documento.DTE>();
-            List<string> xmlDtes = new List<string>();
-            foreach (string pathFile in pathFiles)
+            var result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
             {
-                string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
-                var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
-                dtes.Add(dte);
-                xmlDtes.Add(xml);
+                string[] pathFiles = openFileDialog1.FileNames;
+                List<ChileSystems.DTE.Engine.Documento.DTE> dtes = new List<ChileSystems.DTE.Engine.Documento.DTE>();
+                List<string> xmlDtes = new List<string>();
+                foreach (string pathFile in pathFiles)
+                {
+                    string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
+                    var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
+                    dtes.Add(dte);
+                    xmlDtes.Add(xml);
+                }
+                var EnvioSII = handler.GenerarEnvioBoletaDTEToSII(dtes, xmlDtes);
+                var filePath = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey);
+                try
+                {
+                    handler.Validate(filePath, SIMPLE_API.Security.Firma.Firma.TipoXML.EnvioBoleta, ChileSystems.DTE.Engine.XML.Schemas.EnvioBoleta);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                MessageBox.Show("Envío generado exitosamente en " + filePath);
             }
-            var EnvioSII = handler.GenerarEnvioBoletaDTEToSII(dtes, xmlDtes);
-            var filePath = EnvioSII.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey);
-            try
-            {
-                handler.Validate(filePath, SIMPLE_API.Security.Firma.Firma.TipoXML.EnvioBoleta, ChileSystems.DTE.Engine.XML.Schemas.EnvioBoleta);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            MessageBox.Show("Envío generado exitosamente en " + filePath);
+           
         }
         #endregion
 
@@ -1389,8 +1401,12 @@ namespace SIMPLEAPI_Demo
                 string pathFile = openFileDialog1.FileName;
                 long trackId = handler.EnviarEnvioDTEToSII(pathFile, radioProduccion.Checked ? AmbienteEnum.Produccion : AmbienteEnum.Certificacion, true);
                 MessageBox.Show("Sobre enviado correctamente. TrackID: " + trackId.ToString());
-            }
-          
+            }          
+        }
+
+        private void botonEnviarAlSIIBoletas_Certificacion_Click(object sender, EventArgs e)
+        {
+            botonEnviarSii_Click(null, null);
         }
     }
 }

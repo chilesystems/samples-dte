@@ -29,7 +29,7 @@ namespace SIMPLEAPI_Demo
             Enum.TryParse(comboTipoDTE.SelectedItem.ToString(), out TipoDTE.DTEType tipoDTE);            
             try 
             {
-                var responseEstadoDTE = handler.ConsultarEstadoDTE(radioProduccion.Checked ? AmbienteEnum.Produccion: AmbienteEnum.Certificacion, rutReceptor, dvReceptor, tipoDTE, folio, dateFechaEmision.Value.Date, total);
+                var responseEstadoDTE = handler.ConsultarEstadoDTE(radioProduccion.Checked ? AmbienteEnum.Produccion: AmbienteEnum.Certificacion, rutReceptor, dvReceptor, tipoDTE, folio, dateFechaEmision.Value.Date, total, checkIsBoletaCertificacion.Checked);
                 textRespuesta.Text = responseEstadoDTE.ResponseXml;
             }
             catch (Exception ex)
@@ -51,6 +51,12 @@ namespace SIMPLEAPI_Demo
             textDVEnvio.Text = handler.configuracion.Certificado.DV;
 
             comboTipoDTE.SelectedIndex = 0;
+        }
+
+        private void comboTipoDTE_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Enum.TryParse(comboTipoDTE.SelectedItem.ToString(), out TipoDTE.DTEType tipoDTE);
+            checkIsBoletaCertificacion.Enabled = tipoDTE == TipoDTE.DTEType.BoletaElectronica || tipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta;
         }
     }
 }

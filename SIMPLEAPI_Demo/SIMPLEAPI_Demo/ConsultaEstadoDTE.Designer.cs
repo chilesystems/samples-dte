@@ -56,6 +56,7 @@
             this.textRespuesta = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.checkIsBoletaCertificacion = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -73,6 +74,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkIsBoletaCertificacion);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.textFolio);
             this.groupBox1.Controls.Add(this.label8);
@@ -95,7 +97,7 @@
             this.groupBox1.Controls.Add(this.textRUTEmpresa);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(282, 220);
+            this.groupBox1.Size = new System.Drawing.Size(282, 232);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del DTE";
@@ -200,6 +202,7 @@
             this.comboTipoDTE.Name = "comboTipoDTE";
             this.comboTipoDTE.Size = new System.Drawing.Size(159, 21);
             this.comboTipoDTE.TabIndex = 40;
+            this.comboTipoDTE.SelectedIndexChanged += new System.EventHandler(this.comboTipoDTE_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -323,6 +326,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Resultado";
             // 
+            // checkIsBoletaCertificacion
+            // 
+            this.checkIsBoletaCertificacion.AutoSize = true;
+            this.checkIsBoletaCertificacion.Location = new System.Drawing.Point(51, 206);
+            this.checkIsBoletaCertificacion.Name = "checkIsBoletaCertificacion";
+            this.checkIsBoletaCertificacion.Size = new System.Drawing.Size(225, 17);
+            this.checkIsBoletaCertificacion.TabIndex = 41;
+            this.checkIsBoletaCertificacion.Text = "Es una boleta del proceso de Certificación";
+            this.checkIsBoletaCertificacion.UseVisualStyleBackColor = true;
+            // 
             // ConsultaEstadoDTE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,5 +391,6 @@
         private System.Windows.Forms.TextBox textFolio;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.CheckBox checkIsBoletaCertificacion;
     }
 }

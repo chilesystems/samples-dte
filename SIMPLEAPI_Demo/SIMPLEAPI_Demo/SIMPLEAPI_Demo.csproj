@@ -55,6 +55,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SIMPLE_API">
+      <HintPath>..\..\..\..\..\..\OneDrive\API DLL\SIMPLE_API.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Services" />
@@ -218,10 +221,6 @@
     <None Include="Resources\Imprimir.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\SIMPLE_API\SIMPLE_API\SIMPLE_API.csproj">
-      <Project>{38622419-3d40-422a-90e7-be5f132b15ec}</Project>
-      <Name>SIMPLE_API</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Impresion.Core\Impresion.Core.csproj">
       <Project>{B30F866F-30D2-42D8-AAF4-BF1F846288EA}</Project>
       <Name>Impresion.Core</Name>

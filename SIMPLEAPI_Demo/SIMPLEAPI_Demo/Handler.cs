@@ -292,11 +292,11 @@ namespace SIMPLEAPI_Demo
                         .Sum(x => x.MontoItem);
 
                     /*En las boletas, sólo es necesario informar el monto total*/
-                    var neto = (int)Math.Round(totalBrutoAfecto / 1.19, 0, MidpointRounding.AwayFromZero);
+                    var neto = totalBrutoAfecto / 1.19;
                     var iva = (int)Math.Round(neto * 0.19, 0, MidpointRounding.AwayFromZero);
                     dte.Documento.Encabezado.Totales.IVA = iva;
-                    dte.Documento.Encabezado.Totales.MontoNeto = neto;
-                    dte.Documento.Encabezado.Totales.MontoTotal = neto + totalExento + iva;
+                    dte.Documento.Encabezado.Totales.MontoNeto = (int)Math.Round(neto, 0, MidpointRounding.AwayFromZero);
+                    dte.Documento.Encabezado.Totales.MontoTotal = dte.Documento.Encabezado.Totales.MontoNeto + totalExento + iva;
                 }
             }
 
@@ -1406,7 +1406,7 @@ namespace SIMPLEAPI_Demo
             return "Error";
         }
 
-        public EstadoDTEResult ConsultarEstadoDTE(AmbienteEnum ambiente, int receptorRUT, string receptorDV, TipoDTE.DTEType tipo, int folio, DateTime fechaEmision, int total)
+        public EstadoDTEResult ConsultarEstadoDTE(AmbienteEnum ambiente, int receptorRUT, string receptorDV, TipoDTE.DTEType tipo, int folio, DateTime fechaEmision, int total, bool isBoletaCertificacion)
         {
             int rutTrabajador = configuracion.Certificado.RutCuerpo;
             string rutTrabajadorDigito = configuracion.Certificado.DV;
@@ -1420,7 +1420,7 @@ namespace SIMPLEAPI_Demo
 
             EstadoDTEResult responseEstadoDTE;
 
-            if (tipo == TipoDTE.DTEType.BoletaElectronica || tipo == TipoDTE.DTEType.BoletaElectronicaExenta)
+            if (!isBoletaCertificacion && (tipo == TipoDTE.DTEType.BoletaElectronica || tipo == TipoDTE.DTEType.BoletaElectronicaExenta))
             {
                 responseEstadoDTE = EstadoDTE.GetEstadoBoleta
                  (rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
