@@ -1108,7 +1108,6 @@ namespace SIMPLEAPI_Demo
             dte.Exportaciones.Encabezado.IdentificacionDTE.FormaPagoExportacion = SIMPLE_API.Enum.CodigosAduana.FormaPagoExportacionEnum.ACRED;
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoClausulaVenta = SIMPLE_API.Enum.CodigosAduana.ClausulaCompraVenta.FOB;
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoViaTransporte = SIMPLE_API.Enum.CodigosAduana.ViasdeTransporte.AEREO;
-            //dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoModalidadVenta = SIMPLE_API.Enum.CodigosAduana.ModalidadVenta.SIN_PAGO;
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPuertoEmbarque = SIMPLE_API.Enum.CodigosAduana.Puertos.ARICA;
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPuertoDesembarque = SIMPLE_API.Enum.CodigosAduana.Puertos.BUENOS_AIRES;
             dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoPaisDestino = SIMPLE_API.Enum.CodigosAduana.Paises.ARGENTINA;

@@ -64,6 +64,11 @@ namespace SIMPLEAPI_Demo
 
         private void botonGuardarActividad_Click(object sender, EventArgs e)
         {
+            if (configuracion.Empresa.CodigosActividades.Count > 3)
+            {
+                MessageBox.Show("Sólo se permite un máximo de 4 actividades económicas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             configuracion.Empresa.CodigosActividades.Add(new ActividadEconomica() { Codigo = int.Parse(textNumeroActividad.Text) });
 
             gridResultados.DataSource = null;
