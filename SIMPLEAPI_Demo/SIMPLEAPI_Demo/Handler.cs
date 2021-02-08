@@ -708,6 +708,42 @@ namespace SIMPLEAPI_Demo
         }
 
 
+        public ChileSystems.DTE.Engine.RCOF.ConsumoFolios GenerarRCOFVacio(DateTime fecha)
+        {
+            var rcof = new ChileSystems.DTE.Engine.RCOF.ConsumoFolios();
+            DateTime fechaInicio = fecha;
+            DateTime fechaFinal = fecha;
+
+            rcof.DocumentoConsumoFolios.Caratula.FechaFinal = fechaInicio;
+            rcof.DocumentoConsumoFolios.Caratula.FechaInicio = fechaFinal;
+            rcof.DocumentoConsumoFolios.Caratula.FechaResolucion = configuracion.Empresa.FechaResolucion;
+            rcof.DocumentoConsumoFolios.Caratula.NroResol = configuracion.Empresa.NumeroResolucion;
+            rcof.DocumentoConsumoFolios.Caratula.RutEmisor = configuracion.Empresa.RutEmpresa;
+            rcof.DocumentoConsumoFolios.Caratula.RutEnvia = configuracion.Certificado.Rut;
+            rcof.DocumentoConsumoFolios.Caratula.SecEnvio = "1";
+            rcof.DocumentoConsumoFolios.Caratula.FechaEnvio = DateTime.Now;
+            List<ChileSystems.DTE.Engine.RCOF.Resumen> resumenes = new List<ChileSystems.DTE.Engine.RCOF.Resumen>();
+
+            /*datos de boletas electrónicas afectas*/
+
+            resumenes.Add(new ChileSystems.DTE.Engine.RCOF.Resumen
+            {
+                FoliosAnulados = 0,
+                FoliosEmitidos = 0,
+                FoliosUtilizados = 0,
+                MntExento = 0,
+                MntIva = 0,
+                MntNeto = 0,
+                MntTotal = 0,
+                TasaIVA = 19,
+                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica,
+                //RangoUtilizados = resultRangos
+                //RangoAnulados = new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
+            });
+
+            rcof.DocumentoConsumoFolios.Resumen = resumenes;
+            return rcof;
+        }
         public ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas GenerateLibroBoletas(List<DTE> dtes)
         {
             var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas();

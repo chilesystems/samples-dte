@@ -46,6 +46,8 @@
             this.radioProduccion = new System.Windows.Forms.RadioButton();
             this.radioCertificacion = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.botonGenerarRCOFVacio = new System.Windows.Forms.Button();
+            this.botonEnviarAlSIIBoletas = new System.Windows.Forms.Button();
             this.botonGenerarEnvioBoleta = new System.Windows.Forms.Button();
             this.botonRebajaDocumento = new System.Windows.Forms.Button();
             this.botonAnularDocumento = new System.Windows.Forms.Button();
@@ -62,7 +64,6 @@
             this.botonFacturaCompra = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.botonConfiguracion = new System.Windows.Forms.Button();
-            this.botonEnviarAlSIIBoletas = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -248,6 +249,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.botonGenerarRCOFVacio);
             this.groupBox2.Controls.Add(this.botonEnviarAlSIIBoletas);
             this.groupBox2.Controls.Add(this.botonGenerarEnvioBoleta);
             this.groupBox2.Controls.Add(this.botonRebajaDocumento);
@@ -256,14 +258,34 @@
             this.groupBox2.Controls.Add(this.botonGenerarBoleta);
             this.groupBox2.Location = new System.Drawing.Point(350, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(163, 197);
+            this.groupBox2.Size = new System.Drawing.Size(163, 224);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Boletas Electrónicas";
             // 
+            // botonGenerarRCOFVacio
+            // 
+            this.botonGenerarRCOFVacio.Location = new System.Drawing.Point(6, 135);
+            this.botonGenerarRCOFVacio.Name = "botonGenerarRCOFVacio";
+            this.botonGenerarRCOFVacio.Size = new System.Drawing.Size(151, 23);
+            this.botonGenerarRCOFVacio.TabIndex = 25;
+            this.botonGenerarRCOFVacio.Text = "Generar RCOF Vacío";
+            this.botonGenerarRCOFVacio.UseVisualStyleBackColor = true;
+            this.botonGenerarRCOFVacio.Click += new System.EventHandler(this.botonGenerarRCOFVacio_Click);
+            // 
+            // botonEnviarAlSIIBoletas
+            // 
+            this.botonEnviarAlSIIBoletas.Location = new System.Drawing.Point(6, 193);
+            this.botonEnviarAlSIIBoletas.Name = "botonEnviarAlSIIBoletas";
+            this.botonEnviarAlSIIBoletas.Size = new System.Drawing.Size(151, 23);
+            this.botonEnviarAlSIIBoletas.TabIndex = 24;
+            this.botonEnviarAlSIIBoletas.Text = "Enviar al SII (Boletas)";
+            this.botonEnviarAlSIIBoletas.UseVisualStyleBackColor = true;
+            this.botonEnviarAlSIIBoletas.Click += new System.EventHandler(this.botonEnviarAlSIIBoletas_Click);
+            // 
             // botonGenerarEnvioBoleta
             // 
-            this.botonGenerarEnvioBoleta.Location = new System.Drawing.Point(6, 135);
+            this.botonGenerarEnvioBoleta.Location = new System.Drawing.Point(6, 164);
             this.botonGenerarEnvioBoleta.Name = "botonGenerarEnvioBoleta";
             this.botonGenerarEnvioBoleta.Size = new System.Drawing.Size(151, 23);
             this.botonGenerarEnvioBoleta.TabIndex = 5;
@@ -428,16 +450,6 @@
             this.botonConfiguracion.UseVisualStyleBackColor = true;
             this.botonConfiguracion.Click += new System.EventHandler(this.botonConfiguracion_Click);
             // 
-            // botonEnviarAlSIIBoletas
-            // 
-            this.botonEnviarAlSIIBoletas.Location = new System.Drawing.Point(6, 164);
-            this.botonEnviarAlSIIBoletas.Name = "botonEnviarAlSIIBoletas";
-            this.botonEnviarAlSIIBoletas.Size = new System.Drawing.Size(151, 23);
-            this.botonEnviarAlSIIBoletas.TabIndex = 24;
-            this.botonEnviarAlSIIBoletas.Text = "Enviar al SII (Boletas)";
-            this.botonEnviarAlSIIBoletas.UseVisualStyleBackColor = true;
-            this.botonEnviarAlSIIBoletas.Click += new System.EventHandler(this.botonEnviarAlSIIBoletas_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -501,6 +513,7 @@
         private System.Windows.Forms.Button botonConsultarEstadoEnvio;
         private System.Windows.Forms.Button botonFacturaCompra;
         private System.Windows.Forms.Button botonEnviarAlSIIBoletas;
+        private System.Windows.Forms.Button botonGenerarRCOFVacio;
     }
 }
 

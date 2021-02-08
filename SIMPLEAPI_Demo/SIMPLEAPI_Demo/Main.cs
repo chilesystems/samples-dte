@@ -1392,5 +1392,15 @@ namespace SIMPLEAPI_Demo
             }
           
         }
+
+        private void botonGenerarRCOFVacio_Click(object sender, EventArgs e)
+        {
+            var rcof = handler.GenerarRCOFVacio(DateTime.Now);
+            rcof.DocumentoConsumoFolios.Id = "RCOF_" + DateTime.Now.Ticks.ToString();
+            /*Firmar retorna además a través de un out, el XML formado*/
+            string xmlString = string.Empty;
+            var filePathArchivo = rcof.Firmar(configuracion.Certificado.Nombre, out xmlString);
+            MessageBox.Show("RCOF Generado correctamente en " + filePathArchivo);
+        }
     }
 }

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Impresion.Core</RootNamespace>
     <AssemblyName>Impresion.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SIMPLE_API">
-      <HintPath>..\..\..\..\SIMPLE_API\SIMPLE_API\bin\Debug\SIMPLE_API.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -63,6 +60,10 @@
     <Compile Include="ThermalPrintHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\simple_api\SIMPLE_API\SIMPLE_API.csproj">
+      <Project>{38622419-3d40-422a-90e7-be5f132b15ec}</Project>
+      <Name>SIMPLE_API</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Impresion.Utils\Impresion.Utils.csproj">
       <Project>{f44cf8ca-8c67-4a87-a6f2-3997fcb03414}</Project>
       <Name>Impresion.Utils</Name>
