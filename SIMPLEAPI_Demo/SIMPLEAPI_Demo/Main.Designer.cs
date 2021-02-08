@@ -64,6 +64,7 @@
             this.botonFacturaCompra = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.botonConfiguracion = new System.Windows.Forms.Button();
+            this.botonGenerarRCOFVacio = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -249,6 +250,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.botonGenerarRCOFVacio);
             this.groupBox2.Controls.Add(this.botonEnviarAlSIIBoletas_Certificacion);
             this.groupBox2.Controls.Add(this.botonEnviarAlSIIBoletas);
             this.groupBox2.Controls.Add(this.botonGenerarEnvioBoleta);
@@ -258,14 +260,14 @@
             this.groupBox2.Controls.Add(this.botonGenerarBoleta);
             this.groupBox2.Location = new System.Drawing.Point(350, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(163, 245);
+            this.groupBox2.Size = new System.Drawing.Size(163, 279);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Boletas Electrónicas";
             // 
             // botonEnviarAlSIIBoletas_Certificacion
             // 
-            this.botonEnviarAlSIIBoletas_Certificacion.Location = new System.Drawing.Point(6, 193);
+            this.botonEnviarAlSIIBoletas_Certificacion.Location = new System.Drawing.Point(6, 222);
             this.botonEnviarAlSIIBoletas_Certificacion.Name = "botonEnviarAlSIIBoletas_Certificacion";
             this.botonEnviarAlSIIBoletas_Certificacion.Size = new System.Drawing.Size(151, 42);
             this.botonEnviarAlSIIBoletas_Certificacion.TabIndex = 25;
@@ -275,7 +277,7 @@
             // 
             // botonEnviarAlSIIBoletas
             // 
-            this.botonEnviarAlSIIBoletas.Location = new System.Drawing.Point(6, 164);
+            this.botonEnviarAlSIIBoletas.Location = new System.Drawing.Point(6, 193);
             this.botonEnviarAlSIIBoletas.Name = "botonEnviarAlSIIBoletas";
             this.botonEnviarAlSIIBoletas.Size = new System.Drawing.Size(151, 23);
             this.botonEnviarAlSIIBoletas.TabIndex = 24;
@@ -285,7 +287,7 @@
             // 
             // botonGenerarEnvioBoleta
             // 
-            this.botonGenerarEnvioBoleta.Location = new System.Drawing.Point(6, 135);
+            this.botonGenerarEnvioBoleta.Location = new System.Drawing.Point(6, 164);
             this.botonGenerarEnvioBoleta.Name = "botonGenerarEnvioBoleta";
             this.botonGenerarEnvioBoleta.Size = new System.Drawing.Size(151, 23);
             this.botonGenerarEnvioBoleta.TabIndex = 5;
@@ -450,6 +452,16 @@
             this.botonConfiguracion.UseVisualStyleBackColor = true;
             this.botonConfiguracion.Click += new System.EventHandler(this.botonConfiguracion_Click);
             // 
+            // botonGenerarRCOFVacio
+            // 
+            this.botonGenerarRCOFVacio.Location = new System.Drawing.Point(6, 135);
+            this.botonGenerarRCOFVacio.Name = "botonGenerarRCOFVacio";
+            this.botonGenerarRCOFVacio.Size = new System.Drawing.Size(151, 23);
+            this.botonGenerarRCOFVacio.TabIndex = 26;
+            this.botonGenerarRCOFVacio.Text = "Generar RCOF Vacío";
+            this.botonGenerarRCOFVacio.UseVisualStyleBackColor = true;
+            this.botonGenerarRCOFVacio.Click += new System.EventHandler(this.botonGenerarRCOFVacio_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -514,6 +526,7 @@
         private System.Windows.Forms.Button botonFacturaCompra;
         private System.Windows.Forms.Button botonEnviarAlSIIBoletas;
         private System.Windows.Forms.Button botonEnviarAlSIIBoletas_Certificacion;
+        private System.Windows.Forms.Button botonGenerarRCOFVacio;
     }
 }
 
