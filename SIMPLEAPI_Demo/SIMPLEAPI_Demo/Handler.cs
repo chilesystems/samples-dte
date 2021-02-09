@@ -352,11 +352,11 @@ namespace SIMPLEAPI_Demo
             }            
         }
 
-        public string TimbrarYFirmarXMLDTE(DTE dte, string pathResult, string pathCaf)
+        public string TimbrarYFirmarXMLDTE(DTE dte, string pathResult, string pathCaf, out string messageOut)
         {
             /*En primer lugar, el documento debe timbrarse con el CAF que descargas desde el SII, es simular
              * cuando antes debías ir con las facturas en papel para que te las timbraran */
-            string messageOut = string.Empty;
+            messageOut = string.Empty;
             dte.Documento.Timbrar(
                 EnsureExists((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, dte.Documento.Encabezado.IdentificacionDTE.Folio, pathCaf), 
                 configuracion.APIKey, 
@@ -526,9 +526,9 @@ namespace SIMPLEAPI_Demo
             return EnvioCustomer;
         }
 
-        public long EnviarEnvioDTEToSII(string filePathEnvio, AmbienteEnum ambiente, bool nuevaBoleta = false)
+        public long EnviarEnvioDTEToSII(string filePathEnvio, AmbienteEnum ambiente, out string messageResult, bool nuevaBoleta = false)
         {
-            string messageResult = string.Empty;
+            messageResult = string.Empty;
             long trackID = -1;
             int i;
             try
@@ -540,18 +540,25 @@ namespace SIMPLEAPI_Demo
                     if(nuevaBoleta) responseEnvio = ChileSystems.DTE.WS.EnvioBoleta.EnvioBoleta.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
                     else responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat", "", true);
 
-                    if (responseEnvio != null || string.IsNullOrEmpty(messageResult))
+                    if (string.IsNullOrEmpty(messageResult))
                     {
-                        trackID = responseEnvio.TrackId;
+                        if (responseEnvio != null && responseEnvio.TrackId > 0)
+                        {
+                            trackID = responseEnvio.TrackId;
 
-                        /*Aquí pueden obtener todos los datos de la respuesta, tal como:
-                         * Estado
-                         * Fecha
-                         * Archivo
-                         * Glosa
-                         * XML
-                         * Entre otros*/
-                        return trackID;
+                            /*Aquí pueden obtener todos los datos de la respuesta, tal como:
+                             * Estado
+                             * Fecha
+                             * Archivo
+                             * Glosa
+                             * XML
+                             * Entre otros*/
+                            return trackID;
+                        }
+                        else 
+                        {
+                            messageResult = responseEnvio.ResponseXml;
+                        }
                     }
                 }
 
