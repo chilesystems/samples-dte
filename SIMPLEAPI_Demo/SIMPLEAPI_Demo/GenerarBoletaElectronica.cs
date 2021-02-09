@@ -67,9 +67,14 @@ namespace SIMPLEAPI_Demo
             handler.GenerateDetails(dte, items);
             string casoPrueba = "CASO-" + numericCasoPrueba.Value.ToString("N0");
             handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.BoletaElectronica, null, 0, casoPrueba);
-            var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
-            handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
-            MessageBox.Show("Documento generado exitosamente");
+            var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\", out string mensajeError);
+            if (!string.IsNullOrEmpty(mensajeError))
+                MessageBox.Show("Ocurrió el siguiente error: " + mensajeError);
+            else 
+            {
+                handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+                MessageBox.Show("Documento generado exitosamente");
+            }          
         }
     }
 }

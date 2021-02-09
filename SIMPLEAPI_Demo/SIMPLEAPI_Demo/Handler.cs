@@ -353,11 +353,11 @@ namespace SIMPLEAPI_Demo
             }            
         }
 
-        public string TimbrarYFirmarXMLDTE(DTE dte, string pathResult, string pathCaf)
+        public string TimbrarYFirmarXMLDTE(DTE dte, string pathResult, string pathCaf, out string messageOut)
         {
             /*En primer lugar, el documento debe timbrarse con el CAF que descargas desde el SII, es simular
              * cuando antes debías ir con las facturas en papel para que te las timbraran */
-            string messageOut = string.Empty;
+            messageOut = string.Empty;
             dte.Documento.Timbrar(
                 EnsureExists((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, dte.Documento.Encabezado.IdentificacionDTE.Folio, pathCaf),  
                 out messageOut);
