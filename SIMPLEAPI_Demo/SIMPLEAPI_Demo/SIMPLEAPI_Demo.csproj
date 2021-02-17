@@ -101,6 +101,20 @@
       <DependentUpon>GenerarBoletaElectronica.cs</DependentUpon>
     </Compile>
     <Compile Include="Handler.cs" />
+    <Compile Include="Impresion\Core\Classes\FontInfo.cs" />
+    <Compile Include="Impresion\Core\Classes\PrinterColumn.cs" />
+    <Compile Include="Impresion\Core\Classes\PrinterImageColumn.cs" />
+    <Compile Include="Impresion\Core\Classes\PrinterRow.cs" />
+    <Compile Include="Impresion\Core\Classes\PrinterService.cs" />
+    <Compile Include="Impresion\Core\Classes\PrinterTextColumn.cs" />
+    <Compile Include="Impresion\Core\Classes\PrinterWork.cs" />
+    <Compile Include="Impresion\Core\Helpers\DTETypeNames.cs" />
+    <Compile Include="Impresion\Core\Helpers\RUTHelper.cs" />
+    <Compile Include="Impresion\Core\Helpers\StringHelper.cs" />
+    <Compile Include="Impresion\Core\PrintableDocument.cs" />
+    <Compile Include="Impresion\Core\PrintableDocumentDetail.cs" />
+    <Compile Include="Impresion\Core\ThermalPrintHandler.cs" />
+    <Compile Include="Impresion\Utils\CodigoReferenciaName.cs" />
     <Compile Include="IngresarTimbraje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,15 +235,6 @@
   <ItemGroup>
     <None Include="Resources\Imprimir.png" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Impresion.Core\Impresion.Core.csproj">
-      <Project>{B30F866F-30D2-42D8-AAF4-BF1F846288EA}</Project>
-      <Name>Impresion.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Impresion.Utils\Impresion.Utils.csproj">
-      <Project>{F44CF8CA-8C67-4A87-A6F2-3997FCB03414}</Project>
-      <Name>Impresion.Utils</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

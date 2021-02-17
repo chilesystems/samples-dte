@@ -1,4 +1,6 @@
-﻿using SIMPLEAPI_Demo.Properties;
+﻿using SIMPLEAPI_Demo.Impresion.Core;
+using SIMPLEAPI_Demo.Impresion.Core.Helpers;
+using SIMPLEAPI_Demo.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,8 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ThermalPrinting.Core;
-using ThermalPrinting.Core.Helpers;
 
 namespace SIMPLEAPI_Demo
 {
