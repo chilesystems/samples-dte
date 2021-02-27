@@ -358,8 +358,7 @@ namespace SIMPLEAPI_Demo
              * cuando antes debías ir con las facturas en papel para que te las timbraran */
             messageOut = string.Empty;
             dte.Documento.Timbrar(
-                EnsureExists((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, dte.Documento.Encabezado.IdentificacionDTE.Folio, pathCaf), 
-                configuracion.APIKey, 
+                EnsureExists((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, dte.Documento.Encabezado.IdentificacionDTE.Folio, pathCaf),  
                 out messageOut);
 
             /*El documento timbrado se guarda en la variable pathResult*/
@@ -378,7 +377,6 @@ namespace SIMPLEAPI_Demo
             string messageOut = string.Empty;
             dte.Exportaciones.Timbrar(
                 EnsureExists((int)dte.Exportaciones.Encabezado.IdentificacionDTE.TipoDTE, dte.Exportaciones.Encabezado.IdentificacionDTE.Folio, pathCaf),
-                configuracion.APIKey,
                 out messageOut);
 
             /*El documento timbrado se guarda en la variable pathResult*/

@@ -34,7 +34,7 @@ namespace SIMPLEAPI_Demo
 
         private void botonGenerarDocumento_Click(object sender, EventArgs e)
         {
-            var dte = handler.GenerateDTE(ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica, 80);
+            var dte = handler.GenerateDTE(ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica, 202);
             handler.GenerateDetails(dte);
             var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\", out string messageOut);
             if (!string.IsNullOrEmpty(messageOut))
@@ -58,7 +58,7 @@ namespace SIMPLEAPI_Demo
                 List<string> xmlDtes = new List<string>();
                 foreach (string pathFile in pathFiles)
                 {
-                    string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
+                    string xml = File.ReadAllText(pathFile);
                     var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
 
                     /*Generar envio para el SII
