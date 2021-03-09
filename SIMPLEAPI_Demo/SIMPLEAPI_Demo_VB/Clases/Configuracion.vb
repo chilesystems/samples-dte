@@ -11,8 +11,8 @@ Public Class Configuracion
 
         Dim ser As JavaScriptSerializer = New JavaScriptSerializer()
 
-        Public Property Empresa As Contribuyente
-        Public Property Certificado As CertificadoDigital
+    Public Property Empresa As Contribuyente
+    Public Property Certificado As CertificadoDigital
         Public Property APIKey As String
         Public Property ProductosSimulacion As List(Of ProductoSimulacion)
 
@@ -24,23 +24,26 @@ Public Class Configuracion
             Return Directory.Exists("out\temp") AndAlso Directory.Exists("out\caf") AndAlso Directory.Exists("XML")
         End Function
 
-        Public Function LeerArchivo() As Boolean
-            Try
-                Dim conf = ser.Deserialize(Of Configuracion)(File.ReadAllText("configuracion.json", Encoding.GetEncoding("ISO-8859-1")))
-                Me.Empresa = conf.Empresa
-                Me.Certificado = conf.Certificado
-                Me.APIKey = conf.APIKey
-                Me.ProductosSimulacion = conf.ProductosSimulacion
-                Return True
-            Catch
-                InicializarArchivo()
-            End Try
+    Public Function LeerArchivo() As Boolean
+        Try
+            Dim conf = ser.Deserialize(Of Configuracion)(File.ReadAllText("configuracion.json", Encoding.GetEncoding("ISO-8859-1")))
+            Me.Empresa = conf.Empresa
+            Me.Certificado = conf.Certificado
+            Me.APIKey = conf.APIKey
+            Me.ProductosSimulacion = conf.ProductosSimulacion
+            Return True
 
-            Return False
-        End Function
+        Catch
+            InicializarArchivo()
 
-        Public Sub InicializarArchivo()
-            Dim empresa As Contribuyente = New Contribuyente() With {
+        End Try
+
+        Return False
+    End Function
+
+    Public Sub InicializarArchivo()
+
+        Empresa = New Contribuyente() With {
                 .RazonSocial = "RAZÓN SOCIAL",
                 .Giro = "GIRO GLOSA DESCRIPTIVA",
                 .Direccion = "DIRECCION 787",
@@ -59,53 +62,60 @@ Public Class Configuracion
                         .Codigo = 472200
                     }
                 }
-            }
-            empresa = empresa
-            Certificado = New CertificadoDigital() With {
+        }
+
+
+
+
+
+
+        Certificado = New CertificadoDigital() With {
                 .Nombre = "NOMBRE CERTIFICADO DIGITAL",
                 .Rut = "55555555-5"
             }
-            APIKey = "API-KEY"
-            ProductosSimulacion = New List(Of ProductoSimulacion)() From {
-                New ProductoSimulacion() With {
-                    .Nombre = "SERVICIO DE FACTURACION ELECT"
-                },
-                New ProductoSimulacion() With {
-                    .Nombre = "ASESORIA COMPUTACIONAL"
-                },
-                New ProductoSimulacion() With {
-                    .Nombre = "CAPACITACION AL PERSONAL"
-                },
-                New ProductoSimulacion() With {
-                    .Nombre = "IMPLEMENTACION DE ERP"
-                },
-                New ProductoSimulacion() With {
-                    .Nombre = "SERVICIO DE LIMPIEZA"
-                },
-                New ProductoSimulacion() With {
-                    .Nombre = "SERVICIO DE ASESORIA INFORMATICA"
-                },
-                New ProductoSimulacion() With {
-                    .Nombre = "DESARROLLO DE SITIOS WEB"
-                },
-                New ProductoSimulacion() With {
-                    .Nombre = "QA DE DESARROLLOS EXTERNOS"
-                },
-                New ProductoSimulacion() With {
-                    .Nombre = "LIMPIEZA DE COMPUTADORES"
-                },
-                New ProductoSimulacion() With {
-                    .Nombre = "AUTOMATIZACION DE DATOS"
-                },
-                New ProductoSimulacion() With {
-                    .Nombre = "DESARROLLO DE ETL"
-                }
+        APIKey = "API-KEY"
+        ProductosSimulacion = New List(Of ProductoSimulacion)() From {
+            New ProductoSimulacion() With {
+                .Nombre = "SERVICIO DE FACTURACION ELECT"
+            },
+            New ProductoSimulacion() With {
+                .Nombre = "ASESORIA COMPUTACIONAL"
+            },
+            New ProductoSimulacion() With {
+                .Nombre = "CAPACITACION AL PERSONAL"
+            },
+            New ProductoSimulacion() With {
+                .Nombre = "IMPLEMENTACION DE ERP"
+            },
+            New ProductoSimulacion() With {
+                .Nombre = "SERVICIO DE LIMPIEZA"
+            },
+            New ProductoSimulacion() With {
+                .Nombre = "SERVICIO DE ASESORIA INFORMATICA"
+            },
+            New ProductoSimulacion() With {
+                .Nombre = "DESARROLLO DE SITIOS WEB"
+            },
+            New ProductoSimulacion() With {
+                .Nombre = "QA DE DESARROLLOS EXTERNOS"
+            },
+            New ProductoSimulacion() With {
+                .Nombre = "LIMPIEZA DE COMPUTADORES"
+            },
+            New ProductoSimulacion() With {
+                .Nombre = "AUTOMATIZACION DE DATOS"
+            },
+            New ProductoSimulacion() With {
+                .Nombre = "DESARROLLO DE ETL"
             }
+        }
+
+
         GenerarArchivo()
 
 
     End Sub
-    End Class
+End Class
 
 Public Class ProductoSimulacion
     Public Property Nombre As String

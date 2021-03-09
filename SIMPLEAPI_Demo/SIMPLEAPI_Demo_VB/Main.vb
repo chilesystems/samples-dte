@@ -1,4 +1,8 @@
 ﻿Public Class Main
+
+    Dim handler As Handler = New Handler()
+
+
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Dim conf As Configuracion = New Configuracion()
@@ -9,6 +13,11 @@
             pregunta = MsgBox("Se deben agregar las carpetas iniciales out\\temp, out\\caf y XML", vbYes)
 
         End If
+
+        conf.LeerArchivo()
+
+        handler.configuracion = conf
+
 
 
 
@@ -31,6 +40,7 @@
     Private Sub botonConfiguracion_Click(sender As Object, e As EventArgs) Handles botonConfiguracion.Click
 
         ConfiguracionSistema.Show()
+        handler.configuracion.LeerArchivo()
 
 
 

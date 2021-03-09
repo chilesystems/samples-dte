@@ -144,6 +144,7 @@
             this.comboCertificados.Name = "comboCertificados";
             this.comboCertificados.Size = new System.Drawing.Size(226, 21);
             this.comboCertificados.TabIndex = 34;
+            this.comboCertificados.SelectedIndexChanged += new System.EventHandler(this.comboCertificados_SelectedIndexChanged);
             // 
             // label2
             // 

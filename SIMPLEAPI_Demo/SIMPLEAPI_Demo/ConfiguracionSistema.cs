@@ -125,5 +125,10 @@ namespace SIMPLEAPI_Demo
                 gridProductos.DataSource = configuracion.ProductosSimulacion;
             }
         }
+
+        private void comboCertificados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
