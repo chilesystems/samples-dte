@@ -101,8 +101,10 @@ Public Class Configuracion
                     .Nombre = "DESARROLLO DE ETL"
                 }
             }
-            GenerarArchivo()
-        End Sub
+        GenerarArchivo()
+
+
+    End Sub
     End Class
 
 Public Class ProductoSimulacion
