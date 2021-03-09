@@ -1,6 +1,17 @@
 ﻿Public Class Main
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        Dim conf As Configuracion = New Configuracion()
+        Dim pregunta As String
+
+
+        If (conf.VerificarCarpetasIniciales = False) Then
+            pregunta = MsgBox("Se deben agregar las carpetas iniciales out\\temp, out\\caf y XML", vbYes)
+
+        End If
+
+
+
     End Sub
 
     Private Sub botonIngresarTimbraje_Click(sender As Object, e As EventArgs) Handles botonIngresarTimbraje.Click
