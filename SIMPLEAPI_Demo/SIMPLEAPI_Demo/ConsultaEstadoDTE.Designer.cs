@@ -30,6 +30,7 @@
         {
             this.botonConsultar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkIsBoletaCertificacion = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.textFolio = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@
             this.textRespuesta = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.checkIsBoletaCertificacion = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -101,6 +101,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del DTE";
+            // 
+            // checkIsBoletaCertificacion
+            // 
+            this.checkIsBoletaCertificacion.AutoSize = true;
+            this.checkIsBoletaCertificacion.Location = new System.Drawing.Point(51, 206);
+            this.checkIsBoletaCertificacion.Name = "checkIsBoletaCertificacion";
+            this.checkIsBoletaCertificacion.Size = new System.Drawing.Size(225, 17);
+            this.checkIsBoletaCertificacion.TabIndex = 41;
+            this.checkIsBoletaCertificacion.Text = "Es una boleta del proceso de Certificación";
+            this.checkIsBoletaCertificacion.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -326,21 +336,11 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Resultado";
             // 
-            // checkIsBoletaCertificacion
-            // 
-            this.checkIsBoletaCertificacion.AutoSize = true;
-            this.checkIsBoletaCertificacion.Location = new System.Drawing.Point(51, 206);
-            this.checkIsBoletaCertificacion.Name = "checkIsBoletaCertificacion";
-            this.checkIsBoletaCertificacion.Size = new System.Drawing.Size(225, 17);
-            this.checkIsBoletaCertificacion.TabIndex = 41;
-            this.checkIsBoletaCertificacion.Text = "Es una boleta del proceso de Certificación";
-            this.checkIsBoletaCertificacion.UseVisualStyleBackColor = true;
-            // 
             // ConsultaEstadoDTE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(666, 325);
+            this.ClientSize = new System.Drawing.Size(674, 325);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
