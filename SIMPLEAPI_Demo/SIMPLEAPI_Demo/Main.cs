@@ -910,6 +910,7 @@ namespace SIMPLEAPI_Demo
 
                 /*Las cesiones y el Dte cedido, deben agregarse al objeto AEC como strings*/
                 AEC.signedXMLCedido = File.ReadAllText(xmlDteCedido, Encoding.GetEncoding("ISO-8859-1"));
+                AEC.DocumentoAEC.Cesiones.DTECedido = dteCedido;
                 AEC.signedXMLCesion.Add(File.ReadAllText(cesionXML, Encoding.GetEncoding("ISO-8859-1")));
                 AEC.DocumentoAEC.ID = "ID_TEST";
                 var filePathAEC = AEC.Firmar(configuracion.Certificado.Nombre, out message);

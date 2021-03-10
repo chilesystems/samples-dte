@@ -70,7 +70,11 @@ namespace SIMPLEAPI_Demo
                         tipoSchema = ChileSystems.DTE.Engine.XML.Schemas.LibroBoletas;
                         tipoFirma = SIMPLE_API.Security.Firma.Firma.TipoXML.LibroBoletas;
                     }
-
+                    else if (tipo == "AEC")
+                    {
+                        tipoSchema = ChileSystems.DTE.Engine.XML.Schemas.AEC;
+                        tipoFirma = SIMPLE_API.Security.Firma.Firma.TipoXML.AEC;
+                    }
                     string messageResultSchema = string.Empty;
                     string messageResultFirma = string.Empty;
                     if (ChileSystems.DTE.Engine.XML.XmlHandler.ValidateWithSchema(openFileDialog1.FileName, out messageResultSchema, tipoSchema))

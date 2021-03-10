@@ -103,8 +103,9 @@
             "ENVIOBOLETA",
             "IECV",
             "CONSUMOFOLIOS",
-            "LIBROBOLETA"});
-            this.comboTipo.Location = new System.Drawing.Point(79, 56);
+            "LIBROBOLETA",
+            "AEC"});
+            this.comboTipo.Location = new System.Drawing.Point(79, 29);
             this.comboTipo.Name = "comboTipo";
             this.comboTipo.Size = new System.Drawing.Size(131, 21);
             this.comboTipo.TabIndex = 5;
@@ -113,7 +114,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 56);
+            this.label3.Location = new System.Drawing.Point(15, 29);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 4;
@@ -123,7 +124,7 @@
             // 
             this.botonBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botonBuscar.Image = global::SIMPLEAPI_Demo.Properties.Resources.View;
-            this.botonBuscar.Location = new System.Drawing.Point(341, 27);
+            this.botonBuscar.Location = new System.Drawing.Point(341, 56);
             this.botonBuscar.Name = "botonBuscar";
             this.botonBuscar.Size = new System.Drawing.Size(29, 20);
             this.botonBuscar.TabIndex = 2;
@@ -133,7 +134,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 30);
+            this.label2.Location = new System.Drawing.Point(15, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 1;
@@ -141,7 +142,7 @@
             // 
             // txtFilePath
             // 
-            this.txtFilePath.Location = new System.Drawing.Point(79, 27);
+            this.txtFilePath.Location = new System.Drawing.Point(79, 56);
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.Size = new System.Drawing.Size(256, 20);
             this.txtFilePath.TabIndex = 0;
