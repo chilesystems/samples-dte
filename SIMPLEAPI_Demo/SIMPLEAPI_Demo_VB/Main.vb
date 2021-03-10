@@ -1,4 +1,6 @@
-﻿Public Class Main
+﻿Imports Fluent.Infrastructure.FluentModel
+
+Public Class Main
 
     Dim handler As Handler = New Handler()
 
@@ -30,7 +32,16 @@
     End Sub
 
     Private Sub botonGenerarDocumento_Click(sender As Object, e As EventArgs) Handles botonGenerarDocumento.Click
-
+        Dim dte = handler.GenerateDTE(ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica, 202)
+        handler.GenerateDetails(dte)
+        Dim msj As String = ""
+        Dim path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\", msj)
+        If (Not String.IsNullOrEmpty(msj)) Then
+            msj = MsgBox("Ocurrió un error: " + msj)
+        Else
+            handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE)
+            msj = MsgBox("Documento generado exitosamente en " + path)
+        End If
     End Sub
 
     Private Sub botonGenerarEnvio_Click(sender As Object, e As EventArgs) Handles botonGenerarEnvio.Click

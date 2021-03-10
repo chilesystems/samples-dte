@@ -1,0 +1,61 @@
+@*
+////-----------------------------------------------------------------------
+//// <copyright file="AddReturn.cshtml" company="Fluent.Infrastructure">
+////     Copyright © Fluent.Infrastructure. All rights reserved.
+////
+//// </copyright>
+////-----------------------------------------------------------------------
+/// This is a test file created by Fluent Infrastructure in order to
+/// illustrate its operation.
+/// See more at: https://github.com/dn32/Fluent.Infrastructure/wiki
+////-----------------------------------------------------------------------
+*@
+
+@using SIMPLEAPI_Demo_VB.Models
+@model ForumForm
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<div>
+    <h4>Forum</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+               
+        <dt>
+            @Html.DisplayNameFor(model => model.Deleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+    </dl>
+</div>
+
+<div>
+    @Html.ActionLink("Forum", "New", "Forum")
+</div>
+<br />
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
