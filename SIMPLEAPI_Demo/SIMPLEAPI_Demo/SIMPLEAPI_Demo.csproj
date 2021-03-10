@@ -231,11 +231,5 @@
   <ItemGroup>
     <None Include="Resources\Imprimir.png" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\simple_api\SIMPLE_API\SIMPLE_API.csproj">
-      <Project>{38622419-3d40-422a-90e7-be5f132b15ec}</Project>
-      <Name>SIMPLE_API</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
