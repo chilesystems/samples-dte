@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBoxTimbre = new System.Windows.Forms.PictureBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.gridDetalles = new System.Windows.Forms.DataGridView();
             this.IS_EXENTO = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -104,11 +105,11 @@
             this.txtXmlFilePath = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.radioPrinter = new System.Windows.Forms.RadioButton();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.comboPrinters = new System.Windows.Forms.ComboBox();
             this.radioDebug = new System.Windows.Forms.RadioButton();
-            this.pictureBoxTimbre = new System.Windows.Forms.PictureBox();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTimbre)).BeginInit();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetalles)).BeginInit();
             this.groupBox7.SuspendLayout();
@@ -126,7 +127,6 @@
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTimbre)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -143,6 +143,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(786, 508);
             this.panel1.TabIndex = 27;
+            // 
+            // pictureBoxTimbre
+            // 
+            this.pictureBoxTimbre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxTimbre.Location = new System.Drawing.Point(3, 389);
+            this.pictureBoxTimbre.Name = "pictureBoxTimbre";
+            this.pictureBoxTimbre.Size = new System.Drawing.Size(380, 147);
+            this.pictureBoxTimbre.TabIndex = 51;
+            this.pictureBoxTimbre.TabStop = false;
             // 
             // groupBox8
             // 
@@ -182,8 +191,8 @@
             // 
             // CANTIDAD
             // 
-            dataGridViewCellStyle6.Format = "N0";
-            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Format = "N0";
+            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle1;
             this.CANTIDAD.HeaderText = "CANT.";
             this.CANTIDAD.Name = "CANTIDAD";
             // 
@@ -200,16 +209,16 @@
             // 
             // PRECIO
             // 
-            dataGridViewCellStyle7.Format = "N0";
-            this.PRECIO.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Format = "N0";
+            this.PRECIO.DefaultCellStyle = dataGridViewCellStyle2;
             this.PRECIO.HeaderText = "PRECIO";
             this.PRECIO.Name = "PRECIO";
             // 
             // dataGridViewTextBoxColumn4
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.Format = "N0";
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N0";
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn4.HeaderText = "TOTAL";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
@@ -274,9 +283,9 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Format = "N0";
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N0";
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn2.HeaderText = "TOTAL";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.Width = 75;
@@ -337,9 +346,9 @@
             // 
             // TOTAL
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle10.Format = "N0";
-            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N0";
+            this.TOTAL.DefaultCellStyle = dataGridViewCellStyle5;
             this.TOTAL.HeaderText = "TOTAL";
             this.TOTAL.Name = "TOTAL";
             this.TOTAL.Width = 95;
@@ -854,36 +863,6 @@
             this.radioPrinter.UseVisualStyleBackColor = true;
             this.radioPrinter.CheckedChanged += new System.EventHandler(this.radioPrinter_CheckedChanged);
             // 
-            // comboPrinters
-            // 
-            this.comboPrinters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboPrinters.FormattingEnabled = true;
-            this.comboPrinters.Location = new System.Drawing.Point(138, 23);
-            this.comboPrinters.Name = "comboPrinters";
-            this.comboPrinters.Size = new System.Drawing.Size(228, 21);
-            this.comboPrinters.TabIndex = 1;
-            // 
-            // radioDebug
-            // 
-            this.radioDebug.AutoSize = true;
-            this.radioDebug.Checked = true;
-            this.radioDebug.Location = new System.Drawing.Point(21, 50);
-            this.radioDebug.Name = "radioDebug";
-            this.radioDebug.Size = new System.Drawing.Size(88, 17);
-            this.radioDebug.TabIndex = 4;
-            this.radioDebug.TabStop = true;
-            this.radioDebug.Text = "Debug dialog";
-            this.radioDebug.UseVisualStyleBackColor = true;
-            // 
-            // pictureBoxTimbre
-            // 
-            this.pictureBoxTimbre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxTimbre.Location = new System.Drawing.Point(3, 389);
-            this.pictureBoxTimbre.Name = "pictureBoxTimbre";
-            this.pictureBoxTimbre.Size = new System.Drawing.Size(380, 147);
-            this.pictureBoxTimbre.TabIndex = 51;
-            this.pictureBoxTimbre.TabStop = false;
-            // 
             // btnPrint
             // 
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -897,6 +876,28 @@
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // comboPrinters
+            // 
+            this.comboPrinters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboPrinters.FormattingEnabled = true;
+            this.comboPrinters.Location = new System.Drawing.Point(138, 23);
+            this.comboPrinters.Name = "comboPrinters";
+            this.comboPrinters.Size = new System.Drawing.Size(228, 21);
+            this.comboPrinters.TabIndex = 1;
+            this.comboPrinters.SelectedIndexChanged += new System.EventHandler(this.comboPrinters_SelectedIndexChanged);
+            // 
+            // radioDebug
+            // 
+            this.radioDebug.AutoSize = true;
+            this.radioDebug.Checked = true;
+            this.radioDebug.Location = new System.Drawing.Point(21, 50);
+            this.radioDebug.Name = "radioDebug";
+            this.radioDebug.Size = new System.Drawing.Size(88, 17);
+            this.radioDebug.TabIndex = 4;
+            this.radioDebug.TabStop = true;
+            this.radioDebug.Text = "Debug dialog";
+            this.radioDebug.UseVisualStyleBackColor = true;
             // 
             // MuestraImpresa
             // 
@@ -912,6 +913,7 @@
             this.Text = "Muestra Impresa";
             this.Load += new System.EventHandler(this.MuestraImpresa_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTimbre)).EndInit();
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridDetalles)).EndInit();
             this.groupBox7.ResumeLayout(false);
@@ -936,7 +938,6 @@
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTimbre)).EndInit();
             this.ResumeLayout(false);
 
         }

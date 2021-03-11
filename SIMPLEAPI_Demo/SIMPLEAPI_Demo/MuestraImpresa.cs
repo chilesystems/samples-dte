@@ -327,6 +327,11 @@ namespace SIMPLEAPI_Demo
             if (document.Detalles.Count == 0)
                 document.Detalles = null;
         }
+
+        private void comboPrinters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

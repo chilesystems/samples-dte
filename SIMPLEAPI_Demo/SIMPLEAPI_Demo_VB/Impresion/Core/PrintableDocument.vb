@@ -44,9 +44,9 @@ Public Class PrintableDocument
 
             '//var xml = new XmlHandler(filePath);
             doc = New PrintableDocument()
-            'doc.RazonSocial = String.IsNullOrEmpty(dte.Documento.Encabezado.Emisor.RazonSocial) ? dte.Documento.Encabezado.Emisor.RazonSocialBoleta : dte.Documento.Encabezado.Emisor.RazonSocial
+            doc.RazonSocial = IIf(String.IsNullOrEmpty(dte.Documento.Encabezado.Emisor.RazonSocial), dte.Documento.Encabezado.Emisor.RazonSocialBoleta, dte.Documento.Encabezado.Emisor.RazonSocial)
             doc.Rut = dte.Documento.Encabezado.Emisor.Rut
-            'doc.Giro = String.IsNullOrEmpty(dte.Documento.Encabezado.Emisor.Giro) ? dte.Documento.Encabezado.Emisor.GiroBoleta : Dim v = dte.Documento.Encabezado.Emisor.Giro
+            doc.Giro = IIf(String.IsNullOrEmpty(dte.Documento.Encabezado.Emisor.Giro), dte.Documento.Encabezado.Emisor.GiroBoleta, dte.Documento.Encabezado.Emisor.Giro)
             doc.DireccionCasaMatriz = dte.Documento.Encabezado.Emisor.DireccionOrigen
             doc.Sucursales = Nothing
             doc.Teléfono = Nothing
@@ -72,7 +72,8 @@ Public Class PrintableDocument
 
                 doc.Detalles.Add(New PrintableDocumentDetail() With
                 {
-                    .Cantidad = detalle.Cantidad,'Descripcion = string.IsNullOrEmpty(detalle.Nombre) ? detalle.Descripcion : detalle.Nombre,
+                    .Cantidad = detalle.Cantidad,
+                    .Descripcion = IIf(String.IsNullOrEmpty(detalle.Nombre), detalle.Descripcion, detalle.Nombre),
                     .IsExento = detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento,
                     .Precio = detalle.Precio,
                     .Total = detalle.MontoItem,

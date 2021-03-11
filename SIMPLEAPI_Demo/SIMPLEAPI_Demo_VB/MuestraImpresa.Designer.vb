@@ -22,11 +22,11 @@ Partial Class MuestraImpresa
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.panel1 = New System.Windows.Forms.Panel()
         Me.pictureBoxTimbre = New System.Windows.Forms.PictureBox()
         Me.groupBox8 = New System.Windows.Forms.GroupBox()
@@ -176,8 +176,8 @@ Partial Class MuestraImpresa
         '
         'CANTIDAD
         '
-        DataGridViewCellStyle1.Format = "N0"
-        Me.CANTIDAD.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle21.Format = "N0"
+        Me.CANTIDAD.DefaultCellStyle = DataGridViewCellStyle21
         Me.CANTIDAD.HeaderText = "CANT."
         Me.CANTIDAD.Name = "CANTIDAD"
         '
@@ -194,16 +194,16 @@ Partial Class MuestraImpresa
         '
         'PRECIO
         '
-        DataGridViewCellStyle2.Format = "N0"
-        Me.PRECIO.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle22.Format = "N0"
+        Me.PRECIO.DefaultCellStyle = DataGridViewCellStyle22
         Me.PRECIO.HeaderText = "PRECIO"
         Me.PRECIO.Name = "PRECIO"
         '
         'dataGridViewTextBoxColumn4
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "N0"
-        Me.dataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle23.Format = "N0"
+        Me.dataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle23
         Me.dataGridViewTextBoxColumn4.HeaderText = "TOTAL"
         Me.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4"
         '
@@ -262,9 +262,9 @@ Partial Class MuestraImpresa
         '
         'dataGridViewTextBoxColumn2
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "N0"
-        Me.dataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle24.Format = "N0"
+        Me.dataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle24
         Me.dataGridViewTextBoxColumn2.HeaderText = "TOTAL"
         Me.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2"
         Me.dataGridViewTextBoxColumn2.Width = 75
@@ -315,9 +315,9 @@ Partial Class MuestraImpresa
         '
         'TOTAL
         '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle5.Format = "N0"
-        Me.TOTAL.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle25.Format = "N0"
+        Me.TOTAL.DefaultCellStyle = DataGridViewCellStyle25
         Me.TOTAL.HeaderText = "TOTAL"
         Me.TOTAL.Name = "TOTAL"
         Me.TOTAL.Width = 95

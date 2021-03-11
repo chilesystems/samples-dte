@@ -1,7 +1,6 @@
 ﻿Imports System.IO
+Imports System.Runtime.InteropServices
 Imports System.Text
-Imports DocumentFormat.OpenXml.Wordprocessing
-Imports Fluent.Infrastructure.FluentModel
 
 Public Class MuestraImpresa
 
@@ -28,6 +27,7 @@ Public Class MuestraImpresa
         txtXmlFilePath.Text = opd.FileName
 
 
+
     End Sub
     Private Sub BindDetalles()
         If binding Then Return
@@ -36,8 +36,15 @@ Public Class MuestraImpresa
 
         For Each row As DataGridViewRow In gridDetalles.Rows
 
-            If row.Cells(0).Value IsNot Nothing AndAlso row.Cells(1).Value IsNot Nothing AndAlso row.Cells(3).Value IsNot Nothing AndAlso row.Cells(4).Value IsNot Nothing AndAlso row.Cells(5).Value IsNot Nothing Then
-                If Boolean.TryParse(row.Cells(0).Value.ToString(), boolAux) AndAlso Integer.TryParse(row.Cells(1).Value.ToString(), System.Globalization.NumberStyles.Number, Nothing, intAux) AndAlso Not String.IsNullOrEmpty(row.Cells(3).Value.ToString()) AndAlso Integer.TryParse(row.Cells(4).Value.ToString(), System.Globalization.NumberStyles.Number, Nothing, intAux) AndAlso Integer.TryParse(row.Cells(5).Value.ToString(), System.Globalization.NumberStyles.Number, Nothing, intAux) Then document.Detalles.Add(New PrintableDocumentDetail() With {
+            If row.Cells(0).Value IsNot Nothing AndAlso row.Cells(1).Value IsNot Nothing AndAlso
+                row.Cells(3).Value IsNot Nothing AndAlso row.Cells(4).Value IsNot Nothing AndAlso
+                row.Cells(5).Value IsNot Nothing Then
+                If Boolean.TryParse(row.Cells(0).Value.ToString(), boolAux) AndAlso
+                Integer.TryParse(row.Cells(1).Value.ToString(), System.Globalization.NumberStyles.Number, Nothing, intAux) AndAlso
+                Not String.IsNullOrEmpty(row.Cells(3).Value.ToString()) AndAlso
+                Integer.TryParse(row.Cells(4).Value.ToString(), System.Globalization.NumberStyles.Number, Nothing, intAux) AndAlso
+                Integer.TryParse(row.Cells(5).Value.ToString(), System.Globalization.NumberStyles.Number, Nothing, intAux) Then
+                    document.Detalles.Add(New PrintableDocumentDetail() With {
                 .IsExento = Convert.ToBoolean(row.Cells(0).Value),
                 .Cantidad = Convert.ToInt32(row.Cells(1).Value),
                 .UnidadMedida = If(row.Cells(2).Value Is Nothing, "", row.Cells(2).Value.ToString()),
@@ -45,6 +52,7 @@ Public Class MuestraImpresa
                 .Precio = Convert.ToInt32(row.Cells(4).Value),
                 .Total = Convert.ToInt32(row.Cells(5).Value)
             })
+                End If
             End If
         Next
 
@@ -115,12 +123,14 @@ Public Class MuestraImpresa
             Dim xml As String = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"))
             Dim dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString(Of ChileSystems.DTE.Engine.Documento.DTE)(xml)
             document = PrintableDocument.FromDTE(dte)
-            pictureBoxTimbre.BackgroundImage = document.TimbreImage
+
+            pictureBoxTimbre.BackgroundImage = document.TimbreImage '=dte.Documento.TimbrePDF417()
+
 
             BindData()
 
         Catch ex As Exception
-
+            MsgBox("Ha ocurrido un error al cargar el archivo. Error: " + ex.Message, vbYes)
         End Try
     End Sub
 
@@ -151,5 +161,57 @@ Public Class MuestraImpresa
 
     Private Sub MuestraImpresa_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        txtXmlFilePath.Text = "C:\"
+
+        comboTipoDocumento.ValueMember = "Key"
+        comboTipoDocumento.DisplayMember = "Value"
+        For Each pair In DTETypeNames.Names.AsEnumerable()
+            comboTipoDocumento.Items.Add(pair)
+
+        Next
+        Dim printers = System.Drawing.Printing.PrinterSettings.InstalledPrinters
+        For Each printt In printers
+            comboPrinters.Items.Add(printt)
+            radioPrinter_CheckedChanged(Nothing, Nothing)
+        Next
+
+
+    End Sub
+
+    Private Sub radioPrinter_CheckedChanged(sender As Object, e As EventArgs) Handles radioPrinter.CheckedChanged
+        comboPrinters.Enabled = radioPrinter.Checked
+    End Sub
+
+    Private Sub comboPrinters_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboPrinters.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub checkIsDTE_CheckedChanged(sender As Object, e As EventArgs) Handles checkIsDTE.CheckedChanged
+        Dim check As CheckBox = sender
+
+        If (IsNothing(check)) Then
+            Return
+        End If
+
+        Select Case check.Name
+            Case "checkIsDTE"
+                document.IsDTE = check.Checked
+            Case "checkShowUM"
+                document.ShowUnidadMedida = check.Checked
+        End Select
+
+
+    End Sub
+
+    Private Sub dateFechaResolucion_ValueChanged(sender As Object, e As EventArgs) Handles dateFechaResolucion.ValueChanged
+        Dim datef = TryCast(sender, DateTimePicker)
+        If datef Is Nothing Then Return
+
+        Select Case dateF.Name
+            Case "dateFechaEmision"
+                document.FechaEmision = datef.Value
+            Case "dateFechaResolucion"
+                document.FechaResolucion = datef.Value
+        End Select
     End Sub
 End Class
