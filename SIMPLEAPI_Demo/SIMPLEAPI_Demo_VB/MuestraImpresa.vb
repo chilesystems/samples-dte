@@ -214,4 +214,28 @@ Public Class MuestraImpresa
                 document.FechaResolucion = datef.Value
         End Select
     End Sub
+
+    Private Sub gridAdicionales_RowsAdded(sender As Object, e As DataGridViewRowsAddedEventArgs) Handles gridAdicionales.RowsAdded
+        BindAdicionales()
+    End Sub
+
+    Private Sub gridAdicionales_RowsRemoved(sender As Object, e As DataGridViewRowsRemovedEventArgs) Handles gridAdicionales.RowsRemoved
+        BindAdicionales()
+    End Sub
+
+    Private Sub gridDescuentosRecargos_RowsAdded(sender As Object, e As DataGridViewRowsAddedEventArgs) Handles gridDescuentosRecargos.RowsAdded
+        BindDescuentosRecargos()
+    End Sub
+
+    Private Sub gridDescuentosRecargos_RowsRemoved(sender As Object, e As DataGridViewRowsRemovedEventArgs) Handles gridDescuentosRecargos.RowsRemoved
+        BindDescuentosRecargos()
+    End Sub
+
+    Private Sub gridDescuentosRecargos_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles gridDescuentosRecargos.CellEndEdit
+        BindDescuentosRecargos()
+    End Sub
+
+    Private Sub gridAdicionales_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles gridAdicionales.CellEndEdit
+        BindAdicionales()
+    End Sub
 End Class
