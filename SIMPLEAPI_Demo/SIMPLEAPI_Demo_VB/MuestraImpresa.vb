@@ -148,4 +148,8 @@ Public Class MuestraImpresa
         handler.Print(radioPrinter.Checked)
 
     End Sub
+
+    Private Sub MuestraImpresa_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
