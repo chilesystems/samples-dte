@@ -108,6 +108,7 @@ namespace SIMPLEAPI_Demo
 
             txtXmlFilePath.Text = dialog.FileName;
 
+            
             Settings.Default.xmlFilePath = dialog.FileName;
             Settings.Default.Save();
         }

@@ -67,4 +67,14 @@ Public Class ThermalPrintHandler
 #End Region
 
     End Function
+
+
+    Public Sub Print(ByVal directPrint As Boolean)
+        Try
+            Dim pw As printerWork = CreatePrinterWork()
+            Dim service As PrinterService = New PrinterService(pw)
+            service.Print(_document.NombreDocumento & " " + _document.Folio, NombreImpresora, Not directPrint)
+        Catch
+        End Try
+    End Sub
 End Class

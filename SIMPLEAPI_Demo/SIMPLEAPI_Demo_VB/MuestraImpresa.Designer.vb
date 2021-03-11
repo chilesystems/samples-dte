@@ -22,11 +22,11 @@ Partial Class MuestraImpresa
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle39 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle40 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.panel1 = New System.Windows.Forms.Panel()
         Me.pictureBoxTimbre = New System.Windows.Forms.PictureBox()
         Me.groupBox8 = New System.Windows.Forms.GroupBox()
@@ -93,15 +93,15 @@ Partial Class MuestraImpresa
         Me.txtRazonSocialEmisor = New System.Windows.Forms.TextBox()
         Me.label2 = New System.Windows.Forms.Label()
         Me.txtRutEmisor = New System.Windows.Forms.TextBox()
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
         Me.radioPrinter = New System.Windows.Forms.RadioButton()
         Me.btnPrint = New System.Windows.Forms.Button()
         Me.comboPrinters = New System.Windows.Forms.ComboBox()
         Me.radioDebug = New System.Windows.Forms.RadioButton()
+        Me.groupBox6 = New System.Windows.Forms.GroupBox()
+        Me.btnSelectXml = New System.Windows.Forms.Button()
+        Me.btnCargarXml = New System.Windows.Forms.Button()
+        Me.txtXmlFilePath = New System.Windows.Forms.TextBox()
         Me.panel1.SuspendLayout()
         CType(Me.pictureBoxTimbre, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.groupBox8.SuspendLayout()
@@ -119,8 +119,8 @@ Partial Class MuestraImpresa
         CType(Me.txtFolio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.groupBox2.SuspendLayout()
         Me.groupBox1.SuspendLayout()
-        Me.GroupBox5.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
+        Me.groupBox6.SuspendLayout()
         Me.SuspendLayout()
         '
         'panel1
@@ -176,8 +176,8 @@ Partial Class MuestraImpresa
         '
         'CANTIDAD
         '
-        DataGridViewCellStyle6.Format = "N0"
-        Me.CANTIDAD.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle37.Format = "N0"
+        Me.CANTIDAD.DefaultCellStyle = DataGridViewCellStyle37
         Me.CANTIDAD.HeaderText = "CANT."
         Me.CANTIDAD.Name = "CANTIDAD"
         '
@@ -194,16 +194,16 @@ Partial Class MuestraImpresa
         '
         'PRECIO
         '
-        DataGridViewCellStyle7.Format = "N0"
-        Me.PRECIO.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle38.Format = "N0"
+        Me.PRECIO.DefaultCellStyle = DataGridViewCellStyle38
         Me.PRECIO.HeaderText = "PRECIO"
         Me.PRECIO.Name = "PRECIO"
         '
         'dataGridViewTextBoxColumn4
         '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle8.Format = "N0"
-        Me.dataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle39.Format = "N0"
+        Me.dataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle39
         Me.dataGridViewTextBoxColumn4.HeaderText = "TOTAL"
         Me.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4"
         '
@@ -241,7 +241,7 @@ Partial Class MuestraImpresa
         '
         Me.gridDescuentosRecargos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridDescuentosRecargos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TIPO, Me.dataGridViewTextBoxColumn1, Me.dataGridViewTextBoxColumn2})
-        Me.gridDescuentosRecargos.Location = New System.Drawing.Point(136, 23)
+        Me.gridDescuentosRecargos.Location = New System.Drawing.Point(138, 26)
         Me.gridDescuentosRecargos.Name = "gridDescuentosRecargos"
         Me.gridDescuentosRecargos.RowHeadersWidth = 10
         Me.gridDescuentosRecargos.Size = New System.Drawing.Size(228, 109)
@@ -262,9 +262,9 @@ Partial Class MuestraImpresa
         '
         'dataGridViewTextBoxColumn2
         '
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle9.Format = "N0"
-        Me.dataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle36.Format = "N0"
+        Me.dataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle36
         Me.dataGridViewTextBoxColumn2.HeaderText = "TOTAL"
         Me.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2"
         Me.dataGridViewTextBoxColumn2.Width = 75
@@ -315,9 +315,9 @@ Partial Class MuestraImpresa
         '
         'TOTAL
         '
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle10.Format = "N0"
-        Me.TOTAL.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle40.Format = "N0"
+        Me.TOTAL.DefaultCellStyle = DataGridViewCellStyle40
         Me.TOTAL.HeaderText = "TOTAL"
         Me.TOTAL.Name = "TOTAL"
         Me.TOTAL.Width = 95
@@ -734,43 +734,6 @@ Partial Class MuestraImpresa
         Me.txtRutEmisor.Size = New System.Drawing.Size(228, 20)
         Me.txtRutEmisor.TabIndex = 8
         '
-        'GroupBox5
-        '
-        Me.GroupBox5.Controls.Add(Me.Button1)
-        Me.GroupBox5.Controls.Add(Me.Button2)
-        Me.GroupBox5.Controls.Add(Me.TextBox1)
-        Me.GroupBox5.Location = New System.Drawing.Point(50, 29)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(380, 95)
-        Me.GroupBox5.TabIndex = 31
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "Cargar XML"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(251, 26)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(59, 25)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Buscar"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(316, 26)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(58, 25)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Cargar"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(21, 29)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(224, 20)
-        Me.TextBox1.TabIndex = 0
-        '
         'GroupBox9
         '
         Me.GroupBox9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -828,13 +791,50 @@ Partial Class MuestraImpresa
         Me.radioDebug.Text = "Debug dialog"
         Me.radioDebug.UseVisualStyleBackColor = True
         '
+        'groupBox6
+        '
+        Me.groupBox6.Controls.Add(Me.btnSelectXml)
+        Me.groupBox6.Controls.Add(Me.btnCargarXml)
+        Me.groupBox6.Controls.Add(Me.txtXmlFilePath)
+        Me.groupBox6.Location = New System.Drawing.Point(53, 29)
+        Me.groupBox6.Name = "groupBox6"
+        Me.groupBox6.Size = New System.Drawing.Size(380, 95)
+        Me.groupBox6.TabIndex = 33
+        Me.groupBox6.TabStop = False
+        Me.groupBox6.Text = "Cargar XML"
+        '
+        'btnSelectXml
+        '
+        Me.btnSelectXml.Location = New System.Drawing.Point(251, 26)
+        Me.btnSelectXml.Name = "btnSelectXml"
+        Me.btnSelectXml.Size = New System.Drawing.Size(59, 25)
+        Me.btnSelectXml.TabIndex = 2
+        Me.btnSelectXml.Text = "Buscar"
+        Me.btnSelectXml.UseVisualStyleBackColor = True
+        '
+        'btnCargarXml
+        '
+        Me.btnCargarXml.Location = New System.Drawing.Point(316, 26)
+        Me.btnCargarXml.Name = "btnCargarXml"
+        Me.btnCargarXml.Size = New System.Drawing.Size(58, 25)
+        Me.btnCargarXml.TabIndex = 1
+        Me.btnCargarXml.Text = "Cargar"
+        Me.btnCargarXml.UseVisualStyleBackColor = True
+        '
+        'txtXmlFilePath
+        '
+        Me.txtXmlFilePath.Location = New System.Drawing.Point(21, 29)
+        Me.txtXmlFilePath.Name = "txtXmlFilePath"
+        Me.txtXmlFilePath.Size = New System.Drawing.Size(224, 20)
+        Me.txtXmlFilePath.TabIndex = 0
+        '
         'MuestraImpresa
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(887, 666)
+        Me.Controls.Add(Me.groupBox6)
         Me.Controls.Add(Me.panel1)
-        Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox9)
         Me.Name = "MuestraImpresa"
         Me.Text = "MuestraImpresa"
@@ -860,10 +860,10 @@ Partial Class MuestraImpresa
         Me.groupBox2.PerformLayout()
         Me.groupBox1.ResumeLayout(False)
         Me.groupBox1.PerformLayout()
-        Me.GroupBox5.ResumeLayout(False)
-        Me.GroupBox5.PerformLayout()
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox9.PerformLayout()
+        Me.groupBox6.ResumeLayout(False)
+        Me.groupBox6.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -933,13 +933,13 @@ Partial Class MuestraImpresa
     Private WithEvents txtRazonSocialEmisor As TextBox
     Private WithEvents label2 As Label
     Private WithEvents txtRutEmisor As TextBox
-    Private WithEvents GroupBox5 As GroupBox
-    Private WithEvents Button1 As Button
-    Private WithEvents Button2 As Button
-    Private WithEvents TextBox1 As TextBox
     Private WithEvents GroupBox9 As GroupBox
     Private WithEvents radioPrinter As RadioButton
     Private WithEvents btnPrint As Button
     Private WithEvents comboPrinters As ComboBox
     Private WithEvents radioDebug As RadioButton
+    Private WithEvents groupBox6 As GroupBox
+    Private WithEvents btnSelectXml As Button
+    Private WithEvents btnCargarXml As Button
+    Private WithEvents txtXmlFilePath As TextBox
 End Class
