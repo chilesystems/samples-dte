@@ -697,186 +697,185 @@ Public Class Handler
         Return rcof
     End Function
 
-    'Public Function GenerateLibroBoletas(ByVal dtes As List(Of DTE)) As ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas
-    '    Dim libro = New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas()
-    '    libro.EnvioLibro = New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.EnvioLibro()
-    '
-    '   /*Datos para confeccion de caratula*/
-    '
-    '    String periodoTributario = "2018-05";
-    '
-    '      /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
-    '        /*El tipo de libro debe ser "Especial" cuando se trata del set de pruebas*/
-    '        /*El folio de notificacion lo entrega el SII al momento de solicitar el libro, para el set de pruebas no es necesario agregarlo*/
+    Public Function GenerateLibroBoletas(ByVal dtes As List(Of DTE)) As ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas
+        Dim libro = New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas()
+        libro.EnvioLibro = New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.EnvioLibro()
 
-    '    libro.EnvioLibro.Caratula = New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Caratula With {
-    '        .RutEmisor = configuracion.Empresa.RutEmpresa,
-    '        .RutEnvia = configuracion.Certificado.Rut,
-    '        .PeriodoTributario = periodoTributario,
-    '        .FechaResolucion = configuracion.Empresa.FechaResolucion,
-    '        .NumeroResolucion = configuracion.Empresa.NumeroResolucion,
-    '        .TipoLibro = ChileSystems.DTE.Engine.[Enum].TipoLibro.TipoLibroEnum.Especial,
-    '        .TipoEnvio = ChileSystems.DTE.Engine.[Enum].TipoEnvioLibro.TipoEnvioLibroEnum.Total
-    '    }
-    '    libro.EnvioLibro.ResumenPeriodo = New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.ResumenPeriodo()
-    '    libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = New List(Of ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalPeriodo)()
+        '/*Datos para confeccion de caratula*/
+
+        Dim periodoTributario As String = "2018-05"
+
+        ' /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
+        ' /*El tipo de libro debe ser "Especial" cuando se trata del set de pruebas*/
+        '  /*El folio de notificacion lo entrega el SII al momento de solicitar el libro, para el set de pruebas no es necesario agregarlo*/
+
+        libro.EnvioLibro.Caratula = New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Caratula With {
+            .RutEmisor = configuracion.Empresa.RutEmpresa,
+            .RutEnvia = configuracion.Certificado.Rut,
+            .PeriodoTributario = periodoTributario,
+            .FechaResolucion = configuracion.Empresa.FechaResolucion,
+            .NumeroResolucion = configuracion.Empresa.NumeroResolucion,
+            .TipoLibro = ChileSystems.DTE.Engine.[Enum].TipoLibro.TipoLibroEnum.Especial,
+            .TipoEnvio = ChileSystems.DTE.Engine.[Enum].TipoEnvioLibro.TipoEnvioLibroEnum.Total
+        }
+        libro.EnvioLibro.ResumenPeriodo = New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.ResumenPeriodo()
+        libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = New List(Of ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalPeriodo)()
 
 
-    '/*Se agregan un Total Periodo por cada tipo de documento. Boletas electrónicas exentas y afectas*/
-    '/*Boletas electronicas*/
-    '
-    '    Dim totalNeto As Integer = dtes.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.BoletaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoNeto)
-    '    Dim totalIVA As Integer = dtes.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.BoletaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.IVA)
-    '    Dim totalExento As Integer = dtes.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.BoletaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoExento)
-    '    Dim totalTotal As Integer = dtes.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.BoletaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoTotal)
-    '    libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalPeriodo() With {
-    '        .TipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoDocumentoLibro.BoletaElectronica,
-    '        .CantidadDocumentosAnulados = 0,
-    '        .TotalesServicio = New List(Of ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalServicio)() From {
-    '            New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalServicio() With {
-    '                .CantidadDocumentos = dtes.Count(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.BoletaElectronica),
-    '                .TasaIVA = 19,
-    '                .TotalIVA = totalIVA,
-    '                .TotalNeto = totalNeto,
-    '                .TotalExento = totalExento,
-    '                .TotalTotal = totalTotal,
-    '                .TipoServicio = CInt(ChileSystems.DTE.Engine.[Enum].IndicadorServicio.IndicadorServicioEnum.BoletaVentasYServicios)
-    '            }
-    '        }
-    '    })
+        '/*Se agregan un Total Periodo por cada tipo de documento. Boletas electrónicas exentas y afectas*/
+        '/*Boletas electronicas*/
+        '
+        Dim totalNeto As Integer = dtes.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.BoletaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoNeto)
+        Dim totalIVA As Integer = dtes.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.BoletaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.IVA)
+        Dim totalExento As Integer = dtes.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.BoletaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoExento)
+        Dim totalTotal As Integer = dtes.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.BoletaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoTotal)
+        libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalPeriodo() With {
+                .TipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoDocumentoLibro.BoletaElectronica,
+                .CantidadDocumentosAnulados = 0,
+                .TotalesServicio = New List(Of ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalServicio)() From {
+                    New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalServicio() With {
+                        .CantidadDocumentos = dtes.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = TipoDTE.DTEType.BoletaElectronica).Count(),
+                        .TasaIVA = 19,
+                       .TotalIVA = totalIVA,
+                        .TotalNeto = totalNeto,
+                        .TotalExento = totalExento,
+                         .TipoServicio = CInt(ChileSystems.DTE.Engine.[Enum].IndicadorServicio.IndicadorServicioEnum.BoletaVentasYServicios)
+                    }
+                }
+            })
 
-    '/*Se agregan los dtes del libro*/
-    '    libro.EnvioLibro.Detalles = New List(Of ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Detalle)()
+        '/*Se agregan los dtes del libro*/
+        libro.EnvioLibro.Detalles = New List(Of ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Detalle)()
 
-    '    For Each dte In dtes
-    '        libro.EnvioLibro.Detalles.Add(New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Detalle() With {
-    '            .TipoDocumento = CType(dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoDocumentoLibro),
-    '            .FolioDocumento = dte.Documento.Encabezado.IdentificacionDTE.Folio,
-    '            .FechaEmision = dte.Documento.Encabezado.IdentificacionDTE.FechaEmision,
-    '            .MontoExento = dte.Documento.Encabezado.Totales.MontoExento,
-    '            .MontoTotal = dte.Documento.Encabezado.Totales.MontoTotal,
-    '            .RutCliente = dte.Documento.Encabezado.Receptor.Rut
-    '        })
-    '    Next
+        For Each dte In dtes
+            libro.EnvioLibro.Detalles.Add(New ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Detalle() With {
+                .TipoDocumento = CType(dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoDocumentoLibro),
+               .FolioDocumento = dte.Documento.Encabezado.IdentificacionDTE.Folio,
+                       .FechaEmision = dte.Documento.Encabezado.IdentificacionDTE.FechaEmision,
+            .MontoExento = dte.Documento.Encabezado.Totales.MontoExento,
+                .MontoTotal = dte.Documento.Encabezado.Totales.MontoTotal,
+                .RutCliente = dte.Documento.Encabezado.Receptor.Rut
+            })
+        Next
 
-    '    Return libro
-    'End Function
+        Return libro
+    End Function
 
 #End Region
 
 #Region "IECV"
 
-    'Public Function GenerateLibroVentas(ByVal envioAux As ChileSystems.DTE.Engine.Envio.EnvioDTE) As ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta
-    '    Dim libro = New ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta()
-    '    libro.EnvioLibro = New ChileSystems.DTE.Engine.InformacionElectronica.LCV.EnvioLibro()
-    '    libro.EnvioLibro.Id = "ID_LIBRO1_1"
+    Public Function GenerateLibroVentas(ByVal envioAux As ChileSystems.DTE.Engine.Envio.EnvioDTE) As ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta
+        Dim libro = New ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta()
+        libro.EnvioLibro = New ChileSystems.DTE.Engine.InformacionElectronica.LCV.EnvioLibro()
+        libro.EnvioLibro.Id = "ID_LIBRO1_1"
 
-    '    '/*Si el libro tiene código de autorización para rectificación, se debe ingresar en la carátula
-    '    '     * del EnvioLibro. Esto es: libro.EnvioLibro.Caratula.CodigoAutorizacionRectificacionLibro*/
+        '    '/*Si el libro tiene código de autorización para rectificación, se debe ingresar en la carátula
+        '    '     * del EnvioLibro. Esto es: libro.EnvioLibro.Caratula.CodigoAutorizacionRectificacionLibro*/
 
-    '    libro.EnvioLibro.Caratula = New ChileSystems.DTE.Engine.InformacionElectronica.LCV.Caratula() With {
-    '        .RutEmisor = configuracion.Empresa.RutEmpresa,
-    '        .RutEnvia = configuracion.Certificado.Rut,
-    '        .PeriodoTributario = $"{DateTime.Now.Year}-{(If(DateTime.Now.Month >= 10, DateTime.Now.Month.ToString(), "0" & DateTime.Now.Month))}",
-    '        .FechaResolucion = configuracion.Empresa.FechaResolucion,
-    '        .NumeroResolucion = configuracion.Empresa.NumeroResolucion,
-    '        .TipoOperacion = ChileSystems.DTE.Engine.[Enum].TipoOperacionLibro.TipoOperacionLibroEnum.Venta,
-    '        .TipoLibro = ChileSystems.DTE.Engine.[Enum].TipoLibro.TipoLibroEnum.Especial,
-    '        .TipoEnvio = ChileSystems.DTE.Engine.[Enum].TipoEnvioLibro.TipoEnvioLibroEnum.Total,
-    '        .FolioNotificacion = 100
-    '    }
-    '    'Dentro de libro.EnvioLibro.Caratula
-    '    'Para cuando es SET de pruebas, siempre es 1,,
-
-
-    '    libro.EnvioLibro.Caratula.TipoOperacion = ChileSystems.DTE.Engine.[Enum].TipoOperacionLibro.TipoOperacionLibroEnum.Venta
-    '    libro.EnvioLibro.Caratula.TipoLibro = ChileSystems.DTE.Engine.[Enum].TipoLibro.TipoLibroEnum.Especial
-    '    libro.EnvioLibro.Caratula.TipoEnvio = ChileSystems.DTE.Engine.[Enum].TipoEnvioLibro.TipoEnvioLibroEnum.Total
-    '    libro.EnvioLibro.ResumenPeriodo = New ChileSystems.DTE.Engine.InformacionElectronica.LCV.ResumenPeriodo()
-    '    libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = New List(Of ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo)()
+        libro.EnvioLibro.Caratula = New ChileSystems.DTE.Engine.InformacionElectronica.LCV.Caratula() With {
+            .RutEmisor = configuracion.Empresa.RutEmpresa,
+            .RutEnvia = configuracion.Certificado.Rut,
+            .PeriodoTributario = $"{DateTime.Now.Year}-{(If(DateTime.Now.Month >= 10, DateTime.Now.Month.ToString(), "0" & DateTime.Now.Month))}",
+            .FechaResolucion = configuracion.Empresa.FechaResolucion,
+           .NumeroResolucion = configuracion.Empresa.NumeroResolucion,
+            .TipoOperacion = ChileSystems.DTE.Engine.[Enum].TipoOperacionLibro.TipoOperacionLibroEnum.Venta,
+           .TipoLibro = ChileSystems.DTE.Engine.[Enum].TipoLibro.TipoLibroEnum.Especial,
+            .TipoEnvio = ChileSystems.DTE.Engine.[Enum].TipoEnvioLibro.TipoEnvioLibroEnum.Total,
+            .FolioNotificacion = 100
+        }
+        '    'Dentro de libro.EnvioLibro.Caratula
+        '    'Para cuando es SET de pruebas, siempre es 1,,
 
 
+        libro.EnvioLibro.Caratula.TipoOperacion = ChileSystems.DTE.Engine.[Enum].TipoOperacionLibro.TipoOperacionLibroEnum.Venta
+        libro.EnvioLibro.Caratula.TipoLibro = ChileSystems.DTE.Engine.[Enum].TipoLibro.TipoLibroEnum.Especial
+        libro.EnvioLibro.Caratula.TipoEnvio = ChileSystems.DTE.Engine.[Enum].TipoEnvioLibro.TipoEnvioLibroEnum.Total
+        libro.EnvioLibro.ResumenPeriodo = New ChileSystems.DTE.Engine.InformacionElectronica.LCV.ResumenPeriodo()
+        libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = New List(Of ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo)()
 
-    '    '**************TOTALES PARA LAS FACTURAS******************
-    '    Dim cantidadDocumentosFacturas As Integer = envioAux.SetDTE.DTEs.Count(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica)
-    '    Dim totalExento As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoExento)
-    '    Dim totalNeto As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoNeto)
-    '    Dim totalIVA As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.IVA)
-    '    Dim totalTotal As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoTotal)
-    '    libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(New ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo() With {
-    '        .TipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoDocumentoLibro.FacturaElectronica,
-    '        .CantidadDocumentos = cantidadDocumentosFacturas,
-    '        .CantidadDocumentosAnulados = 0,
-    '        .TotalMontoExento = totalExento,
-    '        .TotalMontoNeto = totalNeto,
-    '        .TotalMontoIva = totalIVA,
-    '        .TotalMonto = totalTotal
-    '    })
-    '    '***********************************
 
-    '    '***************TOTALES PARA LAS NC*****************
-    '    Dim cantidadDocumentosNC As Integer = envioAux.SetDTE.DTEs.Count(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaCreditoElectronica)
-    '    Dim totalExentoNC As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaCreditoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoExento)
-    '    Dim totalNetoNC As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaCreditoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoNeto)
-    '    Dim totalIVANC As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaCreditoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.IVA)
-    '    Dim totalTotalNC As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaCreditoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoTotal)
-    '    libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(New ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo() With {
-    '        .TipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoDocumentoLibro.NotaCreditoElectronica,
-    '        .CantidadDocumentos = cantidadDocumentosNC,
-    '        .CantidadDocumentosAnulados = 0,
-    '        .TotalMontoExento = totalExentoNC,
-    '        .TotalMontoNeto = totalNetoNC,
-    '        .TotalMontoIva = totalIVANC,
-    '        .TotalMonto = totalTotalNC
-    '    })
-    '    '***********************************
 
-    '    '********************TOTALES PARA ND***************
-    '    Dim cantidadDocumentosND As Integer = envioAux.SetDTE.DTEs.Count(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica)
-    '    Dim totalExentoND As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoExento)
-    '    Dim totalNetoND As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoNeto)
-    '    Dim totalIVAND As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.IVA)
-    '    Dim totalTotalND As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoTotal)
-    '    libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(New ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo() With {
-    '        .TipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoDocumentoLibro.NotaDebitoElectronica,
-    '        .CantidadDocumentos = cantidadDocumentosND,
-    '        .CantidadDocumentosAnulados = 0,
-    '        .TotalMontoExento = totalExentoND,
-    '        .TotalMontoNeto = totalNetoND,
-    '        .TotalMontoIva = totalIVAND,
-    '        .TotalMonto = totalTotalND
-    '    })
-    '    '***********************************
-    '    libro.EnvioLibro.Detalles = New List(Of ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle)()
+        '    '**************TOTALES PARA LAS FACTURAS******************
+        Dim cantidadDocumentosFacturas As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica).Count()
+        Dim totalExento As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoExento)
+        Dim totalNeto As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoNeto)
+        Dim totalIVA As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.IVA)
+        Dim totalTotal As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoTotal)
+        libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(New ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo() With {
+            .TipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoDocumentoLibro.FacturaElectronica,
+            .CantidadDocumentos = cantidadDocumentosFacturas,
+            .CantidadDocumentosAnulados = 0,
+            .TotalMontoExento = totalExento,
+            .TotalMontoNeto = totalNeto,
+            .TotalMontoIva = totalIVA,
+            .TotalMonto = totalTotal
+        })
+        '    '***********************************
 
-    '    For Each dteAux In envioAux.SetDTE.DTEs
-    '        Dim tipoDocumento As ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotSet
+        '    '***************TOTALES PARA LAS NC*****************
+        Dim cantidadDocumentosNC As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaCreditoElectronica).Count()
+        Dim totalExentoNC As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaCreditoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoExento)
+        Dim totalNetoNC As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaCreditoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoNeto)
+        Dim totalIVANC As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaCreditoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.IVA)
+        Dim totalTotalNC As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaCreditoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoTotal)
+        libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(New ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo() With {
+            .TipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoDocumentoLibro.NotaCreditoElectronica,
+            .CantidadDocumentos = cantidadDocumentosNC,
+            .CantidadDocumentosAnulados = 0,
+            .TotalMontoExento = totalExentoNC,
+            .TotalMontoNeto = totalNetoNC,
+            .TotalMontoIva = totalIVANC,
+            .TotalMonto = totalTotalNC
+        })
+        '    '***********************************
 
-    '        If dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica Then
-    '            tipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica
-    '        ElseIf dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaCreditoElectronica Then
-    '            tipoDocumento = TipoDTE.DTEType.NotaCreditoElectronica
-    '        ElseIf dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica Then
-    '            tipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica
-    '        End If
+        '    '********************TOTALES PARA ND***************
+        Dim cantidadDocumentosND As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica).Count()
+        Dim totalExentoND As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoExento)
+        Dim totalNetoND As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoNeto)
+        Dim totalIVAND As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.IVA)
+        Dim totalTotalND As Integer = envioAux.SetDTE.DTEs.Where(Function(x) x.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica).Sum(Function(x) x.Documento.Encabezado.Totales.MontoTotal)
+        libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(New ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo() With {
+            .TipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoDocumentoLibro.NotaDebitoElectronica,
+            .CantidadDocumentos = cantidadDocumentosND,
+            .CantidadDocumentosAnulados = 0,
+            .TotalMontoExento = totalExentoND,
+           .TotalMontoNeto = totalNetoND,
+            .TotalMontoIva = totalIVAND,
+            .TotalMonto = totalTotalND
+        })
+        '    '***********************************
+        libro.EnvioLibro.Detalles = New List(Of ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle)()
 
-    '        libro.EnvioLibro.Detalles.Add(New ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle() With {
-    '            .TipoDocumento = tipoDocumento,
-    '            .NumeroDocumento = dteAux.Documento.Encabezado.IdentificacionDTE.Folio,
-    '            .IndicadorAnulado = ChileSystems.DTE.Engine.[Enum].IndicadorAnulado.IndicadorAnuladoEnum.NotSet,
-    '            .TasaImpuestoOperacion = 0.19,
-    '            .FechaDocumento = dteAux.Documento.Encabezado.IdentificacionDTE.FechaEmision,
-    '            .RutDocumento = dteAux.Documento.Encabezado.Receptor.Rut,
-    '            .RazonSocial = dteAux.Documento.Encabezado.Receptor.RazonSocial,
-    '            .MontoExento = dteAux.Documento.Encabezado.Totales.MontoExento,
-    '            .MontoNeto = dteAux.Documento.Encabezado.Totales.MontoNeto,
-    '            .MontoIva = dteAux.Documento.Encabezado.Totales.IVA,
-    '            .MontoTotal = dteAux.Documento.Encabezado.Totales.MontoTotal
-    '        })
-    '    Next
+        For Each dteAux In envioAux.SetDTE.DTEs
+            Dim tipoDocumento As ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotSet
 
-    '    Return libro
-    'End Function
+            If dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica Then
+                tipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.FacturaElectronica
+            ElseIf dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaCreditoElectronica Then
+                tipoDocumento = TipoDTE.DTEType.NotaCreditoElectronica
+            ElseIf dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica Then
+                tipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.DTEType.NotaDebitoElectronica
+            End If
+
+            libro.EnvioLibro.Detalles.Add(New ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle() With {
+                .TipoDocumento = tipoDocumento,
+                .NumeroDocumento = dteAux.Documento.Encabezado.IdentificacionDTE.Folio,
+                .IndicadorAnulado = ChileSystems.DTE.Engine.[Enum].IndicadorAnulado.IndicadorAnuladoEnum.NotSet,
+                .TasaImpuestoOperacion = 0.19,
+                .FechaDocumento = dteAux.Documento.Encabezado.IdentificacionDTE.FechaEmision,
+                .RutDocumento = dteAux.Documento.Encabezado.Receptor.Rut,
+                .RazonSocial = dteAux.Documento.Encabezado.Receptor.RazonSocial,
+               .MontoExento = dteAux.Documento.Encabezado.Totales.MontoExento,
+                .MontoNeto = dteAux.Documento.Encabezado.Totales.MontoNeto,
+            .MontoIva = dteAux.Documento.Encabezado.Totales.IVA,
+                .MontoTotal = dteAux.Documento.Encabezado.Totales.MontoTotal
+            })
+        Next
+
+        Return libro
+    End Function
 
     Public Function GenerateLibroCompras() As ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta
         Dim libro = New ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta()
@@ -1167,6 +1166,7 @@ Public Class Handler
             .TipoOperacion = dte.Documento.Encabezado.IdentificacionDTE.TipoTraslado,
             .IndicadorAnulado = ChileSystems.DTE.Engine.[Enum].IndicadorAnulado.IndicadorAnuladoEnum.NotSet
         })
+            '//Para indicar que la guía está anulada se debe utilizar este atributo. Por defecto se omitirá
         Next
 
         Return libro

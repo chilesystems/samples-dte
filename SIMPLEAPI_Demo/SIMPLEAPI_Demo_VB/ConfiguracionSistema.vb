@@ -47,7 +47,20 @@ Public Class ConfiguracionSistema
     End Sub
 
     Private Sub botonGuardar_Click(sender As Object, e As EventArgs) Handles botonGuardar.Click
+        conf.Empresa.RutEmpresa = textRutEmpresa.Text
+        conf.Empresa.Giro = textGiro.Text
+        conf.Empresa.RazonSocial = textRazonSocial.Text
+        conf.Empresa.Comuna = textComuna.Text
+        conf.Empresa.Direccion = textDireccionEmpresa.Text
+        conf.Empresa.NumeroResolucion = CInt(numericNResolucion.Value)
+        conf.Empresa.FechaResolucion = dateFechaResolucion.Value.Date
+        conf.APIKey = textAPIKey.Text
 
+        conf.Certificado.Rut = textRutCertificado.Text
+        conf.Certificado.Nombre = comboCertificados.SelectedItem.ToString()
+
+        conf.GenerarArchivo()
+        MessageBox.Show("Configuración guardada correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub gridProductos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridProductos.CellContentClick

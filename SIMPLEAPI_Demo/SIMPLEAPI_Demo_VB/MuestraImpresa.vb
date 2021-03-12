@@ -124,7 +124,7 @@ Public Class MuestraImpresa
             Dim dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString(Of ChileSystems.DTE.Engine.Documento.DTE)(xml)
             document = PrintableDocument.FromDTE(dte)
 
-            pictureBoxTimbre.BackgroundImage = document.TimbreImage '=dte.Documento.TimbrePDF417()
+            pictureBoxTimbre.BackgroundImage = document.TimbreImage ' =dte.Documento.TimbrePDF417( )
 
 
             BindData()

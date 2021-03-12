@@ -435,7 +435,7 @@ Partial Class Main
         Me.Controls.Add(Me.groupBox2)
         Me.Controls.Add(Me.groupBox1)
         Me.Name = "Main"
-        Me.Text = "Main"
+        Me.Text = "Demostración uso SIMPLE API VB"
         Me.groupBox4.ResumeLayout(False)
         Me.groupBox4.PerformLayout()
         Me.groupBox3.ResumeLayout(False)
