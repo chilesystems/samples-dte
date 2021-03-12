@@ -174,6 +174,8 @@ Public Class Main
 
             Dim rcof = handler.GenerarRCOF(dtes)
             rcof.DocumentoConsumoFolios.Id = "RCOF_" & DateTime.Now.Ticks.ToString()
+
+            '/*Firmar retorna además a través de un out, el XML formado*/
             Dim xmlString As String = String.Empty
             Dim filePathArchivo = rcof.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, xmlString)
             MessageBox.Show("RCOF Generado correctamente en " & filePathArchivo)

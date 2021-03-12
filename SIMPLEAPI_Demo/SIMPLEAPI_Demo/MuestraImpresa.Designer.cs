@@ -179,6 +179,7 @@
             this.gridDetalles.RowHeadersWidth = 10;
             this.gridDetalles.Size = new System.Drawing.Size(760, 167);
             this.gridDetalles.TabIndex = 50;
+            this.gridDetalles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDetalles_CellContentClick);
             this.gridDetalles.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDetalles_CellEndEdit);
             this.gridDetalles.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridDetalles_RowsAdded);
             this.gridDetalles.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gridDetalles_RowsRemoved);

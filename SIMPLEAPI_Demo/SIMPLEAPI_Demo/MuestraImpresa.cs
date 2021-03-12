@@ -332,6 +332,11 @@ namespace SIMPLEAPI_Demo
         {
 
         }
+
+        private void gridDetalles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 
 }

@@ -84,20 +84,32 @@ Public Class MuestraImpresa
         txtDireccionCasaMatrizEmisor.Text = document.DireccionCasaMatriz
         txtDireccionSucursalesEmisor.Text = If(document.Sucursales IsNot Nothing, String.Join(", ", document.Sucursales), "")
         txtTelefonoEmisor.Text = document.Teléfono
+
+
         txtRutReceptor.Text = document.RutCliente
         txtRazonSocialReceptor.Text = document.RazonSocialCliente
+
+
         comboTipoDocumento.Text = document.NombreDocumento
         txtFolio.Value = document.Folio
         dateFechaEmision.Value = document.FechaEmision
         checkIsDTE.Checked = document.IsDTE
         checkShowUM.Checked = document.ShowUnidadMedida
         txtOficinaSII.Text = document.OficinaSII
+
+
         gridDescuentosRecargos.Rows.Clear()
+
+
         txtIva.Value = document.IVA
         txtNeto.Value = document.Neto
         txtTotal.Value = document.Total
         txtExento.Value = document.TotalExento
+
+
         gridAdicionales.Rows.Clear()
+
+
         gridDetalles.Rows.Clear()
 
         If (Not IsNothing(document.Detalles)) Then
@@ -105,11 +117,13 @@ Public Class MuestraImpresa
             For Each detalle In document.Detalles
 
                 gridDetalles.Rows.Add(detalle.IsExento, detalle.Cantidad, detalle.UnidadMedida, detalle.Descripcion, detalle.Precio, detalle.Total)
-                txtNumeroResolucion.Value = document.NumeroResolucion
-                dateFechaResolucion.Value = document.FechaResolucion = IIf(DateTime.Today.ToString(), DateTime.Now, document.FechaResolucion)
-                txtWebVerificacion.Text = document.WebVerificación
+
 
             Next
+
+            txtNumeroResolucion.Value = document.NumeroResolucion
+            dateFechaResolucion.Value = document.FechaResolucion = IIf(DateTime.Today.ToString(), DateTime.Now, document.FechaResolucion)
+            txtWebVerificacion.Text = document.WebVerificación
         End If
 
         binding = False

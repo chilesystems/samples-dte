@@ -22,9 +22,9 @@ Partial Class GenerarBoletaElectronica
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.numericFolio = New System.Windows.Forms.NumericUpDown()
         Me.label5 = New System.Windows.Forms.Label()
         Me.botonGenerar = New System.Windows.Forms.Button()
@@ -226,8 +226,8 @@ Partial Class GenerarBoletaElectronica
         'gridCantidadProducto
         '
         Me.gridCantidadProducto.DataPropertyName = "Cantidad"
-        DataGridViewCellStyle4.Format = "N1"
-        Me.gridCantidadProducto.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle10.Format = "N1"
+        Me.gridCantidadProducto.DefaultCellStyle = DataGridViewCellStyle10
         Me.gridCantidadProducto.HeaderText = "Cantidad"
         Me.gridCantidadProducto.Name = "gridCantidadProducto"
         Me.gridCantidadProducto.ReadOnly = True
@@ -236,8 +236,8 @@ Partial Class GenerarBoletaElectronica
         'gridPrecio
         '
         Me.gridPrecio.DataPropertyName = "Precio"
-        DataGridViewCellStyle5.Format = "N0"
-        Me.gridPrecio.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle11.Format = "N0"
+        Me.gridPrecio.DefaultCellStyle = DataGridViewCellStyle11
         Me.gridPrecio.HeaderText = "Precio"
         Me.gridPrecio.Name = "gridPrecio"
         Me.gridPrecio.ReadOnly = True
@@ -246,8 +246,8 @@ Partial Class GenerarBoletaElectronica
         'gridTotal
         '
         Me.gridTotal.DataPropertyName = "Total"
-        DataGridViewCellStyle6.Format = "N0"
-        Me.gridTotal.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle12.Format = "N0"
+        Me.gridTotal.DefaultCellStyle = DataGridViewCellStyle12
         Me.gridTotal.HeaderText = "Total"
         Me.gridTotal.Name = "gridTotal"
         Me.gridTotal.ReadOnly = True
