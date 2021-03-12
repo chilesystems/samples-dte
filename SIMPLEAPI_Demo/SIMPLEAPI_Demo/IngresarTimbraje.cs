@@ -87,5 +87,10 @@ namespace SIMPLEAPI_Demo
             }
             MessageBox.Show("CAF Guardado correctamente");
         }
+
+        private void IngresarTimbraje_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

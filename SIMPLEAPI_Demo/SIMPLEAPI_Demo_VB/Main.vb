@@ -1,8 +1,8 @@
 ﻿Imports System.IO
 Imports System.Text
 Imports ChileSystems.DTE.Engine.Enum
-Imports Fluent.Infrastructure.FluentModel
 Imports SIMPLE_API.Enum
+Imports SIMPLE_API.Enum.Ambiente
 
 Public Class Main
 
@@ -673,34 +673,14 @@ Public Class Main
         '//MessageBox.Show("Documento generado exitosamente en " + path);
     End Sub
 
-    Private Sub botonConfiguracion_Click(sender As Object, e As EventArgs) Handles botonConfiguracion.Click
-
-        ConfiguracionSistema.Show()
-        handler.configuracion.LeerArchivo()
 
 
 
-    End Sub
-
-    Private Sub botonMuestraImpresa_Click(sender As Object, e As EventArgs) Handles botonMuestraImpresa.Click
-
-        MuestraImpresa.Show()
-
-
-    End Sub
 
 
 
-    Private Sub botonConsultarEstadoEnvio_Click(sender As Object, e As EventArgs) Handles botonConsultarEstadoEnvio.Click
 
-        ConsultaEstadoEnvioDTE.Show()
-    End Sub
 
-    Private Sub botonTimbre_Click(sender As Object, e As EventArgs) Handles botonTimbre.Click
-
-        MuestraTimbre.Show()
-
-    End Sub
 
     Private Sub botonFacturaCompra_Click(sender As Object, e As EventArgs) Handles botonFacturaCompra.Click
         Dim pathFiles As New List(Of String)
@@ -1168,15 +1148,209 @@ Public Class Main
         detalle.Nombre = "CAJAS DE PASAS DE UVA FLAME MORENA SIN SEMILLA MEDIANAS"
         detalle.Cantidad = 169
         detalle.UnidadMedida = "KN"
+        detalle.Precio = 67
+        detalle.MontoItem = CInt(Math.Round(detalle.Cantidad * detalle.Precio, 0))
+        dte.Exportaciones.Detalles.Add(detalle)
+
+        dte.Exportaciones.DescuentosRecargos = New List(Of ChileSystems.DTE.Engine.Documento.DescuentosRecargos)
+
+        Dim comisionExtranjero = New ChileSystems.DTE.Engine.Documento.DescuentosRecargos()
+        comisionExtranjero.Numero = 1
+        comisionExtranjero.TipoMovimiento = ChileSystems.DTE.Engine.[Enum].TipoMovimiento.TipoMovimientoEnum.Recargo
+        comisionExtranjero.Descripcion = "COMISIONES EN EL EXTRANJERO"
+        comisionExtranjero.TipoValor = ChileSystems.DTE.Engine.[Enum].ExpresionDinero.ExpresionDineroEnum.Pesos
+        comisionExtranjero.IndicadorExento = ChileSystems.DTE.Engine.[Enum].IndicadorExento.IndicadorExentoEnum.Exento
+        comisionExtranjero.Valor = 125.21
+        dte.Exportaciones.DescuentosRecargos.Add(comisionExtranjero)
+
+        Dim descuentoFlete = New ChileSystems.DTE.Engine.Documento.DescuentosRecargos()
+        descuentoFlete.Numero = 2
+        descuentoFlete.TipoMovimiento = ChileSystems.DTE.Engine.[Enum].TipoMovimiento.TipoMovimientoEnum.Recargo
+        descuentoFlete.Descripcion = "Recargo flete"
+        descuentoFlete.TipoValor = ChileSystems.DTE.Engine.[Enum].ExpresionDinero.ExpresionDineroEnum.Pesos
+        descuentoFlete.IndicadorExento = ChileSystems.DTE.Engine.[Enum].IndicadorExento.IndicadorExentoEnum.Exento
+        descuentoFlete.Valor = dte.Exportaciones.Encabezado.Transporte.Aduana.MontoFlete
+        dte.Exportaciones.DescuentosRecargos.Add(descuentoFlete)
+        Dim descuentoSeguro = New ChileSystems.DTE.Engine.Documento.DescuentosRecargos()
+        descuentoSeguro.Numero = 3
+        descuentoSeguro.TipoMovimiento = ChileSystems.DTE.Engine.[Enum].TipoMovimiento.TipoMovimientoEnum.Recargo
+        descuentoSeguro.Descripcion = "Recargo seguro"
+        descuentoSeguro.TipoValor = ChileSystems.DTE.Engine.[Enum].ExpresionDinero.ExpresionDineroEnum.Pesos
+        descuentoSeguro.IndicadorExento = ChileSystems.DTE.Engine.[Enum].IndicadorExento.IndicadorExentoEnum.Exento
+        descuentoSeguro.Valor = dte.Exportaciones.Encabezado.Transporte.Aduana.MontoSeguro
+        dte.Exportaciones.DescuentosRecargos.Add(descuentoSeguro)
+
+        dte.Exportaciones.Referencias = New List(Of ChileSystems.DTE.Engine.Documento.Referencia)()
+        referenciaSetPruebas = New ChileSystems.DTE.Engine.Documento.Referencia()
+        referenciaSetPruebas.Numero = 1
+        referenciaSetPruebas.TipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoReferencia.SetPruebas
+        referenciaSetPruebas.FolioReferencia = dte.Exportaciones.Encabezado.IdentificacionDTE.Folio.ToString()
+        referenciaSetPruebas.FechaDocumentoReferencia = DateTime.Now
+        referenciaSetPruebas.RazonReferencia = "CASO " & n_atencion & "-2"
+        dte.Exportaciones.Referencias.Add(referenciaSetPruebas)
+
+        Dim referenciaDUS = New ChileSystems.DTE.Engine.Documento.Referencia()
+        referenciaDUS.Numero = 2
+        referenciaDUS.TipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoReferencia.DUS
+        referenciaDUS.FolioReferencia = "343fdf47"
+        referenciaDUS.FechaDocumentoReferencia = DateTime.Now
+        referenciaDUS.RazonReferencia = "DUS"
+        dte.Exportaciones.Referencias.Add(referenciaDUS)
+        Dim referenciaAWB = New ChileSystems.DTE.Engine.Documento.Referencia()
+        referenciaAWB.Numero = 3
+        referenciaAWB.TipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoReferencia.AWB
+        referenciaAWB.FolioReferencia = "FDD7741E"
+        referenciaAWB.FechaDocumentoReferencia = DateTime.Now
+        referenciaAWB.RazonReferencia = "AWB"
+        dte.Exportaciones.Referencias.Add(referenciaAWB)
+        dte.Exportaciones.Encabezado.Totales.TipoMoneda = SIMPLE_API.[Enum].CodigosAduana.Moneda.DOLAR_ESTADOUNIDENSE
+        dte.Exportaciones.Encabezado.OtraMoneda.TipoMoneda = SIMPLE_API.[Enum].CodigosAduana.Moneda.PESO_CHILENO
+        dte.Exportaciones.Encabezado.OtraMoneda.TipoCambio = 700
+        handler.CalculateTotalesExportacion(dte, comisionExtranjero.Valor)
+        path = handler.TimbrarYFirmarXMLDTEExportacion(dte, "out\temp\", "out\caf\")
+        handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE)
+        MessageBox.Show("Documento generado exitosamente en " & path)
+
 
 #End Region
         folioFactura += 1
 #Region "FACTURA EXPORTACION 3"
 
+        dte = handler.GenerateDTEExportacionBase(TipoDTE.DTEType.FacturaExportacionElectronica, folioFactura)
+        dte.Exportaciones.Encabezado.Receptor.Extranjero = New ChileSystems.DTE.Engine.Documento.Extranjero() With {
+            .Nacionalidad = SIMPLE_API.[Enum].CodigosAduana.Paises.ARGENTINA
+        }
+        dte.Exportaciones.Encabezado.IdentificacionDTE.IndicadorServicio = ChileSystems.DTE.Engine.[Enum].IndicadorServicio.IndicadorServicioEnum.ServiciosHoteleria2
 
+        '//dato obligatorio
+        '    //dte.Exportaciones.Encabezado.Transporte.Aduana.CodigoModalidadVenta = SIMPLE_API.Enum.CodigosAduana.ModalidadVenta.A_FIRME;
+
+
+        dte.Exportaciones.Detalles = New List(Of ChileSystems.DTE.Engine.Documento.DetalleExportacion)()
+        detalle = New ChileSystems.DTE.Engine.Documento.DetalleExportacion()
+        detalle.NumeroLinea = 1
+        detalle.IndicadorExento = ChileSystems.DTE.Engine.[Enum].IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento
+        detalle.Nombre = "ALOJAMIENTO HABITACIONES"
+        detalle.Cantidad = 1
+        detalle.Precio = 57
+        detalle.MontoItem = 57
+        dte.Exportaciones.Detalles.Add(detalle)
+
+        dte.Exportaciones.Referencias = New List(Of ChileSystems.DTE.Engine.Documento.Referencia)()
+        referenciaSetPruebas = New ChileSystems.DTE.Engine.Documento.Referencia()
+        referenciaSetPruebas.Numero = 1
+        referenciaSetPruebas.TipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoReferencia.SetPruebas
+        referenciaSetPruebas.FolioReferencia = dte.Exportaciones.Encabezado.IdentificacionDTE.Folio.ToString()
+        referenciaSetPruebas.FechaDocumentoReferencia = DateTime.Now
+        referenciaSetPruebas.RazonReferencia = "CASO " & n_atencion & "-3"
+        dte.Exportaciones.Referencias.Add(referenciaSetPruebas)
+        referenciaAWB = New ChileSystems.DTE.Engine.Documento.Referencia()
+        referenciaAWB.Numero = 2
+        referenciaAWB.TipoDocumento = ChileSystems.DTE.Engine.[Enum].TipoDTE.TipoReferencia.AWB
+        referenciaAWB.FolioReferencia = "eer774df"
+        referenciaAWB.FechaDocumentoReferencia = DateTime.Now
+        referenciaAWB.RazonReferencia = "AWB"
+        dte.Exportaciones.Referencias.Add(referenciaAWB)
+        dte.Exportaciones.Encabezado.Totales.TipoMoneda = SIMPLE_API.[Enum].CodigosAduana.Moneda.DOLAR_ESTADOUNIDENSE
+        dte.Exportaciones.Encabezado.OtraMoneda.TipoMoneda = SIMPLE_API.[Enum].CodigosAduana.Moneda.PESO_CHILENO
+        dte.Exportaciones.Encabezado.OtraMoneda.TipoCambio = 700
+
+        handler.CalculateTotalesExportacion(dte)
+        path = handler.TimbrarYFirmarXMLDTEExportacion(dte, "out\temp\", "out\caf\")
+        handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE)
+        MessageBox.Show("Documento generado exitosamente en " & path)
 
 #End Region
 
 #End Region
+    End Sub
+
+    Private Sub botonLibroGuias_Click(sender As Object, e As EventArgs) Handles botonLibroGuias.Click
+
+        Dim openFileDialog1 As New OpenFileDialog
+        openFileDialog1.ShowDialog()
+
+        If File.Exists(openFileDialog1.FileName) Then
+            Dim xml As String = File.ReadAllText(openFileDialog1.FileName, Encoding.GetEncoding("ISO-8859-1"))
+            Dim envio = ChileSystems.DTE.Engine.XML.XmlHandler.TryDeserializeFromString(Of ChileSystems.DTE.Engine.Envio.EnvioDTE)(xml)
+            Dim libroGuias = handler.GenerateLibroGuias(envio)
+            Dim filePathArchivo = libroGuias.Firmar(configuracion.Certificado.Nombre, "out\temp\", configuracion.APIKey)
+            MessageBox.Show("Libro de Guías Generado correctamente en " & filePathArchivo)
+        End If
+    End Sub
+
+    Private Sub botonTimbre_Click(sender As Object, e As EventArgs) Handles botonTimbre.Click
+
+        MuestraTimbre.Show()
+
+    End Sub
+    Private Sub botonMuestraImpresa_Click(sender As Object, e As EventArgs) Handles botonMuestraImpresa.Click
+
+        MuestraImpresa.Show()
+
+
+    End Sub
+    Private Sub botonConfiguracion_Click(sender As Object, e As EventArgs) Handles botonConfiguracion.Click
+
+        ConfiguracionSistema.Show()
+        handler.configuracion.LeerArchivo()
+
+
+
+    End Sub
+
+    Private Sub botonAgregarRef_Click(sender As Object, e As EventArgs) Handles botonAgregarRef.Click
+        Dim dte = handler.GenerateDTE(TipoDTE.DTEType.NotaCreditoElectronica, 105)
+        handler.GenerateDetails(dte)
+        handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.CorrigeMontos, TipoDTE.TipoReferencia.FacturaElectronica, DateTime.Now, 50)
+        handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia, TipoDTE.TipoReferencia.FacturaElectronica, DateTime.Now, 50)
+        handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.NotSet, Nothing, Nothing, "CASO X")
+        Dim messageOut As String = Nothing
+        Dim path = handler.TimbrarYFirmarXMLDTE(dte, "out\temp\", "out\caf\", messageOut)
+        Dim contenido As String = dte.ToString()
+        handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE)
+        MessageBox.Show("Documento generado exitosamente en " & path)
+    End Sub
+
+    Private Sub botonConsultarEstadoEnvio_Click(sender As Object, e As EventArgs) Handles botonConsultarEstadoEnvio.Click
+
+        ConsultaEstadoEnvioDTE.Show()
+    End Sub
+
+    'Private Sub botonObtenerToken_Click(sender As Object, e As EventArgs) Handles botonObtenerToken.Click
+
+    '    
+    'End Sub
+
+    Private Sub botonEnviarAlSIIBoletas_Click(sender As Object, e As EventArgs) Handles botonEnviarAlSIIBoletas.Click
+
+
+        Dim openFileDialog1 As New OpenFileDialog
+        openFileDialog1.Multiselect = False
+        Dim result = openFileDialog1.ShowDialog()
+
+        If (result = DialogResult.OK) Then
+            Dim pathFile As String = openFileDialog1.FileName
+            Dim msj As String = ""
+            Dim trackID As Long = handler.EnviarEnvioDTEToSII(pathFile, IIf(radioProduccion.Checked, Ambiente.AmbienteEnum.Produccion, Ambiente.AmbienteEnum.Certificacion), msj, True)
+            If (Not String.IsNullOrEmpty(msj)) Then
+                MsgBox("Ocurrio un Error: " + msj)
+            Else
+                MsgBox("Sobre enviado correctamente. TrackID: " + trackID.ToString())
+            End If
+        End If
+
+    End Sub
+
+    Private Sub botonEnviarAlSIIBoletas_Certificacion_Click(sender As Object, e As EventArgs) Handles botonEnviarAlSIIBoletas_Certificacion.Click
+        botonEnviarSii_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub botonGenerarRCOFVacio_Click(sender As Object, e As EventArgs) Handles botonGenerarRCOFVacio.Click
+        Dim rcof = handler.GenerarRCOFVacio(DateTime.Now)
+        rcof.DocumentoConsumoFolios.Id = "RCOF_" & DateTime.Now.Ticks.ToString()
+        Dim xmlString As String = String.Empty
+        Dim filePathArchivo = rcof.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, xmlString)
+        MessageBox.Show("RCOF Generado correctamente en " & filePathArchivo)
     End Sub
 End Class
