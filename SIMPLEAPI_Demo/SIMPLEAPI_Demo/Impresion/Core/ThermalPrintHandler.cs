@@ -1154,7 +1154,7 @@ namespace SIMPLEAPI_Demo.Impresion.Core
             {
                 PrinterWork pw = CreatePrinterWork(); //Aquí debes modificar para cambiar el formato
                 PrinterService service = new PrinterService(pw);
-                service.Print(_document.NombreDocumento + " " + _document.Folio, NombreImpresora, !directPrint);
+                service.Print($"{ _document.NombreDocumento} {_document.Folio}", NombreImpresora);
             }
             catch
             {

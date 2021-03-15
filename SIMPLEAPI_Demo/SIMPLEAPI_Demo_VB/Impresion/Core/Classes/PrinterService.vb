@@ -20,6 +20,13 @@ Public Class PrinterService
         Fonts = New List(Of Font)()
     End Sub
 
+    '''<summary>
+    '''Printer previously generated PrinterWork
+    ''' </summary>
+    '''<param name="documentName">Nombre del documento a imprimir.</param>
+    '''<param name="printerName"></param>
+    '''<param name="debugMode"></param>
+
     Public Sub Print(ByVal documentName As String, ByVal printerName As String, ByVal Optional debugMode As Boolean = False)
         If String.IsNullOrEmpty(documentName) Then Throw New ArgumentException("El parámetro 'documentName' no puede ser 'null' o estar vacío", documentName)
         If String.IsNullOrEmpty(printerName) Then Throw New ArgumentException("El parámetro 'printerName' no puede ser 'null' o estar vacío", printerName)

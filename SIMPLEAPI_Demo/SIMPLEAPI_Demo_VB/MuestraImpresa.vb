@@ -112,7 +112,7 @@ Public Class MuestraImpresa
 
         gridDetalles.Rows.Clear()
 
-        If (Not IsNothing(document.Detalles)) Then
+        If (IsNothing(document.Detalles) = False) Then
 
             For Each detalle In document.Detalles
 
@@ -121,11 +121,18 @@ Public Class MuestraImpresa
 
             Next
 
-            txtNumeroResolucion.Value = document.NumeroResolucion
-            dateFechaResolucion.Value = document.FechaResolucion.ToString() = IIf(DateTime.Now.ToString, DateTime.Now, document.FechaResolucion)
-            txtWebVerificacion.Text = document.WebVerificación
+
+        End If
+        txtNumeroResolucion.Value = document.NumeroResolucion
+        Dim f As Date = #01/01/0001 00:00#
+        If (document.FechaResolucion = f) Then
+            dateFechaResolucion.Value = DateTime.Now
+
+        Else
+            dateFechaResolucion.Value = document.FechaResolucion
         End If
 
+        txtWebVerificacion.Text = document.WebVerificación
         binding = False
     End Sub
 
@@ -145,7 +152,7 @@ Public Class MuestraImpresa
             BindData()
 
         Catch ex As Exception
-            MsgBox("Ha ocurrido un error al cargar el archivo. Error: " + ex.Message, vbYes)
+            MessageBox.Show("Ha ocurrido un error al cargar el archivo. Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.[Error])
         End Try
     End Sub
 
@@ -218,17 +225,7 @@ Public Class MuestraImpresa
 
     End Sub
 
-    Private Sub dateFechaResolucion_ValueChanged(sender As Object, e As EventArgs) Handles dateFechaResolucion.ValueChanged
-        Dim datef = TryCast(sender, DateTimePicker)
-        If datef Is Nothing Then Return
 
-        Select Case dateF.Name
-            Case "dateFechaEmision"
-                document.FechaEmision = datef.Value
-            Case "dateFechaResolucion"
-                document.FechaResolucion = datef.Value
-        End Select
-    End Sub
 
     Private Sub gridAdicionales_RowsAdded(sender As Object, e As DataGridViewRowsAddedEventArgs) Handles gridAdicionales.RowsAdded
         BindAdicionales()
@@ -253,4 +250,16 @@ Public Class MuestraImpresa
     Private Sub gridAdicionales_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles gridAdicionales.CellEndEdit
         BindAdicionales()
     End Sub
+    Private Sub Date_ValueChanged(ByVal sender As Object, ByVal e As EventArgs) Handles dateFechaResolucion.ValueChanged, dateFechaEmision.ValueChanged
+        Dim datef = TryCast(sender, DateTimePicker)
+        If datef Is Nothing Then Return
+
+        Select Case datef.Name
+            Case "dateFechaEmision"
+                document.FechaEmision = datef.Value
+            Case "dateFechaResolucion"
+                document.FechaResolucion = datef.Value
+        End Select
+    End Sub
+
 End Class

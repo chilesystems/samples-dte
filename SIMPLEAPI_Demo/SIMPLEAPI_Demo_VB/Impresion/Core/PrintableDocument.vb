@@ -8,8 +8,11 @@ Public Class PrintableDocument
     Public Property DireccionCasaMatriz As String
     Public Property Sucursales As List(Of String)
     Public Property Teléfono As String
+
     Public Property RutCliente As String
     Public Property RazonSocialCliente As String
+
+
     Public Property NombreDocumento As String
     Public Property Folio As Long
     Public Property OficinaSII As String

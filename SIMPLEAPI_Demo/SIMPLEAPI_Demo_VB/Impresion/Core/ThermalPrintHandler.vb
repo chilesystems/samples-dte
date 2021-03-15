@@ -3,7 +3,9 @@
 Public Class ThermalPrintHandler
     Private _document As PrintableDocument
     Public Property NombreImpresora As String
-    Public Const DateFormat As String = "dd/MM/yyyy"
+    '// Formatos //
+    Public Const DateFormat As String = "dd/MM/yyyy" '// Por completitud, pongo los formatos aquí en caso de que los haga configurables eventualmente
+
     Public Const NumberFormat As String = "N0"
 
     Public Sub New(ByVal document As PrintableDocument)
@@ -23,7 +25,7 @@ Public Class ThermalPrintHandler
 
 #Region "Razón social"
 
-        If (String.IsNullOrEmpty(_document.RazonSocial)) Then
+        If (Not String.IsNullOrEmpty(_document.RazonSocial)) Then
 
             row = New PrinterRow() With {
               .TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Wrap,
@@ -34,8 +36,8 @@ Public Class ThermalPrintHandler
 
             col = New PrinterTextColumn() With {
             .Align = PrinterColumn.Aligns.Left,
-            .Text = _document.RazonSocial,
-            .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+            .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+            .Text = _document.RazonSocial
             }
 
             row.AddColumn(col)
@@ -59,7 +61,7 @@ Public Class ThermalPrintHandler
             col = New PrinterTextColumn() With {
             .Align = PrinterColumn.Aligns.Left,
             .Text = RUTHelper.Format(_document.Rut),
-            .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+            .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
             }
             row.AddColumn(col)
             work.AddRow(row)
@@ -83,7 +85,7 @@ Public Class ThermalPrintHandler
 
             col = New PrinterTextColumn() With {
             .Align = PrinterColumn.Aligns.Left,
-            .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+            .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
             .Text = _document.Giro
             }
 
@@ -103,14 +105,16 @@ Public Class ThermalPrintHandler
             row = New PrinterRow() With {
             .TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Truncate,
             .Color = Color.Black,
-            .FontSize = 0,
+            .FontSize = 8,
             .IsBold = False
             }
 
-            aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
-            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.4, 0))
+            aux1 = FontInfo.GetMaxChars(row.FontSize, If(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, If(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.4, 0))
             '~40%
             aux3 = aux1 - aux2
+
+
 
             col = New PrinterTextColumn() With {
             .Align = PrinterColumn.Aligns.Left,
@@ -143,9 +147,9 @@ Public Class ThermalPrintHandler
             .FontSize = 8,
             .IsBold = False
             }
-            aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+            aux1 = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
 
-            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.4, 0))
+            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.4, 0))
             '~40%
             aux3 = aux1 - aux2
 
@@ -174,7 +178,7 @@ Public Class ThermalPrintHandler
 
 #Region "Sucursales"
 
-        If (Not IsNothing(_document.Sucursales)) Then
+        If (IsNothing(_document.Sucursales) = False) Then
             If (_document.Sucursales.Count <> 0) Then
                 For Each suc In _document.Sucursales
 
@@ -185,8 +189,8 @@ Public Class ThermalPrintHandler
                     .IsBold = False
                     }
 
-                    aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
-                    aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.33, 0))
+                    aux1 = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+                    aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.33, 0))
                     '33%
                     aux3 = aux1 - aux2 '100% - ~33%
 
@@ -227,7 +231,7 @@ Public Class ThermalPrintHandler
 
         col = New PrinterTextColumn() With {
         .Align = PrinterColumn.Aligns.Left,
-        .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+        .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
         .Text = "--------------------------------------------------------------------"
         }
         row.AddColumn(col)
@@ -247,8 +251,8 @@ Public Class ThermalPrintHandler
             .IsBold = True
             }
 
-            aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
-            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.6, 0))
+            aux1 = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.6, 0))
             '~60%
             aux3 = aux1 - aux2 '100% - ~60%
 
@@ -288,7 +292,7 @@ Public Class ThermalPrintHandler
                 }
                 col = New PrinterTextColumn() With {
                 .Align = PrinterColumn.Aligns.Left,
-                .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+                .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
                 .Text = _document.OficinaSII
                 }
                 row.AddColumn(col)
@@ -313,8 +317,8 @@ Public Class ThermalPrintHandler
             .IsBold = False
             }
 
-            aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
-            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.4, 0))
+            aux1 = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.4, 0))
             '~40%
             aux3 = aux1 - aux2 '100% - ~40%
 
@@ -351,7 +355,7 @@ Public Class ThermalPrintHandler
 
             col = New PrinterTextColumn() With {
                 .Align = PrinterColumn.Aligns.Left,
-                .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+                .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
                 .Text = "--------------------------------------------------------------------"
             }
             row.AddColumn(col)
@@ -364,7 +368,7 @@ Public Class ThermalPrintHandler
 
 #Region "Rut Cliente"
 
-        If (Not String.IsNullOrEmpty(_document.RutCliente) AndAlso _document.RutCliente <> "0-0" AndAlso _document.RutCliente.Replace(".", "".Replace("-", "") <> "666666666")) Then
+        If (Not String.IsNullOrEmpty(_document.RutCliente) And _document.RutCliente <> "0-0" And _document.RutCliente.Replace(".", "").Replace("-", "") <> "666666666") Then
 
             row = New PrinterRow() With {
             .TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Truncate,
@@ -373,8 +377,8 @@ Public Class ThermalPrintHandler
             .IsBold = False
             }
 
-            aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
-            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.4, 0))
+            aux1 = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.4, 0))
             '~40%
             aux3 = aux1 - aux2
 
@@ -409,8 +413,8 @@ Public Class ThermalPrintHandler
             .IsBold = False
             }
 
-            aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
-            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.4, 0))
+            aux1 = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.4, 0))
             '~40%
             aux3 = aux1 - aux2
 
@@ -445,7 +449,7 @@ Public Class ThermalPrintHandler
 
         col = New PrinterTextColumn() With {
         .Align = PrinterColumn.Aligns.Left,
-        .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+        .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
         .Text = "--------------------------------------------------------------------"
         }
 
@@ -456,7 +460,7 @@ Public Class ThermalPrintHandler
 
 #Region "Referencias"
 
-        If (Not IsNothing(_document.Referencias)) Then
+        If (IsNothing(_document.Referencias) = False) Then
             If (_document.Referencias.Count <> 0) Then
 
                 row = New PrinterRow() With {
@@ -468,7 +472,7 @@ Public Class ThermalPrintHandler
 
                 col = New PrinterTextColumn() With {
                 .Align = PrinterColumn.Aligns.Left,
-                .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+                .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
                 .Text = "Referencias"
                 }
                 row.AddColumn(col)
@@ -485,7 +489,7 @@ Public Class ThermalPrintHandler
 
                     col = New PrinterTextColumn() With {
                     .Align = PrinterColumn.Aligns.Left,
-                    .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+                    .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
                     .Text = referencia
                     }
                     row.AddColumn(col)
@@ -503,7 +507,7 @@ Public Class ThermalPrintHandler
                 }
                 col = New PrinterTextColumn() With {
                 .Align = PrinterColumn.Aligns.Left,
-                .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+                .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
                 .Text = "---------------------------------------------------------------------"
                 }
                 row.AddColumn(col)
@@ -592,7 +596,7 @@ Public Class ThermalPrintHandler
 
         col = New PrinterTextColumn() With {
         .Align = PrinterColumn.Aligns.Left,
-        .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+        .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
         .Text = "--------------------------------------------------------------------"
         }
         row.AddColumn(col)
@@ -604,7 +608,7 @@ Public Class ThermalPrintHandler
 #Region "Detalles"
 
 
-        If (IsNothing(_document.Detalles)) Then
+        If (IsNothing(_document.Detalles) = False) Then
             If (_document.Detalles.Count <> 0) Then
                 For Each detalle In _document.Detalles
 
@@ -706,7 +710,7 @@ Public Class ThermalPrintHandler
 
         col = New PrinterTextColumn() With {
         .Align = PrinterColumn.Aligns.Left,
-        .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+        .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
         .Text = "--------------------------------------------------------------------"
         }
         row.AddColumn(col)
@@ -723,8 +727,8 @@ Public Class ThermalPrintHandler
                 .FontSize = 8,
                 .IsBold = False
             }
-            aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
-            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
+            aux1 = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
             '~50%
             aux3 = aux1 - aux2 '100% - ~50%
 
@@ -752,7 +756,7 @@ Public Class ThermalPrintHandler
 
 #Region "Descuento"
 
-        If (Not IsNothing(_document.DescuentosRecargos)) Then
+        If (IsNothing(_document.DescuentosRecargos) = False) Then
             If (_document.DescuentosRecargos.Count <> 0) Then
 
                 If (_document.DescuentosRecargos.Where(Function(x) x.Item1 = "D").Count() <> 0) Then
@@ -767,7 +771,7 @@ Public Class ThermalPrintHandler
 
                     col = New PrinterTextColumn() With {
                         .Align = PrinterColumn.Aligns.Left,
-                        .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+                        .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
                         .Text = "Descuentos"
                     }
                     row.AddColumn(col)
@@ -785,8 +789,8 @@ Public Class ThermalPrintHandler
                         .IsBold = False
                         }
 
-                        aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
-                        aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
+                        aux1 = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+                        aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
                         '~50%
                         aux3 = aux1 - aux2 '100% - ~50%
 
@@ -817,7 +821,7 @@ Public Class ThermalPrintHandler
 
                     col = New PrinterTextColumn() With {
         .Align = PrinterColumn.Aligns.Left,
-        .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+        .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
         .Text = "--------------------------------------------------------------------"
         }
                     row.AddColumn(col)
@@ -840,7 +844,7 @@ Public Class ThermalPrintHandler
 
                     col = New PrinterTextColumn() With {
                         .Align = PrinterColumn.Aligns.Left,
-                        .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+                        .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
                         .Text = "Recargos"
                     }
                     row.AddColumn(col)
@@ -858,8 +862,8 @@ Public Class ThermalPrintHandler
                         .IsBold = False
                         }
 
-                        aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
-                        aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
+                        aux1 = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+                        aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
                         '~50%
                         aux3 = aux1 - aux2 '100% - ~50%
 
@@ -891,7 +895,7 @@ Public Class ThermalPrintHandler
 
                     col = New PrinterTextColumn() With {
         .Align = PrinterColumn.Aligns.Left,
-        .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+        .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
         .Text = "--------------------------------------------------------------------"
         }
                     row.AddColumn(col)
@@ -902,13 +906,13 @@ Public Class ThermalPrintHandler
 
             End If
 
-            End If
+        End If
 #End Region
 
 
 #Region "Adicionales"
 
-        If (Not IsNothing(_document.Adicionales)) Then
+        If (IsNothing(_document.Adicionales) = False) Then
             If (_document.Adicionales.Count() <> 0) Then
                 For Each a As Tuple(Of String, Integer) In _document.Adicionales
                     row = New PrinterRow() With {
@@ -917,8 +921,8 @@ Public Class ThermalPrintHandler
                     .FontSize = 8,
                     .IsBold = False
                     }
-                    aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
-                    aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
+                    aux1 = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+                    aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
                     '~50%
                     aux3 = aux1 - aux2  '100% - ~50%
 
@@ -952,8 +956,8 @@ Public Class ThermalPrintHandler
             .IsBold = False
             }
 
-            aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
-            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
+            aux1 = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
             '~50%
             aux3 = aux1 - aux2 '100% - ~50%
 
@@ -984,8 +988,8 @@ Public Class ThermalPrintHandler
             .FontSize = 8,
             .IsBold = False
             }
-            aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
-            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
+            aux1 = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+            aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
             '~50%
             aux3 = aux1 - aux2 '100% - ~50%
 
@@ -1017,8 +1021,8 @@ Public Class ThermalPrintHandler
         .IsBold = False
         }
 
-        aux1 = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
-        aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
+        aux1 = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+        aux2 = Convert.ToInt32(Math.Round(FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)) * 0.5, 0))
         '~50%
         aux3 = aux1 - aux2 '100% - ~50%
         col = New PrinterTextColumn() With {
@@ -1051,7 +1055,7 @@ Public Class ThermalPrintHandler
 
             col = New PrinterTextColumn() With {
         .Align = PrinterColumn.Aligns.Left,
-        .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+        .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
         .Text = "                                                                    "
         }
             row.AddColumn(col)
@@ -1062,7 +1066,7 @@ Public Class ThermalPrintHandler
 
 #Region "Timbre"
             'No debería pasar nunca, pero bueh, la weá se cae si pasa xd
-            If (Not IsNothing(_document.TimbreImage)) Then
+            If (IsNothing(_document.TimbreImage) = False) Then
 
                 row = New PrinterRow() With {
                 .TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Wrap,
@@ -1073,7 +1077,7 @@ Public Class ThermalPrintHandler
 
                 col = New PrinterImageColumn() With {
                 .Align = PrinterColumn.Aligns.Left,
-                .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+                .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
                 .Image = _document.TimbreImage
                 }
                 row.AddColumn(col)
@@ -1097,11 +1101,11 @@ Public Class ThermalPrintHandler
 
             col = New PrinterTextColumn() With {
                 .Align = PrinterColumn.Aligns.Center,
-                .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+                .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
                 .Text = "TIMBRE ELECTRÓNICO S.I.I."
                 }
             row.AddColumn(col)
-                work.AddRow(row)
+            work.AddRow(row)
 
 
 #End Region
@@ -1118,7 +1122,7 @@ Public Class ThermalPrintHandler
 
             col = New PrinterTextColumn() With {
                 .Align = PrinterColumn.Aligns.Center,
-                .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+                .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
                 .Text = $"Res.  {_document.NumeroResolucion} de {_document.FechaResolucion.ToString(DateFormat)}"
                 }
             row.AddColumn(col)
@@ -1140,7 +1144,7 @@ Public Class ThermalPrintHandler
 
                 col = New PrinterTextColumn() With {
                 .Align = PrinterColumn.Aligns.Center,
-                .MaxChars = FontInfo.GetMaxChars(row.FontSize = IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+                .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
                 .Text = _document.WebVerificación
                 }
                 row.AddColumn(col)
@@ -1154,14 +1158,16 @@ Public Class ThermalPrintHandler
 
 
         End If
+        Return work
     End Function
 
 
     Public Sub Print(ByVal directPrint As Boolean)
         Try
-            Dim pw As printerWork = CreatePrinterWork()
+            Dim pw As printerWork = CreatePrinterWork() '//Aquí debes modificar para cambiar el formato
+
             Dim service As PrinterService = New PrinterService(pw)
-            service.Print(_document.NombreDocumento & " " + _document.Folio, NombreImpresora, Not directPrint)
+            service.Print(_document.NombreDocumento + " " + _document.Folio, NombreImpresora, Not directPrint)
         Catch
         End Try
     End Sub
