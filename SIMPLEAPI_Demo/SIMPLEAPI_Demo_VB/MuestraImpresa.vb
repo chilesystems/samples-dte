@@ -122,7 +122,7 @@ Public Class MuestraImpresa
             Next
 
             txtNumeroResolucion.Value = document.NumeroResolucion
-            dateFechaResolucion.Value = document.FechaResolucion = IIf(DateTime.Today.ToString(), DateTime.Now, document.FechaResolucion)
+            dateFechaResolucion.Value = document.FechaResolucion.ToString() = IIf(DateTime.Now.ToString, DateTime.Now, document.FechaResolucion)
             txtWebVerificacion.Text = document.WebVerificación
         End If
 

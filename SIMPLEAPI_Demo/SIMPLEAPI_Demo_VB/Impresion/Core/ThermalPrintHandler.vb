@@ -23,7 +23,7 @@ Public Class ThermalPrintHandler
 
 #Region "Razón social"
 
-        If (Not String.IsNullOrEmpty(_document.RazonSocial)) Then
+        If (String.IsNullOrEmpty(_document.RazonSocial)) Then
 
             row = New PrinterRow() With {
               .TextOverflowResolveMethod = PrinterRow.TextOverflowResolveMethods.Wrap,

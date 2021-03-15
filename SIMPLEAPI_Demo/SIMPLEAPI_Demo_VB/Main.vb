@@ -80,7 +80,7 @@ Public Class Main
 
         If (result = DialogResult.OK) Then
             Dim pathFile As String = openFileDialog1.FileName
-            Dim msj As String = ""
+            Dim msj As String = String.Empty
             Dim trackID As Long = handler.EnviarEnvioDTEToSII(pathFile, IIf(radioProduccion.Checked, Ambiente.AmbienteEnum.Produccion, Ambiente.AmbienteEnum.Certificacion), msj)
             If (Not String.IsNullOrEmpty(msj)) Then
                 MsgBox("Ocurrio un Error: " + msj)
@@ -187,7 +187,6 @@ Public Class Main
         Dim openFileDialog1 As New OpenFileDialog
 
         openFileDialog1.Multiselect = False
-        openFileDialog1.ShowDialog()
         Dim result = openFileDialog1.ShowDialog()
         Dim messageOut As String = Nothing
 
@@ -210,7 +209,7 @@ Public Class Main
             })
             Dim path = handler.TimbrarYFirmarXMLDTE(dteNC, "out\temp\", "out\caf\", messageOut)
             handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE)
-            MessageBox.Show("Nota de crédito generada exitosamente en " & path)
+            MessageBox.Show("Nota de crédito generada exitosamente en " + path)
         End If
     End Sub
 

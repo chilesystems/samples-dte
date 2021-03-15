@@ -352,6 +352,8 @@ Public Class Handler
     '    //    throw New Exception(messageResult);
     '    //}
 
+
+
     Public Function Validate(ByVal filePath As String, ByVal tipo As Firma.TipoXML, ByVal schema As String) As Boolean
         Dim messageResult As String = String.Empty
         Dim messageOutFirma As String = Nothing
