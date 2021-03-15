@@ -75,4 +75,36 @@ Public Class ConfiguracionSistema
     Private Sub comboCertificados_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboCertificados.SelectedIndexChanged
 
     End Sub
+
+    Private Sub botonGuardarActividad_Click(sender As Object, e As EventArgs) Handles botonGuardarActividad.Click
+        If (conf.Empresa.CodigosActividades.Count > 3) Then
+            MessageBox.Show("Sólo se permite un máximo de 4 actividades económicas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+        conf.Empresa.CodigosActividades.Add(New ActividadEconomica() With {
+        .Codigo = CInt(textNumeroActividad.Text)
+        })
+        gridResultados.DataSource = Nothing
+        gridResultados.DataSource = conf.Empresa.CodigosActividades
+        textNumeroActividad.Text = ""
+
+    End Sub
+
+    Private Sub botonAgregarProducto_Click(sender As Object, e As EventArgs) Handles botonAgregarProducto.Click
+        conf.ProductosSimulacion.Add(New ProductoSimulacion() With {
+        .Nombre = textNombreProducto.Text
+        })
+        gridProductos.DataSource = Nothing
+        gridProductos.DataSource = conf.ProductosSimulacion
+        textNombreProducto.Text = ""
+    End Sub
+
+    Private Sub gridResultados_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridResultados.CellContentClick
+        If e.RowIndex <> -1 AndAlso e.ColumnIndex = 1 Then
+            Dim Codigo = TryCast(gridResultados.Rows(e.RowIndex).DataBoundItem, ActividadEconomica)
+            conf.Empresa.CodigosActividades.Remove(Codigo)
+            gridResultados.DataSource = Nothing
+            gridResultados.DataSource = conf.Empresa.CodigosActividades
+        End If
+    End Sub
 End Class
