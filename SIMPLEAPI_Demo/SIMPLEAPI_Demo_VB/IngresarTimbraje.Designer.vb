@@ -54,6 +54,7 @@ Partial Class IngresarTimbraje
         '
         'botonGuardar
         '
+        Me.botonGuardar.Image = Global.SIMPLEAPI_Demo_VB.My.Resources.Resources.Guardar_32
         Me.botonGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.botonGuardar.Location = New System.Drawing.Point(282, 149)
         Me.botonGuardar.Name = "botonGuardar"
