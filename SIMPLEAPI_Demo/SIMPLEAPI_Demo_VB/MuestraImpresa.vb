@@ -137,8 +137,9 @@ Public Class MuestraImpresa
             Dim xml As String = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"))
             Dim dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString(Of ChileSystems.DTE.Engine.Documento.DTE)(xml)
             document = PrintableDocument.FromDTE(dte)
-
-            pictureBoxTimbre.BackgroundImage = document.TimbreImage ' =dte.Documento.TimbrePDF417( )
+            Dim x As String = Nothing
+            document.TimbreImage = dte.Documento.TimbrePDF417(x)
+            pictureBoxTimbre.BackgroundImage = document.TimbreImage
 
 
             BindData()

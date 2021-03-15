@@ -4,7 +4,7 @@
 
     Public ReadOnly Property RutCuerpo As Integer
         Get
-            Return Integer.Parse(Rut.Substring(0, Rut.Length - 2))
+            Return CInt(Rut.Substring(0, Rut.Length - 2))
         End Get
     End Property
 

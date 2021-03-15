@@ -322,18 +322,17 @@ Public Class Main
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Dim conf As Configuracion = New Configuracion()
         Dim pregunta As String
 
 
-        If (conf.VerificarCarpetasIniciales = False) Then
+        If (configuracion.VerificarCarpetasIniciales = False) Then
             pregunta = MsgBox("Se deben agregar las carpetas iniciales out\\temp, out\\caf y XML", vbYes)
 
         End If
 
-        conf.LeerArchivo()
+        configuracion.LeerArchivo()
 
-        handler.configuracion = conf
+        handler.configuracion = configuracion
 
 
 
@@ -1351,7 +1350,8 @@ Public Class Main
     Private Sub botonGenerarRCOFVacio_Click(sender As Object, e As EventArgs) Handles botonGenerarRCOFVacio.Click
         Dim rcof = handler.GenerarRCOFVacio(DateTime.Now)
         rcof.DocumentoConsumoFolios.Id = "RCOF_" & DateTime.Now.Ticks.ToString()
-        Dim xmlString As String = String.Empty
+
+        Dim xmlString As String = Nothing
         Dim filePathArchivo = rcof.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, xmlString)
         MessageBox.Show("RCOF Generado correctamente en " & filePathArchivo)
     End Sub
