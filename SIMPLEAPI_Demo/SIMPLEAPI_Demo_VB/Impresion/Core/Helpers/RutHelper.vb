@@ -10,7 +10,8 @@
             rut = rut.Replace("-", "")
             formato = "-" & rut.Substring(rut.Length - 1)
 
-            For i As Integer = rut.Length - 2 To 0
+            For i As Integer = rut.Length - 2 To 0 Step -1
+
                 formato = rut.Substring(i, 1) & formato
                 cont += 1
 

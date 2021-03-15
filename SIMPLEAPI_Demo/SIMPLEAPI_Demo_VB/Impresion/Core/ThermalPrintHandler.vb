@@ -60,8 +60,8 @@ Public Class ThermalPrintHandler
 
             col = New PrinterTextColumn() With {
             .Align = PrinterColumn.Aligns.Left,
-            .Text = RUTHelper.Format(_document.Rut),
-            .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular))
+            .MaxChars = FontInfo.GetMaxChars(row.FontSize, IIf(row.IsBold, FontStyle.Bold, FontStyle.Regular)),
+            .Text = RUTHelper.Format(_document.Rut)
             }
             row.AddColumn(col)
             work.AddRow(row)
@@ -119,7 +119,7 @@ Public Class ThermalPrintHandler
             col = New PrinterTextColumn() With {
             .Align = PrinterColumn.Aligns.Left,
             .MaxChars = aux2,
-            .Text = "Casa matriz"
+            .Text = "Casa matriz:"
             }
 
             row.AddColumn(col)
@@ -660,6 +660,7 @@ Public Class ThermalPrintHandler
                         .MaxChars = 20,'20 carácteres de font regular 8 (nombre art.)
                         .Text = detalle.Descripcion
                         }
+                        row.AddColumn(col)
 
                     End If
 
@@ -1166,9 +1167,12 @@ Public Class ThermalPrintHandler
         Try
             Dim pw As printerWork = CreatePrinterWork() '//Aquí debes modificar para cambiar el formato
 
-            Dim service As PrinterService = New PrinterService(pw)
-            service.Print(_document.NombreDocumento + " " + _document.Folio, NombreImpresora, Not directPrint)
+            Dim service As New PrinterService(pw)
+            service.Print(_document.NombreDocumento.ToString() + " " + _document.Folio.ToString(), NombreImpresora.ToString(), directPrint = False)
         Catch
+
+            MsgBox("gg", vbYes)
+
         End Try
     End Sub
 

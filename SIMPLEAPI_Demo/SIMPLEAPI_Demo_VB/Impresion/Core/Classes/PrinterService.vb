@@ -27,7 +27,7 @@ Public Class PrinterService
     '''<param name="printerName"></param>
     '''<param name="debugMode"></param>
 
-    Public Sub Print(ByVal documentName As String, ByVal printerName As String, ByVal Optional debugMode As Boolean = False)
+    Public Sub Print(documentName As String, printerName As String, Optional debugMode As Boolean = False)
         If String.IsNullOrEmpty(documentName) Then Throw New ArgumentException("El parámetro 'documentName' no puede ser 'null' o estar vacío", documentName)
         If String.IsNullOrEmpty(printerName) Then Throw New ArgumentException("El parámetro 'printerName' no puede ser 'null' o estar vacío", printerName)
         If Work Is Nothing Then Throw New ArgumentException("No se puede imprimir si la propiedad 'Work' es null", printerName)
