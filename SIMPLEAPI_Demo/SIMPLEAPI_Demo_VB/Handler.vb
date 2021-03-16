@@ -134,6 +134,7 @@ Public Class Handler
 
 
     Public Sub GenerateDetails(ByVal dte As DTE)
+        'DOCUMENTO - DETALLES
         dte.Documento.Detalles = New List(Of Detalle)()
         Dim detalle As Detalle = New Detalle()
         detalle.NumeroLinea = 1
@@ -184,6 +185,7 @@ Public Class Handler
 
 
     Public Sub GenerateDetails(ByVal dte As DTE, ByVal detalles As List(Of ItemBoleta))
+        'DOCUMENTO - DETALLES
         dte.Documento.Detalles = New List(Of Detalle)()
         Dim contador As Integer = 1
 
@@ -273,7 +275,15 @@ Public Class Handler
         End Try
     End Sub
 
-
+    '''/// <summary>
+    '''    /// Permite agregar referencias a un DTE
+    '''    /// </summary>
+    '''    /// <param name="dte">Objeto DTE que tendrá una nueva Referencia</param>
+    '''    /// <param name="operacionReferencia">Corresponde a Anulación, Corrige Montos, Corrige Texto o SET de pruebas</param>
+    '''    /// <param name="tipoDocumentoReferencia">Tipo de documento que se desea referenciar, como notas de crédito, ordenes de compra, entre otros.</param>
+    '''    /// <param name="fechaDocReferencia">Fecha del documento de referencia. NO de cuándo se genera la referencia.</param>
+    '''    /// <param name="folioReferencia">Folio del documento de referencia.</param>
+    '''    /// <param name="casoPrueba">N° de caso de prueba</param>
     Public Sub Referencias(ByVal dte As DTE, ByVal operacionReferencia As TipoReferencia.TipoReferenciaEnum, ByVal tipoDocumentoReferencia As TipoDTE.TipoReferencia, ByVal fechaDocReferencia As DateTime?, ByVal Optional folioReferencia As Integer? = 0, ByVal Optional casoPrueba As String = "")
 
         If operacionReferencia = TipoReferencia.TipoReferenciaEnum.SetPruebas Then 'REFERENCIA A SET DE PRUEBAS
@@ -1179,18 +1189,23 @@ Public Class Handler
 #Region "Utilidades"
 
     Public Function GenerateRandomDTE(ByVal folio As Integer, ByVal tipo As TipoDTE.DTEType) As DTE
+        '// DOCUMENTO
         Dim r As Random = New Random()
         Dim dte = New ChileSystems.DTE.Engine.Documento.DTE()
         dte.Documento.Id = "TEST_2" & folio.ToString() & "_" & tipo
         dte.Documento.Encabezado.IdentificacionDTE.TipoDTE = tipo
         dte.Documento.Encabezado.IdentificacionDTE.FechaEmision = DateTime.Now
         dte.Documento.Encabezado.IdentificacionDTE.Folio = folio
+
+        '//DOCUMENTO - ENCABEZADO - EMISOR - CAMPOS OBLIGATORIOS 
         dte.Documento.Encabezado.Emisor.Rut = configuracion.Empresa.RutEmpresa
         dte.Documento.Encabezado.Emisor.RazonSocial = configuracion.Empresa.RazonSocial
         dte.Documento.Encabezado.Emisor.Giro = configuracion.Empresa.Giro
         dte.Documento.Encabezado.Emisor.DireccionOrigen = configuracion.Empresa.Direccion
         dte.Documento.Encabezado.Emisor.ComunaOrigen = configuracion.Empresa.Comuna
         dte.Documento.Encabezado.Emisor.ActividadEconomica = configuracion.Empresa.CodigosActividades.[Select](Function(x) x.Codigo).ToList()
+
+        '//DOCUMENTO - ENCABEZADO - RECEPTOR - CAMPOS OBLIGATORIOS
         dte.Documento.Encabezado.Receptor.Rut = "66666666-6"
         dte.Documento.Encabezado.Receptor.RazonSocial = "Razon Social de Cliente"
         dte.Documento.Encabezado.Receptor.Direccion = "Dirección de cliente"
@@ -1247,12 +1262,15 @@ Public Class Handler
                 }
             })
         Else
+            '//DOCUMENTO - DETALLES
             Dim max_detalles As Integer = r.[Next](1, 5)
             Dim detallesRandom As List(Of String) = configuracion.ProductosSimulacion.[Select](Function(x) x.Nombre).ToList()
 
             For i As Integer = 1 To max_detalles
                 Dim detalle = New ChileSystems.DTE.Engine.Documento.Detalle()
                 detalle.NumeroLinea = i
+                '//detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
+                'c#
                 detalle.Nombre = detallesRandom(r.[Next](0, detallesRandom.Count - 1))
                 detalle.Cantidad = r.[Next](1, 5)
                 detalle.Precio = r.[Next](1, 150000)
@@ -1314,6 +1332,8 @@ Public Class Handler
     End Function
 
     Public Function ConsultarEstadoEnvio(ByVal ambiente As AmbienteEnum, ByVal trackId As Long) As EstadoEnvioResult
+        '//string signature = SIMPLE_API.Security.Firma.Firma.GetFirmaFromString(xmlEnvio);
+        'c#
         Dim rutEmpresa As Integer = configuracion.Empresa.RutCuerpo
         Dim rutEmpresaDigito As String = configuracion.Empresa.DV
         Dim [error] As String = ""
@@ -1323,6 +1343,8 @@ Public Class Handler
     End Function
 
     Public Function ConsultarEstadoEnvioBoleta(ByVal ambiente As AmbienteEnum, ByVal trackId As Long) As EstadoEnvioBoletaResult
+        '//string signature = SIMPLE_API.Security.Firma.Firma.GetFirmaFromString(xmlEnvio);
+        'c#
         Dim rutEmpresa As Integer = configuracion.Empresa.RutCuerpo
         Dim rutEmpresaDigito As String = configuracion.Empresa.DV
         Dim [error] As String = ""
@@ -1347,6 +1369,8 @@ Public Class Handler
         result.RecepcionEnvio = New List(Of RecepcionEnvio)()
         Dim recepcionEnvio = New RecepcionEnvio()
         recepcionEnvio.CodigoEnvio = 4545
+        '//recepcionEnvio.Digest = SIMPLE_SDK.Security.Firma.Firma.GetDigestValueFromFile(dte.DTEfilepath);
+        'c#
         recepcionEnvio.EnvioDTEId = "SetDoc"
         recepcionEnvio.FechaRecepcion = DateTime.Now
         recepcionEnvio.NumeroDTE = 2
@@ -1356,6 +1380,21 @@ Public Class Handler
         recepcionEnvio.GlosaEstadoRecepcionEnvio = "ENVIO OK"
         recepcionEnvio.NombreArchivoEnvio = "ENVIO_DTE_1072427"
         recepcionEnvio.RecepcionDTE = New List(Of RecepcionDTE)()
+
+        '//foreach (var dte in dtes)
+        '    //{
+        '    //    var recepcionDTE = New RecepcionDTE();
+        '    //    recepcionDTE.FechaEmision = dte.Documento.Encabezado.IdentificacionDTE.FechaEmision;
+        '    //    recepcionDTE.Folio = dte.Documento.Encabezado.IdentificacionDTE.Folio;
+        '    //    recepcionDTE.MontoTotal = dte.Documento.Encabezado.Totales.MontoTotal;
+        '    //    recepcionDTE.RutEmisor = dte.Documento.Encabezado.Emisor.Rut;
+        '    //    recepcionDTE.RutReceptor = dte.Documento.Encabezado.Receptor.Rut;
+        '    //    recepcionDTE.TipoDTE = dte.Documento.Encabezado.IdentificacionDTE.TipoDTE;
+        '    //    recepcionDTE.EstadoRecepcionDTE = ChileSystems.DTE.Engine.Enum.EstadoRecepcionDTE.EstadoRecepcionDTEEnum.Ok;
+        '    //    recepcionDTE.GlosaEstadoRecepcionDTE = ChileSystems.DTE.Engine.Enum.EstadoRecepcionDTE.Glosa(recepcionDTE.EstadoRecepcionDTE);
+        '    //    recepcionEnvio.RecepcionDTE.Add(recepcionDTE);
+        '    //}
+        'c#
         Dim recepcionDTE = New RecepcionDTE()
         Dim dte = dtes(0)
         recepcionDTE.FechaEmision = dte.Documento.Encabezado.IdentificacionDTE.FechaEmision

@@ -34,9 +34,10 @@ Public Class PrinterService
         If Work.Rows.Count = 0 Then Return
         Dim pdoc As PrintDocument = New PrintDocument()
         pdoc.DocumentName = documentName
-        If Not debugMode Then pdoc.PrintController = New StandardPrintController()
+        If Not debugMode Then pdoc.PrintController = New StandardPrintController() '// hides status dialog popup
+
         pdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 100, 200)
-        pdoc.DefaultPageSettings.PaperSize.Height = Work.Rows.Count * 24
+        pdoc.DefaultPageSettings.PaperSize.Height = Work.Rows.Count * 24 '// Aprox
         pdoc.DefaultPageSettings.PaperSize.Width = 300
         AddHandler pdoc.PrintPage, New PrintPageEventHandler(AddressOf PrintEvent)
 
@@ -62,6 +63,9 @@ Public Class PrinterService
         For Each row In Work.Rows
             brush = GetBrush(row.Color)
             font = GetFont(row.FontSize, row.IsBold)
+
+            '// Kind of excesive but will throw an exception if sums of width percentages of all row colums is not 1
+
             row.ValidateColumnsWidth(Work.IsTestWork)
 
             For Each line In row.ToLines()

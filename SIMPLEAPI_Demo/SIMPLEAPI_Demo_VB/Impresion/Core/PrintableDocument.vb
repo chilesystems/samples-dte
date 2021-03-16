@@ -2,6 +2,9 @@
 Imports ChileSystems.DTE.Engine.Documento
 
 Public Class PrintableDocument
+
+
+    '// Datos Emisor //
     Public Property RazonSocial As String
     Public Property Rut As String
     Public Property Giro As String
@@ -9,10 +12,13 @@ Public Class PrintableDocument
     Public Property Sucursales As List(Of String)
     Public Property Teléfono As String
 
+
+    '// Datos Receptor //
     Public Property RutCliente As String
     Public Property RazonSocialCliente As String
 
 
+    '// Datos Documento //
     Public Property NombreDocumento As String
     Public Property Folio As Long
     Public Property OficinaSII As String
@@ -21,11 +27,19 @@ Public Class PrintableDocument
     Public Property ShowUnidadMedida As Boolean
     Public Property Referencias As List(Of String)
 
+    '// Detalles ///
     Public Property Detalles As List(Of PrintableDocumentDetail)
 
 
+    '// Total //
+    '    /// <summary>
+    '    /// D ó R | NOMBRE DESCUENTO | $0.000%
+    '    /// </summary>
     Public DescuentosRecargos As New List(Of Tuple(Of Char, String, String))
 
+    '/// <summary>
+    '    /// NOMBRE IMPUESTO | VALOR
+    '    /// </summary>
     Public Adicionales As New List(Of Tuple(Of String, Integer))
 
 
@@ -34,6 +48,8 @@ Public Class PrintableDocument
     Public Property Total As Integer
     Public Property TotalExento As Integer
 
+
+    '// SII //
     Public Property TimbreImage As Image
     Public Property NumeroResolucion As Integer
     Public Property FechaResolucion As DateTime

@@ -28,7 +28,7 @@ Public Class printerWork
         For Each row In Rows
             Lines.AddRange(row.ToLines())
         Next
-
+        '//var linesStrng = string.Join(Environment.NewLine, Lines);
         Return Lines
     End Function
 End Class

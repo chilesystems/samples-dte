@@ -55,9 +55,18 @@ Public Class PrinterRow
 
                 While i < text.Length
                     If Lines.Count = j Then Lines.Add("")
+                    ' // Iniciar nueva línea respetando el espacio de las columnas anteriores
                     If i <> 0 AndAlso Lines.Count - 1 = j AndAlso colIndex > 0 Then Lines(j) += "".PadLeft(Columns.Take(colIndex - 1).Sum(Function(x) x.MaxChars) + 1, " "c)
+                    '// Extraer porción del texto que cabe en una línea
+
                     aux = text.Substring(i, If(i + col.MaxChars > text.Length, text.Length - i, col.MaxChars)).PadRight(col.MaxChars, " "c)
+
+                    '// La línea no puede iniciar con un espacio, por lo tanto, se corren hasta el final.
+
                     If aux.Length <> aux.TrimStart().Length Then aux = aux.TrimStart() & "".PadLeft(aux.Length - aux.TrimStart().Length, " "c)
+
+
+                    '// respetar alineación de la columna en nueva línea
 
                     Select Case col.Align
                         Case PrinterColumn.Aligns.Center
