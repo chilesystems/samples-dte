@@ -305,7 +305,7 @@ Public Class Handler
         End If
     End Sub
 
-    Public Function TimbrarYFirmarXMLDTE(ByVal dte As DTE, ByVal pathResult As String, ByVal pathCaf As String, <Out> ByRef messageOut As String) As String
+    Public Function TimbrarYFirmarXMLDTE(ByVal dte As DTE, ByVal pathResult As String, ByVal pathCaf As String, ByRef messageOut As String) As String
         messageOut = String.Empty
 
         'En primer lugar, el documento debe timbrarse con el CAF que descargas desde el SII, es simular
@@ -367,7 +367,7 @@ Public Class Handler
             End If
         End If
 
-        MessageBox.Show("Error: " & messageResult & ". Verifique que contiene la carpeta XML con los XSD para validación", "Error", MessageBoxButtons.OK, MessageBoxIcon.[Error])
+        MessageBox.Show("Error: " + messageResult + ". Verifique que contiene la carpeta XML con los XSD para validación", "Error", MessageBoxButtons.OK, MessageBoxIcon.[Error])
         Return False
     End Function
 

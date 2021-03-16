@@ -22,9 +22,9 @@ Partial Class GenerarBoletaElectronica
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.numericFolio = New System.Windows.Forms.NumericUpDown()
         Me.label5 = New System.Windows.Forms.Label()
         Me.botonGenerar = New System.Windows.Forms.Button()
@@ -78,6 +78,7 @@ Partial Class GenerarBoletaElectronica
         '
         'botonGenerar
         '
+        Me.botonGenerar.Image = Global.SIMPLEAPI_Demo_VB.My.Resources.Resources.Guardar_32
         Me.botonGenerar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.botonGenerar.Location = New System.Drawing.Point(478, 278)
         Me.botonGenerar.Name = "botonGenerar"
@@ -135,11 +136,11 @@ Partial Class GenerarBoletaElectronica
         '
         'botonAgregarLinea
         '
+        Me.botonAgregarLinea.Image = Global.SIMPLEAPI_Demo_VB.My.Resources.Resources.Agregar1
         Me.botonAgregarLinea.Location = New System.Drawing.Point(532, 19)
         Me.botonAgregarLinea.Name = "botonAgregarLinea"
         Me.botonAgregarLinea.Size = New System.Drawing.Size(39, 30)
         Me.botonAgregarLinea.TabIndex = 15
-        Me.botonAgregarLinea.Text = " + "
         Me.botonAgregarLinea.UseVisualStyleBackColor = True
         '
         'checkAfecto
@@ -226,8 +227,8 @@ Partial Class GenerarBoletaElectronica
         'gridCantidadProducto
         '
         Me.gridCantidadProducto.DataPropertyName = "Cantidad"
-        DataGridViewCellStyle10.Format = "N1"
-        Me.gridCantidadProducto.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle1.Format = "N1"
+        Me.gridCantidadProducto.DefaultCellStyle = DataGridViewCellStyle1
         Me.gridCantidadProducto.HeaderText = "Cantidad"
         Me.gridCantidadProducto.Name = "gridCantidadProducto"
         Me.gridCantidadProducto.ReadOnly = True
@@ -236,8 +237,8 @@ Partial Class GenerarBoletaElectronica
         'gridPrecio
         '
         Me.gridPrecio.DataPropertyName = "Precio"
-        DataGridViewCellStyle11.Format = "N0"
-        Me.gridPrecio.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle2.Format = "N0"
+        Me.gridPrecio.DefaultCellStyle = DataGridViewCellStyle2
         Me.gridPrecio.HeaderText = "Precio"
         Me.gridPrecio.Name = "gridPrecio"
         Me.gridPrecio.ReadOnly = True
@@ -246,8 +247,8 @@ Partial Class GenerarBoletaElectronica
         'gridTotal
         '
         Me.gridTotal.DataPropertyName = "Total"
-        DataGridViewCellStyle12.Format = "N0"
-        Me.gridTotal.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle3.Format = "N0"
+        Me.gridTotal.DefaultCellStyle = DataGridViewCellStyle3
         Me.gridTotal.HeaderText = "Total"
         Me.gridTotal.Name = "gridTotal"
         Me.gridTotal.ReadOnly = True
