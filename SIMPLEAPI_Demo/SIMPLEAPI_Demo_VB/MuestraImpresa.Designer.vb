@@ -838,7 +838,7 @@ Partial Class MuestraImpresa
         Me.Controls.Add(Me.panel1)
         Me.Controls.Add(Me.GroupBox9)
         Me.Name = "MuestraImpresa"
-        Me.Text = "MuestraImpresa"
+        Me.Text = "Muestra Impresa"
         Me.panel1.ResumeLayout(False)
         CType(Me.pictureBoxTimbre, System.ComponentModel.ISupportInitialize).EndInit()
         Me.groupBox8.ResumeLayout(False)

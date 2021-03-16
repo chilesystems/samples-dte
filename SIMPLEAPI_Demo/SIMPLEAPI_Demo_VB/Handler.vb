@@ -420,6 +420,7 @@ Public Class Handler
 
         EnvioSII.SetDTE.Caratula.FechaResolucion = configuracion.Empresa.FechaResolucion
         EnvioSII.SetDTE.Caratula.NumeroResolucion = configuracion.Empresa.NumeroResolucion
+
         EnvioSII.SetDTE.Caratula.RutEmisor = configuracion.Empresa.RutEmpresa
         EnvioSII.SetDTE.Caratula.RutEnvia = configuracion.Certificado.Rut
         EnvioSII.SetDTE.Caratula.RutReceptor = "60803000-K" 'Este es el RUT del SII

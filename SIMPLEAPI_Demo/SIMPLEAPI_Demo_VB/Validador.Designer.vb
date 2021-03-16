@@ -108,6 +108,7 @@ Partial Class Validador
         'botonBuscar
         '
         Me.botonBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.botonBuscar.Image = Global.SIMPLEAPI_Demo_VB.My.Resources.Resources.View
         Me.botonBuscar.Location = New System.Drawing.Point(341, 27)
         Me.botonBuscar.Name = "botonBuscar"
         Me.botonBuscar.Size = New System.Drawing.Size(29, 20)

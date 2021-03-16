@@ -64,7 +64,7 @@ Partial Class MuestraTimbre
         Me.Controls.Add(Me.botonCargarDTE)
         Me.Controls.Add(Me.pictureBoxTimbre)
         Me.Name = "MuestraTimbre"
-        Me.Text = "MuestraTimbre"
+        Me.Text = "Muestra de Timbre"
         CType(Me.pictureBoxTimbre, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

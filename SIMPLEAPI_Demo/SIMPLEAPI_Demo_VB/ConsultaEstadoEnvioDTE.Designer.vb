@@ -203,7 +203,7 @@ Partial Class ConsultaEstadoEnvioDTE
         Me.Controls.Add(Me.groupBox2)
         Me.Controls.Add(Me.groupBox1)
         Me.Name = "ConsultaEstadoEnvioDTE"
-        Me.Text = "ConsultaEstadoEnvioDTE"
+        Me.Text = "Consulta de Estado Envio de DTE"
         Me.groupBox3.ResumeLayout(False)
         Me.groupBox3.PerformLayout()
         Me.groupBox2.ResumeLayout(False)
