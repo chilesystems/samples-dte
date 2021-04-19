@@ -233,7 +233,8 @@ namespace SIMPLEAPI_Demo
             try
             {
                 //DOCUMENTO - ENCABEZADO - TOTALES - CAMPOS OBLIGATORIOS
-                if (dte.Documento.Encabezado.IdentificacionDTE.TipoDTE != ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica)
+                if (dte.Documento.Encabezado.IdentificacionDTE.TipoDTE != ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica
+                    && dte.Documento.Encabezado.IdentificacionDTE.TipoDTE != TipoDTE.DTEType.BoletaElectronicaExenta)
                 {
                     dte.Documento.Encabezado.Totales.TasaIVA = Convert.ToDouble(19);
                     var neto = dte.Documento.Detalles
