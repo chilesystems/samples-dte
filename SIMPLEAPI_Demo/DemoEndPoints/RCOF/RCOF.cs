@@ -9,7 +9,12 @@ namespace DemoEndPoints.RCOF
     public class RCOF
     {
         public Caratula Caratula { get; set; }
-        public Resumen Resumen { get; set; }
+        public List<Resumen> Resumen { get; set; }
         public CertificadoDigital CertificadoDigital { get; set; }
+
+        public RCOF()
+        {
+            this.Resumen = new List<Resumen>();
+        }
     }
 }

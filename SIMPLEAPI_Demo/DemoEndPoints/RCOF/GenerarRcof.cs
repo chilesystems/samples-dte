@@ -82,7 +82,7 @@ namespace DemoEndPoints
                 resumen.FoliosUtilizados = int.Parse(txt_foliosUtilizados.Text);
                 RCOF.RCOF rcof = new RCOF.RCOF();
                 rcof.Caratula = caratula;
-                rcof.Resumen = resumen;
+                rcof.Resumen.Add(resumen);
                 rcof.CertificadoDigital = certificado;
 
                 var json = new JavaScriptSerializer().Serialize(rcof);
@@ -100,8 +100,18 @@ namespace DemoEndPoints
                     var passByte = new ByteArrayContent(
                         await streamContent.ReadAsByteArrayAsync());
                     passByte.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
-                    form.Add(new StringContent(json), "input");
-                    form.Add( passByte,"files", dialog.FileName);
+                    passByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                    {
+                        Name = "files",
+                        FileName =  dialog.FileName
+                    };
+
+                    HttpContent jsonString = new StringContent(json);
+                    form.Add(jsonString, "input");
+
+
+
+                    form.Add(passByte);
                     
                     var pass = Encoding.GetEncoding("ISO-8859-1").GetBytes("api:2318-J320-6378-2229-4600");
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
@@ -112,10 +122,6 @@ namespace DemoEndPoints
                     string sd =await response.Content.ReadAsStringAsync();
                     MessageBox.Show(sd);
                 }
-
-
-
-
             }
             catch (Exception ex)
             {
