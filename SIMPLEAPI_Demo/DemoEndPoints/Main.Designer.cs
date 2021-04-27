@@ -113,6 +113,7 @@ namespace DemoEndPoints
             this.btn_rcofValido.TabIndex = 0;
             this.btn_rcofValido.Text = "Generar RCOF Valido";
             this.btn_rcofValido.UseVisualStyleBackColor = true;
+            this.btn_rcofValido.Click += new System.EventHandler(this.btn_rcofValido_Click);
             // 
             // groupBox2
             // 

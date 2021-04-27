@@ -42,5 +42,11 @@ namespace DemoEndPoints
             Form jsonPdf = new GenerarJson.JsonPdf();
             jsonPdf.Show();
         }
+
+        private void btn_rcofValido_Click(object sender, EventArgs e)
+        {
+            Form generarRcof = new GenerarRcof();
+            generarRcof.Show();
+        }
     }
 }
