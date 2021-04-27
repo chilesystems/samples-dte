@@ -284,20 +284,31 @@ namespace SIMPLEAPI_Demo
                 }
                 else
                 {
-                    var totalBrutoAfecto = dte.Documento.Detalles
+                    
+
+                    /*En las boletas, sólo es necesario informar el monto total*/
+                    if (dte.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronica)
+                    {
+                        var totalBrutoAfecto = dte.Documento.Detalles
                         .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet)
                         .Sum(x => x.MontoItem);
 
-                    var totalExento = dte.Documento.Detalles
-                        .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
-                        .Sum(x => x.MontoItem);
+                        var totalExento = dte.Documento.Detalles
+                            .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
+                            .Sum(x => x.MontoItem);
 
-                    /*En las boletas, sólo es necesario informar el monto total*/
-                    var neto = totalBrutoAfecto / 1.19;
-                    var iva = (int)Math.Round(neto * 0.19, 0, MidpointRounding.AwayFromZero);
-                    dte.Documento.Encabezado.Totales.IVA = iva;
-                    dte.Documento.Encabezado.Totales.MontoNeto = (int)Math.Round(neto, 0, MidpointRounding.AwayFromZero);
-                    dte.Documento.Encabezado.Totales.MontoTotal = dte.Documento.Encabezado.Totales.MontoNeto + totalExento + iva;
+                        var neto = totalBrutoAfecto / 1.19;
+                        var iva = (int)Math.Round(neto * 0.19, 0, MidpointRounding.AwayFromZero);
+                        dte.Documento.Encabezado.Totales.IVA = iva;
+                        dte.Documento.Encabezado.Totales.MontoNeto = (int)Math.Round(neto, 0, MidpointRounding.AwayFromZero);
+                        dte.Documento.Encabezado.Totales.MontoTotal = dte.Documento.Encabezado.Totales.MontoNeto + totalExento + iva;
+                    }
+                    else //Boleta electrónica exenta
+                    {
+                        var total = dte.Documento.Detalles.Sum(x => x.MontoItem);
+                        dte.Documento.Encabezado.Totales.MontoExento = dte.Documento.Encabezado.Totales.MontoTotal = total;
+                    }
+                   
                 }
             }
 
