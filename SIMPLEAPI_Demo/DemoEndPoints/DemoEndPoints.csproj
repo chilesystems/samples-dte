@@ -46,6 +46,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnvioDTE\ConsultarEstadoEnvio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnvioDTE\ConsultarEstadoEnvio.Designer.cs">
+      <DependentUpon>ConsultarEstadoEnvio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnvioDTE\EnviarEnvioBoleta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnvioDTE\EnviarEnvioBoleta.Designer.cs">
+      <DependentUpon>EnviarEnvioBoleta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnvioDTE\EnviarEnvioDte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnvioDTE\EnviarEnvioDte.Designer.cs">
+      <DependentUpon>EnviarEnvioDte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RCOF\EnviarRcof.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RCOF\EnviarRcof.Designer.cs">
+      <DependentUpon>EnviarRcof.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnvioDTE\EnvioBoleta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnvioDTE\EnvioBoleta.Designer.cs">
+      <DependentUpon>EnvioBoleta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnvioDTE\EnvioDte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnvioDTE\EnvioDte.Designer.cs">
+      <DependentUpon>EnvioDte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarDTE\GenerarDte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarDTE\GenerarDte.Designer.cs">
+      <DependentUpon>GenerarDte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RCOF\GenerarRcof.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RCOF\GenerarRcof.Designer.cs">
+      <DependentUpon>GenerarRcof.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +114,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="EndPoint.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -78,6 +127,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GenerarJson\" />
+    <Folder Include="Impresion\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
