@@ -68,6 +68,25 @@
     <Compile Include="EnvioDTE\EnviarEnvioDte.Designer.cs">
       <DependentUpon>EnviarEnvioDte.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerarJson\JsonEntrada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarJson\JsonEntrada.Designer.cs">
+      <DependentUpon>JsonEntrada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarJson\JsonEnvio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarJson\JsonEnvio.Designer.cs">
+      <DependentUpon>JsonEnvio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarJson\JsonPdf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarJson\JsonPdf.Designer.cs">
+      <DependentUpon>JsonPdf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="RCOF\EnviarRcof.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +125,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GenerarJson\JsonEntrada.resx">
+      <DependentUpon>JsonEntrada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarJson\JsonEnvio.resx">
+      <DependentUpon>JsonEnvio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarJson\JsonPdf.resx">
+      <DependentUpon>JsonPdf.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,7 +146,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="EndPoint.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -134,7 +161,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GenerarJson\" />
     <Folder Include="Impresion\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -332,6 +332,7 @@ namespace DemoEndPoints
             this.btn_jsonPdf.TabIndex = 2;
             this.btn_jsonPdf.Text = "Generar Json PDF";
             this.btn_jsonPdf.UseVisualStyleBackColor = true;
+            this.btn_jsonPdf.Click += new System.EventHandler(this.btn_jsonPdf_Click);
             // 
             // btn_jsonEntrada
             // 
@@ -341,6 +342,7 @@ namespace DemoEndPoints
             this.btn_jsonEntrada.TabIndex = 1;
             this.btn_jsonEntrada.Text = "Generar Json Entrada";
             this.btn_jsonEntrada.UseVisualStyleBackColor = true;
+            this.btn_jsonEntrada.Click += new System.EventHandler(this.btn_jsonEntrada_Click);
             // 
             // btn_jsonEnvio
             // 
@@ -350,6 +352,7 @@ namespace DemoEndPoints
             this.btn_jsonEnvio.TabIndex = 0;
             this.btn_jsonEnvio.Text = "Generar Json Envio";
             this.btn_jsonEnvio.UseVisualStyleBackColor = true;
+            this.btn_jsonEnvio.Click += new System.EventHandler(this.btn_jsonEnvio_Click);
             // 
             // Main
             // 
