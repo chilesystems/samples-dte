@@ -647,14 +647,14 @@ namespace SIMPLEAPI_Demo
             /*datos de boletas electrónicas afectas*/
             /* Estos datos se deben calcular, debido a que no se informa IVA en boletas electrónicas 
              */
-            int totalBrutoAfecto = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica)
+            int totalBrutoAfecto = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronica)
                         .Sum(x => x.Documento.Detalles
-                        .Where(y => y.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet)
+                        .Where(y => y.IndicadorExento == IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet)
                         .Sum(y => y.MontoItem));
 
-            int totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica)
+            int totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronica)
                     .Sum(x => x.Documento.Detalles
-                    .Where(y => y.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
+                    .Where(y => y.IndicadorExento == IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
                     .Sum(y => y.MontoItem));
 
             int totalNeto = (int)Math.Round(totalBrutoAfecto / 1.19, 0, MidpointRounding.AwayFromZero);
@@ -674,26 +674,51 @@ namespace SIMPLEAPI_Demo
             resumenes.Add(new ChileSystems.DTE.Engine.RCOF.Resumen
             {
                 FoliosAnulados = 0,
-                FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Count(),
-                FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Count(),
+                FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronica).Count(),
+                FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronica).Count(),
                 MntExento = totalExento,
                 MntIva = totalIVA,
                 MntNeto = totalNeto,
                 MntTotal = totalTotal,
                 TasaIVA = 19,
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica,
+                TipoDocumento = TipoDTE.DTEType.BoletaElectronica,
                 RangoUtilizados = resultRangos
                 //RangoAnulados = new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
             });
 
+
+            /*datos de boletas electrónicas exentas*/
+            if (dtes.Any(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta))
+            {
+                totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta).Sum(x => x.Documento.Encabezado.Totales.MontoExento);                
+                resultRangos = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>();
+                lst = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta).Select(x => x.Documento.Encabezado.IdentificacionDTE.Folio).ToList();
+                minBoundaries = lst.Where(i => !lst.Contains(i - 1)).OrderBy(x => x).ToList();
+                maxBoundaries = lst.Where(i => !lst.Contains(i + 1)).OrderBy(x => x).ToList();
+                for (int i = 0; i < maxBoundaries.Count; i++)
+                {
+                    resultRangos.Add(new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = minBoundaries[i], Final = maxBoundaries[i] });
+                }
+
+                resumenes.Add(new ChileSystems.DTE.Engine.RCOF.Resumen
+                {
+                    FoliosAnulados = 0,
+                    FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta).Count(),
+                    FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta).Count(),
+                    MntExento = totalExento,
+                    MntTotal = totalExento,
+                    TipoDocumento = TipoDTE.DTEType.BoletaElectronicaExenta,
+                    RangoUtilizados = resultRangos
+                });
+            }
+
             /*datos de notas de credito electronicas*/
-            /*datos de boletas electrónicas afectas*/
             if (dtes.Any(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica))
             {
-                totalNeto = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoNeto);
-                totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoExento);
-                totalIVA = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.IVA);
-                totalTotal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoTotal);
+                totalNeto = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoNeto);
+                totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoExento);
+                totalIVA = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.IVA);
+                totalTotal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoTotal);
 
                 resultRangos = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>();
                 lst = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Select(x => x.Documento.Encabezado.IdentificacionDTE.Folio).ToList();
@@ -707,14 +732,14 @@ namespace SIMPLEAPI_Demo
                 resumenes.Add(new ChileSystems.DTE.Engine.RCOF.Resumen
                 {
                     FoliosAnulados = 0,
-                    FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Count(),
-                    FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Count(),
+                    FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Count(),
+                    FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Count(),
                     MntExento = totalExento,
                     MntIva = totalIVA,
                     MntNeto = totalNeto,
                     MntTotal = totalTotal,
                     TasaIVA = 19,
-                    TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica,
+                    TipoDocumento = TipoDTE.DTEType.NotaCreditoElectronica,
                     RangoUtilizados = resultRangos
                     //RangoAnulados =new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
                 });
