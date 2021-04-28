@@ -30,39 +30,41 @@ namespace DemoEndPoints
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txt_rutReceptor = new System.Windows.Forms.TextBox();
-            this.txt_razonSocialReceptor = new System.Windows.Forms.TextBox();
-            this.txt_comunaReceptor = new System.Windows.Forms.TextBox();
-            this.txt_giroReceptor = new System.Windows.Forms.TextBox();
+            this.txt_ciudadReceptor = new System.Windows.Forms.TextBox();
+            this.label39 = new System.Windows.Forms.Label();
             this.txt_direccionReceptor = new System.Windows.Forms.TextBox();
+            this.txt_giroReceptor = new System.Windows.Forms.TextBox();
+            this.txt_comunaReceptor = new System.Windows.Forms.TextBox();
+            this.txt_razonSocialReceptor = new System.Windows.Forms.TextBox();
+            this.txt_rutReceptor = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.txt_folioEncabezado = new System.Windows.Forms.NumericUpDown();
-            this.txt_tipoDteEncabezado = new System.Windows.Forms.NumericUpDown();
             this.dp_fechaEmisionEncabezado = new System.Windows.Forms.DateTimePicker();
+            this.txt_tipoDteEncabezado = new System.Windows.Forms.NumericUpDown();
+            this.txt_folioEncabezado = new System.Windows.Forms.NumericUpDown();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.txt_netoTotales = new System.Windows.Forms.NumericUpDown();
-            this.txt_ivaTotales = new System.Windows.Forms.NumericUpDown();
-            this.txt_totalTotales = new System.Windows.Forms.NumericUpDown();
             this.txt_exentoTotales = new System.Windows.Forms.NumericUpDown();
+            this.txt_totalTotales = new System.Windows.Forms.NumericUpDown();
+            this.txt_ivaTotales = new System.Windows.Forms.NumericUpDown();
+            this.txt_netoTotales = new System.Windows.Forms.NumericUpDown();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.txt_indicarServOtros = new System.Windows.Forms.NumericUpDown();
-            this.txt_tipoTrasladoOtros = new System.Windows.Forms.NumericUpDown();
             this.txt_tipoDespachoOtros = new System.Windows.Forms.NumericUpDown();
+            this.txt_tipoTrasladoOtros = new System.Windows.Forms.NumericUpDown();
+            this.txt_indicarServOtros = new System.Windows.Forms.NumericUpDown();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.btn_cargarCertificado = new System.Windows.Forms.Button();
             this.txt_passCertificado = new System.Windows.Forms.TextBox();
@@ -71,23 +73,20 @@ namespace DemoEndPoints
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.txt_ciudadReceptor = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.btn_generarDTE = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.grid_descuentos = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
-            this.numericUpDown20 = new System.Windows.Forms.NumericUpDown();
+            this.txt_valorDescuentos = new System.Windows.Forms.NumericUpDown();
             this.label40 = new System.Windows.Forms.Label();
-            this.numericUpDown18 = new System.Windows.Forms.NumericUpDown();
+            this.txt_tipoValorDescuentos = new System.Windows.Forms.NumericUpDown();
             this.label38 = new System.Windows.Forms.Label();
-            this.numericUpDown17 = new System.Windows.Forms.NumericUpDown();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.txt_tipoMovDescuentos = new System.Windows.Forms.NumericUpDown();
+            this.txt_descDescuentos = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.grid_referencias = new System.Windows.Forms.DataGridView();
             this.btn_agregarReferencia = new System.Windows.Forms.Button();
             this.txt_glosaReferencia = new System.Windows.Forms.TextBox();
             this.txt_folioReferencia = new System.Windows.Forms.NumericUpDown();
@@ -98,7 +97,7 @@ namespace DemoEndPoints
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.grid_detalles = new System.Windows.Forms.DataGridView();
             this.btn_agregarDetalles = new System.Windows.Forms.Button();
             this.txt_descuentoDetalles = new System.Windows.Forms.NumericUpDown();
             this.chbx_exentoNo = new System.Windows.Forms.CheckBox();
@@ -114,7 +113,7 @@ namespace DemoEndPoints
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.grid_actividades = new System.Windows.Forms.DataGridView();
             this.btn_agregarActEco = new System.Windows.Forms.Button();
             this.txt_actividadEcoEmisor = new System.Windows.Forms.NumericUpDown();
             this.txt_telefonoEmisor = new System.Windows.Forms.NumericUpDown();
@@ -130,38 +129,40 @@ namespace DemoEndPoints
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.txt_caf = new System.Windows.Forms.TextBox();
+            this.btn_caf = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_folioEncabezado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoDteEncabezado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_folioEncabezado)).BeginInit();
             this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_netoTotales)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_ivaTotales)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_totalTotales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_exentoTotales)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_totalTotales)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_ivaTotales)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_netoTotales)).BeginInit();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_indicarServOtros)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_tipoTrasladoOtros)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoDespachoOtros)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_tipoTrasladoOtros)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_indicarServOtros)).BeginInit();
             this.groupBox8.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_descuentos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_valorDescuentos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_tipoValorDescuentos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_tipoMovDescuentos)).BeginInit();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_referencias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_folioReferencia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoDocReferencia)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_detalles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_descuentoDetalles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_totalDetalles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_precioDetalles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_cantidadDetalles)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_actividades)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_actividadEcoEmisor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_telefonoEmisor)).BeginInit();
             this.SuspendLayout();
@@ -180,21 +181,90 @@ namespace DemoEndPoints
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(608, 93);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Receptor";
             // 
-            // label1
+            // txt_ciudadReceptor
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Rut :";
+            this.txt_ciudadReceptor.Location = new System.Drawing.Point(64, 58);
+            this.txt_ciudadReceptor.Name = "txt_ciudadReceptor";
+            this.txt_ciudadReceptor.Size = new System.Drawing.Size(100, 20);
+            this.txt_ciudadReceptor.TabIndex = 11;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(12, 61);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(46, 13);
+            this.label39.TabIndex = 10;
+            this.label39.Text = "Ciudad :";
+            // 
+            // txt_direccionReceptor
+            // 
+            this.txt_direccionReceptor.Location = new System.Drawing.Point(466, 58);
+            this.txt_direccionReceptor.Name = "txt_direccionReceptor";
+            this.txt_direccionReceptor.Size = new System.Drawing.Size(100, 20);
+            this.txt_direccionReceptor.TabIndex = 9;
+            // 
+            // txt_giroReceptor
+            // 
+            this.txt_giroReceptor.Location = new System.Drawing.Point(276, 58);
+            this.txt_giroReceptor.Name = "txt_giroReceptor";
+            this.txt_giroReceptor.Size = new System.Drawing.Size(100, 20);
+            this.txt_giroReceptor.TabIndex = 8;
+            // 
+            // txt_comunaReceptor
+            // 
+            this.txt_comunaReceptor.Location = new System.Drawing.Point(466, 28);
+            this.txt_comunaReceptor.Name = "txt_comunaReceptor";
+            this.txt_comunaReceptor.Size = new System.Drawing.Size(100, 20);
+            this.txt_comunaReceptor.TabIndex = 7;
+            // 
+            // txt_razonSocialReceptor
+            // 
+            this.txt_razonSocialReceptor.Location = new System.Drawing.Point(276, 26);
+            this.txt_razonSocialReceptor.Name = "txt_razonSocialReceptor";
+            this.txt_razonSocialReceptor.Size = new System.Drawing.Size(100, 20);
+            this.txt_razonSocialReceptor.TabIndex = 6;
+            // 
+            // txt_rutReceptor
+            // 
+            this.txt_rutReceptor.Location = new System.Drawing.Point(64, 28);
+            this.txt_rutReceptor.Name = "txt_rutReceptor";
+            this.txt_rutReceptor.Size = new System.Drawing.Size(100, 20);
+            this.txt_rutReceptor.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(402, 63);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Dirección :";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(238, 63);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Giro :";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(408, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Comuna :";
             // 
             // label2
             // 
@@ -206,67 +276,14 @@ namespace DemoEndPoints
             this.label2.Text = "Razon Social :";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // label3
+            // label1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(408, 31);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Comuna :";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(238, 63);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Giro :";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(402, 63);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Dirección :";
-            // 
-            // txt_rutReceptor
-            // 
-            this.txt_rutReceptor.Location = new System.Drawing.Point(64, 28);
-            this.txt_rutReceptor.Name = "txt_rutReceptor";
-            this.txt_rutReceptor.Size = new System.Drawing.Size(100, 20);
-            this.txt_rutReceptor.TabIndex = 5;
-            // 
-            // txt_razonSocialReceptor
-            // 
-            this.txt_razonSocialReceptor.Location = new System.Drawing.Point(276, 26);
-            this.txt_razonSocialReceptor.Name = "txt_razonSocialReceptor";
-            this.txt_razonSocialReceptor.Size = new System.Drawing.Size(100, 20);
-            this.txt_razonSocialReceptor.TabIndex = 6;
-            // 
-            // txt_comunaReceptor
-            // 
-            this.txt_comunaReceptor.Location = new System.Drawing.Point(466, 28);
-            this.txt_comunaReceptor.Name = "txt_comunaReceptor";
-            this.txt_comunaReceptor.Size = new System.Drawing.Size(100, 20);
-            this.txt_comunaReceptor.TabIndex = 7;
-            // 
-            // txt_giroReceptor
-            // 
-            this.txt_giroReceptor.Location = new System.Drawing.Point(276, 58);
-            this.txt_giroReceptor.Name = "txt_giroReceptor";
-            this.txt_giroReceptor.Size = new System.Drawing.Size(100, 20);
-            this.txt_giroReceptor.TabIndex = 8;
-            // 
-            // txt_direccionReceptor
-            // 
-            this.txt_direccionReceptor.Location = new System.Drawing.Point(466, 58);
-            this.txt_direccionReceptor.Name = "txt_direccionReceptor";
-            this.txt_direccionReceptor.Size = new System.Drawing.Size(100, 20);
-            this.txt_direccionReceptor.TabIndex = 9;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(28, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Rut :";
             // 
             // groupBox5
             // 
@@ -276,30 +293,43 @@ namespace DemoEndPoints
             this.groupBox5.Controls.Add(this.label25);
             this.groupBox5.Controls.Add(this.label24);
             this.groupBox5.Controls.Add(this.label23);
-            this.groupBox5.Location = new System.Drawing.Point(3, 105);
+            this.groupBox5.Location = new System.Drawing.Point(12, 114);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(709, 78);
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Encabezado";
             // 
-            // label23
+            // dp_fechaEmisionEncabezado
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(23, 31);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(35, 13);
-            this.label23.TabIndex = 0;
-            this.label23.Text = "Folio :";
+            this.dp_fechaEmisionEncabezado.Location = new System.Drawing.Point(503, 29);
+            this.dp_fechaEmisionEncabezado.Name = "dp_fechaEmisionEncabezado";
+            this.dp_fechaEmisionEncabezado.Size = new System.Drawing.Size(200, 20);
+            this.dp_fechaEmisionEncabezado.TabIndex = 5;
             // 
-            // label24
+            // txt_tipoDteEncabezado
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(211, 31);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(59, 13);
-            this.label24.TabIndex = 1;
-            this.label24.Text = "Tipo DTE :";
+            this.txt_tipoDteEncabezado.Location = new System.Drawing.Point(276, 29);
+            this.txt_tipoDteEncabezado.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.txt_tipoDteEncabezado.Name = "txt_tipoDteEncabezado";
+            this.txt_tipoDteEncabezado.Size = new System.Drawing.Size(120, 20);
+            this.txt_tipoDteEncabezado.TabIndex = 4;
+            // 
+            // txt_folioEncabezado
+            // 
+            this.txt_folioEncabezado.Location = new System.Drawing.Point(64, 29);
+            this.txt_folioEncabezado.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.txt_folioEncabezado.Name = "txt_folioEncabezado";
+            this.txt_folioEncabezado.Size = new System.Drawing.Size(120, 20);
+            this.txt_folioEncabezado.TabIndex = 3;
             // 
             // label25
             // 
@@ -310,26 +340,23 @@ namespace DemoEndPoints
             this.label25.TabIndex = 2;
             this.label25.Text = "Fecha Emision :";
             // 
-            // txt_folioEncabezado
+            // label24
             // 
-            this.txt_folioEncabezado.Location = new System.Drawing.Point(64, 29);
-            this.txt_folioEncabezado.Name = "txt_folioEncabezado";
-            this.txt_folioEncabezado.Size = new System.Drawing.Size(120, 20);
-            this.txt_folioEncabezado.TabIndex = 3;
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(211, 31);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(59, 13);
+            this.label24.TabIndex = 1;
+            this.label24.Text = "Tipo DTE :";
             // 
-            // txt_tipoDteEncabezado
+            // label23
             // 
-            this.txt_tipoDteEncabezado.Location = new System.Drawing.Point(276, 29);
-            this.txt_tipoDteEncabezado.Name = "txt_tipoDteEncabezado";
-            this.txt_tipoDteEncabezado.Size = new System.Drawing.Size(120, 20);
-            this.txt_tipoDteEncabezado.TabIndex = 4;
-            // 
-            // dp_fechaEmisionEncabezado
-            // 
-            this.dp_fechaEmisionEncabezado.Location = new System.Drawing.Point(503, 29);
-            this.dp_fechaEmisionEncabezado.Name = "dp_fechaEmisionEncabezado";
-            this.dp_fechaEmisionEncabezado.Size = new System.Drawing.Size(200, 20);
-            this.dp_fechaEmisionEncabezado.TabIndex = 5;
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(23, 31);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(35, 13);
+            this.label23.TabIndex = 0;
+            this.label23.Text = "Folio :";
             // 
             // groupBox6
             // 
@@ -341,39 +368,60 @@ namespace DemoEndPoints
             this.groupBox6.Controls.Add(this.label28);
             this.groupBox6.Controls.Add(this.label27);
             this.groupBox6.Controls.Add(this.label26);
-            this.groupBox6.Location = new System.Drawing.Point(718, 105);
+            this.groupBox6.Location = new System.Drawing.Point(727, 114);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(322, 156);
             this.groupBox6.TabIndex = 5;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Totales";
             // 
-            // label26
+            // txt_exentoTotales
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(42, 29);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(36, 13);
-            this.label26.TabIndex = 0;
-            this.label26.Text = "Neto :";
+            this.txt_exentoTotales.Location = new System.Drawing.Point(84, 109);
+            this.txt_exentoTotales.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.txt_exentoTotales.Name = "txt_exentoTotales";
+            this.txt_exentoTotales.Size = new System.Drawing.Size(120, 20);
+            this.txt_exentoTotales.TabIndex = 7;
             // 
-            // label27
+            // txt_totalTotales
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(48, 56);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(30, 13);
-            this.label27.TabIndex = 1;
-            this.label27.Text = "IVA :";
+            this.txt_totalTotales.Location = new System.Drawing.Point(83, 81);
+            this.txt_totalTotales.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.txt_totalTotales.Name = "txt_totalTotales";
+            this.txt_totalTotales.Size = new System.Drawing.Size(120, 20);
+            this.txt_totalTotales.TabIndex = 6;
             // 
-            // label28
+            // txt_ivaTotales
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(41, 83);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(37, 13);
-            this.label28.TabIndex = 2;
-            this.label28.Text = "Total :";
+            this.txt_ivaTotales.Location = new System.Drawing.Point(84, 54);
+            this.txt_ivaTotales.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.txt_ivaTotales.Name = "txt_ivaTotales";
+            this.txt_ivaTotales.Size = new System.Drawing.Size(120, 20);
+            this.txt_ivaTotales.TabIndex = 5;
+            // 
+            // txt_netoTotales
+            // 
+            this.txt_netoTotales.Location = new System.Drawing.Point(84, 27);
+            this.txt_netoTotales.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.txt_netoTotales.Name = "txt_netoTotales";
+            this.txt_netoTotales.Size = new System.Drawing.Size(120, 20);
+            this.txt_netoTotales.TabIndex = 4;
             // 
             // label29
             // 
@@ -384,33 +432,32 @@ namespace DemoEndPoints
             this.label29.TabIndex = 3;
             this.label29.Text = "Exento :";
             // 
-            // txt_netoTotales
+            // label28
             // 
-            this.txt_netoTotales.Location = new System.Drawing.Point(84, 27);
-            this.txt_netoTotales.Name = "txt_netoTotales";
-            this.txt_netoTotales.Size = new System.Drawing.Size(120, 20);
-            this.txt_netoTotales.TabIndex = 4;
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(41, 83);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(37, 13);
+            this.label28.TabIndex = 2;
+            this.label28.Text = "Total :";
             // 
-            // txt_ivaTotales
+            // label27
             // 
-            this.txt_ivaTotales.Location = new System.Drawing.Point(84, 54);
-            this.txt_ivaTotales.Name = "txt_ivaTotales";
-            this.txt_ivaTotales.Size = new System.Drawing.Size(120, 20);
-            this.txt_ivaTotales.TabIndex = 5;
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(48, 56);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(30, 13);
+            this.label27.TabIndex = 1;
+            this.label27.Text = "IVA :";
             // 
-            // txt_totalTotales
+            // label26
             // 
-            this.txt_totalTotales.Location = new System.Drawing.Point(83, 81);
-            this.txt_totalTotales.Name = "txt_totalTotales";
-            this.txt_totalTotales.Size = new System.Drawing.Size(120, 20);
-            this.txt_totalTotales.TabIndex = 6;
-            // 
-            // txt_exentoTotales
-            // 
-            this.txt_exentoTotales.Location = new System.Drawing.Point(84, 109);
-            this.txt_exentoTotales.Name = "txt_exentoTotales";
-            this.txt_exentoTotales.Size = new System.Drawing.Size(120, 20);
-            this.txt_exentoTotales.TabIndex = 7;
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(42, 29);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(36, 13);
+            this.label26.TabIndex = 0;
+            this.label26.Text = "Neto :";
             // 
             // groupBox7
             // 
@@ -420,30 +467,48 @@ namespace DemoEndPoints
             this.groupBox7.Controls.Add(this.label32);
             this.groupBox7.Controls.Add(this.label31);
             this.groupBox7.Controls.Add(this.label30);
-            this.groupBox7.Location = new System.Drawing.Point(3, 191);
+            this.groupBox7.Location = new System.Drawing.Point(12, 200);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(707, 70);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Otros DTE";
             // 
-            // label30
+            // txt_tipoDespachoOtros
             // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 39);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(98, 13);
-            this.label30.TabIndex = 0;
-            this.label30.Text = "Indicador Servicio :";
+            this.txt_tipoDespachoOtros.Location = new System.Drawing.Point(564, 35);
+            this.txt_tipoDespachoOtros.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.txt_tipoDespachoOtros.Name = "txt_tipoDespachoOtros";
+            this.txt_tipoDespachoOtros.Size = new System.Drawing.Size(120, 20);
+            this.txt_tipoDespachoOtros.TabIndex = 5;
             // 
-            // label31
+            // txt_tipoTrasladoOtros
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(243, 39);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(78, 13);
-            this.label31.TabIndex = 1;
-            this.label31.Text = "Tipo Traslado :";
+            this.txt_tipoTrasladoOtros.Location = new System.Drawing.Point(325, 35);
+            this.txt_tipoTrasladoOtros.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.txt_tipoTrasladoOtros.Name = "txt_tipoTrasladoOtros";
+            this.txt_tipoTrasladoOtros.Size = new System.Drawing.Size(120, 20);
+            this.txt_tipoTrasladoOtros.TabIndex = 4;
+            // 
+            // txt_indicarServOtros
+            // 
+            this.txt_indicarServOtros.Location = new System.Drawing.Point(110, 35);
+            this.txt_indicarServOtros.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.txt_indicarServOtros.Name = "txt_indicarServOtros";
+            this.txt_indicarServOtros.Size = new System.Drawing.Size(120, 20);
+            this.txt_indicarServOtros.TabIndex = 3;
             // 
             // label32
             // 
@@ -454,26 +519,23 @@ namespace DemoEndPoints
             this.label32.TabIndex = 2;
             this.label32.Text = "Tipo Despacho :";
             // 
-            // txt_indicarServOtros
+            // label31
             // 
-            this.txt_indicarServOtros.Location = new System.Drawing.Point(110, 35);
-            this.txt_indicarServOtros.Name = "txt_indicarServOtros";
-            this.txt_indicarServOtros.Size = new System.Drawing.Size(120, 20);
-            this.txt_indicarServOtros.TabIndex = 3;
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(243, 39);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(78, 13);
+            this.label31.TabIndex = 1;
+            this.label31.Text = "Tipo Traslado :";
             // 
-            // txt_tipoTrasladoOtros
+            // label30
             // 
-            this.txt_tipoTrasladoOtros.Location = new System.Drawing.Point(325, 35);
-            this.txt_tipoTrasladoOtros.Name = "txt_tipoTrasladoOtros";
-            this.txt_tipoTrasladoOtros.Size = new System.Drawing.Size(120, 20);
-            this.txt_tipoTrasladoOtros.TabIndex = 4;
-            // 
-            // txt_tipoDespachoOtros
-            // 
-            this.txt_tipoDespachoOtros.Location = new System.Drawing.Point(564, 35);
-            this.txt_tipoDespachoOtros.Name = "txt_tipoDespachoOtros";
-            this.txt_tipoDespachoOtros.Size = new System.Drawing.Size(120, 20);
-            this.txt_tipoDespachoOtros.TabIndex = 5;
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(6, 39);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(98, 13);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "Indicador Servicio :";
             // 
             // groupBox8
             // 
@@ -484,7 +546,7 @@ namespace DemoEndPoints
             this.groupBox8.Controls.Add(this.label33);
             this.groupBox8.Controls.Add(this.label34);
             this.groupBox8.Controls.Add(this.label35);
-            this.groupBox8.Location = new System.Drawing.Point(631, 3);
+            this.groupBox8.Location = new System.Drawing.Point(640, 12);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(409, 93);
             this.groupBox8.TabIndex = 7;
@@ -499,6 +561,7 @@ namespace DemoEndPoints
             this.btn_cargarCertificado.TabIndex = 6;
             this.btn_cargarCertificado.Text = "Cargar";
             this.btn_cargarCertificado.UseVisualStyleBackColor = true;
+            this.btn_cargarCertificado.Click += new System.EventHandler(this.btn_cargarCertificado_Click);
             // 
             // txt_passCertificado
             // 
@@ -548,76 +611,42 @@ namespace DemoEndPoints
             this.label35.TabIndex = 0;
             this.label35.Text = "Selecciona un Certificado :";
             // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(12, 61);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(46, 13);
-            this.label39.TabIndex = 10;
-            this.label39.Text = "Ciudad :";
-            // 
-            // txt_ciudadReceptor
-            // 
-            this.txt_ciudadReceptor.Location = new System.Drawing.Point(64, 58);
-            this.txt_ciudadReceptor.Name = "txt_ciudadReceptor";
-            this.txt_ciudadReceptor.Size = new System.Drawing.Size(100, 20);
-            this.txt_ciudadReceptor.TabIndex = 11;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.btn_generarDTE);
-            this.panel1.Controls.Add(this.groupBox9);
-            this.panel1.Controls.Add(this.groupBox4);
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.groupBox8);
-            this.panel1.Controls.Add(this.groupBox5);
-            this.panel1.Controls.Add(this.groupBox7);
-            this.panel1.Controls.Add(this.groupBox6);
-            this.panel1.Location = new System.Drawing.Point(0, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1063, 981);
-            this.panel1.TabIndex = 8;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
             // btn_generarDTE
             // 
-            this.btn_generarDTE.Location = new System.Drawing.Point(510, 909);
+            this.btn_generarDTE.Location = new System.Drawing.Point(441, 909);
             this.btn_generarDTE.Name = "btn_generarDTE";
             this.btn_generarDTE.Size = new System.Drawing.Size(101, 25);
-            this.btn_generarDTE.TabIndex = 14;
+            this.btn_generarDTE.TabIndex = 19;
             this.btn_generarDTE.Text = "Generar DTE";
             this.btn_generarDTE.UseVisualStyleBackColor = true;
+            this.btn_generarDTE.Click += new System.EventHandler(this.btn_generarDTE_Click);
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.dataGridView4);
+            this.groupBox9.Controls.Add(this.grid_descuentos);
             this.groupBox9.Controls.Add(this.button4);
-            this.groupBox9.Controls.Add(this.numericUpDown20);
+            this.groupBox9.Controls.Add(this.txt_valorDescuentos);
             this.groupBox9.Controls.Add(this.label40);
-            this.groupBox9.Controls.Add(this.numericUpDown18);
+            this.groupBox9.Controls.Add(this.txt_tipoValorDescuentos);
             this.groupBox9.Controls.Add(this.label38);
-            this.groupBox9.Controls.Add(this.numericUpDown17);
-            this.groupBox9.Controls.Add(this.textBox13);
+            this.groupBox9.Controls.Add(this.txt_tipoMovDescuentos);
+            this.groupBox9.Controls.Add(this.txt_descDescuentos);
             this.groupBox9.Controls.Add(this.label37);
             this.groupBox9.Controls.Add(this.label36);
-            this.groupBox9.Location = new System.Drawing.Point(0, 753);
+            this.groupBox9.Location = new System.Drawing.Point(9, 762);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(1037, 150);
-            this.groupBox9.TabIndex = 13;
+            this.groupBox9.TabIndex = 18;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Descuentos Recargos";
             // 
-            // dataGridView4
+            // grid_descuentos
             // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(12, 49);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(794, 92);
-            this.dataGridView4.TabIndex = 9;
+            this.grid_descuentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_descuentos.Location = new System.Drawing.Point(12, 49);
+            this.grid_descuentos.Name = "grid_descuentos";
+            this.grid_descuentos.Size = new System.Drawing.Size(794, 92);
+            this.grid_descuentos.TabIndex = 9;
             // 
             // button4
             // 
@@ -627,13 +656,19 @@ namespace DemoEndPoints
             this.button4.TabIndex = 8;
             this.button4.Text = "Agregar";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // numericUpDown20
+            // txt_valorDescuentos
             // 
-            this.numericUpDown20.Location = new System.Drawing.Point(673, 23);
-            this.numericUpDown20.Name = "numericUpDown20";
-            this.numericUpDown20.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown20.TabIndex = 7;
+            this.txt_valorDescuentos.Location = new System.Drawing.Point(673, 23);
+            this.txt_valorDescuentos.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.txt_valorDescuentos.Name = "txt_valorDescuentos";
+            this.txt_valorDescuentos.Size = new System.Drawing.Size(120, 20);
+            this.txt_valorDescuentos.TabIndex = 7;
             // 
             // label40
             // 
@@ -644,12 +679,17 @@ namespace DemoEndPoints
             this.label40.TabIndex = 6;
             this.label40.Text = "Valor :";
             // 
-            // numericUpDown18
+            // txt_tipoValorDescuentos
             // 
-            this.numericUpDown18.Location = new System.Drawing.Point(496, 23);
-            this.numericUpDown18.Name = "numericUpDown18";
-            this.numericUpDown18.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown18.TabIndex = 5;
+            this.txt_tipoValorDescuentos.Location = new System.Drawing.Point(496, 23);
+            this.txt_tipoValorDescuentos.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.txt_tipoValorDescuentos.Name = "txt_tipoValorDescuentos";
+            this.txt_tipoValorDescuentos.Size = new System.Drawing.Size(120, 20);
+            this.txt_tipoValorDescuentos.TabIndex = 5;
             // 
             // label38
             // 
@@ -660,19 +700,24 @@ namespace DemoEndPoints
             this.label38.TabIndex = 4;
             this.label38.Text = "Tipo Valor :";
             // 
-            // numericUpDown17
+            // txt_tipoMovDescuentos
             // 
-            this.numericUpDown17.Location = new System.Drawing.Point(297, 22);
-            this.numericUpDown17.Name = "numericUpDown17";
-            this.numericUpDown17.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown17.TabIndex = 3;
+            this.txt_tipoMovDescuentos.Location = new System.Drawing.Point(297, 22);
+            this.txt_tipoMovDescuentos.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.txt_tipoMovDescuentos.Name = "txt_tipoMovDescuentos";
+            this.txt_tipoMovDescuentos.Size = new System.Drawing.Size(120, 20);
+            this.txt_tipoMovDescuentos.TabIndex = 3;
             // 
-            // textBox13
+            // txt_descDescuentos
             // 
-            this.textBox13.Location = new System.Drawing.Point(81, 21);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(113, 20);
-            this.textBox13.TabIndex = 2;
+            this.txt_descDescuentos.Location = new System.Drawing.Point(81, 21);
+            this.txt_descDescuentos.Name = "txt_descDescuentos";
+            this.txt_descDescuentos.Size = new System.Drawing.Size(113, 20);
+            this.txt_descDescuentos.TabIndex = 2;
             // 
             // label37
             // 
@@ -694,7 +739,7 @@ namespace DemoEndPoints
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.dataGridView2);
+            this.groupBox4.Controls.Add(this.grid_referencias);
             this.groupBox4.Controls.Add(this.btn_agregarReferencia);
             this.groupBox4.Controls.Add(this.txt_glosaReferencia);
             this.groupBox4.Controls.Add(this.txt_folioReferencia);
@@ -704,20 +749,20 @@ namespace DemoEndPoints
             this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.label19);
-            this.groupBox4.Location = new System.Drawing.Point(3, 411);
+            this.groupBox4.Location = new System.Drawing.Point(12, 420);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(1037, 117);
-            this.groupBox4.TabIndex = 12;
+            this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Referencias";
             // 
-            // dataGridView2
+            // grid_referencias
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(26, 47);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(917, 61);
-            this.dataGridView2.TabIndex = 9;
+            this.grid_referencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_referencias.Location = new System.Drawing.Point(26, 47);
+            this.grid_referencias.Name = "grid_referencias";
+            this.grid_referencias.Size = new System.Drawing.Size(917, 61);
+            this.grid_referencias.TabIndex = 9;
             // 
             // btn_agregarReferencia
             // 
@@ -727,6 +772,7 @@ namespace DemoEndPoints
             this.btn_agregarReferencia.TabIndex = 8;
             this.btn_agregarReferencia.Text = "Agregar";
             this.btn_agregarReferencia.UseVisualStyleBackColor = true;
+            this.btn_agregarReferencia.Click += new System.EventHandler(this.btn_agregarReferencia_Click);
             // 
             // txt_glosaReferencia
             // 
@@ -738,6 +784,11 @@ namespace DemoEndPoints
             // txt_folioReferencia
             // 
             this.txt_folioReferencia.Location = new System.Drawing.Point(657, 21);
+            this.txt_folioReferencia.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.txt_folioReferencia.Name = "txt_folioReferencia";
             this.txt_folioReferencia.Size = new System.Drawing.Size(120, 20);
             this.txt_folioReferencia.TabIndex = 6;
@@ -745,6 +796,11 @@ namespace DemoEndPoints
             // txt_tipoDocReferencia
             // 
             this.txt_tipoDocReferencia.Location = new System.Drawing.Point(435, 21);
+            this.txt_tipoDocReferencia.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.txt_tipoDocReferencia.Name = "txt_tipoDocReferencia";
             this.txt_tipoDocReferencia.Size = new System.Drawing.Size(120, 20);
             this.txt_tipoDocReferencia.TabIndex = 5;
@@ -794,7 +850,7 @@ namespace DemoEndPoints
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.dataGridView3);
+            this.groupBox3.Controls.Add(this.grid_detalles);
             this.groupBox3.Controls.Add(this.btn_agregarDetalles);
             this.groupBox3.Controls.Add(this.txt_descuentoDetalles);
             this.groupBox3.Controls.Add(this.chbx_exentoNo);
@@ -809,20 +865,20 @@ namespace DemoEndPoints
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Location = new System.Drawing.Point(0, 534);
+            this.groupBox3.Location = new System.Drawing.Point(9, 543);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1037, 206);
-            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Detalles";
             // 
-            // dataGridView3
+            // grid_detalles
             // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(18, 87);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(924, 115);
-            this.dataGridView3.TabIndex = 14;
+            this.grid_detalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_detalles.Location = new System.Drawing.Point(18, 87);
+            this.grid_detalles.Name = "grid_detalles";
+            this.grid_detalles.Size = new System.Drawing.Size(924, 115);
+            this.grid_detalles.TabIndex = 14;
             // 
             // btn_agregarDetalles
             // 
@@ -832,10 +888,16 @@ namespace DemoEndPoints
             this.btn_agregarDetalles.TabIndex = 13;
             this.btn_agregarDetalles.Text = "Agregar";
             this.btn_agregarDetalles.UseVisualStyleBackColor = true;
+            this.btn_agregarDetalles.Click += new System.EventHandler(this.btn_agregarDetalles_Click);
             // 
             // txt_descuentoDetalles
             // 
             this.txt_descuentoDetalles.Location = new System.Drawing.Point(503, 58);
+            this.txt_descuentoDetalles.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.txt_descuentoDetalles.Name = "txt_descuentoDetalles";
             this.txt_descuentoDetalles.Size = new System.Drawing.Size(120, 20);
             this.txt_descuentoDetalles.TabIndex = 12;
@@ -849,6 +911,7 @@ namespace DemoEndPoints
             this.chbx_exentoNo.TabIndex = 11;
             this.chbx_exentoNo.Text = "No";
             this.chbx_exentoNo.UseVisualStyleBackColor = true;
+            this.chbx_exentoNo.CheckedChanged += new System.EventHandler(this.chbx_exentoNo_CheckedChanged);
             // 
             // chbx_exentoSi
             // 
@@ -861,10 +924,16 @@ namespace DemoEndPoints
             this.chbx_exentoSi.TabIndex = 10;
             this.chbx_exentoSi.Text = "Si";
             this.chbx_exentoSi.UseVisualStyleBackColor = true;
+            this.chbx_exentoSi.CheckedChanged += new System.EventHandler(this.chbx_exentoSi_CheckedChanged);
             // 
             // txt_totalDetalles
             // 
             this.txt_totalDetalles.Location = new System.Drawing.Point(282, 58);
+            this.txt_totalDetalles.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.txt_totalDetalles.Name = "txt_totalDetalles";
             this.txt_totalDetalles.Size = new System.Drawing.Size(120, 20);
             this.txt_totalDetalles.TabIndex = 9;
@@ -872,6 +941,11 @@ namespace DemoEndPoints
             // txt_precioDetalles
             // 
             this.txt_precioDetalles.Location = new System.Drawing.Point(282, 29);
+            this.txt_precioDetalles.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.txt_precioDetalles.Name = "txt_precioDetalles";
             this.txt_precioDetalles.Size = new System.Drawing.Size(120, 20);
             this.txt_precioDetalles.TabIndex = 8;
@@ -879,6 +953,11 @@ namespace DemoEndPoints
             // txt_cantidadDetalles
             // 
             this.txt_cantidadDetalles.Location = new System.Drawing.Point(80, 58);
+            this.txt_cantidadDetalles.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.txt_cantidadDetalles.Name = "txt_cantidadDetalles";
             this.txt_cantidadDetalles.Size = new System.Drawing.Size(120, 20);
             this.txt_cantidadDetalles.TabIndex = 7;
@@ -946,7 +1025,10 @@ namespace DemoEndPoints
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dataGridView1);
+            this.groupBox2.Controls.Add(this.btn_caf);
+            this.groupBox2.Controls.Add(this.txt_caf);
+            this.groupBox2.Controls.Add(this.label41);
+            this.groupBox2.Controls.Add(this.grid_actividades);
             this.groupBox2.Controls.Add(this.btn_agregarActEco);
             this.groupBox2.Controls.Add(this.txt_actividadEcoEmisor);
             this.groupBox2.Controls.Add(this.txt_telefonoEmisor);
@@ -962,33 +1044,40 @@ namespace DemoEndPoints
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(3, 267);
+            this.groupBox2.Location = new System.Drawing.Point(12, 276);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1037, 131);
-            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Emisor";
             // 
-            // dataGridView1
+            // grid_actividades
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(600, 55);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(176, 77);
-            this.dataGridView1.TabIndex = 15;
+            this.grid_actividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_actividades.Location = new System.Drawing.Point(520, 55);
+            this.grid_actividades.Name = "grid_actividades";
+            this.grid_actividades.Size = new System.Drawing.Size(243, 79);
+            this.grid_actividades.TabIndex = 15;
+            this.grid_actividades.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_actividades_CellContentClick);
             // 
             // btn_agregarActEco
             // 
-            this.btn_agregarActEco.Location = new System.Drawing.Point(782, 24);
+            this.btn_agregarActEco.Location = new System.Drawing.Point(732, 28);
             this.btn_agregarActEco.Name = "btn_agregarActEco";
             this.btn_agregarActEco.Size = new System.Drawing.Size(75, 23);
             this.btn_agregarActEco.TabIndex = 14;
             this.btn_agregarActEco.Text = "Agregar";
             this.btn_agregarActEco.UseVisualStyleBackColor = true;
+            this.btn_agregarActEco.Click += new System.EventHandler(this.btn_agregarActEco_Click);
             // 
             // txt_actividadEcoEmisor
             // 
-            this.txt_actividadEcoEmisor.Location = new System.Drawing.Point(602, 26);
+            this.txt_actividadEcoEmisor.Location = new System.Drawing.Point(552, 29);
+            this.txt_actividadEcoEmisor.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.txt_actividadEcoEmisor.Name = "txt_actividadEcoEmisor";
             this.txt_actividadEcoEmisor.Size = new System.Drawing.Size(174, 20);
             this.txt_actividadEcoEmisor.TabIndex = 13;
@@ -996,6 +1085,11 @@ namespace DemoEndPoints
             // txt_telefonoEmisor
             // 
             this.txt_telefonoEmisor.Location = new System.Drawing.Point(276, 85);
+            this.txt_telefonoEmisor.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.txt_telefonoEmisor.Name = "txt_telefonoEmisor";
             this.txt_telefonoEmisor.Size = new System.Drawing.Size(120, 20);
             this.txt_telefonoEmisor.TabIndex = 12;
@@ -1074,7 +1168,7 @@ namespace DemoEndPoints
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(465, 30);
+            this.label8.Location = new System.Drawing.Point(417, 31);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(129, 13);
             this.label8.TabIndex = 2;
@@ -1098,56 +1192,91 @@ namespace DemoEndPoints
             this.label6.TabIndex = 0;
             this.label6.Text = "Rut :";
             // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(842, 35);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(104, 13);
+            this.label41.TabIndex = 16;
+            this.label41.Text = "Selecciona un CAF :";
+            // 
+            // txt_caf
+            // 
+            this.txt_caf.Location = new System.Drawing.Point(842, 54);
+            this.txt_caf.Name = "txt_caf";
+            this.txt_caf.Size = new System.Drawing.Size(100, 20);
+            this.txt_caf.TabIndex = 17;
+            // 
+            // btn_caf
+            // 
+            this.btn_caf.Location = new System.Drawing.Point(948, 51);
+            this.btn_caf.Name = "btn_caf";
+            this.btn_caf.Size = new System.Drawing.Size(75, 23);
+            this.btn_caf.TabIndex = 18;
+            this.btn_caf.Text = "Cargar";
+            this.btn_caf.UseVisualStyleBackColor = true;
+            this.btn_caf.Click += new System.EventHandler(this.btn_caf_Click);
+            // 
             // GenerarDte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1061, 1005);
-            this.Controls.Add(this.panel1);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1071, 486);
+            this.Controls.Add(this.btn_generarDTE);
+            this.Controls.Add(this.groupBox9);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox8);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.groupBox7);
             this.Name = "GenerarDte";
-            this.Text = "generarDte";
+            this.Text = "Generar DTE";
             this.Load += new System.EventHandler(this.GenerarDte_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_folioEncabezado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoDteEncabezado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_folioEncabezado)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_netoTotales)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_ivaTotales)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_totalTotales)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_exentoTotales)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_totalTotales)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_ivaTotales)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_netoTotales)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_indicarServOtros)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_tipoTrasladoOtros)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoDespachoOtros)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_tipoTrasladoOtros)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_indicarServOtros)).EndInit();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_descuentos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_valorDescuentos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_tipoValorDescuentos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_tipoMovDescuentos)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_referencias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_folioReferencia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoDocReferencia)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_detalles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_descuentoDetalles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_totalDetalles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_precioDetalles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_cantidadDetalles)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_actividades)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_actividadEcoEmisor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_telefonoEmisor)).EndInit();
             this.ResumeLayout(false);
@@ -1200,21 +1329,20 @@ namespace DemoEndPoints
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.TextBox txt_ciudadReceptor;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_generarDTE;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridView grid_descuentos;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.NumericUpDown numericUpDown20;
+        private System.Windows.Forms.NumericUpDown txt_valorDescuentos;
         private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.NumericUpDown numericUpDown18;
+        private System.Windows.Forms.NumericUpDown txt_tipoValorDescuentos;
         private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.NumericUpDown numericUpDown17;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.NumericUpDown txt_tipoMovDescuentos;
+        private System.Windows.Forms.TextBox txt_descDescuentos;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView grid_referencias;
         private System.Windows.Forms.Button btn_agregarReferencia;
         private System.Windows.Forms.TextBox txt_glosaReferencia;
         private System.Windows.Forms.NumericUpDown txt_folioReferencia;
@@ -1225,7 +1353,7 @@ namespace DemoEndPoints
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView grid_detalles;
         private System.Windows.Forms.Button btn_agregarDetalles;
         private System.Windows.Forms.NumericUpDown txt_descuentoDetalles;
         private System.Windows.Forms.CheckBox chbx_exentoNo;
@@ -1241,7 +1369,7 @@ namespace DemoEndPoints
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView grid_actividades;
         private System.Windows.Forms.Button btn_agregarActEco;
         private System.Windows.Forms.NumericUpDown txt_actividadEcoEmisor;
         private System.Windows.Forms.NumericUpDown txt_telefonoEmisor;
@@ -1257,5 +1385,8 @@ namespace DemoEndPoints
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btn_caf;
+        private System.Windows.Forms.TextBox txt_caf;
+        private System.Windows.Forms.Label label41;
     }
 }
