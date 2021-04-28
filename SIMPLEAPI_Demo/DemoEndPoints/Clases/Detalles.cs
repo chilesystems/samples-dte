@@ -8,6 +8,20 @@ namespace DemoEndPoints.Clases
 {
     public class Detalles
     {
+        public Detalles(string Nombre,int Cantidad,int Precio, int Total, Boolean IsExento, int Descuento)
+        {
+            this.nombre = Nombre;
+            this.cantidad = Cantidad;
+            this.precio = Precio;
+            this.total = Total;
+            this.isExento = IsExento;
+            this.descuento = Descuento;
+        }
+        public Detalles()
+        {
+            
+        }
+
         public string nombre { get; set; }
         public int cantidad { get; set; }
         public int precio { get; set; }

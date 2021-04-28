@@ -16,5 +16,9 @@ namespace DemoEndPoints.Clases
         public string direccion { get; set; }
         public int telefono { get; set; }
 
+        public Emisor()
+        {
+            this.actividadesEconomicas = new List<int>();
+        }
     }
 }

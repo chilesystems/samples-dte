@@ -10,6 +10,6 @@ namespace DemoEndPoints.Clases
     {
         public int folio { get; set; }
         public int tipoDTE { get; set; }
-        public DateTime fechaEmision { get; set; }
+        public string fechaEmision { get; set; }
     }
 }

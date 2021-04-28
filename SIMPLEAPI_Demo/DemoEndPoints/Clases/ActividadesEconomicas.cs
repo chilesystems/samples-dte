@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace DemoEndPoints.Clases
 {
-    class ActividadesEconomicas
+    public class ActividadesEconomicas
     {
+        public ActividadesEconomicas(int Codigo)
+        {
+            this.codigo = Codigo;
+        }
+        public ActividadesEconomicas()
+        {
+            
+        }
+        public int codigo { get; set; }
     }
+    
 }
