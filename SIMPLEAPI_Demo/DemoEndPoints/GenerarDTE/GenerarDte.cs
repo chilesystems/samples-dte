@@ -16,5 +16,26 @@ namespace DemoEndPoints
         {
             InitializeComponent();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void GenerarDte_Load(object sender, EventArgs e)
+        {
+            
+            
+        }
     }
 }
