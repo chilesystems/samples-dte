@@ -105,12 +105,8 @@ namespace DemoEndPoints
                         Name = "files",
                         FileName =  dialog.FileName
                     };
-
                     HttpContent jsonString = new StringContent(json);
                     form.Add(jsonString, "input");
-
-
-
                     form.Add(passByte);
                     
                     var pass = Encoding.GetEncoding("ISO-8859-1").GetBytes("api:2318-J320-6378-2229-4600");
