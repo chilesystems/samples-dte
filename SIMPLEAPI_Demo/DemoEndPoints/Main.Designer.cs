@@ -86,6 +86,7 @@ namespace DemoEndPoints
             this.btn_enviarRcof.TabIndex = 3;
             this.btn_enviarRcof.Text = "Enviar RCOF";
             this.btn_enviarRcof.UseVisualStyleBackColor = true;
+            this.btn_enviarRcof.Click += new System.EventHandler(this.btn_enviarRcof_Click);
             // 
             // btn_rcofInvalidoTI
             // 
@@ -163,6 +164,7 @@ namespace DemoEndPoints
             this.btn_dteFactura.TabIndex = 0;
             this.btn_dteFactura.Text = "Generar DTE - Factura";
             this.btn_dteFactura.UseVisualStyleBackColor = true;
+            this.btn_dteFactura.Click += new System.EventHandler(this.btn_dteFactura_Click);
             // 
             // groupBox3
             // 
@@ -367,6 +369,7 @@ namespace DemoEndPoints
             this.Controls.Add(this.groupBox1);
             this.Name = "Main";
             this.Text = "Main";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);

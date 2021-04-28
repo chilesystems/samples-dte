@@ -48,5 +48,22 @@ namespace DemoEndPoints
             Form generarRcof = new GenerarRcof();
             generarRcof.Show();
         }
+
+        private void btn_enviarRcof_Click(object sender, EventArgs e)
+        {
+            Form enviarRcof = new EnviarRcof();
+            enviarRcof.Show();
+        }
+
+        private void btn_dteFactura_Click(object sender, EventArgs e)
+        {
+            Form generarDteFactura = new GenerarDte();
+            generarDteFactura.Show();
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
