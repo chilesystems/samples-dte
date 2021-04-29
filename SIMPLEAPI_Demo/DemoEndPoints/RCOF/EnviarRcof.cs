@@ -32,6 +32,7 @@ namespace DemoEndPoints
         private void btn_cargarCertificado_Click(object sender, EventArgs e)
         {
             dialogC = new OpenFileDialog();
+            dialogC.Filter = "PFX Files(*.pfx)|*.pfx";
             dialogC.ShowDialog();
             txt_certificado.Text = dialogC.FileName;
         }
@@ -39,6 +40,7 @@ namespace DemoEndPoints
         private void btn_cargarRcof_Click(object sender, EventArgs e)
         {
             dialogR = new OpenFileDialog();
+            dialogR.Filter = "XML Files(*.xml)|*.xml";
             dialogR.ShowDialog();
             txt_rcof.Text = dialogR.FileName;
         }

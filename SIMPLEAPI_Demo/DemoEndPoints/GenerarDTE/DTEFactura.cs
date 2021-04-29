@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DemoEndPoints.GenerarDTE
 {
-    public class DTE
+    public class DTEFactura
     {
         public Receptor receptor { get; set; }
         public Emisor emisor { get; set; }
@@ -20,7 +20,7 @@ namespace DemoEndPoints.GenerarDTE
         public CertificadoDigital certificadoDigital { get; set; }
         public List<DescuentosRecargos> DescuentosRecargos { get; set; }
 
-        public DTE()
+        public DTEFactura()
         {
             this.detalles = new List<Detalles>();
             this.referencias = new List<Referencias>();

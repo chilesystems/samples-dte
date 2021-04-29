@@ -31,6 +31,7 @@ namespace DemoEndPoints
         private void btn_cargarCertificado_Click(object sender, EventArgs e)
         {
             dialogC = new OpenFileDialog();
+            dialogC.Filter = "PFX Files(*.pfx)|*.pfx";
             dialogC.ShowDialog();
             txt_certificado.Text = dialogC.FileName;
         }

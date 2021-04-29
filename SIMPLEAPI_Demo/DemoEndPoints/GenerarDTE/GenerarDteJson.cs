@@ -30,6 +30,7 @@ namespace DemoEndPoints.GenerarDTE
         private void btn_json_Click(object sender, EventArgs e)
         {
             dialogJson = new OpenFileDialog();
+            dialogJson.Filter = "Json files (*.json)|*.json|Text files (*.txt)|*.txt";
             dialogJson.ShowDialog();
             txt_json.Text = dialogJson.FileName;
         }
@@ -37,6 +38,7 @@ namespace DemoEndPoints.GenerarDTE
         private void btn_certificado_Click(object sender, EventArgs e)
         {
             dialogCert = new OpenFileDialog();
+            dialogCert.Filter = "PFX Files(*.pfx)|*.pfx";
             dialogCert.ShowDialog();
             txt_certificado.Text = dialogCert.FileName;
         }
@@ -44,6 +46,7 @@ namespace DemoEndPoints.GenerarDTE
         private void btn_caf_Click(object sender, EventArgs e)
         {
             dialogCaf = new OpenFileDialog();
+            dialogCaf.Filter = "XML Files(*.xml)|*.xml";
             dialogCaf.ShowDialog();
             txt_caf.Text = dialogCaf.FileName;
         }

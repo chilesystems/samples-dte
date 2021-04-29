@@ -271,7 +271,7 @@ namespace DemoEndPoints
                     certificado.password = txt_passCertificado.Text;
                     certificado.rut = txt_rutCertificado.Text;
 
-                    DTE dte = new DTE();
+                    DTEFactura dte = new DTEFactura();
                     dte.receptor = receptor;
                     dte.emisor = emisor;
                     dte.detalles = detalles;
@@ -331,6 +331,7 @@ namespace DemoEndPoints
         private void btn_caf_Click(object sender, EventArgs e)
         {
             dialogCaf = new OpenFileDialog();
+            dialogCaf.Filter = "XML Files(*.xml)|*.xml";
             dialogCaf.ShowDialog();
             txt_caf.Text = dialogCaf.FileName;
            
@@ -339,6 +340,7 @@ namespace DemoEndPoints
         private void btn_cargarCertificado_Click(object sender, EventArgs e)
         {
             dialogCert = new OpenFileDialog();
+            dialogCert.Filter = "PFX Files(*.pfx)|*.pfx";
             dialogCert.ShowDialog();
             txt_certificado.Text = dialogCert.FileName;
         }
