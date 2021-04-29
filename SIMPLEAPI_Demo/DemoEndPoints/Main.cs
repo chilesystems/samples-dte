@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DemoEndPoints.GenerarDTE;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -64,6 +65,46 @@ namespace DemoEndPoints
         private void Main_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_dteJson_Click(object sender, EventArgs e)
+        {
+            Form generarDteJson = new GenerarDteJson();
+            generarDteJson.Show();
+        }
+
+        private void btn_dteGenerarEnvio_Click(object sender, EventArgs e)
+        {
+            EnvioDte generarEnvioDte = new EnvioDte();
+            generarEnvioDte.tipo = 1;
+            generarEnvioDte.Show();
+        }
+
+        private void btn_dteEnvioBoleta_Click(object sender, EventArgs e)
+        {
+            EnvioDte generarEnvioDte = new EnvioDte();
+            generarEnvioDte.tipo = 2;
+            generarEnvioDte.Show();
+        }
+
+        private void btn_envioDte_Click(object sender, EventArgs e)
+        {
+            EnvioDte generarEnvioDte = new EnvioDte();
+            generarEnvioDte.tipo = 3;
+            generarEnvioDte.Show();
+        }
+
+        private void btn_EnvioBoleta_Click(object sender, EventArgs e)
+        {
+            EnvioDte generarEnvioDte = new EnvioDte();
+            generarEnvioDte.tipo = 4;
+            generarEnvioDte.Show();
+        }
+
+        private void btn_consultarEnvio_Click(object sender, EventArgs e)
+        {
+            Form consulta = new ConsultarEstadoEnvio();
+            consulta.Show();
         }
     }
 }

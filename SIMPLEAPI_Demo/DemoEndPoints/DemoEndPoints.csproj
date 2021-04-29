@@ -106,19 +106,14 @@
     <Compile Include="EnvioDTE\ConsultarEstadoEnvio.Designer.cs">
       <DependentUpon>ConsultarEstadoEnvio.cs</DependentUpon>
     </Compile>
-    <Compile Include="EnvioDTE\EnviarEnvioBoleta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EnvioDTE\EnviarEnvioBoleta.Designer.cs">
-      <DependentUpon>EnviarEnvioBoleta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EnvioDTE\EnviarEnvioDte.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EnvioDTE\EnviarEnvioDte.Designer.cs">
-      <DependentUpon>EnviarEnvioDte.cs</DependentUpon>
-    </Compile>
+    <Compile Include="EnvioDTE\ConsultaDte.cs" />
     <Compile Include="GenerarDTE\DTE.cs" />
+    <Compile Include="GenerarDTE\GenerarDteJson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarDTE\GenerarDteJson.Designer.cs">
+      <DependentUpon>GenerarDteJson.cs</DependentUpon>
+    </Compile>
     <Compile Include="GenerarJson\JsonEntrada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,12 +139,6 @@
     </Compile>
     <Compile Include="RCOF\EnviarRcof.Designer.cs">
       <DependentUpon>EnviarRcof.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EnvioDTE\EnvioBoleta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EnvioDTE\EnvioBoleta.Designer.cs">
-      <DependentUpon>EnvioBoleta.cs</DependentUpon>
     </Compile>
     <Compile Include="EnvioDTE\EnvioDte.cs">
       <SubType>Form</SubType>
@@ -179,8 +168,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Clases\Caratula.cs" />
     <Compile Include="RCOF\RCOF.cs" />
+    <EmbeddedResource Include="EnvioDTE\ConsultarEstadoEnvio.resx">
+      <DependentUpon>ConsultarEstadoEnvio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnvioDTE\EnvioDte.resx">
+      <DependentUpon>EnvioDte.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GenerarDTE\GenerarDte.resx">
       <DependentUpon>GenerarDte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarDTE\GenerarDteJson.resx">
+      <DependentUpon>GenerarDteJson.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarJson\JsonEntrada.resx">
       <DependentUpon>JsonEntrada.cs</DependentUpon>

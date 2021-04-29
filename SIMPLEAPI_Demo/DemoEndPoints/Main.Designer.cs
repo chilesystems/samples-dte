@@ -137,6 +137,7 @@ namespace DemoEndPoints
             this.btn_dteJson.TabIndex = 3;
             this.btn_dteJson.Text = "Generar DTE con archivo JSON";
             this.btn_dteJson.UseVisualStyleBackColor = true;
+            this.btn_dteJson.Click += new System.EventHandler(this.btn_dteJson_Click);
             // 
             // btn_dteGuiaDespacho
             // 
@@ -188,6 +189,7 @@ namespace DemoEndPoints
             this.btn_consultarEnvio.TabIndex = 4;
             this.btn_consultarEnvio.Text = "Consultar Estado Envio";
             this.btn_consultarEnvio.UseVisualStyleBackColor = true;
+            this.btn_consultarEnvio.Click += new System.EventHandler(this.btn_consultarEnvio_Click);
             // 
             // btn_EnvioBoleta
             // 
@@ -197,6 +199,7 @@ namespace DemoEndPoints
             this.btn_EnvioBoleta.TabIndex = 3;
             this.btn_EnvioBoleta.Text = "Enviar Envio Boleta";
             this.btn_EnvioBoleta.UseVisualStyleBackColor = true;
+            this.btn_EnvioBoleta.Click += new System.EventHandler(this.btn_EnvioBoleta_Click);
             // 
             // btn_envioDte
             // 
@@ -206,6 +209,7 @@ namespace DemoEndPoints
             this.btn_envioDte.TabIndex = 2;
             this.btn_envioDte.Text = "Enviar Envio DTE";
             this.btn_envioDte.UseVisualStyleBackColor = true;
+            this.btn_envioDte.Click += new System.EventHandler(this.btn_envioDte_Click);
             // 
             // btn_dteEnvioBoleta
             // 
@@ -215,6 +219,7 @@ namespace DemoEndPoints
             this.btn_dteEnvioBoleta.TabIndex = 1;
             this.btn_dteEnvioBoleta.Text = "Generar Envio Boleta";
             this.btn_dteEnvioBoleta.UseVisualStyleBackColor = true;
+            this.btn_dteEnvioBoleta.Click += new System.EventHandler(this.btn_dteEnvioBoleta_Click);
             // 
             // btn_dteGenerarEnvio
             // 
@@ -224,6 +229,7 @@ namespace DemoEndPoints
             this.btn_dteGenerarEnvio.TabIndex = 0;
             this.btn_dteGenerarEnvio.Text = "Generar Envio";
             this.btn_dteGenerarEnvio.UseVisualStyleBackColor = true;
+            this.btn_dteGenerarEnvio.Click += new System.EventHandler(this.btn_dteGenerarEnvio_Click);
             // 
             // groupBox4
             // 
