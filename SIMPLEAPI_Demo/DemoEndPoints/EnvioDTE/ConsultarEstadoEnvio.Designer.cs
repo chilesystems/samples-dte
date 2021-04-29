@@ -29,12 +29,304 @@ namespace DemoEndPoints
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn_cargarCertificado = new System.Windows.Forms.Button();
+            this.txt_passCertificado = new System.Windows.Forms.TextBox();
+            this.txt_rutCertificado = new System.Windows.Forms.TextBox();
+            this.txt_certificado = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txt_rutEmpresa = new System.Windows.Forms.NumericUpDown();
+            this.txt_trackId = new System.Windows.Forms.NumericUpDown();
+            this.chbx_boletaRestSi = new System.Windows.Forms.CheckBox();
+            this.chbx_boletaRestNo = new System.Windows.Forms.CheckBox();
+            this.btn_consultar = new System.Windows.Forms.Button();
+            this.chbx_produccionSi = new System.Windows.Forms.CheckBox();
+            this.chbx_produccionNo = new System.Windows.Forms.CheckBox();
+            this.txt_dvEmpresa = new System.Windows.Forms.TextBox();
+            this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_rutEmpresa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_trackId)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btn_cargarCertificado);
+            this.groupBox3.Controls.Add(this.txt_passCertificado);
+            this.groupBox3.Controls.Add(this.txt_rutCertificado);
+            this.groupBox3.Controls.Add(this.txt_certificado);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Location = new System.Drawing.Point(12, 12);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(396, 143);
+            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Certificado Digital";
+            // 
+            // btn_cargarCertificado
+            // 
+            this.btn_cargarCertificado.Location = new System.Drawing.Point(326, 23);
+            this.btn_cargarCertificado.Name = "btn_cargarCertificado";
+            this.btn_cargarCertificado.Size = new System.Drawing.Size(48, 25);
+            this.btn_cargarCertificado.TabIndex = 6;
+            this.btn_cargarCertificado.Text = "Cargar";
+            this.btn_cargarCertificado.UseVisualStyleBackColor = true;
+            this.btn_cargarCertificado.Click += new System.EventHandler(this.btn_cargarCertificado_Click);
+            // 
+            // txt_passCertificado
+            // 
+            this.txt_passCertificado.Location = new System.Drawing.Point(172, 97);
+            this.txt_passCertificado.Name = "txt_passCertificado";
+            this.txt_passCertificado.Size = new System.Drawing.Size(100, 20);
+            this.txt_passCertificado.TabIndex = 5;
+            // 
+            // txt_rutCertificado
+            // 
+            this.txt_rutCertificado.Location = new System.Drawing.Point(172, 69);
+            this.txt_rutCertificado.Name = "txt_rutCertificado";
+            this.txt_rutCertificado.Size = new System.Drawing.Size(100, 20);
+            this.txt_rutCertificado.TabIndex = 4;
+            // 
+            // txt_certificado
+            // 
+            this.txt_certificado.Location = new System.Drawing.Point(172, 26);
+            this.txt_certificado.Name = "txt_certificado";
+            this.txt_certificado.Size = new System.Drawing.Size(131, 20);
+            this.txt_certificado.TabIndex = 3;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(95, 100);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(67, 13);
+            this.label19.TabIndex = 2;
+            this.label19.Text = "Contraseña :";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(132, 72);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(30, 13);
+            this.label18.TabIndex = 1;
+            this.label18.Text = "Rut :";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(28, 31);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(134, 13);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Selecciona un Certificado :";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txt_dvEmpresa);
+            this.groupBox1.Controls.Add(this.chbx_produccionNo);
+            this.groupBox1.Controls.Add(this.chbx_produccionSi);
+            this.groupBox1.Controls.Add(this.chbx_boletaRestNo);
+            this.groupBox1.Controls.Add(this.chbx_boletaRestSi);
+            this.groupBox1.Controls.Add(this.txt_trackId);
+            this.groupBox1.Controls.Add(this.txt_rutEmpresa);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 162);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(396, 171);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Datos";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(88, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Rut Empresa :";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(58, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Rut Empresa Digito :";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(109, 89);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Track Id :";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(83, 116);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "¿Producción? :";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(40, 140);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(122, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "¿Servidor Boleta Rest? :";
+            // 
+            // txt_rutEmpresa
+            // 
+            this.txt_rutEmpresa.Location = new System.Drawing.Point(172, 36);
+            this.txt_rutEmpresa.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
+            this.txt_rutEmpresa.Name = "txt_rutEmpresa";
+            this.txt_rutEmpresa.Size = new System.Drawing.Size(120, 20);
+            this.txt_rutEmpresa.TabIndex = 5;
+            // 
+            // txt_trackId
+            // 
+            this.txt_trackId.Location = new System.Drawing.Point(172, 89);
+            this.txt_trackId.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.txt_trackId.Name = "txt_trackId";
+            this.txt_trackId.Size = new System.Drawing.Size(120, 20);
+            this.txt_trackId.TabIndex = 7;
+            // 
+            // chbx_boletaRestSi
+            // 
+            this.chbx_boletaRestSi.AutoSize = true;
+            this.chbx_boletaRestSi.Location = new System.Drawing.Point(172, 140);
+            this.chbx_boletaRestSi.Name = "chbx_boletaRestSi";
+            this.chbx_boletaRestSi.Size = new System.Drawing.Size(35, 17);
+            this.chbx_boletaRestSi.TabIndex = 9;
+            this.chbx_boletaRestSi.Text = "Si";
+            this.chbx_boletaRestSi.UseVisualStyleBackColor = true;
+            this.chbx_boletaRestSi.CheckedChanged += new System.EventHandler(this.chbx_boletaRestSi_CheckedChanged);
+            // 
+            // chbx_boletaRestNo
+            // 
+            this.chbx_boletaRestNo.AutoSize = true;
+            this.chbx_boletaRestNo.Location = new System.Drawing.Point(232, 140);
+            this.chbx_boletaRestNo.Name = "chbx_boletaRestNo";
+            this.chbx_boletaRestNo.Size = new System.Drawing.Size(40, 17);
+            this.chbx_boletaRestNo.TabIndex = 10;
+            this.chbx_boletaRestNo.Text = "No";
+            this.chbx_boletaRestNo.UseVisualStyleBackColor = true;
+            this.chbx_boletaRestNo.CheckedChanged += new System.EventHandler(this.chbx_boletaRestNo_CheckedChanged);
+            // 
+            // btn_consultar
+            // 
+            this.btn_consultar.Location = new System.Drawing.Point(161, 385);
+            this.btn_consultar.Name = "btn_consultar";
+            this.btn_consultar.Size = new System.Drawing.Size(75, 23);
+            this.btn_consultar.TabIndex = 10;
+            this.btn_consultar.Text = "Consultar";
+            this.btn_consultar.UseVisualStyleBackColor = true;
+            this.btn_consultar.Click += new System.EventHandler(this.btn_consultar_Click);
+            // 
+            // chbx_produccionSi
+            // 
+            this.chbx_produccionSi.AutoSize = true;
+            this.chbx_produccionSi.Location = new System.Drawing.Point(172, 116);
+            this.chbx_produccionSi.Name = "chbx_produccionSi";
+            this.chbx_produccionSi.Size = new System.Drawing.Size(35, 17);
+            this.chbx_produccionSi.TabIndex = 11;
+            this.chbx_produccionSi.Text = "Si";
+            this.chbx_produccionSi.UseVisualStyleBackColor = true;
+            this.chbx_produccionSi.CheckedChanged += new System.EventHandler(this.chbx_produccionSi_CheckedChanged);
+            // 
+            // chbx_produccionNo
+            // 
+            this.chbx_produccionNo.AutoSize = true;
+            this.chbx_produccionNo.Location = new System.Drawing.Point(232, 115);
+            this.chbx_produccionNo.Name = "chbx_produccionNo";
+            this.chbx_produccionNo.Size = new System.Drawing.Size(40, 17);
+            this.chbx_produccionNo.TabIndex = 12;
+            this.chbx_produccionNo.Text = "No";
+            this.chbx_produccionNo.UseVisualStyleBackColor = true;
+            this.chbx_produccionNo.CheckedChanged += new System.EventHandler(this.chbx_produccionNo_CheckedChanged);
+            // 
+            // txt_dvEmpresa
+            // 
+            this.txt_dvEmpresa.Location = new System.Drawing.Point(172, 60);
+            this.txt_dvEmpresa.MaxLength = 1;
+            this.txt_dvEmpresa.Name = "txt_dvEmpresa";
+            this.txt_dvEmpresa.Size = new System.Drawing.Size(100, 20);
+            this.txt_dvEmpresa.TabIndex = 13;
+            // 
+            // ConsultarEstadoEnvio
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "ConsultarEstado";
+            this.ClientSize = new System.Drawing.Size(451, 450);
+            this.Controls.Add(this.btn_consultar);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox3);
+            this.Name = "ConsultarEstadoEnvio";
+            this.Text = "Consultar Estado DTE";
+            this.Load += new System.EventHandler(this.ConsultarEstadoEnvio_Load);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_rutEmpresa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_trackId)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btn_cargarCertificado;
+        private System.Windows.Forms.TextBox txt_passCertificado;
+        private System.Windows.Forms.TextBox txt_rutCertificado;
+        private System.Windows.Forms.TextBox txt_certificado;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown txt_rutEmpresa;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chbx_produccionNo;
+        private System.Windows.Forms.CheckBox chbx_produccionSi;
+        private System.Windows.Forms.CheckBox chbx_boletaRestNo;
+        private System.Windows.Forms.CheckBox chbx_boletaRestSi;
+        private System.Windows.Forms.NumericUpDown txt_trackId;
+        private System.Windows.Forms.Button btn_consultar;
+        private System.Windows.Forms.TextBox txt_dvEmpresa;
     }
 }
