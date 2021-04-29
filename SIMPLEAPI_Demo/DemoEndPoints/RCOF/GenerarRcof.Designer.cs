@@ -45,13 +45,16 @@ namespace DemoEndPoints
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grid_resumen = new System.Windows.Forms.DataGridView();
+            this.btn_agregarDetalles = new System.Windows.Forms.Button();
             this.txt_foliosUtilizados = new System.Windows.Forms.NumericUpDown();
             this.txt_foliosAnulados = new System.Windows.Forms.NumericUpDown();
+            this.txt_mntIva = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
             this.txt_foliosEmitidos = new System.Windows.Forms.NumericUpDown();
             this.txt_mntTotal = new System.Windows.Forms.NumericUpDown();
             this.txt_mntExento = new System.Windows.Forms.NumericUpDown();
             this.txt_tasaIva = new System.Windows.Forms.NumericUpDown();
-            this.txt_mntIva = new System.Windows.Forms.NumericUpDown();
             this.txt_mntNeto = new System.Windows.Forms.NumericUpDown();
             this.txt_tipoDoc = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
@@ -60,7 +63,6 @@ namespace DemoEndPoints
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -72,23 +74,21 @@ namespace DemoEndPoints
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.btn_generar = new System.Windows.Forms.Button();
-            this.btn_agregarDetalles = new System.Windows.Forms.Button();
-            this.grid_resumen = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_numSecEnvio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_numResol)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_resumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_foliosUtilizados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_foliosAnulados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_mntIva)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_foliosEmitidos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_mntTotal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_mntExento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tasaIva)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_mntIva)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_mntNeto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoDoc)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grid_resumen)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -255,6 +255,24 @@ namespace DemoEndPoints
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Resumen";
             // 
+            // grid_resumen
+            // 
+            this.grid_resumen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_resumen.Location = new System.Drawing.Point(31, 125);
+            this.grid_resumen.Name = "grid_resumen";
+            this.grid_resumen.Size = new System.Drawing.Size(943, 222);
+            this.grid_resumen.TabIndex = 18;
+            // 
+            // btn_agregarDetalles
+            // 
+            this.btn_agregarDetalles.Location = new System.Drawing.Point(782, 57);
+            this.btn_agregarDetalles.Name = "btn_agregarDetalles";
+            this.btn_agregarDetalles.Size = new System.Drawing.Size(75, 23);
+            this.btn_agregarDetalles.TabIndex = 17;
+            this.btn_agregarDetalles.Text = "Agregar";
+            this.btn_agregarDetalles.UseVisualStyleBackColor = true;
+            this.btn_agregarDetalles.Click += new System.EventHandler(this.btn_agregarDetalles_Click);
+            // 
             // txt_foliosUtilizados
             // 
             this.txt_foliosUtilizados.Location = new System.Drawing.Point(578, 27);
@@ -268,6 +286,22 @@ namespace DemoEndPoints
             this.txt_foliosAnulados.Name = "txt_foliosAnulados";
             this.txt_foliosAnulados.Size = new System.Drawing.Size(120, 20);
             this.txt_foliosAnulados.TabIndex = 16;
+            // 
+            // txt_mntIva
+            // 
+            this.txt_mntIva.Location = new System.Drawing.Point(141, 83);
+            this.txt_mntIva.Name = "txt_mntIva";
+            this.txt_mntIva.Size = new System.Drawing.Size(120, 20);
+            this.txt_mntIva.TabIndex = 11;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(84, 85);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(51, 13);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Mnt IVA :";
             // 
             // txt_foliosEmitidos
             // 
@@ -296,13 +330,6 @@ namespace DemoEndPoints
             this.txt_tasaIva.Name = "txt_tasaIva";
             this.txt_tasaIva.Size = new System.Drawing.Size(120, 20);
             this.txt_tasaIva.TabIndex = 12;
-            // 
-            // txt_mntIva
-            // 
-            this.txt_mntIva.Location = new System.Drawing.Point(141, 83);
-            this.txt_mntIva.Name = "txt_mntIva";
-            this.txt_mntIva.Size = new System.Drawing.Size(120, 20);
-            this.txt_mntIva.TabIndex = 11;
             // 
             // txt_mntNeto
             // 
@@ -372,15 +399,6 @@ namespace DemoEndPoints
             this.label11.Size = new System.Drawing.Size(57, 13);
             this.label11.TabIndex = 3;
             this.label11.Text = "Tasa IVA :";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(84, 85);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(51, 13);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Mnt IVA :";
             // 
             // label9
             // 
@@ -484,24 +502,6 @@ namespace DemoEndPoints
             this.btn_generar.UseVisualStyleBackColor = true;
             this.btn_generar.Click += new System.EventHandler(this.btn_generar_Click);
             // 
-            // btn_agregarDetalles
-            // 
-            this.btn_agregarDetalles.Location = new System.Drawing.Point(782, 57);
-            this.btn_agregarDetalles.Name = "btn_agregarDetalles";
-            this.btn_agregarDetalles.Size = new System.Drawing.Size(75, 23);
-            this.btn_agregarDetalles.TabIndex = 17;
-            this.btn_agregarDetalles.Text = "Agregar";
-            this.btn_agregarDetalles.UseVisualStyleBackColor = true;
-            this.btn_agregarDetalles.Click += new System.EventHandler(this.btn_agregarDetalles_Click);
-            // 
-            // grid_resumen
-            // 
-            this.grid_resumen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid_resumen.Location = new System.Drawing.Point(31, 125);
-            this.grid_resumen.Name = "grid_resumen";
-            this.grid_resumen.Size = new System.Drawing.Size(943, 222);
-            this.grid_resumen.TabIndex = 18;
-            // 
             // GenerarRcof
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -512,7 +512,6 @@ namespace DemoEndPoints
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "GenerarRcof";
-            this.Text = "Generar Rcof";
             this.Load += new System.EventHandler(this.GenerarRcof_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -520,18 +519,18 @@ namespace DemoEndPoints
             ((System.ComponentModel.ISupportInitialize)(this.txt_numResol)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_resumen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_foliosUtilizados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_foliosAnulados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_mntIva)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_foliosEmitidos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_mntTotal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_mntExento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tasaIva)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_mntIva)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_mntNeto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoDoc)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grid_resumen)).EndInit();
             this.ResumeLayout(false);
 
         }

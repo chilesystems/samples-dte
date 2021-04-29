@@ -42,6 +42,8 @@ namespace DemoEndPoints
             this.txt_rcof = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chbx_produccionNo = new System.Windows.Forms.CheckBox();
+            this.chbx_produccionSi = new System.Windows.Forms.CheckBox();
             this.dp_fechaResolucion = new System.Windows.Forms.DateTimePicker();
             this.txt_numResolucion = new System.Windows.Forms.NumericUpDown();
             this.txt_rutReceptor = new System.Windows.Forms.TextBox();
@@ -52,8 +54,6 @@ namespace DemoEndPoints
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_enviarRcof = new System.Windows.Forms.Button();
-            this.chbx_produccionSi = new System.Windows.Forms.CheckBox();
-            this.chbx_produccionNo = new System.Windows.Forms.CheckBox();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -192,6 +192,30 @@ namespace DemoEndPoints
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos";
             // 
+            // chbx_produccionNo
+            // 
+            this.chbx_produccionNo.AutoSize = true;
+            this.chbx_produccionNo.Location = new System.Drawing.Point(211, 132);
+            this.chbx_produccionNo.Name = "chbx_produccionNo";
+            this.chbx_produccionNo.Size = new System.Drawing.Size(40, 17);
+            this.chbx_produccionNo.TabIndex = 11;
+            this.chbx_produccionNo.Text = "No";
+            this.chbx_produccionNo.UseVisualStyleBackColor = true;
+            this.chbx_produccionNo.CheckedChanged += new System.EventHandler(this.chbx_produccionNo_CheckedChanged);
+            // 
+            // chbx_produccionSi
+            // 
+            this.chbx_produccionSi.AutoSize = true;
+            this.chbx_produccionSi.Checked = true;
+            this.chbx_produccionSi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbx_produccionSi.Location = new System.Drawing.Point(161, 133);
+            this.chbx_produccionSi.Name = "chbx_produccionSi";
+            this.chbx_produccionSi.Size = new System.Drawing.Size(35, 17);
+            this.chbx_produccionSi.TabIndex = 10;
+            this.chbx_produccionSi.Text = "Si";
+            this.chbx_produccionSi.UseVisualStyleBackColor = true;
+            this.chbx_produccionSi.CheckedChanged += new System.EventHandler(this.chbx_produccionSi_CheckedChanged);
+            // 
             // dp_fechaResolucion
             // 
             this.dp_fechaResolucion.Location = new System.Drawing.Point(161, 103);
@@ -275,30 +299,6 @@ namespace DemoEndPoints
             this.btn_enviarRcof.UseVisualStyleBackColor = true;
             this.btn_enviarRcof.Click += new System.EventHandler(this.btn_enviarRcof_Click);
             // 
-            // chbx_produccionSi
-            // 
-            this.chbx_produccionSi.AutoSize = true;
-            this.chbx_produccionSi.Checked = true;
-            this.chbx_produccionSi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbx_produccionSi.Location = new System.Drawing.Point(161, 133);
-            this.chbx_produccionSi.Name = "chbx_produccionSi";
-            this.chbx_produccionSi.Size = new System.Drawing.Size(35, 17);
-            this.chbx_produccionSi.TabIndex = 10;
-            this.chbx_produccionSi.Text = "Si";
-            this.chbx_produccionSi.UseVisualStyleBackColor = true;
-            this.chbx_produccionSi.CheckedChanged += new System.EventHandler(this.chbx_produccionSi_CheckedChanged);
-            // 
-            // chbx_produccionNo
-            // 
-            this.chbx_produccionNo.AutoSize = true;
-            this.chbx_produccionNo.Location = new System.Drawing.Point(211, 132);
-            this.chbx_produccionNo.Name = "chbx_produccionNo";
-            this.chbx_produccionNo.Size = new System.Drawing.Size(40, 17);
-            this.chbx_produccionNo.TabIndex = 11;
-            this.chbx_produccionNo.Text = "No";
-            this.chbx_produccionNo.UseVisualStyleBackColor = true;
-            this.chbx_produccionNo.CheckedChanged += new System.EventHandler(this.chbx_produccionNo_CheckedChanged);
-            // 
             // EnviarRcof
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,7 +309,6 @@ namespace DemoEndPoints
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Name = "EnviarRcof";
-            this.Text = "Enviar Rcof";
             this.Load += new System.EventHandler(this.EnviarRcof_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
