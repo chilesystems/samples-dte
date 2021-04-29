@@ -1,4 +1,6 @@
 ﻿using DemoEndPoints.GenerarDTE;
+using DemoEndPoints.Impresion;
+using DemoEndPoints.RCOF;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,11 +22,7 @@ namespace DemoEndPoints
             InitializeComponent();
         }
 
-        private void btn_pdf417Dte_Click(object sender, EventArgs e)
-        {
-            var url = ConfigurationManager.AppSettings["url"]+ConfigurationManager.AppSettings["Pdf417Dte"];
-              
-        }
+        
 
         private async void btn_jsonEnvio_Click(object sender, EventArgs e)
         {
@@ -105,6 +103,75 @@ namespace DemoEndPoints
         {
             Form consulta = new ConsultarEstadoEnvio();
             consulta.Show();
+        }
+
+        private void btn_rcofInvalido4R_Click(object sender, EventArgs e)
+        {
+            GenerarRCOFInvalido rcofInvalido = new GenerarRCOFInvalido();
+            rcofInvalido.tipo = 1;
+            rcofInvalido.Show();
+        }
+
+        private void btn_rcofInvalidoTI_Click(object sender, EventArgs e)
+        {
+            GenerarRCOFInvalido rcofInvalido = new GenerarRCOFInvalido();
+            rcofInvalido.tipo = 2;
+            rcofInvalido.Show();
+        }
+
+        private void btn_pdf417Dte_Click(object sender, EventArgs e)
+        {
+            Pdf417 pdf417 = new Pdf417();
+            pdf417.tipo = 1;
+            pdf417.Show();
+        }
+        private void btn_pdf417Envio_Click(object sender, EventArgs e)
+        {
+            Pdf417 pdf417 = new Pdf417();
+            pdf417.tipo = 2;
+            pdf417.Show();
+        }
+
+        private void btn_boletaCartaPdf_Click(object sender, EventArgs e)
+        {
+            Carta carta = new Carta();
+            carta.tipo = 1;
+            carta.Show();
+        }
+
+        private void btn_boletaCartaBase64_Click(object sender, EventArgs e)
+        {
+            Carta carta = new Carta();
+            carta.tipo = 2;
+            carta.Show();
+        }
+
+        private void btn_facturaCarta64_Click(object sender, EventArgs e)
+        {
+            Carta carta = new Carta();
+            carta.tipo = 3;
+            carta.Show();
+        }
+
+        private void btn_facturaCartaPdf_Click(object sender, EventArgs e)
+        {
+            Carta carta = new Carta();
+            carta.tipo = 4;
+            carta.Show();
+        }
+
+        private void btn_boleta80mmPdf_Click(object sender, EventArgs e)
+        {
+            Formato80 f80 = new Formato80();
+            f80.tipo = 1;
+            f80.Show();
+        }
+
+        private void btn_boleta80mmBase64_Click(object sender, EventArgs e)
+        {
+            Formato80 f80 = new Formato80();
+            f80.tipo = 2;
+            f80.Show();
         }
     }
 }

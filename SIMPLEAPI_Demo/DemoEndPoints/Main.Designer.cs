@@ -96,6 +96,7 @@ namespace DemoEndPoints
             this.btn_rcofInvalidoTI.TabIndex = 2;
             this.btn_rcofInvalidoTI.Text = "Generar RCOF Invalido Resumen Tipo Invalido";
             this.btn_rcofInvalidoTI.UseVisualStyleBackColor = true;
+            this.btn_rcofInvalidoTI.Click += new System.EventHandler(this.btn_rcofInvalidoTI_Click);
             // 
             // btn_rcofInvalido4R
             // 
@@ -105,6 +106,7 @@ namespace DemoEndPoints
             this.btn_rcofInvalido4R.TabIndex = 1;
             this.btn_rcofInvalido4R.Text = "Generar RCOF Invalido 4 Resumenes";
             this.btn_rcofInvalido4R.UseVisualStyleBackColor = true;
+            this.btn_rcofInvalido4R.Click += new System.EventHandler(this.btn_rcofInvalido4R_Click);
             // 
             // btn_rcofValido
             // 
@@ -256,6 +258,7 @@ namespace DemoEndPoints
             this.btn_boleta80mmBase64.TabIndex = 7;
             this.btn_boleta80mmBase64.Text = "Boleta From DTE - 80mm - Base64";
             this.btn_boleta80mmBase64.UseVisualStyleBackColor = true;
+            this.btn_boleta80mmBase64.Click += new System.EventHandler(this.btn_boleta80mmBase64_Click);
             // 
             // btn_boleta80mmPdf
             // 
@@ -265,6 +268,7 @@ namespace DemoEndPoints
             this.btn_boleta80mmPdf.TabIndex = 6;
             this.btn_boleta80mmPdf.Text = "Boleta From DTE - 80mm - PDF";
             this.btn_boleta80mmPdf.UseVisualStyleBackColor = true;
+            this.btn_boleta80mmPdf.Click += new System.EventHandler(this.btn_boleta80mmPdf_Click);
             // 
             // btn_facturaCartaPdf
             // 
@@ -274,6 +278,7 @@ namespace DemoEndPoints
             this.btn_facturaCartaPdf.TabIndex = 5;
             this.btn_facturaCartaPdf.Text = "Factura From DTE - Carta PDF";
             this.btn_facturaCartaPdf.UseVisualStyleBackColor = true;
+            this.btn_facturaCartaPdf.Click += new System.EventHandler(this.btn_facturaCartaPdf_Click);
             // 
             // btn_facturaCarta64
             // 
@@ -283,6 +288,7 @@ namespace DemoEndPoints
             this.btn_facturaCarta64.TabIndex = 4;
             this.btn_facturaCarta64.Text = "Factura From DTE - Carta Base64";
             this.btn_facturaCarta64.UseVisualStyleBackColor = true;
+            this.btn_facturaCarta64.Click += new System.EventHandler(this.btn_facturaCarta64_Click);
             // 
             // btn_boletaCartaBase64
             // 
@@ -292,6 +298,7 @@ namespace DemoEndPoints
             this.btn_boletaCartaBase64.TabIndex = 3;
             this.btn_boletaCartaBase64.Text = "Boleta From DTE - Carta Base64";
             this.btn_boletaCartaBase64.UseVisualStyleBackColor = true;
+            this.btn_boletaCartaBase64.Click += new System.EventHandler(this.btn_boletaCartaBase64_Click);
             // 
             // btn_boletaCartaPdf
             // 
@@ -301,6 +308,7 @@ namespace DemoEndPoints
             this.btn_boletaCartaPdf.TabIndex = 2;
             this.btn_boletaCartaPdf.Text = "Boleta From DTE - Carta PDF";
             this.btn_boletaCartaPdf.UseVisualStyleBackColor = true;
+            this.btn_boletaCartaPdf.Click += new System.EventHandler(this.btn_boletaCartaPdf_Click);
             // 
             // btn_pdf417Envio
             // 
@@ -310,6 +318,7 @@ namespace DemoEndPoints
             this.btn_pdf417Envio.TabIndex = 1;
             this.btn_pdf417Envio.Text = "PDF417 From Envio";
             this.btn_pdf417Envio.UseVisualStyleBackColor = true;
+            this.btn_pdf417Envio.Click += new System.EventHandler(this.btn_pdf417Envio_Click);
             // 
             // btn_pdf417Dte
             // 

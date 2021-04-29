@@ -90,15 +90,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\ActividadesEconomicas.cs" />
+    <Compile Include="Clases\CaratulaInvalida.cs" />
+    <Compile Include="Clases\CartaDte.cs" />
     <Compile Include="Clases\CertificadoDigital.cs" />
     <Compile Include="Clases\DescuentosRecargos.cs" />
     <Compile Include="Clases\Detalles.cs" />
     <Compile Include="Clases\Emisor.cs" />
     <Compile Include="Clases\Encabezado.cs" />
+    <Compile Include="Clases\formato80mm.cs" />
     <Compile Include="Clases\OtrosDTE.cs" />
+    <Compile Include="Clases\Rangos.cs" />
     <Compile Include="Clases\Receptor.cs" />
     <Compile Include="Clases\Referencias.cs" />
     <Compile Include="Clases\Resumen.cs" />
+    <Compile Include="Clases\ResumenInvalido.cs" />
     <Compile Include="Clases\Totales.cs" />
     <Compile Include="EnvioDTE\ConsultarEstadoEnvio.cs">
       <SubType>Form</SubType>
@@ -107,7 +112,7 @@
       <DependentUpon>ConsultarEstadoEnvio.cs</DependentUpon>
     </Compile>
     <Compile Include="EnvioDTE\ConsultaDte.cs" />
-    <Compile Include="GenerarDTE\DTE.cs" />
+    <Compile Include="GenerarDTE\DTEFactura.cs" />
     <Compile Include="GenerarDTE\GenerarDteJson.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +138,24 @@
       <DependentUpon>JsonPdf.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper.cs" />
+    <Compile Include="Impresion\Carta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Impresion\Carta.Designer.cs">
+      <DependentUpon>Carta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Impresion\Formato80.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Impresion\Formato80.Designer.cs">
+      <DependentUpon>Formato80.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Impresion\Pdf417.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Impresion\Pdf417.Designer.cs">
+      <DependentUpon>Pdf417.cs</DependentUpon>
+    </Compile>
     <Compile Include="RCOF\Enviar.cs" />
     <Compile Include="RCOF\EnviarRcof.cs">
       <SubType>Form</SubType>
@@ -167,6 +190,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Clases\Caratula.cs" />
+    <Compile Include="RCOF\GenerarRCOFInvalido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RCOF\GenerarRCOFInvalido.Designer.cs">
+      <DependentUpon>GenerarRCOFInvalido.cs</DependentUpon>
+    </Compile>
     <Compile Include="RCOF\RCOF.cs" />
     <EmbeddedResource Include="EnvioDTE\ConsultarEstadoEnvio.resx">
       <DependentUpon>ConsultarEstadoEnvio.cs</DependentUpon>
@@ -189,6 +218,15 @@
     <EmbeddedResource Include="GenerarJson\JsonPdf.resx">
       <DependentUpon>JsonPdf.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Impresion\Carta.resx">
+      <DependentUpon>Carta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impresion\Formato80.resx">
+      <DependentUpon>Formato80.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impresion\Pdf417.resx">
+      <DependentUpon>Pdf417.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -207,6 +245,9 @@
     <EmbeddedResource Include="RCOF\GenerarRcof.resx">
       <DependentUpon>GenerarRcof.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RCOF\GenerarRCOFInvalido.resx">
+      <DependentUpon>GenerarRCOFInvalido.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -221,8 +262,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Impresion\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
