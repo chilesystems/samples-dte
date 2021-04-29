@@ -30,10 +30,10 @@ namespace DemoEndPoints.Impresion
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lbl_archivo = new System.Windows.Forms.Label();
-            this.txt_archivo = new System.Windows.Forms.TextBox();
-            this.btn_cargar = new System.Windows.Forms.Button();
             this.btn_enviar = new System.Windows.Forms.Button();
+            this.btn_cargar = new System.Windows.Forms.Button();
+            this.txt_archivo = new System.Windows.Forms.TextBox();
+            this.lbl_archivo = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,21 +50,15 @@ namespace DemoEndPoints.Impresion
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Archivo";
             // 
-            // lbl_archivo
+            // btn_enviar
             // 
-            this.lbl_archivo.AutoSize = true;
-            this.lbl_archivo.Location = new System.Drawing.Point(34, 31);
-            this.lbl_archivo.Name = "lbl_archivo";
-            this.lbl_archivo.Size = new System.Drawing.Size(95, 13);
-            this.lbl_archivo.TabIndex = 0;
-            this.lbl_archivo.Text = "Selecciona el dte :";
-            // 
-            // txt_archivo
-            // 
-            this.txt_archivo.Location = new System.Drawing.Point(133, 28);
-            this.txt_archivo.Name = "txt_archivo";
-            this.txt_archivo.Size = new System.Drawing.Size(100, 20);
-            this.txt_archivo.TabIndex = 1;
+            this.btn_enviar.Location = new System.Drawing.Point(133, 73);
+            this.btn_enviar.Name = "btn_enviar";
+            this.btn_enviar.Size = new System.Drawing.Size(75, 23);
+            this.btn_enviar.TabIndex = 3;
+            this.btn_enviar.Text = "Enviar";
+            this.btn_enviar.UseVisualStyleBackColor = true;
+            this.btn_enviar.Click += new System.EventHandler(this.btn_enviar_Click);
             // 
             // btn_cargar
             // 
@@ -76,15 +70,21 @@ namespace DemoEndPoints.Impresion
             this.btn_cargar.UseVisualStyleBackColor = true;
             this.btn_cargar.Click += new System.EventHandler(this.btn_cargar_Click);
             // 
-            // btn_enviar
+            // txt_archivo
             // 
-            this.btn_enviar.Location = new System.Drawing.Point(133, 73);
-            this.btn_enviar.Name = "btn_enviar";
-            this.btn_enviar.Size = new System.Drawing.Size(75, 23);
-            this.btn_enviar.TabIndex = 3;
-            this.btn_enviar.Text = "Enviar";
-            this.btn_enviar.UseVisualStyleBackColor = true;
-            this.btn_enviar.Click += new System.EventHandler(this.btn_enviar_Click);
+            this.txt_archivo.Location = new System.Drawing.Point(133, 28);
+            this.txt_archivo.Name = "txt_archivo";
+            this.txt_archivo.Size = new System.Drawing.Size(100, 20);
+            this.txt_archivo.TabIndex = 1;
+            // 
+            // lbl_archivo
+            // 
+            this.lbl_archivo.AutoSize = true;
+            this.lbl_archivo.Location = new System.Drawing.Point(34, 31);
+            this.lbl_archivo.Name = "lbl_archivo";
+            this.lbl_archivo.Size = new System.Drawing.Size(95, 13);
+            this.lbl_archivo.TabIndex = 0;
+            this.lbl_archivo.Text = "Selecciona el dte :";
             // 
             // Pdf417
             // 
@@ -93,7 +93,6 @@ namespace DemoEndPoints.Impresion
             this.ClientSize = new System.Drawing.Size(420, 150);
             this.Controls.Add(this.groupBox1);
             this.Name = "Pdf417";
-            this.Text = "Pdf417";
             this.Load += new System.EventHandler(this.Pdf417_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

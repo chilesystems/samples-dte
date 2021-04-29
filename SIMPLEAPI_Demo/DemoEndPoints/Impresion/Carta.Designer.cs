@@ -30,20 +30,20 @@ namespace DemoEndPoints.Impresion
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txt_unidadSii = new System.Windows.Forms.TextBox();
+            this.dp_fechaResolucion = new System.Windows.Forms.DateTimePicker();
             this.txt_numResolucion = new System.Windows.Forms.NumericUpDown();
+            this.txt_unidadSii = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txt_archivo = new System.Windows.Forms.TextBox();
             this.btn_archivo = new System.Windows.Forms.Button();
+            this.txt_archivo = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_logo = new System.Windows.Forms.Button();
             this.txt_logo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dp_fechaResolucion = new System.Windows.Forms.DateTimePicker();
             this.btn_enviar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_numResolucion)).BeginInit();
@@ -66,23 +66,26 @@ namespace DemoEndPoints.Impresion
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
             // 
-            // label1
+            // dp_fechaResolucion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Numero Resolución :";
+            this.dp_fechaResolucion.Location = new System.Drawing.Point(139, 80);
+            this.dp_fechaResolucion.Name = "dp_fechaResolucion";
+            this.dp_fechaResolucion.Size = new System.Drawing.Size(200, 20);
+            this.dp_fechaResolucion.TabIndex = 6;
             // 
-            // label2
+            // txt_numResolucion
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(70, 57);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Unidad SII :";
+            this.txt_numResolucion.Location = new System.Drawing.Point(139, 28);
+            this.txt_numResolucion.Name = "txt_numResolucion";
+            this.txt_numResolucion.Size = new System.Drawing.Size(120, 20);
+            this.txt_numResolucion.TabIndex = 5;
+            // 
+            // txt_unidadSii
+            // 
+            this.txt_unidadSii.Location = new System.Drawing.Point(139, 54);
+            this.txt_unidadSii.Name = "txt_unidadSii";
+            this.txt_unidadSii.Size = new System.Drawing.Size(100, 20);
+            this.txt_unidadSii.TabIndex = 4;
             // 
             // label3
             // 
@@ -93,19 +96,23 @@ namespace DemoEndPoints.Impresion
             this.label3.TabIndex = 2;
             this.label3.Text = "Fecha Resolución :";
             // 
-            // txt_unidadSii
+            // label2
             // 
-            this.txt_unidadSii.Location = new System.Drawing.Point(139, 54);
-            this.txt_unidadSii.Name = "txt_unidadSii";
-            this.txt_unidadSii.Size = new System.Drawing.Size(100, 20);
-            this.txt_unidadSii.TabIndex = 4;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(70, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Unidad SII :";
             // 
-            // txt_numResolucion
+            // label1
             // 
-            this.txt_numResolucion.Location = new System.Drawing.Point(139, 28);
-            this.txt_numResolucion.Name = "txt_numResolucion";
-            this.txt_numResolucion.Size = new System.Drawing.Size(120, 20);
-            this.txt_numResolucion.TabIndex = 5;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(27, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(106, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Numero Resolución :";
             // 
             // groupBox2
             // 
@@ -119,6 +126,32 @@ namespace DemoEndPoints.Impresion
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Archivo";
             // 
+            // btn_archivo
+            // 
+            this.btn_archivo.Location = new System.Drawing.Point(252, 23);
+            this.btn_archivo.Name = "btn_archivo";
+            this.btn_archivo.Size = new System.Drawing.Size(75, 23);
+            this.btn_archivo.TabIndex = 2;
+            this.btn_archivo.Text = "Cargar";
+            this.btn_archivo.UseVisualStyleBackColor = true;
+            this.btn_archivo.Click += new System.EventHandler(this.btn_archivo_Click);
+            // 
+            // txt_archivo
+            // 
+            this.txt_archivo.Location = new System.Drawing.Point(146, 25);
+            this.txt_archivo.Name = "txt_archivo";
+            this.txt_archivo.Size = new System.Drawing.Size(100, 20);
+            this.txt_archivo.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 28);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(115, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Selecciona el archivo :";
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btn_logo);
@@ -130,32 +163,6 @@ namespace DemoEndPoints.Impresion
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Logo";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 28);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Selecciona el archivo :";
-            // 
-            // txt_archivo
-            // 
-            this.txt_archivo.Location = new System.Drawing.Point(146, 25);
-            this.txt_archivo.Name = "txt_archivo";
-            this.txt_archivo.Size = new System.Drawing.Size(100, 20);
-            this.txt_archivo.TabIndex = 1;
-            // 
-            // btn_archivo
-            // 
-            this.btn_archivo.Location = new System.Drawing.Point(252, 23);
-            this.btn_archivo.Name = "btn_archivo";
-            this.btn_archivo.Size = new System.Drawing.Size(75, 23);
-            this.btn_archivo.TabIndex = 2;
-            this.btn_archivo.Text = "Cargar";
-            this.btn_archivo.UseVisualStyleBackColor = true;
-            this.btn_archivo.Click += new System.EventHandler(this.btn_archivo_Click);
             // 
             // btn_logo
             // 
@@ -183,13 +190,6 @@ namespace DemoEndPoints.Impresion
             this.label5.TabIndex = 3;
             this.label5.Text = "Selecciona el Logo :";
             // 
-            // dp_fechaResolucion
-            // 
-            this.dp_fechaResolucion.Location = new System.Drawing.Point(139, 80);
-            this.dp_fechaResolucion.Name = "dp_fechaResolucion";
-            this.dp_fechaResolucion.Size = new System.Drawing.Size(200, 20);
-            this.dp_fechaResolucion.TabIndex = 6;
-            // 
             // btn_enviar
             // 
             this.btn_enviar.Location = new System.Drawing.Point(391, 212);
@@ -210,7 +210,6 @@ namespace DemoEndPoints.Impresion
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Carta";
-            this.Text = "Carta";
             this.Load += new System.EventHandler(this.Carta_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

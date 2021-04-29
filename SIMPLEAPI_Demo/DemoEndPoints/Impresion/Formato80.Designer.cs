@@ -30,14 +30,14 @@ namespace DemoEndPoints.Impresion
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txt_ejecutivo = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.dp_fechaResolucion = new System.Windows.Forms.DateTimePicker();
             this.txt_numResolucion = new System.Windows.Forms.NumericUpDown();
             this.txt_unidadSii = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txt_ejecutivo = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_archivo = new System.Windows.Forms.Button();
             this.txt_archivo = new System.Windows.Forms.TextBox();
@@ -64,6 +64,22 @@ namespace DemoEndPoints.Impresion
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
+            // 
+            // txt_ejecutivo
+            // 
+            this.txt_ejecutivo.Location = new System.Drawing.Point(139, 108);
+            this.txt_ejecutivo.Name = "txt_ejecutivo";
+            this.txt_ejecutivo.Size = new System.Drawing.Size(100, 20);
+            this.txt_ejecutivo.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(70, 111);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(57, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Ejecutivo :";
             // 
             // dp_fechaResolucion
             // 
@@ -112,22 +128,6 @@ namespace DemoEndPoints.Impresion
             this.label1.Size = new System.Drawing.Size(106, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Numero Resolución :";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(70, 111);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Ejecutivo :";
-            // 
-            // txt_ejecutivo
-            // 
-            this.txt_ejecutivo.Location = new System.Drawing.Point(139, 108);
-            this.txt_ejecutivo.Name = "txt_ejecutivo";
-            this.txt_ejecutivo.Size = new System.Drawing.Size(100, 20);
-            this.txt_ejecutivo.TabIndex = 9;
             // 
             // groupBox2
             // 
@@ -186,7 +186,6 @@ namespace DemoEndPoints.Impresion
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Formato80";
-            this.Text = "Formato80";
             this.Load += new System.EventHandler(this.Formato80_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
