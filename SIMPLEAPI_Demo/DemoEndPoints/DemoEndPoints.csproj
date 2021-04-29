@@ -112,6 +112,8 @@
       <DependentUpon>ConsultarEstadoEnvio.cs</DependentUpon>
     </Compile>
     <Compile Include="EnvioDTE\ConsultaDte.cs" />
+    <Compile Include="GenerarDTE\DTEBoleta.cs" />
+    <Compile Include="GenerarDTE\DTEBoletaDespacho.cs" />
     <Compile Include="GenerarDTE\DTEFactura.cs" />
     <Compile Include="GenerarDTE\GenerarDteJson.cs">
       <SubType>Form</SubType>

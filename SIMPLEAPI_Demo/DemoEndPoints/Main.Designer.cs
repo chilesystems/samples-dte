@@ -149,6 +149,7 @@ namespace DemoEndPoints
             this.btn_dteGuiaDespacho.TabIndex = 2;
             this.btn_dteGuiaDespacho.Text = "Generar DTE - Guía Despacho";
             this.btn_dteGuiaDespacho.UseVisualStyleBackColor = true;
+            this.btn_dteGuiaDespacho.Click += new System.EventHandler(this.btn_dteGuiaDespacho_Click);
             // 
             // btn_dteBoleta
             // 
@@ -158,6 +159,7 @@ namespace DemoEndPoints
             this.btn_dteBoleta.TabIndex = 1;
             this.btn_dteBoleta.Text = "Generar DTE - Boleta";
             this.btn_dteBoleta.UseVisualStyleBackColor = true;
+            this.btn_dteBoleta.Click += new System.EventHandler(this.btn_dteBoleta_Click);
             // 
             // btn_dteFactura
             // 
