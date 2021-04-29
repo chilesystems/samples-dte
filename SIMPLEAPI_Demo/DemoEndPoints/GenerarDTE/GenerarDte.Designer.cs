@@ -113,6 +113,9 @@ namespace DemoEndPoints
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_caf = new System.Windows.Forms.Button();
+            this.txt_caf = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
             this.grid_actividades = new System.Windows.Forms.DataGridView();
             this.btn_agregarActEco = new System.Windows.Forms.Button();
             this.txt_actividadEcoEmisor = new System.Windows.Forms.NumericUpDown();
@@ -129,9 +132,6 @@ namespace DemoEndPoints
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.txt_caf = new System.Windows.Forms.TextBox();
-            this.btn_caf = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoDteEncabezado)).BeginInit();
@@ -613,7 +613,7 @@ namespace DemoEndPoints
             // 
             // btn_generarDTE
             // 
-            this.btn_generarDTE.Location = new System.Drawing.Point(441, 909);
+            this.btn_generarDTE.Location = new System.Drawing.Point(457, 973);
             this.btn_generarDTE.Name = "btn_generarDTE";
             this.btn_generarDTE.Size = new System.Drawing.Size(101, 25);
             this.btn_generarDTE.TabIndex = 19;
@@ -633,7 +633,7 @@ namespace DemoEndPoints
             this.groupBox9.Controls.Add(this.txt_descDescuentos);
             this.groupBox9.Controls.Add(this.label37);
             this.groupBox9.Controls.Add(this.label36);
-            this.groupBox9.Location = new System.Drawing.Point(9, 762);
+            this.groupBox9.Location = new System.Drawing.Point(19, 826);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(1037, 150);
             this.groupBox9.TabIndex = 18;
@@ -749,9 +749,9 @@ namespace DemoEndPoints
             this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.label19);
-            this.groupBox4.Location = new System.Drawing.Point(12, 420);
+            this.groupBox4.Location = new System.Drawing.Point(12, 441);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1037, 117);
+            this.groupBox4.Size = new System.Drawing.Size(1037, 137);
             this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Referencias";
@@ -761,7 +761,7 @@ namespace DemoEndPoints
             this.grid_referencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid_referencias.Location = new System.Drawing.Point(26, 47);
             this.grid_referencias.Name = "grid_referencias";
-            this.grid_referencias.Size = new System.Drawing.Size(917, 61);
+            this.grid_referencias.Size = new System.Drawing.Size(917, 84);
             this.grid_referencias.TabIndex = 9;
             // 
             // btn_agregarReferencia
@@ -865,9 +865,9 @@ namespace DemoEndPoints
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Location = new System.Drawing.Point(9, 543);
+            this.groupBox3.Location = new System.Drawing.Point(12, 584);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1037, 206);
+            this.groupBox3.Size = new System.Drawing.Size(1037, 236);
             this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Detalles";
@@ -877,7 +877,7 @@ namespace DemoEndPoints
             this.grid_detalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid_detalles.Location = new System.Drawing.Point(18, 87);
             this.grid_detalles.Name = "grid_detalles";
-            this.grid_detalles.Size = new System.Drawing.Size(924, 115);
+            this.grid_detalles.Size = new System.Drawing.Size(924, 143);
             this.grid_detalles.TabIndex = 14;
             // 
             // btn_agregarDetalles
@@ -1046,17 +1046,43 @@ namespace DemoEndPoints
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(12, 276);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1037, 131);
+            this.groupBox2.Size = new System.Drawing.Size(1037, 159);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Emisor";
             // 
+            // btn_caf
+            // 
+            this.btn_caf.Location = new System.Drawing.Point(732, 65);
+            this.btn_caf.Name = "btn_caf";
+            this.btn_caf.Size = new System.Drawing.Size(75, 23);
+            this.btn_caf.TabIndex = 18;
+            this.btn_caf.Text = "Cargar";
+            this.btn_caf.UseVisualStyleBackColor = true;
+            this.btn_caf.Click += new System.EventHandler(this.btn_caf_Click);
+            // 
+            // txt_caf
+            // 
+            this.txt_caf.Location = new System.Drawing.Point(551, 62);
+            this.txt_caf.Name = "txt_caf";
+            this.txt_caf.Size = new System.Drawing.Size(175, 20);
+            this.txt_caf.TabIndex = 17;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(442, 65);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(104, 13);
+            this.label41.TabIndex = 16;
+            this.label41.Text = "Selecciona un CAF :";
+            // 
             // grid_actividades
             // 
             this.grid_actividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid_actividades.Location = new System.Drawing.Point(520, 55);
+            this.grid_actividades.Location = new System.Drawing.Point(839, 19);
             this.grid_actividades.Name = "grid_actividades";
-            this.grid_actividades.Size = new System.Drawing.Size(243, 79);
+            this.grid_actividades.Size = new System.Drawing.Size(110, 134);
             this.grid_actividades.TabIndex = 15;
             this.grid_actividades.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_actividades_CellContentClick);
             // 
@@ -1192,38 +1218,12 @@ namespace DemoEndPoints
             this.label6.TabIndex = 0;
             this.label6.Text = "Rut :";
             // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(842, 35);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(104, 13);
-            this.label41.TabIndex = 16;
-            this.label41.Text = "Selecciona un CAF :";
-            // 
-            // txt_caf
-            // 
-            this.txt_caf.Location = new System.Drawing.Point(842, 54);
-            this.txt_caf.Name = "txt_caf";
-            this.txt_caf.Size = new System.Drawing.Size(100, 20);
-            this.txt_caf.TabIndex = 17;
-            // 
-            // btn_caf
-            // 
-            this.btn_caf.Location = new System.Drawing.Point(948, 51);
-            this.btn_caf.Name = "btn_caf";
-            this.btn_caf.Size = new System.Drawing.Size(75, 23);
-            this.btn_caf.TabIndex = 18;
-            this.btn_caf.Text = "Cargar";
-            this.btn_caf.UseVisualStyleBackColor = true;
-            this.btn_caf.Click += new System.EventHandler(this.btn_caf_Click);
-            // 
             // GenerarDte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1071, 486);
+            this.ClientSize = new System.Drawing.Size(1071, 594);
             this.Controls.Add(this.btn_generarDTE);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox4);
