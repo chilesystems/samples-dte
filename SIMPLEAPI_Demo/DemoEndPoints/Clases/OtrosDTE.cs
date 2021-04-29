@@ -12,4 +12,8 @@ namespace DemoEndPoints.Clases
         public int tipoTraslado { get; set; }
         public int tipoDespacho { get; set; }
     }
+    public class OtrosDTEBoleta
+    {
+        public int indicadorServicio { get; set; }
+    }
 }
