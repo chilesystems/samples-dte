@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DemoEndPoints.Clases
 {
-    public class Resumen
+    public class ResumenInvalido
     {
-        public Resumen(int tipoDocumento, int mntNeto, int mntIva, int tasaIVA, int mntExento, int mntTotal, int foliosEmitidos, int foliosAnulados, int foliosUtilizados)
+        public ResumenInvalido(int tipoDocumento, int mntNeto, int mntIva, int tasaIVA, int mntExento, int mntTotal, int foliosEmitidos, int foliosAnulados, int foliosUtilizados, List<Rangos> rangoUtilizados, List<Rangos> rangoAnulados)
         {
             TipoDocumento = tipoDocumento;
             MntNeto = mntNeto;
@@ -19,8 +19,10 @@ namespace DemoEndPoints.Clases
             FoliosEmitidos = foliosEmitidos;
             FoliosAnulados = foliosAnulados;
             FoliosUtilizados = foliosUtilizados;
+            RangoUtilizados = new List<Rangos>();
+            RangoAnulados = new List<Rangos>();
         }
-        public Resumen()
+        public ResumenInvalido()
         {
 
         }
@@ -34,5 +36,9 @@ namespace DemoEndPoints.Clases
         public int FoliosEmitidos { get; set; }
         public int FoliosAnulados { get; set; }
         public int FoliosUtilizados { get; set; }
+
+        public List<Rangos> RangoUtilizados { get; set; }
+
+        public List<Rangos> RangoAnulados { get; set; }
     }
 }
