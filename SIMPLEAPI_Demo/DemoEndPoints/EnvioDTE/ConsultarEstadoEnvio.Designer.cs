@@ -38,23 +38,23 @@ namespace DemoEndPoints
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txt_rutEmpresa = new System.Windows.Forms.NumericUpDown();
-            this.txt_trackId = new System.Windows.Forms.NumericUpDown();
-            this.chbx_boletaRestSi = new System.Windows.Forms.CheckBox();
-            this.chbx_boletaRestNo = new System.Windows.Forms.CheckBox();
-            this.btn_consultar = new System.Windows.Forms.Button();
-            this.chbx_produccionSi = new System.Windows.Forms.CheckBox();
-            this.chbx_produccionNo = new System.Windows.Forms.CheckBox();
             this.txt_dvEmpresa = new System.Windows.Forms.TextBox();
+            this.chbx_produccionNo = new System.Windows.Forms.CheckBox();
+            this.chbx_produccionSi = new System.Windows.Forms.CheckBox();
+            this.chbx_boletaRestNo = new System.Windows.Forms.CheckBox();
+            this.chbx_boletaRestSi = new System.Windows.Forms.CheckBox();
+            this.txt_trackId = new System.Windows.Forms.NumericUpDown();
+            this.txt_rutEmpresa = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btn_consultar = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_rutEmpresa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_trackId)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_rutEmpresa)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -152,62 +152,57 @@ namespace DemoEndPoints
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
             // 
-            // label1
+            // txt_dvEmpresa
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(88, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Rut Empresa :";
+            this.txt_dvEmpresa.Location = new System.Drawing.Point(172, 60);
+            this.txt_dvEmpresa.MaxLength = 1;
+            this.txt_dvEmpresa.Name = "txt_dvEmpresa";
+            this.txt_dvEmpresa.Size = new System.Drawing.Size(100, 20);
+            this.txt_dvEmpresa.TabIndex = 13;
             // 
-            // label2
+            // chbx_produccionNo
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(58, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Rut Empresa Digito :";
+            this.chbx_produccionNo.AutoSize = true;
+            this.chbx_produccionNo.Location = new System.Drawing.Point(232, 115);
+            this.chbx_produccionNo.Name = "chbx_produccionNo";
+            this.chbx_produccionNo.Size = new System.Drawing.Size(40, 17);
+            this.chbx_produccionNo.TabIndex = 12;
+            this.chbx_produccionNo.Text = "No";
+            this.chbx_produccionNo.UseVisualStyleBackColor = true;
+            this.chbx_produccionNo.CheckedChanged += new System.EventHandler(this.chbx_produccionNo_CheckedChanged);
             // 
-            // label3
+            // chbx_produccionSi
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(109, 89);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Track Id :";
+            this.chbx_produccionSi.AutoSize = true;
+            this.chbx_produccionSi.Location = new System.Drawing.Point(172, 116);
+            this.chbx_produccionSi.Name = "chbx_produccionSi";
+            this.chbx_produccionSi.Size = new System.Drawing.Size(35, 17);
+            this.chbx_produccionSi.TabIndex = 11;
+            this.chbx_produccionSi.Text = "Si";
+            this.chbx_produccionSi.UseVisualStyleBackColor = true;
+            this.chbx_produccionSi.CheckedChanged += new System.EventHandler(this.chbx_produccionSi_CheckedChanged);
             // 
-            // label4
+            // chbx_boletaRestNo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(83, 116);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "¿Producción? :";
+            this.chbx_boletaRestNo.AutoSize = true;
+            this.chbx_boletaRestNo.Location = new System.Drawing.Point(232, 140);
+            this.chbx_boletaRestNo.Name = "chbx_boletaRestNo";
+            this.chbx_boletaRestNo.Size = new System.Drawing.Size(40, 17);
+            this.chbx_boletaRestNo.TabIndex = 10;
+            this.chbx_boletaRestNo.Text = "No";
+            this.chbx_boletaRestNo.UseVisualStyleBackColor = true;
+            this.chbx_boletaRestNo.CheckedChanged += new System.EventHandler(this.chbx_boletaRestNo_CheckedChanged);
             // 
-            // label5
+            // chbx_boletaRestSi
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(40, 140);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(122, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "¿Servidor Boleta Rest? :";
-            // 
-            // txt_rutEmpresa
-            // 
-            this.txt_rutEmpresa.Location = new System.Drawing.Point(172, 36);
-            this.txt_rutEmpresa.Maximum = new decimal(new int[] {
-            99999999,
-            0,
-            0,
-            0});
-            this.txt_rutEmpresa.Name = "txt_rutEmpresa";
-            this.txt_rutEmpresa.Size = new System.Drawing.Size(120, 20);
-            this.txt_rutEmpresa.TabIndex = 5;
+            this.chbx_boletaRestSi.AutoSize = true;
+            this.chbx_boletaRestSi.Location = new System.Drawing.Point(172, 140);
+            this.chbx_boletaRestSi.Name = "chbx_boletaRestSi";
+            this.chbx_boletaRestSi.Size = new System.Drawing.Size(35, 17);
+            this.chbx_boletaRestSi.TabIndex = 9;
+            this.chbx_boletaRestSi.Text = "Si";
+            this.chbx_boletaRestSi.UseVisualStyleBackColor = true;
+            this.chbx_boletaRestSi.CheckedChanged += new System.EventHandler(this.chbx_boletaRestSi_CheckedChanged);
             // 
             // txt_trackId
             // 
@@ -221,27 +216,62 @@ namespace DemoEndPoints
             this.txt_trackId.Size = new System.Drawing.Size(120, 20);
             this.txt_trackId.TabIndex = 7;
             // 
-            // chbx_boletaRestSi
+            // txt_rutEmpresa
             // 
-            this.chbx_boletaRestSi.AutoSize = true;
-            this.chbx_boletaRestSi.Location = new System.Drawing.Point(172, 140);
-            this.chbx_boletaRestSi.Name = "chbx_boletaRestSi";
-            this.chbx_boletaRestSi.Size = new System.Drawing.Size(35, 17);
-            this.chbx_boletaRestSi.TabIndex = 9;
-            this.chbx_boletaRestSi.Text = "Si";
-            this.chbx_boletaRestSi.UseVisualStyleBackColor = true;
-            this.chbx_boletaRestSi.CheckedChanged += new System.EventHandler(this.chbx_boletaRestSi_CheckedChanged);
+            this.txt_rutEmpresa.Location = new System.Drawing.Point(172, 36);
+            this.txt_rutEmpresa.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
+            this.txt_rutEmpresa.Name = "txt_rutEmpresa";
+            this.txt_rutEmpresa.Size = new System.Drawing.Size(120, 20);
+            this.txt_rutEmpresa.TabIndex = 5;
             // 
-            // chbx_boletaRestNo
+            // label5
             // 
-            this.chbx_boletaRestNo.AutoSize = true;
-            this.chbx_boletaRestNo.Location = new System.Drawing.Point(232, 140);
-            this.chbx_boletaRestNo.Name = "chbx_boletaRestNo";
-            this.chbx_boletaRestNo.Size = new System.Drawing.Size(40, 17);
-            this.chbx_boletaRestNo.TabIndex = 10;
-            this.chbx_boletaRestNo.Text = "No";
-            this.chbx_boletaRestNo.UseVisualStyleBackColor = true;
-            this.chbx_boletaRestNo.CheckedChanged += new System.EventHandler(this.chbx_boletaRestNo_CheckedChanged);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(40, 140);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(122, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "¿Servidor Boleta Rest? :";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(83, 116);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "¿Producción? :";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(109, 89);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Track Id :";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(58, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Rut Empresa Digito :";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(88, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Rut Empresa :";
             // 
             // btn_consultar
             // 
@@ -253,36 +283,6 @@ namespace DemoEndPoints
             this.btn_consultar.UseVisualStyleBackColor = true;
             this.btn_consultar.Click += new System.EventHandler(this.btn_consultar_Click);
             // 
-            // chbx_produccionSi
-            // 
-            this.chbx_produccionSi.AutoSize = true;
-            this.chbx_produccionSi.Location = new System.Drawing.Point(172, 116);
-            this.chbx_produccionSi.Name = "chbx_produccionSi";
-            this.chbx_produccionSi.Size = new System.Drawing.Size(35, 17);
-            this.chbx_produccionSi.TabIndex = 11;
-            this.chbx_produccionSi.Text = "Si";
-            this.chbx_produccionSi.UseVisualStyleBackColor = true;
-            this.chbx_produccionSi.CheckedChanged += new System.EventHandler(this.chbx_produccionSi_CheckedChanged);
-            // 
-            // chbx_produccionNo
-            // 
-            this.chbx_produccionNo.AutoSize = true;
-            this.chbx_produccionNo.Location = new System.Drawing.Point(232, 115);
-            this.chbx_produccionNo.Name = "chbx_produccionNo";
-            this.chbx_produccionNo.Size = new System.Drawing.Size(40, 17);
-            this.chbx_produccionNo.TabIndex = 12;
-            this.chbx_produccionNo.Text = "No";
-            this.chbx_produccionNo.UseVisualStyleBackColor = true;
-            this.chbx_produccionNo.CheckedChanged += new System.EventHandler(this.chbx_produccionNo_CheckedChanged);
-            // 
-            // txt_dvEmpresa
-            // 
-            this.txt_dvEmpresa.Location = new System.Drawing.Point(172, 60);
-            this.txt_dvEmpresa.MaxLength = 1;
-            this.txt_dvEmpresa.Name = "txt_dvEmpresa";
-            this.txt_dvEmpresa.Size = new System.Drawing.Size(100, 20);
-            this.txt_dvEmpresa.TabIndex = 13;
-            // 
             // ConsultarEstadoEnvio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -292,14 +292,13 @@ namespace DemoEndPoints
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Name = "ConsultarEstadoEnvio";
-            this.Text = "Consultar Estado DTE";
             this.Load += new System.EventHandler(this.ConsultarEstadoEnvio_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_rutEmpresa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_trackId)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_rutEmpresa)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -309,7 +309,6 @@ namespace DemoEndPoints
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Name = "EnvioDte";
-            this.Text = "DTE";
             this.Load += new System.EventHandler(this.EnvioDte_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
