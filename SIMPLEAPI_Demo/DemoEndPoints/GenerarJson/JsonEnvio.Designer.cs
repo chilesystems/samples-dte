@@ -47,7 +47,6 @@ namespace DemoEndPoints.GenerarJson
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.txt_jsonEnvio);
             this.Name = "JsonEnvio";
-            this.Text = "JsonEnvio";
             this.Load += new System.EventHandler(this.JsonEnvio_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

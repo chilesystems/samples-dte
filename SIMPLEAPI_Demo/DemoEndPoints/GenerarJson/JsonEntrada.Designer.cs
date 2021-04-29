@@ -47,7 +47,6 @@ namespace DemoEndPoints.GenerarJson
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.txt_jsonEntrada);
             this.Name = "JsonEntrada";
-            this.Text = "JsonEntrada";
             this.Load += new System.EventHandler(this.JsonEntrada_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

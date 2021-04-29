@@ -47,7 +47,6 @@ namespace DemoEndPoints.GenerarJson
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.txt_jsonPdf);
             this.Name = "JsonPdf";
-            this.Text = "JsonPdf";
             this.Load += new System.EventHandler(this.JsonPdf_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
