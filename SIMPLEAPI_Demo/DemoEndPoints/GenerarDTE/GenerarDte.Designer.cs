@@ -54,7 +54,7 @@ namespace DemoEndPoints
             this.txt_totalTotales = new System.Windows.Forms.NumericUpDown();
             this.txt_ivaTotales = new System.Windows.Forms.NumericUpDown();
             this.txt_netoTotales = new System.Windows.Forms.NumericUpDown();
-            this.label29 = new System.Windows.Forms.Label();
+            this.lbl_exentoTotales = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -62,8 +62,8 @@ namespace DemoEndPoints
             this.txt_tipoDespachoOtros = new System.Windows.Forms.NumericUpDown();
             this.txt_tipoTrasladoOtros = new System.Windows.Forms.NumericUpDown();
             this.txt_indicarServOtros = new System.Windows.Forms.NumericUpDown();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
+            this.lbl_tipoDespacho = new System.Windows.Forms.Label();
+            this.lbl_tipotraslado = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.btn_cargarCertificado = new System.Windows.Forms.Button();
@@ -74,7 +74,7 @@ namespace DemoEndPoints
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.btn_generarDTE = new System.Windows.Forms.Button();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.gb_descuentos = new System.Windows.Forms.GroupBox();
             this.grid_descuentos = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
             this.txt_valorDescuentos = new System.Windows.Forms.NumericUpDown();
@@ -85,7 +85,7 @@ namespace DemoEndPoints
             this.txt_descDescuentos = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gb_referencias = new System.Windows.Forms.GroupBox();
             this.grid_referencias = new System.Windows.Forms.DataGridView();
             this.btn_agregarReferencia = new System.Windows.Forms.Button();
             this.txt_glosaReferencia = new System.Windows.Forms.TextBox();
@@ -129,7 +129,7 @@ namespace DemoEndPoints
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lbl_actividades = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -146,12 +146,12 @@ namespace DemoEndPoints
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoTrasladoOtros)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_indicarServOtros)).BeginInit();
             this.groupBox8.SuspendLayout();
-            this.groupBox9.SuspendLayout();
+            this.gb_descuentos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_descuentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_valorDescuentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoValorDescuentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoMovDescuentos)).BeginInit();
-            this.groupBox4.SuspendLayout();
+            this.gb_referencias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_referencias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_folioReferencia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoDocReferencia)).BeginInit();
@@ -274,7 +274,6 @@ namespace DemoEndPoints
             this.label2.Size = new System.Drawing.Size(76, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Razon Social :";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -364,7 +363,7 @@ namespace DemoEndPoints
             this.groupBox6.Controls.Add(this.txt_totalTotales);
             this.groupBox6.Controls.Add(this.txt_ivaTotales);
             this.groupBox6.Controls.Add(this.txt_netoTotales);
-            this.groupBox6.Controls.Add(this.label29);
+            this.groupBox6.Controls.Add(this.lbl_exentoTotales);
             this.groupBox6.Controls.Add(this.label28);
             this.groupBox6.Controls.Add(this.label27);
             this.groupBox6.Controls.Add(this.label26);
@@ -423,14 +422,14 @@ namespace DemoEndPoints
             this.txt_netoTotales.Size = new System.Drawing.Size(120, 20);
             this.txt_netoTotales.TabIndex = 4;
             // 
-            // label29
+            // lbl_exentoTotales
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(32, 111);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(46, 13);
-            this.label29.TabIndex = 3;
-            this.label29.Text = "Exento :";
+            this.lbl_exentoTotales.AutoSize = true;
+            this.lbl_exentoTotales.Location = new System.Drawing.Point(32, 111);
+            this.lbl_exentoTotales.Name = "lbl_exentoTotales";
+            this.lbl_exentoTotales.Size = new System.Drawing.Size(46, 13);
+            this.lbl_exentoTotales.TabIndex = 3;
+            this.lbl_exentoTotales.Text = "Exento :";
             // 
             // label28
             // 
@@ -464,8 +463,8 @@ namespace DemoEndPoints
             this.groupBox7.Controls.Add(this.txt_tipoDespachoOtros);
             this.groupBox7.Controls.Add(this.txt_tipoTrasladoOtros);
             this.groupBox7.Controls.Add(this.txt_indicarServOtros);
-            this.groupBox7.Controls.Add(this.label32);
-            this.groupBox7.Controls.Add(this.label31);
+            this.groupBox7.Controls.Add(this.lbl_tipoDespacho);
+            this.groupBox7.Controls.Add(this.lbl_tipotraslado);
             this.groupBox7.Controls.Add(this.label30);
             this.groupBox7.Location = new System.Drawing.Point(12, 200);
             this.groupBox7.Name = "groupBox7";
@@ -510,23 +509,23 @@ namespace DemoEndPoints
             this.txt_indicarServOtros.Size = new System.Drawing.Size(120, 20);
             this.txt_indicarServOtros.TabIndex = 3;
             // 
-            // label32
+            // lbl_tipoDespacho
             // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(472, 39);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(86, 13);
-            this.label32.TabIndex = 2;
-            this.label32.Text = "Tipo Despacho :";
+            this.lbl_tipoDespacho.AutoSize = true;
+            this.lbl_tipoDespacho.Location = new System.Drawing.Point(472, 39);
+            this.lbl_tipoDespacho.Name = "lbl_tipoDespacho";
+            this.lbl_tipoDespacho.Size = new System.Drawing.Size(86, 13);
+            this.lbl_tipoDespacho.TabIndex = 2;
+            this.lbl_tipoDespacho.Text = "Tipo Despacho :";
             // 
-            // label31
+            // lbl_tipotraslado
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(243, 39);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(78, 13);
-            this.label31.TabIndex = 1;
-            this.label31.Text = "Tipo Traslado :";
+            this.lbl_tipotraslado.AutoSize = true;
+            this.lbl_tipotraslado.Location = new System.Drawing.Point(243, 39);
+            this.lbl_tipotraslado.Name = "lbl_tipotraslado";
+            this.lbl_tipotraslado.Size = new System.Drawing.Size(78, 13);
+            this.lbl_tipotraslado.TabIndex = 1;
+            this.lbl_tipotraslado.Text = "Tipo Traslado :";
             // 
             // label30
             // 
@@ -621,24 +620,24 @@ namespace DemoEndPoints
             this.btn_generarDTE.UseVisualStyleBackColor = true;
             this.btn_generarDTE.Click += new System.EventHandler(this.btn_generarDTE_Click);
             // 
-            // groupBox9
+            // gb_descuentos
             // 
-            this.groupBox9.Controls.Add(this.grid_descuentos);
-            this.groupBox9.Controls.Add(this.button4);
-            this.groupBox9.Controls.Add(this.txt_valorDescuentos);
-            this.groupBox9.Controls.Add(this.label40);
-            this.groupBox9.Controls.Add(this.txt_tipoValorDescuentos);
-            this.groupBox9.Controls.Add(this.label38);
-            this.groupBox9.Controls.Add(this.txt_tipoMovDescuentos);
-            this.groupBox9.Controls.Add(this.txt_descDescuentos);
-            this.groupBox9.Controls.Add(this.label37);
-            this.groupBox9.Controls.Add(this.label36);
-            this.groupBox9.Location = new System.Drawing.Point(19, 826);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(1037, 150);
-            this.groupBox9.TabIndex = 18;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Descuentos Recargos";
+            this.gb_descuentos.Controls.Add(this.grid_descuentos);
+            this.gb_descuentos.Controls.Add(this.button4);
+            this.gb_descuentos.Controls.Add(this.txt_valorDescuentos);
+            this.gb_descuentos.Controls.Add(this.label40);
+            this.gb_descuentos.Controls.Add(this.txt_tipoValorDescuentos);
+            this.gb_descuentos.Controls.Add(this.label38);
+            this.gb_descuentos.Controls.Add(this.txt_tipoMovDescuentos);
+            this.gb_descuentos.Controls.Add(this.txt_descDescuentos);
+            this.gb_descuentos.Controls.Add(this.label37);
+            this.gb_descuentos.Controls.Add(this.label36);
+            this.gb_descuentos.Location = new System.Drawing.Point(19, 826);
+            this.gb_descuentos.Name = "gb_descuentos";
+            this.gb_descuentos.Size = new System.Drawing.Size(1037, 150);
+            this.gb_descuentos.TabIndex = 18;
+            this.gb_descuentos.TabStop = false;
+            this.gb_descuentos.Text = "Descuentos Recargos";
             // 
             // grid_descuentos
             // 
@@ -737,24 +736,24 @@ namespace DemoEndPoints
             this.label36.TabIndex = 0;
             this.label36.Text = "Descripción :";
             // 
-            // groupBox4
+            // gb_referencias
             // 
-            this.groupBox4.Controls.Add(this.grid_referencias);
-            this.groupBox4.Controls.Add(this.btn_agregarReferencia);
-            this.groupBox4.Controls.Add(this.txt_glosaReferencia);
-            this.groupBox4.Controls.Add(this.txt_folioReferencia);
-            this.groupBox4.Controls.Add(this.txt_tipoDocReferencia);
-            this.groupBox4.Controls.Add(this.dp_fechaReferencias);
-            this.groupBox4.Controls.Add(this.label22);
-            this.groupBox4.Controls.Add(this.label21);
-            this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Controls.Add(this.label19);
-            this.groupBox4.Location = new System.Drawing.Point(12, 441);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1037, 137);
-            this.groupBox4.TabIndex = 17;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Referencias";
+            this.gb_referencias.Controls.Add(this.grid_referencias);
+            this.gb_referencias.Controls.Add(this.btn_agregarReferencia);
+            this.gb_referencias.Controls.Add(this.txt_glosaReferencia);
+            this.gb_referencias.Controls.Add(this.txt_folioReferencia);
+            this.gb_referencias.Controls.Add(this.txt_tipoDocReferencia);
+            this.gb_referencias.Controls.Add(this.dp_fechaReferencias);
+            this.gb_referencias.Controls.Add(this.label22);
+            this.gb_referencias.Controls.Add(this.label21);
+            this.gb_referencias.Controls.Add(this.label20);
+            this.gb_referencias.Controls.Add(this.label19);
+            this.gb_referencias.Location = new System.Drawing.Point(12, 441);
+            this.gb_referencias.Name = "gb_referencias";
+            this.gb_referencias.Size = new System.Drawing.Size(1037, 137);
+            this.gb_referencias.TabIndex = 17;
+            this.gb_referencias.TabStop = false;
+            this.gb_referencias.Text = "Referencias";
             // 
             // grid_referencias
             // 
@@ -1041,7 +1040,7 @@ namespace DemoEndPoints
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.lbl_actividades);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(12, 276);
@@ -1191,14 +1190,14 @@ namespace DemoEndPoints
             this.label9.TabIndex = 3;
             this.label9.Text = "Comuna :";
             // 
-            // label8
+            // lbl_actividades
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(417, 31);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(129, 13);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Actividades Economicas :";
+            this.lbl_actividades.AutoSize = true;
+            this.lbl_actividades.Location = new System.Drawing.Point(417, 31);
+            this.lbl_actividades.Name = "lbl_actividades";
+            this.lbl_actividades.Size = new System.Drawing.Size(129, 13);
+            this.lbl_actividades.TabIndex = 2;
+            this.lbl_actividades.Text = "Actividades Economicas :";
             // 
             // label7
             // 
@@ -1225,8 +1224,8 @@ namespace DemoEndPoints
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1071, 594);
             this.Controls.Add(this.btn_generarDTE);
-            this.Controls.Add(this.groupBox9);
-            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.gb_descuentos);
+            this.Controls.Add(this.gb_referencias);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -1235,7 +1234,6 @@ namespace DemoEndPoints
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox7);
             this.Name = "GenerarDte";
-            this.Text = "Generar DTE";
             this.Load += new System.EventHandler(this.GenerarDte_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1256,14 +1254,14 @@ namespace DemoEndPoints
             ((System.ComponentModel.ISupportInitialize)(this.txt_indicarServOtros)).EndInit();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
+            this.gb_descuentos.ResumeLayout(false);
+            this.gb_descuentos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_descuentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_valorDescuentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoValorDescuentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoMovDescuentos)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.gb_referencias.ResumeLayout(false);
+            this.gb_referencias.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_referencias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_folioReferencia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoDocReferencia)).EndInit();
@@ -1308,7 +1306,7 @@ namespace DemoEndPoints
         private System.Windows.Forms.NumericUpDown txt_totalTotales;
         private System.Windows.Forms.NumericUpDown txt_ivaTotales;
         private System.Windows.Forms.NumericUpDown txt_netoTotales;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label lbl_exentoTotales;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label26;
@@ -1316,8 +1314,8 @@ namespace DemoEndPoints
         private System.Windows.Forms.NumericUpDown txt_tipoDespachoOtros;
         private System.Windows.Forms.NumericUpDown txt_tipoTrasladoOtros;
         private System.Windows.Forms.NumericUpDown txt_indicarServOtros;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label lbl_tipoDespacho;
+        private System.Windows.Forms.Label lbl_tipotraslado;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Button btn_cargarCertificado;
@@ -1330,7 +1328,7 @@ namespace DemoEndPoints
         private System.Windows.Forms.TextBox txt_ciudadReceptor;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Button btn_generarDTE;
-        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.GroupBox gb_descuentos;
         private System.Windows.Forms.DataGridView grid_descuentos;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.NumericUpDown txt_valorDescuentos;
@@ -1341,7 +1339,7 @@ namespace DemoEndPoints
         private System.Windows.Forms.TextBox txt_descDescuentos;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox gb_referencias;
         private System.Windows.Forms.DataGridView grid_referencias;
         private System.Windows.Forms.Button btn_agregarReferencia;
         private System.Windows.Forms.TextBox txt_glosaReferencia;
@@ -1382,7 +1380,7 @@ namespace DemoEndPoints
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lbl_actividades;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btn_caf;

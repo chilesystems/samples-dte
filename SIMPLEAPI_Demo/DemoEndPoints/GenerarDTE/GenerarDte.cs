@@ -22,6 +22,7 @@ namespace DemoEndPoints
         string url = ConfigurationManager.AppSettings["url"] + ConfigurationManager.AppSettings["GenerarDte"];
         string apikey = ConfigurationManager.AppSettings["apikey"];
 
+        public int tipo;
         OpenFileDialog dialogCert;
         OpenFileDialog dialogCaf;
         List<Referencias> referencias = new List<Referencias>();
@@ -34,75 +35,118 @@ namespace DemoEndPoints
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
 
         private void GenerarDte_Load(object sender, EventArgs e)
         {
+            if (tipo==2)
+            {
+                btn_agregarActEco.Visible = false;
+                lbl_actividades.Visible = false;
+                txt_actividadEcoEmisor.Visible = false;
+                grid_actividades.Visible = false;
+
+                txt_tipoDespachoOtros.Visible = false;
+                txt_tipoTrasladoOtros.Visible = false;
+                lbl_tipoDespacho.Visible = false;
+                lbl_tipotraslado.Visible = false;
+
+                gb_descuentos.Visible = false;
+                gb_referencias.Visible = false;
+                txt_exentoTotales.Visible = false;
+                lbl_exentoTotales.Visible = false;
+            }
             cargar();
             
         }
 
         public void cargar()
         {
-            txt_rutReceptor.Text = "66666666-6";
-            txt_razonSocialReceptor.Text = "Receptor";
-            txt_comunaReceptor.Text = "Comuna";
-            txt_giroReceptor.Text = "Giro";
-            txt_direccionReceptor.Text = "Direccion";
-            txt_ciudadReceptor.Text = "Ciudad";
+            if (tipo==1)
+            {
+                txt_rutReceptor.Text = "66666666-6";
+                txt_razonSocialReceptor.Text = "Receptor";
+                txt_comunaReceptor.Text = "Comuna";
+                txt_giroReceptor.Text = "Giro";
+                txt_direccionReceptor.Text = "Direccion";
+                txt_ciudadReceptor.Text = "Ciudad";
 
-            txt_rutEmisor.Text = "76269769-6";
-            txt_razonSocialEmisor.Text = "Razón Social";
-            txt_comunaEmisor.Text = "Comuna";
-            txt_giroEmisor.Text = "Giro";
-            txt_direccionEmisor.Text = "Dirección";
-            txt_telefonoEmisor.Text = "962212767";
+                txt_rutEmisor.Text = "76269769-6";
+                txt_razonSocialEmisor.Text = "Razón Social";
+                txt_comunaEmisor.Text = "Comuna";
+                txt_giroEmisor.Text = "Giro";
+                txt_direccionEmisor.Text = "Dirección";
+                txt_telefonoEmisor.Text = "962212767";
 
-            actividades.Add(new ActividadesEconomicas(474100));
-            actividades.Add(new ActividadesEconomicas(465100));
-            actividades.Add(new ActividadesEconomicas(582000));
-            actividades.Add(new ActividadesEconomicas(620900));
-            grid_actividades.DataSource = actividades;
+                actividades.Add(new ActividadesEconomicas(474100));
+                actividades.Add(new ActividadesEconomicas(465100));
+                actividades.Add(new ActividadesEconomicas(582000));
+                actividades.Add(new ActividadesEconomicas(620900));
+                grid_actividades.DataSource = actividades;
 
-            detalles.Add(new Detalles("Producto 1", 334, 4891, 1633594,false,0));
-            detalles.Add(new Detalles("Producto 2", 141, 5801, 817941, false, 0));
-            detalles.Add(new Detalles("Servicio exento", 2, 6817, 13634, true, 0));
-            grid_detalles.DataSource = detalles;
+                detalles.Add(new Detalles("Producto 1", 334, 4891, 1633594, false, 0));
+                detalles.Add(new Detalles("Producto 2", 141, 5801, 817941, false, 0));
+                detalles.Add(new Detalles("Servicio exento", 2, 6817, 13634, true, 0));
+                grid_detalles.DataSource = detalles;
 
-            referencias.Add(new Referencias("2020-12-17T22:33:55.9048726+00:00",39,1, "Referencia de prueba"));
-            grid_referencias.DataSource = referencias;
+                referencias.Add(new Referencias("2020-12-17T22:33:55.9048726+00:00", 39, 1, "Referencia de prueba"));
+                grid_referencias.DataSource = referencias;
 
-            txt_folioEncabezado.Text = "1";
-            txt_tipoDteEncabezado.Text = "33";
-            dp_fechaEmisionEncabezado.Value = new DateTime(2020,12,17);
+                txt_folioEncabezado.Text = "1";
+                txt_tipoDteEncabezado.Text = "33";
+                dp_fechaEmisionEncabezado.Value = new DateTime(2020, 12, 17);
 
-            txt_netoTotales.Text = "2010259";
-            txt_ivaTotales.Text = "381949";
-            txt_totalTotales.Text = "2405842";
-            txt_exentoTotales.Text = "13634";
+                txt_netoTotales.Text = "2010259";
+                txt_ivaTotales.Text = "381949";
+                txt_totalTotales.Text = "2405842";
+                txt_exentoTotales.Text = "13634";
 
-            txt_indicarServOtros.Text = "0";
-            txt_tipoTrasladoOtros.Text = "0";
-            txt_tipoDespachoOtros.Text = "0";
+                txt_indicarServOtros.Text = "0";
+                txt_tipoTrasladoOtros.Text = "0";
+                txt_tipoDespachoOtros.Text = "0";
 
-            txt_rutCertificado.Text = "17096073-4";
-            txt_passCertificado.Text = "Pollito702";
+                txt_rutCertificado.Text = "17096073-4";
+                txt_passCertificado.Text = "Pollito702";
 
-            descuentos.Add(new DescuentosRecargos("Descuento Comercial",1,1,18));
-            grid_descuentos.DataSource = descuentos;
+                descuentos.Add(new DescuentosRecargos("Descuento Comercial", 1, 1, 18));
+                grid_descuentos.DataSource = descuentos;
+            }
+            if (tipo==2)
+            {
+                txt_rutReceptor.Text = "66666666-6";
+                txt_razonSocialReceptor.Text = "Receptor";
+                txt_comunaReceptor.Text = "Comuna";
+                txt_giroReceptor.Text = "Giro";
+                txt_direccionReceptor.Text = "Direccion";
+                txt_ciudadReceptor.Text = "Ciudad";
+
+                txt_rutEmisor.Text = "76269769-6";
+                txt_razonSocialEmisor.Text = "Razón Social";
+                txt_comunaEmisor.Text = "Comuna";
+                txt_giroEmisor.Text = "Giro";
+                txt_direccionEmisor.Text = "Direccion Emisor";
+                txt_telefonoEmisor.Text = "62212767";
+
+                detalles.Add(new Detalles("Venta Simple", 1, 500, 500, false, 0));
+                grid_detalles.DataSource = detalles;
+
+                txt_folioEncabezado.Text = "25";
+                txt_tipoDteEncabezado.Text = "39";
+                dp_fechaEmisionEncabezado.Value = new DateTime(2021, 01, 12);
+
+                txt_netoTotales.Text = "420";
+                txt_ivaTotales.Text = "80";
+                txt_totalTotales.Text = "500";
+
+                txt_indicarServOtros.Text = "3";
+
+                txt_rutCertificado.Text = "17096073-4";
+                txt_passCertificado.Text = "Pollito702";
+            }
+            if (tipo==3)
+            {
+
+            }
+            
         }
 
         private void btn_agregarReferencia_Click(object sender, EventArgs e)
