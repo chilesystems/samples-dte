@@ -30,4 +30,24 @@ namespace DemoEndPoints.Clases
         public int descuento { get; set; }
 
     }
+    public class DetallesGuia
+    {
+        public DetallesGuia(string Nombre, int Cantidad, int Precio, int Total)
+        {
+            this.nombre = Nombre;
+            this.cantidad = Cantidad;
+            this.precio = Precio;
+            this.total = Total;
+        }
+        public DetallesGuia()
+        {
+
+        }
+
+        public string nombre { get; set; }
+        public int cantidad { get; set; }
+        public int precio { get; set; }
+        public int total { get; set; }
+
+    }
 }
