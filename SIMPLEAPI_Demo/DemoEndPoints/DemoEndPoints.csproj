@@ -113,8 +113,20 @@
     </Compile>
     <Compile Include="EnvioDTE\ConsultaDte.cs" />
     <Compile Include="GenerarDTE\DTEBoleta.cs" />
-    <Compile Include="GenerarDTE\DTEBoletaDespacho.cs" />
+    <Compile Include="GenerarDTE\DTEGuiaDespacho.cs" />
     <Compile Include="GenerarDTE\DTEFactura.cs" />
+    <Compile Include="GenerarDTE\GenerarDteBoleta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarDTE\GenerarDteBoleta.Designer.cs">
+      <DependentUpon>GenerarDteBoleta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarDTE\GenerarDTEGuiaD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarDTE\GenerarDTEGuiaD.Designer.cs">
+      <DependentUpon>GenerarDTEGuiaD.cs</DependentUpon>
+    </Compile>
     <Compile Include="GenerarDTE\GenerarDteJson.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +218,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarDTE\GenerarDte.resx">
       <DependentUpon>GenerarDte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarDTE\GenerarDteBoleta.resx">
+      <DependentUpon>GenerarDteBoleta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarDTE\GenerarDTEGuiaD.resx">
+      <DependentUpon>GenerarDTEGuiaD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarDTE\GenerarDteJson.resx">
       <DependentUpon>GenerarDteJson.cs</DependentUpon>

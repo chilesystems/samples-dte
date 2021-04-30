@@ -56,21 +56,18 @@ namespace DemoEndPoints
 
         private void btn_dteFactura_Click(object sender, EventArgs e)
         {
-            GenerarDte generarDteFactura = new GenerarDte();
-            generarDteFactura.tipo = 1;
+            Form generarDteFactura = new GenerarDte();
             generarDteFactura.Show();
         }
         private void btn_dteBoleta_Click(object sender, EventArgs e)
         {
-            GenerarDte generarDteBoleta = new GenerarDte();
-            generarDteBoleta.tipo = 2;
+            Form generarDteBoleta = new GenerarDteBoleta();
             generarDteBoleta.Show();
         }
 
         private void btn_dteGuiaDespacho_Click(object sender, EventArgs e)
         {
-            GenerarDte generarDteGuia = new GenerarDte();
-            generarDteGuia.tipo = 3;
+            Form generarDteGuia = new GenerarDTEGuiaD();
             generarDteGuia.Show();
         }
         private void Main_Load(object sender, EventArgs e)
