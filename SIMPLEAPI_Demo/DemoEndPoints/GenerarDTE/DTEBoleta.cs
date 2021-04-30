@@ -9,9 +9,9 @@ namespace DemoEndPoints.GenerarDTE
 {
     public class DTEBoleta
     {
-        Receptor receptor { get; set; }
-        EmisorBoleta emisor { get; set; }
-        List<Detalles> detalles { get; set; }
+        public Receptor receptor { get; set; }
+        public EmisorBoleta emisor { get; set; }
+        public List<Detalles> detalles { get; set; }
         public Encabezado encabezado { get; set; }
         public TotalesBoleta totales { get; set; }
 
