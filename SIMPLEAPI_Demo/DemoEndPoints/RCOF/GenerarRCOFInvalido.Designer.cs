@@ -44,16 +44,15 @@ namespace DemoEndPoints.RCOF
             this.grid_anulados = new System.Windows.Forms.DataGridView();
             this.txt_anuladosFinal = new System.Windows.Forms.NumericUpDown();
             this.txt_anuladosInicial = new System.Windows.Forms.NumericUpDown();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
+            this.lbl_rangoAF = new System.Windows.Forms.Label();
+            this.lbl_rangoAI = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.grid_utilizados = new System.Windows.Forms.DataGridView();
             this.txt_utilizadosFinal = new System.Windows.Forms.NumericUpDown();
             this.txt_utilizadosInicial = new System.Windows.Forms.NumericUpDown();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.lbl_rangoUF = new System.Windows.Forms.Label();
+            this.lbl_rangoUI = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.grid_resumen = new System.Windows.Forms.DataGridView();
             this.btn_agregarDetalles = new System.Windows.Forms.Button();
             this.txt_foliosUtilizados = new System.Windows.Forms.NumericUpDown();
             this.txt_foliosAnulados = new System.Windows.Forms.NumericUpDown();
@@ -88,6 +87,10 @@ namespace DemoEndPoints.RCOF
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.grid_resumen = new System.Windows.Forms.DataGridView();
+            this.btn_eliminarResumen = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.dp_tmstFirma = new System.Windows.Forms.DateTimePicker();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_anulados)).BeginInit();
@@ -96,7 +99,6 @@ namespace DemoEndPoints.RCOF
             ((System.ComponentModel.ISupportInitialize)(this.grid_utilizados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_utilizadosFinal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_utilizadosInicial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grid_resumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_foliosUtilizados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_foliosAnulados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_mntIva)).BeginInit();
@@ -109,16 +111,18 @@ namespace DemoEndPoints.RCOF
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_numSecEnvio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_numResol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_resumen)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_generar
             // 
-            this.btn_generar.Location = new System.Drawing.Point(480, 628);
+            this.btn_generar.Location = new System.Drawing.Point(499, 644);
             this.btn_generar.Name = "btn_generar";
             this.btn_generar.Size = new System.Drawing.Size(75, 23);
             this.btn_generar.TabIndex = 7;
             this.btn_generar.Text = "Generar";
             this.btn_generar.UseVisualStyleBackColor = true;
+            this.btn_generar.Click += new System.EventHandler(this.btn_generar_ClickAsync);
             // 
             // groupBox3
             // 
@@ -131,7 +135,7 @@ namespace DemoEndPoints.RCOF
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Location = new System.Drawing.Point(543, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(492, 203);
+            this.groupBox3.Size = new System.Drawing.Size(524, 236);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Certificado Digital";
@@ -144,6 +148,7 @@ namespace DemoEndPoints.RCOF
             this.btn_cargarCertificado.TabIndex = 6;
             this.btn_cargarCertificado.Text = "Cargar";
             this.btn_cargarCertificado.UseVisualStyleBackColor = true;
+            this.btn_cargarCertificado.Click += new System.EventHandler(this.btn_cargarCertificado_Click);
             // 
             // txt_passCertificado
             // 
@@ -195,22 +200,23 @@ namespace DemoEndPoints.RCOF
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btn_eliminarResumen);
+            this.groupBox2.Controls.Add(this.grid_resumen);
             this.groupBox2.Controls.Add(this.btn_agregarAnulados);
             this.groupBox2.Controls.Add(this.btn_agregarUtilizados);
             this.groupBox2.Controls.Add(this.grid_anulados);
+            this.groupBox2.Controls.Add(this.btn_agregarDetalles);
             this.groupBox2.Controls.Add(this.txt_anuladosFinal);
             this.groupBox2.Controls.Add(this.txt_anuladosInicial);
-            this.groupBox2.Controls.Add(this.label23);
-            this.groupBox2.Controls.Add(this.label24);
+            this.groupBox2.Controls.Add(this.lbl_rangoAF);
+            this.groupBox2.Controls.Add(this.lbl_rangoAI);
             this.groupBox2.Controls.Add(this.label25);
             this.groupBox2.Controls.Add(this.grid_utilizados);
             this.groupBox2.Controls.Add(this.txt_utilizadosFinal);
             this.groupBox2.Controls.Add(this.txt_utilizadosInicial);
-            this.groupBox2.Controls.Add(this.label22);
-            this.groupBox2.Controls.Add(this.label21);
+            this.groupBox2.Controls.Add(this.lbl_rangoUF);
+            this.groupBox2.Controls.Add(this.lbl_rangoUI);
             this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.grid_resumen);
-            this.groupBox2.Controls.Add(this.btn_agregarDetalles);
             this.groupBox2.Controls.Add(this.txt_foliosUtilizados);
             this.groupBox2.Controls.Add(this.txt_foliosAnulados);
             this.groupBox2.Controls.Add(this.txt_mntIva);
@@ -229,16 +235,16 @@ namespace DemoEndPoints.RCOF
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(12, 221);
+            this.groupBox2.Location = new System.Drawing.Point(12, 254);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1023, 401);
+            this.groupBox2.Size = new System.Drawing.Size(1055, 384);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Resumen";
             // 
             // btn_agregarAnulados
             // 
-            this.btn_agregarAnulados.Location = new System.Drawing.Point(618, 354);
+            this.btn_agregarAnulados.Location = new System.Drawing.Point(618, 212);
             this.btn_agregarAnulados.Name = "btn_agregarAnulados";
             this.btn_agregarAnulados.Size = new System.Drawing.Size(75, 23);
             this.btn_agregarAnulados.TabIndex = 32;
@@ -248,7 +254,7 @@ namespace DemoEndPoints.RCOF
             // 
             // btn_agregarUtilizados
             // 
-            this.btn_agregarUtilizados.Location = new System.Drawing.Point(102, 355);
+            this.btn_agregarUtilizados.Location = new System.Drawing.Point(102, 213);
             this.btn_agregarUtilizados.Name = "btn_agregarUtilizados";
             this.btn_agregarUtilizados.Size = new System.Drawing.Size(75, 23);
             this.btn_agregarUtilizados.TabIndex = 31;
@@ -259,47 +265,47 @@ namespace DemoEndPoints.RCOF
             // grid_anulados
             // 
             this.grid_anulados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid_anulados.Location = new System.Drawing.Point(764, 274);
+            this.grid_anulados.Location = new System.Drawing.Point(764, 132);
             this.grid_anulados.Name = "grid_anulados";
             this.grid_anulados.Size = new System.Drawing.Size(244, 104);
             this.grid_anulados.TabIndex = 30;
             // 
             // txt_anuladosFinal
             // 
-            this.txt_anuladosFinal.Location = new System.Drawing.Point(604, 325);
+            this.txt_anuladosFinal.Location = new System.Drawing.Point(604, 183);
             this.txt_anuladosFinal.Name = "txt_anuladosFinal";
             this.txt_anuladosFinal.Size = new System.Drawing.Size(120, 20);
             this.txt_anuladosFinal.TabIndex = 29;
             // 
             // txt_anuladosInicial
             // 
-            this.txt_anuladosInicial.Location = new System.Drawing.Point(604, 299);
+            this.txt_anuladosInicial.Location = new System.Drawing.Point(604, 157);
             this.txt_anuladosInicial.Name = "txt_anuladosInicial";
             this.txt_anuladosInicial.Size = new System.Drawing.Size(120, 20);
             this.txt_anuladosInicial.TabIndex = 28;
             // 
-            // label23
+            // lbl_rangoAF
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(553, 327);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(35, 13);
-            this.label23.TabIndex = 27;
-            this.label23.Text = "Final :";
+            this.lbl_rangoAF.AutoSize = true;
+            this.lbl_rangoAF.Location = new System.Drawing.Point(553, 185);
+            this.lbl_rangoAF.Name = "lbl_rangoAF";
+            this.lbl_rangoAF.Size = new System.Drawing.Size(35, 13);
+            this.lbl_rangoAF.TabIndex = 27;
+            this.lbl_rangoAF.Text = "Final :";
             // 
-            // label24
+            // lbl_rangoAI
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(548, 301);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(40, 13);
-            this.label24.TabIndex = 26;
-            this.label24.Text = "Inicial :";
+            this.lbl_rangoAI.AutoSize = true;
+            this.lbl_rangoAI.Location = new System.Drawing.Point(548, 159);
+            this.lbl_rangoAI.Name = "lbl_rangoAI";
+            this.lbl_rangoAI.Size = new System.Drawing.Size(40, 13);
+            this.lbl_rangoAI.TabIndex = 26;
+            this.lbl_rangoAI.Text = "Inicial :";
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(545, 274);
+            this.label25.Location = new System.Drawing.Point(545, 132);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(91, 13);
             this.label25.TabIndex = 25;
@@ -308,63 +314,55 @@ namespace DemoEndPoints.RCOF
             // grid_utilizados
             // 
             this.grid_utilizados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid_utilizados.Location = new System.Drawing.Point(253, 274);
+            this.grid_utilizados.Location = new System.Drawing.Point(255, 132);
             this.grid_utilizados.Name = "grid_utilizados";
             this.grid_utilizados.Size = new System.Drawing.Size(244, 104);
             this.grid_utilizados.TabIndex = 24;
             // 
             // txt_utilizadosFinal
             // 
-            this.txt_utilizadosFinal.Location = new System.Drawing.Point(78, 325);
+            this.txt_utilizadosFinal.Location = new System.Drawing.Point(78, 183);
             this.txt_utilizadosFinal.Name = "txt_utilizadosFinal";
             this.txt_utilizadosFinal.Size = new System.Drawing.Size(120, 20);
             this.txt_utilizadosFinal.TabIndex = 23;
             // 
             // txt_utilizadosInicial
             // 
-            this.txt_utilizadosInicial.Location = new System.Drawing.Point(78, 299);
+            this.txt_utilizadosInicial.Location = new System.Drawing.Point(78, 157);
             this.txt_utilizadosInicial.Name = "txt_utilizadosInicial";
             this.txt_utilizadosInicial.Size = new System.Drawing.Size(120, 20);
             this.txt_utilizadosInicial.TabIndex = 22;
             // 
-            // label22
+            // lbl_rangoUF
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(36, 327);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(35, 13);
-            this.label22.TabIndex = 21;
-            this.label22.Text = "Final :";
+            this.lbl_rangoUF.AutoSize = true;
+            this.lbl_rangoUF.Location = new System.Drawing.Point(36, 185);
+            this.lbl_rangoUF.Name = "lbl_rangoUF";
+            this.lbl_rangoUF.Size = new System.Drawing.Size(35, 13);
+            this.lbl_rangoUF.TabIndex = 21;
+            this.lbl_rangoUF.Text = "Final :";
             // 
-            // label21
+            // lbl_rangoUI
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(31, 301);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(40, 13);
-            this.label21.TabIndex = 20;
-            this.label21.Text = "Inicial :";
+            this.lbl_rangoUI.AutoSize = true;
+            this.lbl_rangoUI.Location = new System.Drawing.Point(31, 159);
+            this.lbl_rangoUI.Name = "lbl_rangoUI";
+            this.lbl_rangoUI.Size = new System.Drawing.Size(40, 13);
+            this.lbl_rangoUI.TabIndex = 20;
+            this.lbl_rangoUI.Text = "Inicial :";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(28, 274);
+            this.label20.Location = new System.Drawing.Point(28, 132);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(92, 13);
             this.label20.TabIndex = 19;
             this.label20.Text = "Rangos Utilizados";
             // 
-            // grid_resumen
-            // 
-            this.grid_resumen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid_resumen.Location = new System.Drawing.Point(31, 125);
-            this.grid_resumen.Name = "grid_resumen";
-            this.grid_resumen.Size = new System.Drawing.Size(943, 126);
-            this.grid_resumen.TabIndex = 18;
-            // 
             // btn_agregarDetalles
             // 
-            this.btn_agregarDetalles.Location = new System.Drawing.Point(782, 57);
+            this.btn_agregarDetalles.Location = new System.Drawing.Point(955, 290);
             this.btn_agregarDetalles.Name = "btn_agregarDetalles";
             this.btn_agregarDetalles.Size = new System.Drawing.Size(75, 23);
             this.btn_agregarDetalles.TabIndex = 17;
@@ -518,6 +516,8 @@ namespace DemoEndPoints.RCOF
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dp_tmstFirma);
+            this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.txt_numSecEnvio);
             this.groupBox1.Controls.Add(this.dp_fechaFinal);
             this.groupBox1.Controls.Add(this.dp_fechaInicio);
@@ -534,7 +534,7 @@ namespace DemoEndPoints.RCOF
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(518, 203);
+            this.groupBox1.Size = new System.Drawing.Size(518, 236);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Caratula";
@@ -651,11 +651,47 @@ namespace DemoEndPoints.RCOF
             this.label1.TabIndex = 0;
             this.label1.Text = "Rut Emisor :";
             // 
+            // grid_resumen
+            // 
+            this.grid_resumen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_resumen.Location = new System.Drawing.Point(6, 254);
+            this.grid_resumen.Name = "grid_resumen";
+            this.grid_resumen.Size = new System.Drawing.Size(943, 126);
+            this.grid_resumen.TabIndex = 33;
+            this.grid_resumen.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_resumen_CellClick);
+            this.grid_resumen.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_resumen_CellContentClick);
+            // 
+            // btn_eliminarResumen
+            // 
+            this.btn_eliminarResumen.Location = new System.Drawing.Point(955, 339);
+            this.btn_eliminarResumen.Name = "btn_eliminarResumen";
+            this.btn_eliminarResumen.Size = new System.Drawing.Size(75, 23);
+            this.btn_eliminarResumen.TabIndex = 34;
+            this.btn_eliminarResumen.Text = "Eliminar";
+            this.btn_eliminarResumen.UseVisualStyleBackColor = true;
+            this.btn_eliminarResumen.Click += new System.EventHandler(this.btn_eliminarResumen_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(72, 201);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(86, 13);
+            this.label21.TabIndex = 14;
+            this.label21.Text = "Tmst Firma Env :";
+            // 
+            // dp_tmstFirma
+            // 
+            this.dp_tmstFirma.Location = new System.Drawing.Point(171, 195);
+            this.dp_tmstFirma.Name = "dp_tmstFirma";
+            this.dp_tmstFirma.Size = new System.Drawing.Size(200, 20);
+            this.dp_tmstFirma.TabIndex = 15;
+            // 
             // GenerarRCOFInvalido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1047, 663);
+            this.ClientSize = new System.Drawing.Size(1079, 679);
             this.Controls.Add(this.btn_generar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -672,7 +708,6 @@ namespace DemoEndPoints.RCOF
             ((System.ComponentModel.ISupportInitialize)(this.grid_utilizados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_utilizadosFinal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_utilizadosInicial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grid_resumen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_foliosUtilizados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_foliosAnulados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_mntIva)).EndInit();
@@ -686,6 +721,7 @@ namespace DemoEndPoints.RCOF
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_numSecEnvio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_numResol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_resumen)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -705,10 +741,9 @@ namespace DemoEndPoints.RCOF
         private System.Windows.Forms.DataGridView grid_utilizados;
         private System.Windows.Forms.NumericUpDown txt_utilizadosFinal;
         private System.Windows.Forms.NumericUpDown txt_utilizadosInicial;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label lbl_rangoUF;
+        private System.Windows.Forms.Label lbl_rangoUI;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.DataGridView grid_resumen;
         private System.Windows.Forms.Button btn_agregarDetalles;
         private System.Windows.Forms.NumericUpDown txt_foliosUtilizados;
         private System.Windows.Forms.NumericUpDown txt_foliosAnulados;
@@ -748,8 +783,12 @@ namespace DemoEndPoints.RCOF
         private System.Windows.Forms.DataGridView grid_anulados;
         private System.Windows.Forms.NumericUpDown txt_anuladosFinal;
         private System.Windows.Forms.NumericUpDown txt_anuladosInicial;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label lbl_rangoAF;
+        private System.Windows.Forms.Label lbl_rangoAI;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.DataGridView grid_resumen;
+        private System.Windows.Forms.Button btn_eliminarResumen;
+        private System.Windows.Forms.DateTimePicker dp_tmstFirma;
+        private System.Windows.Forms.Label label21;
     }
 }

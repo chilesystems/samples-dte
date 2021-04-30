@@ -8,23 +8,11 @@ namespace DemoEndPoints.Clases
 {
     public class ResumenInvalido
     {
-        public ResumenInvalido(int tipoDocumento, int mntNeto, int mntIva, int tasaIVA, int mntExento, int mntTotal, int foliosEmitidos, int foliosAnulados, int foliosUtilizados, List<Rangos> rangoUtilizados, List<Rangos> rangoAnulados)
-        {
-            TipoDocumento = tipoDocumento;
-            MntNeto = mntNeto;
-            MntIva = mntIva;
-            TasaIVA = tasaIVA;
-            MntExento = mntExento;
-            MntTotal = mntTotal;
-            FoliosEmitidos = foliosEmitidos;
-            FoliosAnulados = foliosAnulados;
-            FoliosUtilizados = foliosUtilizados;
-            RangoUtilizados = new List<Rangos>();
-            RangoAnulados = new List<Rangos>();
-        }
+        
         public ResumenInvalido()
         {
-
+            this.RangoAnulados = new List<Rangos>();
+            this.RangoUtilizados = new List<Rangos>();
         }
 
         public int TipoDocumento { get; set; }
