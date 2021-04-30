@@ -139,7 +139,6 @@
     <Compile Include="GenerarJson\JsonPdf.Designer.cs">
       <DependentUpon>JsonPdf.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helper.cs" />
     <Compile Include="Impresion\Carta.cs">
       <SubType>Form</SubType>
     </Compile>

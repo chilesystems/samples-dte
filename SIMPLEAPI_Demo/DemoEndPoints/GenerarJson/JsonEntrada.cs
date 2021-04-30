@@ -23,26 +23,10 @@ namespace DemoEndPoints.GenerarJson
 
         private async void JsonEntrada_Load(object sender, EventArgs e)
         {
-            string res = await jsonEntrada();
-            txt_jsonEntrada.Text = res;
+            HttpClient client = new HttpClient();
+            string response = await client.GetStringAsync(url);
+            txt_jsonEntrada.Text = response;
         }
-        public async Task<string> jsonEntrada()
-        {
-            Helper h = new Helper();
-            return await h.Json(url);
-        }
-        //public async Task json()
-        //{
-        //    try
-        //    {
-        //        HttpClient cliente = new HttpClient();
-        //        HttpResponseMessage response = await cliente.GetAsync(url);
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //    }
-        //}
-
+        
     }
 }

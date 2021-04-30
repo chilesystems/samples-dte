@@ -24,7 +24,7 @@ namespace DemoEndPoints
 
         
 
-        private async void btn_jsonEnvio_Click(object sender, EventArgs e)
+        private  void btn_jsonEnvio_Click(object sender, EventArgs e)
         {
             Form jsonEnv = new GenerarJson.JsonEnvio();
             jsonEnv.Show();
