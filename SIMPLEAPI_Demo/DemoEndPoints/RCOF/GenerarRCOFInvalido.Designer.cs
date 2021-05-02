@@ -39,9 +39,12 @@ namespace DemoEndPoints.RCOF
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_eliminarResumen = new System.Windows.Forms.Button();
+            this.grid_resumen = new System.Windows.Forms.DataGridView();
             this.btn_agregarAnulados = new System.Windows.Forms.Button();
             this.btn_agregarUtilizados = new System.Windows.Forms.Button();
             this.grid_anulados = new System.Windows.Forms.DataGridView();
+            this.btn_agregarDetalles = new System.Windows.Forms.Button();
             this.txt_anuladosFinal = new System.Windows.Forms.NumericUpDown();
             this.txt_anuladosInicial = new System.Windows.Forms.NumericUpDown();
             this.lbl_rangoAF = new System.Windows.Forms.Label();
@@ -53,7 +56,6 @@ namespace DemoEndPoints.RCOF
             this.lbl_rangoUF = new System.Windows.Forms.Label();
             this.lbl_rangoUI = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.btn_agregarDetalles = new System.Windows.Forms.Button();
             this.txt_foliosUtilizados = new System.Windows.Forms.NumericUpDown();
             this.txt_foliosAnulados = new System.Windows.Forms.NumericUpDown();
             this.txt_mntIva = new System.Windows.Forms.NumericUpDown();
@@ -73,6 +75,8 @@ namespace DemoEndPoints.RCOF
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dp_tmstFirma = new System.Windows.Forms.DateTimePicker();
+            this.label21 = new System.Windows.Forms.Label();
             this.txt_numSecEnvio = new System.Windows.Forms.NumericUpDown();
             this.dp_fechaFinal = new System.Windows.Forms.DateTimePicker();
             this.dp_fechaInicio = new System.Windows.Forms.DateTimePicker();
@@ -87,12 +91,9 @@ namespace DemoEndPoints.RCOF
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.grid_resumen = new System.Windows.Forms.DataGridView();
-            this.btn_eliminarResumen = new System.Windows.Forms.Button();
-            this.label21 = new System.Windows.Forms.Label();
-            this.dp_tmstFirma = new System.Windows.Forms.DateTimePicker();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_resumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid_anulados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_anuladosFinal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_anuladosInicial)).BeginInit();
@@ -111,7 +112,6 @@ namespace DemoEndPoints.RCOF
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_numSecEnvio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_numResol)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grid_resumen)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_generar
@@ -122,7 +122,7 @@ namespace DemoEndPoints.RCOF
             this.btn_generar.TabIndex = 7;
             this.btn_generar.Text = "Generar";
             this.btn_generar.UseVisualStyleBackColor = true;
-            this.btn_generar.Click += new System.EventHandler(this.btn_generar_ClickAsync);
+            this.btn_generar.Click += new System.EventHandler(this.btn_generar_Click);
             // 
             // groupBox3
             // 
@@ -242,6 +242,26 @@ namespace DemoEndPoints.RCOF
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Resumen";
             // 
+            // btn_eliminarResumen
+            // 
+            this.btn_eliminarResumen.Location = new System.Drawing.Point(955, 339);
+            this.btn_eliminarResumen.Name = "btn_eliminarResumen";
+            this.btn_eliminarResumen.Size = new System.Drawing.Size(75, 23);
+            this.btn_eliminarResumen.TabIndex = 34;
+            this.btn_eliminarResumen.Text = "Eliminar";
+            this.btn_eliminarResumen.UseVisualStyleBackColor = true;
+            this.btn_eliminarResumen.Click += new System.EventHandler(this.btn_eliminarResumen_Click);
+            // 
+            // grid_resumen
+            // 
+            this.grid_resumen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_resumen.Location = new System.Drawing.Point(6, 254);
+            this.grid_resumen.Name = "grid_resumen";
+            this.grid_resumen.Size = new System.Drawing.Size(943, 126);
+            this.grid_resumen.TabIndex = 33;
+            this.grid_resumen.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_resumen_CellClick);
+            this.grid_resumen.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_resumen_CellContentClick);
+            // 
             // btn_agregarAnulados
             // 
             this.btn_agregarAnulados.Location = new System.Drawing.Point(618, 212);
@@ -269,6 +289,16 @@ namespace DemoEndPoints.RCOF
             this.grid_anulados.Name = "grid_anulados";
             this.grid_anulados.Size = new System.Drawing.Size(244, 104);
             this.grid_anulados.TabIndex = 30;
+            // 
+            // btn_agregarDetalles
+            // 
+            this.btn_agregarDetalles.Location = new System.Drawing.Point(955, 290);
+            this.btn_agregarDetalles.Name = "btn_agregarDetalles";
+            this.btn_agregarDetalles.Size = new System.Drawing.Size(75, 23);
+            this.btn_agregarDetalles.TabIndex = 17;
+            this.btn_agregarDetalles.Text = "Agregar";
+            this.btn_agregarDetalles.UseVisualStyleBackColor = true;
+            this.btn_agregarDetalles.Click += new System.EventHandler(this.btn_agregarDetalles_Click);
             // 
             // txt_anuladosFinal
             // 
@@ -359,16 +389,6 @@ namespace DemoEndPoints.RCOF
             this.label20.Size = new System.Drawing.Size(92, 13);
             this.label20.TabIndex = 19;
             this.label20.Text = "Rangos Utilizados";
-            // 
-            // btn_agregarDetalles
-            // 
-            this.btn_agregarDetalles.Location = new System.Drawing.Point(955, 290);
-            this.btn_agregarDetalles.Name = "btn_agregarDetalles";
-            this.btn_agregarDetalles.Size = new System.Drawing.Size(75, 23);
-            this.btn_agregarDetalles.TabIndex = 17;
-            this.btn_agregarDetalles.Text = "Agregar";
-            this.btn_agregarDetalles.UseVisualStyleBackColor = true;
-            this.btn_agregarDetalles.Click += new System.EventHandler(this.btn_agregarDetalles_Click);
             // 
             // txt_foliosUtilizados
             // 
@@ -539,6 +559,22 @@ namespace DemoEndPoints.RCOF
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Caratula";
             // 
+            // dp_tmstFirma
+            // 
+            this.dp_tmstFirma.Location = new System.Drawing.Point(171, 195);
+            this.dp_tmstFirma.Name = "dp_tmstFirma";
+            this.dp_tmstFirma.Size = new System.Drawing.Size(200, 20);
+            this.dp_tmstFirma.TabIndex = 15;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(72, 201);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(86, 13);
+            this.label21.TabIndex = 14;
+            this.label21.Text = "Tmst Firma Env :";
+            // 
             // txt_numSecEnvio
             // 
             this.txt_numSecEnvio.Location = new System.Drawing.Point(171, 173);
@@ -651,42 +687,6 @@ namespace DemoEndPoints.RCOF
             this.label1.TabIndex = 0;
             this.label1.Text = "Rut Emisor :";
             // 
-            // grid_resumen
-            // 
-            this.grid_resumen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid_resumen.Location = new System.Drawing.Point(6, 254);
-            this.grid_resumen.Name = "grid_resumen";
-            this.grid_resumen.Size = new System.Drawing.Size(943, 126);
-            this.grid_resumen.TabIndex = 33;
-            this.grid_resumen.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_resumen_CellClick);
-            this.grid_resumen.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_resumen_CellContentClick);
-            // 
-            // btn_eliminarResumen
-            // 
-            this.btn_eliminarResumen.Location = new System.Drawing.Point(955, 339);
-            this.btn_eliminarResumen.Name = "btn_eliminarResumen";
-            this.btn_eliminarResumen.Size = new System.Drawing.Size(75, 23);
-            this.btn_eliminarResumen.TabIndex = 34;
-            this.btn_eliminarResumen.Text = "Eliminar";
-            this.btn_eliminarResumen.UseVisualStyleBackColor = true;
-            this.btn_eliminarResumen.Click += new System.EventHandler(this.btn_eliminarResumen_Click);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(72, 201);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(86, 13);
-            this.label21.TabIndex = 14;
-            this.label21.Text = "Tmst Firma Env :";
-            // 
-            // dp_tmstFirma
-            // 
-            this.dp_tmstFirma.Location = new System.Drawing.Point(171, 195);
-            this.dp_tmstFirma.Name = "dp_tmstFirma";
-            this.dp_tmstFirma.Size = new System.Drawing.Size(200, 20);
-            this.dp_tmstFirma.TabIndex = 15;
-            // 
             // GenerarRCOFInvalido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -702,6 +702,7 @@ namespace DemoEndPoints.RCOF
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_resumen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid_anulados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_anuladosFinal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_anuladosInicial)).EndInit();
@@ -721,7 +722,6 @@ namespace DemoEndPoints.RCOF
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_numSecEnvio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_numResol)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grid_resumen)).EndInit();
             this.ResumeLayout(false);
 
         }

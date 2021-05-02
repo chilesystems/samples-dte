@@ -15,6 +15,21 @@ namespace DemoEndPoints.Clases
             this.RangoUtilizados = new List<Rangos>();
         }
 
+        public ResumenInvalido(int tipoDocumento, int mntNeto, int mntIva, int tasaIVA, int mntExento, int mntTotal, int foliosEmitidos, int foliosAnulados, int foliosUtilizados, List<Rangos> rangoUtilizados, List<Rangos> rangoAnulados)
+        {
+            TipoDocumento = tipoDocumento;
+            MntNeto = mntNeto;
+            MntIva = mntIva;
+            TasaIVA = tasaIVA;
+            MntExento = mntExento;
+            MntTotal = mntTotal;
+            FoliosEmitidos = foliosEmitidos;
+            FoliosAnulados = foliosAnulados;
+            FoliosUtilizados = foliosUtilizados;
+            RangoUtilizados = rangoUtilizados;
+            RangoAnulados = rangoAnulados;
+        }
+
         public int TipoDocumento { get; set; }
         public int MntNeto { get; set; }
         public int MntIva { get; set; }

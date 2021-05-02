@@ -80,22 +80,19 @@ namespace DemoEndPoints.RCOF
         {
             if (tipo==1)
             {
-                txt_rutEmisor.Text = "17938236-9";
-                txt_rutEnvia.Text = "17938236-9";
-                txt_numResol.Text = "99";
-                txt_numSecEnvio.Text = "6";
-
+                txt_rutEmisor.Text = "13152240-1";
+                txt_rutEnvia.Text = "13152240-1";
+                txt_numResol.Text = "0";
+                txt_numSecEnvio.Text = "2";
+                dp_fechaResol.Value = new DateTime(2020,12,11);
+                dp_fechaInicio.Value = new DateTime(2020, 12, 11);
+                dp_fechaFinal.Value = new DateTime(2020, 12, 11);
+                dp_tmstFirma.Value = new DateTime(2020, 12, 11,15,17,22);
                 List<Rangos>uti = new List<Rangos>();
                 List<Rangos> anul=new List<Rangos>();
-                Rangos r1 = new Rangos(6, 10);
-                Rangos r2 = new Rangos(11, 12);
-                Rangos r3 = new Rangos(6, 10);
-                Rangos r4 = new Rangos(11, 12);
-                uti.Add(r1);
-                anul.Add(r2);
-                uti.Add(r3);
-                anul.Add(r4);
 
+
+                /*
                 ResumenInvalido resumen1 = new ResumenInvalido();
                 resumen1.TipoDocumento = 39;
                 resumen1.MntNeto = 43832;
@@ -108,15 +105,22 @@ namespace DemoEndPoints.RCOF
                 resumen1.FoliosUtilizados = 5;
                 resumen1.RangoUtilizados = uti;
                 resumen1.RangoAnulados = anul;
+                */
+
+                uti.Add(new Rangos(6, 10));
+                anul.Add(new Rangos(11, 12));
+                resumenes.Add(new ResumenInvalido(39,43832, 8328, 19, 2000, 54160,5,0,5,uti,anul));
+
+                resumenes.Add(new ResumenInvalido(41, 43832, 8328, 19, 2000, 54160, 5, 0, 5, uti, anul));
+
+                resumenes.Add(new ResumenInvalido(61, 43832, 8328, 19, 2000, 54160, 5, 0, 5, uti, anul));
+                
+                resumenes.Add(new ResumenInvalido(39, 43832, 8328, 19, 2000, 54160, 5, 0, 5, uti, anul));
 
 
 
-                resumenes.Add(resumen1);
-
-
-
-
-
+                grid_anulados.DataSource = anul;
+                grid_utilizados.DataSource = uti;
                 grid_resumen.DataSource = resumenes;
                 grid_resumen.ClearSelection();
 
@@ -284,7 +288,9 @@ namespace DemoEndPoints.RCOF
             
         }
 
-        private async Task btn_generar_ClickAsync(object sender, EventArgs e)
+        
+
+        private async void btn_generar_Click(object sender, EventArgs e)
         {
             if (dialog == null)
             {
