@@ -335,5 +335,13 @@ namespace DemoEndPoints.GenerarDTE
                 MessageBox.Show("Selecciona un item de la lista de detalles para eliminar");
             }
         }
+
+        private void btn_caf_Click_1(object sender, EventArgs e)
+        {
+            dialogCaf = new OpenFileDialog();
+            dialogCaf.Filter = "XML Files(*.xml)|*.xml";
+            dialogCaf.ShowDialog();
+            txt_caf.Text = dialogCaf.FileName;
+        }
     }
 }
