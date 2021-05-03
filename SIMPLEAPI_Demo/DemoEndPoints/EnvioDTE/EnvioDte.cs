@@ -138,11 +138,13 @@ namespace DemoEndPoints
                     client.Dispose();
                     string sd = await response.Content.ReadAsStringAsync();
                     MessageBox.Show(sd);
+                    url = ConfigurationManager.AppSettings["url"];
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error : " + ex);
+                url = ConfigurationManager.AppSettings["url"];
             }
         }
         public void cargar()
