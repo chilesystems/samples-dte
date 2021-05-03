@@ -72,7 +72,7 @@ namespace DemoEndPoints.GenerarDTE
                     var fsJson = File.OpenRead(dialogJson.FileName);
                     var fsCert = File.OpenRead(dialogCert.FileName);
                     var fsCaf = File.OpenRead(dialogCaf.FileName);
-                    var streamContentJ = new StreamContent(fsCert);
+                    var streamContentJ = new StreamContent(fsJson);
                     var streamContentC = new StreamContent(fsCert);
                     var streamContentR = new StreamContent(fsCaf);
 
@@ -93,7 +93,7 @@ namespace DemoEndPoints.GenerarDTE
                         Name = "files",
                         FileName = dialogCaf.SafeFileName
                     };
-                    var jsonByte = new ByteArrayContent(await streamContentR.ReadAsByteArrayAsync());
+                    var jsonByte = new ByteArrayContent(await streamContentJ.ReadAsByteArrayAsync());
                     jsonByte.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
                     jsonByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
