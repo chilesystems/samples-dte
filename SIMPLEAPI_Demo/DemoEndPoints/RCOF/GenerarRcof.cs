@@ -22,7 +22,7 @@ namespace DemoEndPoints
     {
         string url = ConfigurationManager.AppSettings["url"] + ConfigurationManager.AppSettings["GenerarRcof"];
         string apikey = ConfigurationManager.AppSettings["apikey"];
-
+        string index = "";
         public int tipo;
         OpenFileDialog dialog;
         List<Resumen> resumenes=new List<Resumen>();
@@ -34,6 +34,8 @@ namespace DemoEndPoints
         private void GenerarRcof_Load(object sender, EventArgs e)
         {
             llenar();
+            grid_resumen.ReadOnly = true;
+            grid_resumen.ClearSelection();
         }
 
         private void label16_Click(object sender, EventArgs e)
@@ -162,8 +164,58 @@ namespace DemoEndPoints
             txt_mntIva.Text = "0";
             txt_tasaIva.Text = "0";
             txt_mntTotal.Text = "0";
-
+            grid_resumen.ClearSelection();
 
         }
+
+        private void grid_resumen_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                
+                    index = grid_resumen.Rows[e.RowIndex].Index.ToString();
+                grid_resumen.Rows[e.RowIndex].Selected = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Selecciona un item");
+            }
+            
+            
+            
+        }
+
+        private void btn_eliminarItem_Click(object sender, EventArgs e)
+        {
+            if (index.ToString() != "")
+            {
+                DialogResult r = MessageBox.Show("¿Estas seguro de eliminar este ítem?", "Eliminar Item", MessageBoxButtons.YesNo);
+                if (r == DialogResult.Yes)
+                {
+                    for (int i = 0; i < resumenes.Count; i++)
+                    {
+                        if (resumenes[i] == resumenes[int.Parse(index)])
+                        {
+                            resumenes.Remove(resumenes[int.Parse(index)]);
+                            if (resumenes.Count == 0)
+                            {
+                                grid_resumen.DataSource = null;
+                            }
+                            grid_resumen.DataSource = null;
+                            grid_resumen.DataSource = resumenes;
+                            grid_resumen.ClearSelection();
+                            index = "";
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un item de la lista de resumenes para eliminar");
+            }
+        }
+
+        
     }
 }

@@ -45,6 +45,7 @@ namespace DemoEndPoints
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_eliminarItem = new System.Windows.Forms.Button();
             this.grid_resumen = new System.Windows.Forms.DataGridView();
             this.btn_agregarDetalles = new System.Windows.Forms.Button();
             this.txt_foliosUtilizados = new System.Windows.Forms.NumericUpDown();
@@ -228,6 +229,7 @@ namespace DemoEndPoints
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btn_eliminarItem);
             this.groupBox2.Controls.Add(this.grid_resumen);
             this.groupBox2.Controls.Add(this.btn_agregarDetalles);
             this.groupBox2.Controls.Add(this.txt_foliosUtilizados);
@@ -255,6 +257,16 @@ namespace DemoEndPoints
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Resumen";
             // 
+            // btn_eliminarItem
+            // 
+            this.btn_eliminarItem.Location = new System.Drawing.Point(782, 87);
+            this.btn_eliminarItem.Name = "btn_eliminarItem";
+            this.btn_eliminarItem.Size = new System.Drawing.Size(75, 23);
+            this.btn_eliminarItem.TabIndex = 19;
+            this.btn_eliminarItem.Text = "Eliminar";
+            this.btn_eliminarItem.UseVisualStyleBackColor = true;
+            this.btn_eliminarItem.Click += new System.EventHandler(this.btn_eliminarItem_Click);
+            // 
             // grid_resumen
             // 
             this.grid_resumen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -262,6 +274,7 @@ namespace DemoEndPoints
             this.grid_resumen.Name = "grid_resumen";
             this.grid_resumen.Size = new System.Drawing.Size(943, 222);
             this.grid_resumen.TabIndex = 18;
+            this.grid_resumen.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_resumen_CellClick);
             // 
             // btn_agregarDetalles
             // 
@@ -582,5 +595,6 @@ namespace DemoEndPoints
         private System.Windows.Forms.Button btn_generar;
         private System.Windows.Forms.DataGridView grid_resumen;
         private System.Windows.Forms.Button btn_agregarDetalles;
+        private System.Windows.Forms.Button btn_eliminarItem;
     }
 }
