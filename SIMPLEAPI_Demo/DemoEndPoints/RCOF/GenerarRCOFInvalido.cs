@@ -128,6 +128,55 @@ namespace DemoEndPoints.RCOF
                 txt_passCertificado.Text = "Pollito702";
                 
             }
+            else if(tipo == 2)
+            {
+                txt_rutEmisor.Text = "13152240-1";
+                txt_rutEnvia.Text = "13152240-1";
+                txt_numResol.Text = "0";
+                txt_numSecEnvio.Text = "2";
+                dp_fechaResol.Value = new DateTime(2020, 12, 11);
+                dp_fechaInicio.Value = new DateTime(2020, 12, 11);
+                dp_fechaFinal.Value = new DateTime(2020, 12, 11);
+                dp_tmstFirma.Value = new DateTime(2020, 12, 11, 15, 17, 22);
+                List<Rangos> uti = new List<Rangos>();
+                List<Rangos> anul = new List<Rangos>();
+
+
+                /*
+                ResumenInvalido resumen1 = new ResumenInvalido();
+                resumen1.TipoDocumento = 39;
+                resumen1.MntNeto = 43832;
+                resumen1.MntIva = 8328;
+                resumen1.TasaIVA = 19;
+                resumen1.MntExento = 2000;
+                resumen1.MntTotal = 54160;
+                resumen1.FoliosEmitidos = 5;
+                resumen1.FoliosAnulados = 0;
+                resumen1.FoliosUtilizados = 5;
+                resumen1.RangoUtilizados = uti;
+                resumen1.RangoAnulados = anul;
+                */
+
+                uti.Add(new Rangos(6, 10));
+                anul.Add(new Rangos(11, 12));
+                resumenes.Add(new ResumenInvalido(39, 43832, 8328, 19, 2000, 54160, 5, 0, 5, uti, anul));
+
+                resumenes.Add(new ResumenInvalido(41, 43832, 8328, 19, 2000, 54160, 5, 0, 5, uti, anul));
+
+                resumenes.Add(new ResumenInvalido(33, 43832, 8328, 19, 2000, 54160, 5, 0, 5, uti, anul));
+
+
+
+
+                grid_anulados.DataSource = anul;
+                grid_utilizados.DataSource = uti;
+                grid_resumen.DataSource = resumenes;
+                grid_resumen.ClearSelection();
+
+                txt_rutCertificado.Text = "17096073-4";
+                txt_passCertificado.Text = "Pollito702";
+
+            }
 
 
         }
@@ -194,40 +243,7 @@ namespace DemoEndPoints.RCOF
         private void grid_resumen_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-
-
-
-
-            /*
-            string utI="";
-            string utF = "";
-            string anulI = "";
-            string anulF="";
-            
-
-            ResumenInvalido utilizados;
-            for (int i = 0; i < resumenes.Count; i++)
-            {
-                if (resumenes[i]==resumenes[index])
-                {
-                    utilizados = resumenes[i];
-                    utI = utI+" "+utilizados.RangoUtilizados[i].Inicial.ToString();
-                    utF = utF + " " + utilizados.RangoUtilizados[i].Final.ToString();
-                    anulI = anulI + " " + utilizados.RangoAnulados[i].Inicial.ToString();
-                    anulF = anulF + " " + utilizados.RangoAnulados[i].Final.ToString();
-                }
-            }
-            string msj = "\tInfo Item" +
-                          "\nRangos Utilizados Inicial : " + utI +
-                          "\nRangos Utilizados Final : " + utF +
-                          "\nRangos Anulados Inicial : " + anulI +
-                          "\nRangos Anulados Final: " + anulF;*/
-
-
             index = grid_resumen.Rows[e.RowIndex].Index.ToString();
-            
-            
-
             
                 if (seleccionado)
                 {
