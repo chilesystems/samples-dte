@@ -52,6 +52,7 @@ namespace DemoEndPoints
             this.label35 = new System.Windows.Forms.Label();
             this.btn_generarDTE = new System.Windows.Forms.Button();
             this.gb_descuentos = new System.Windows.Forms.GroupBox();
+            this.btn_eliminarDR = new System.Windows.Forms.Button();
             this.grid_descuentos = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
             this.txt_valorDescuentos = new System.Windows.Forms.NumericUpDown();
@@ -63,6 +64,7 @@ namespace DemoEndPoints
             this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn_eliminarD = new System.Windows.Forms.Button();
             this.grid_detalles = new System.Windows.Forms.DataGridView();
             this.btn_agregarDetalles = new System.Windows.Forms.Button();
             this.txt_descuentoDetalles = new System.Windows.Forms.NumericUpDown();
@@ -79,6 +81,7 @@ namespace DemoEndPoints
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_eliminarAE = new System.Windows.Forms.Button();
             this.btn_caf = new System.Windows.Forms.Button();
             this.txt_caf = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
@@ -109,6 +112,7 @@ namespace DemoEndPoints
             this.btn_agregarReferencia = new System.Windows.Forms.Button();
             this.grid_referencias = new System.Windows.Forms.DataGridView();
             this.gb_referencias = new System.Windows.Forms.GroupBox();
+            this.btn_eliminarR = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.dp_fechaEmisionEncabezado = new System.Windows.Forms.DateTimePicker();
             this.txt_tipoDteEncabezado = new System.Windows.Forms.NumericUpDown();
@@ -370,6 +374,7 @@ namespace DemoEndPoints
             // 
             // gb_descuentos
             // 
+            this.gb_descuentos.Controls.Add(this.btn_eliminarDR);
             this.gb_descuentos.Controls.Add(this.grid_descuentos);
             this.gb_descuentos.Controls.Add(this.button4);
             this.gb_descuentos.Controls.Add(this.txt_valorDescuentos);
@@ -387,6 +392,16 @@ namespace DemoEndPoints
             this.gb_descuentos.TabStop = false;
             this.gb_descuentos.Text = "Descuentos Recargos";
             // 
+            // btn_eliminarDR
+            // 
+            this.btn_eliminarDR.Location = new System.Drawing.Point(822, 50);
+            this.btn_eliminarDR.Name = "btn_eliminarDR";
+            this.btn_eliminarDR.Size = new System.Drawing.Size(75, 23);
+            this.btn_eliminarDR.TabIndex = 10;
+            this.btn_eliminarDR.Text = "Eliminar";
+            this.btn_eliminarDR.UseVisualStyleBackColor = true;
+            this.btn_eliminarDR.Click += new System.EventHandler(this.btn_eliminarDR_Click);
+            // 
             // grid_descuentos
             // 
             this.grid_descuentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -394,6 +409,7 @@ namespace DemoEndPoints
             this.grid_descuentos.Name = "grid_descuentos";
             this.grid_descuentos.Size = new System.Drawing.Size(794, 92);
             this.grid_descuentos.TabIndex = 9;
+            this.grid_descuentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_descuentos_CellClick);
             // 
             // button4
             // 
@@ -486,6 +502,7 @@ namespace DemoEndPoints
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btn_eliminarD);
             this.groupBox3.Controls.Add(this.grid_detalles);
             this.groupBox3.Controls.Add(this.btn_agregarDetalles);
             this.groupBox3.Controls.Add(this.txt_descuentoDetalles);
@@ -508,6 +525,16 @@ namespace DemoEndPoints
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Detalles";
             // 
+            // btn_eliminarD
+            // 
+            this.btn_eliminarD.Location = new System.Drawing.Point(798, 32);
+            this.btn_eliminarD.Name = "btn_eliminarD";
+            this.btn_eliminarD.Size = new System.Drawing.Size(75, 23);
+            this.btn_eliminarD.TabIndex = 15;
+            this.btn_eliminarD.Text = "Eliminar";
+            this.btn_eliminarD.UseVisualStyleBackColor = true;
+            this.btn_eliminarD.Click += new System.EventHandler(this.btn_eliminarD_Click);
+            // 
             // grid_detalles
             // 
             this.grid_detalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -515,6 +542,7 @@ namespace DemoEndPoints
             this.grid_detalles.Name = "grid_detalles";
             this.grid_detalles.Size = new System.Drawing.Size(924, 131);
             this.grid_detalles.TabIndex = 14;
+            this.grid_detalles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_detalles_CellClick);
             // 
             // btn_agregarDetalles
             // 
@@ -661,6 +689,7 @@ namespace DemoEndPoints
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btn_eliminarAE);
             this.groupBox2.Controls.Add(this.btn_caf);
             this.groupBox2.Controls.Add(this.txt_caf);
             this.groupBox2.Controls.Add(this.label41);
@@ -687,9 +716,19 @@ namespace DemoEndPoints
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Emisor";
             // 
+            // btn_eliminarAE
+            // 
+            this.btn_eliminarAE.Location = new System.Drawing.Point(732, 54);
+            this.btn_eliminarAE.Name = "btn_eliminarAE";
+            this.btn_eliminarAE.Size = new System.Drawing.Size(75, 23);
+            this.btn_eliminarAE.TabIndex = 19;
+            this.btn_eliminarAE.Text = "Eliminar";
+            this.btn_eliminarAE.UseVisualStyleBackColor = true;
+            this.btn_eliminarAE.Click += new System.EventHandler(this.btn_eliminarAE_Click);
+            // 
             // btn_caf
             // 
-            this.btn_caf.Location = new System.Drawing.Point(732, 65);
+            this.btn_caf.Location = new System.Drawing.Point(734, 96);
             this.btn_caf.Name = "btn_caf";
             this.btn_caf.Size = new System.Drawing.Size(75, 23);
             this.btn_caf.TabIndex = 18;
@@ -699,15 +738,15 @@ namespace DemoEndPoints
             // 
             // txt_caf
             // 
-            this.txt_caf.Location = new System.Drawing.Point(551, 62);
+            this.txt_caf.Location = new System.Drawing.Point(552, 98);
             this.txt_caf.Name = "txt_caf";
-            this.txt_caf.Size = new System.Drawing.Size(175, 20);
+            this.txt_caf.Size = new System.Drawing.Size(174, 20);
             this.txt_caf.TabIndex = 17;
             // 
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(442, 65);
+            this.label41.Location = new System.Drawing.Point(442, 101);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(104, 13);
             this.label41.TabIndex = 16;
@@ -718,8 +757,9 @@ namespace DemoEndPoints
             this.grid_actividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid_actividades.Location = new System.Drawing.Point(839, 19);
             this.grid_actividades.Name = "grid_actividades";
-            this.grid_actividades.Size = new System.Drawing.Size(126, 134);
+            this.grid_actividades.Size = new System.Drawing.Size(147, 134);
             this.grid_actividades.TabIndex = 15;
+            this.grid_actividades.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_actividades_CellClick);
             this.grid_actividades.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_actividades_CellContentClick);
             // 
             // btn_agregarActEco
@@ -945,9 +985,11 @@ namespace DemoEndPoints
             this.grid_referencias.Name = "grid_referencias";
             this.grid_referencias.Size = new System.Drawing.Size(917, 84);
             this.grid_referencias.TabIndex = 9;
+            this.grid_referencias.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_referencias_CellClick);
             // 
             // gb_referencias
             // 
+            this.gb_referencias.Controls.Add(this.btn_eliminarR);
             this.gb_referencias.Controls.Add(this.grid_referencias);
             this.gb_referencias.Controls.Add(this.btn_agregarReferencia);
             this.gb_referencias.Controls.Add(this.txt_glosaReferencia);
@@ -964,6 +1006,16 @@ namespace DemoEndPoints
             this.gb_referencias.TabIndex = 17;
             this.gb_referencias.TabStop = false;
             this.gb_referencias.Text = "Referencias";
+            // 
+            // btn_eliminarR
+            // 
+            this.btn_eliminarR.Location = new System.Drawing.Point(950, 48);
+            this.btn_eliminarR.Name = "btn_eliminarR";
+            this.btn_eliminarR.Size = new System.Drawing.Size(75, 23);
+            this.btn_eliminarR.TabIndex = 10;
+            this.btn_eliminarR.Text = "Eliminar";
+            this.btn_eliminarR.UseVisualStyleBackColor = true;
+            this.btn_eliminarR.Click += new System.EventHandler(this.btn_eliminarR_Click);
             // 
             // groupBox5
             // 
@@ -1386,5 +1438,9 @@ namespace DemoEndPoints
         private System.Windows.Forms.Label lbl_tipoDespacho;
         private System.Windows.Forms.Label lbl_tipotraslado;
         private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Button btn_eliminarAE;
+        private System.Windows.Forms.Button btn_eliminarR;
+        private System.Windows.Forms.Button btn_eliminarDR;
+        private System.Windows.Forms.Button btn_eliminarD;
     }
 }

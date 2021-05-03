@@ -22,7 +22,10 @@ namespace DemoEndPoints
         string url = ConfigurationManager.AppSettings["url"] + ConfigurationManager.AppSettings["GenerarDte"];
         string apikey = ConfigurationManager.AppSettings["apikey"];
 
-        
+        string indexA = "";
+        string indexR = "";
+        string indexD = "";
+        string indexDR = "";
         OpenFileDialog dialogCert;
         OpenFileDialog dialogCaf;
         List<Referencias> referencias = new List<Referencias>();
@@ -38,8 +41,17 @@ namespace DemoEndPoints
 
         private void GenerarDte_Load(object sender, EventArgs e)
         {
-            
             cargar();
+            grid_actividades.ClearSelection();
+            grid_descuentos.ClearSelection();
+            grid_detalles.ClearSelection();
+            grid_referencias.ClearSelection();
+
+            grid_actividades.ReadOnly=true;
+            grid_descuentos.ReadOnly = true;
+            grid_detalles.ReadOnly = true;
+            grid_referencias.ReadOnly = true;
+            
             
         }
 
@@ -110,6 +122,7 @@ namespace DemoEndPoints
             txt_folioReferencia.Text = "0";
             txt_glosaReferencia.Text = "";
             dp_fechaReferencias.Value = DateTime.Now;
+            grid_referencias.ClearSelection();
         }
 
         private void btn_agregarActEco_Click(object sender, EventArgs e)
@@ -128,7 +141,7 @@ namespace DemoEndPoints
                 grid_actividades.DataSource = actividades;
                 txt_actividadEcoEmisor.Text = "0";
             }
-            
+            grid_actividades.ClearSelection();
 
         }
 
@@ -158,6 +171,7 @@ namespace DemoEndPoints
             txt_descuentoDetalles.Text = "0";
             chbx_exentoSi.Checked=true;
             chbx_exentoNo.Checked = false;
+            grid_detalles.ClearSelection();
         }
 
         private void chbx_exentoSi_CheckedChanged(object sender, EventArgs e)
@@ -201,6 +215,7 @@ namespace DemoEndPoints
             txt_tipoMovDescuentos.Text = "0";
             txt_tipoValorDescuentos.Text = "0";
             txt_valorDescuentos.Text = "0";
+            grid_descuentos.ClearSelection();
         }
 
         private async void btn_generarDTE_Click(object sender, EventArgs e)
@@ -335,5 +350,189 @@ namespace DemoEndPoints
             dialogCert.ShowDialog();
             txt_certificado.Text = dialogCert.FileName;
         }
+
+        private void btn_eliminarAE_Click(object sender, EventArgs e)
+        {
+            if (indexA.ToString() != "")
+            {
+                DialogResult r = MessageBox.Show("¿Estas seguro de eliminar este ítem?", "Eliminar Item", MessageBoxButtons.YesNo);
+                if (r == DialogResult.Yes)
+                {
+                    for (int i = 0; i < actividades.Count; i++)
+                    {
+                        if (actividades[i] == actividades[int.Parse(indexA)])
+                        {
+                            actividades.Remove(actividades[int.Parse(indexA)]);
+                            if (actividades.Count == 0)
+                            {
+                                grid_actividades.DataSource = null;
+                            }
+                            grid_actividades.DataSource = null;
+                            grid_actividades.DataSource = actividades;
+                            grid_actividades.ClearSelection();
+                            indexA = "";
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un item de la lista de actividades económicas para eliminar");
+            }
+        }
+        private void grid_actividades_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+                indexA = grid_actividades.Rows[e.RowIndex].Index.ToString();
+                grid_actividades.Rows[e.RowIndex].Selected = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Selecciona un item");
+            }
+        }
+
+        private void btn_eliminarR_Click(object sender, EventArgs e)
+        {
+            if (indexR.ToString() != "")
+            {
+                DialogResult r = MessageBox.Show("¿Estas seguro de eliminar este ítem?", "Eliminar Item", MessageBoxButtons.YesNo);
+                if (r == DialogResult.Yes)
+                {
+                    for (int i = 0; i < referencias.Count; i++)
+                    {
+                        if (referencias[i] == referencias[int.Parse(indexR)])
+                        {
+                            referencias.Remove(referencias[int.Parse(indexR)]);
+                            if (referencias.Count == 0)
+                            {
+                                grid_referencias.DataSource = null;
+                            }
+                            grid_referencias.DataSource = null;
+                            grid_referencias.DataSource = referencias;
+                            grid_referencias.ClearSelection();
+                            indexR = "";
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un item de la lista de referencias para eliminar");
+            }
+        }
+        private void grid_referencias_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+                indexR = grid_referencias.Rows[e.RowIndex].Index.ToString();
+                grid_referencias.Rows[e.RowIndex].Selected = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Selecciona un item");
+            }
+        }
+
+        private void btn_eliminarDR_Click(object sender, EventArgs e)
+        {
+            if (indexDR.ToString() != "")
+            {
+                DialogResult r = MessageBox.Show("¿Estas seguro de eliminar este ítem?", "Eliminar Item", MessageBoxButtons.YesNo);
+                if (r == DialogResult.Yes)
+                {
+                    for (int i = 0; i < descuentos.Count; i++)
+                    {
+                        if (descuentos[i] == descuentos[int.Parse(indexDR)])
+                        {
+                            descuentos.Remove(descuentos[int.Parse(indexDR)]);
+                            if (descuentos.Count == 0)
+                            {
+                                grid_descuentos.DataSource = null;
+                            }
+                            grid_descuentos.DataSource = null;
+                            grid_descuentos.DataSource = descuentos;
+                            grid_descuentos.ClearSelection();
+                            indexDR = "";
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un item de la lista de descuentos recargos para eliminar");
+            }
+        }
+
+        private void grid_descuentos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+                indexDR = grid_descuentos.Rows[e.RowIndex].Index.ToString();
+                grid_descuentos.Rows[e.RowIndex].Selected = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Selecciona un item");
+            }
+        }
+
+        private void btn_eliminarD_Click(object sender, EventArgs e)
+        {
+            if (indexD.ToString() != "")
+            {
+                DialogResult r = MessageBox.Show("¿Estas seguro de eliminar este ítem?", "Eliminar Item", MessageBoxButtons.YesNo);
+                if (r == DialogResult.Yes)
+                {
+                    for (int i = 0; i < detalles.Count; i++)
+                    {
+                        if (detalles[i] == detalles[int.Parse(indexD)])
+                        {
+                            detalles.Remove(detalles[int.Parse(indexD)]);
+                            if (detalles.Count == 0)
+                            {
+                                grid_detalles.DataSource = null;
+                            }
+                            grid_detalles.DataSource = null;
+                            grid_detalles.DataSource = detalles;
+                            grid_detalles.ClearSelection();
+                            indexD = "";
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un item de la lista de detalles para eliminar");
+            }
+        }
+        private void grid_detalles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+                indexD = grid_detalles.Rows[e.RowIndex].Index.ToString();
+                grid_detalles.Rows[e.RowIndex].Selected = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Selecciona un item");
+            }
+        }
+
+       
+        
+
+        
+
+        
     }
 }
