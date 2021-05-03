@@ -64,7 +64,7 @@ namespace DemoEndPoints.Impresion
                     archivoByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "fileEnvio",
-                        FileName = dialog.FileName
+                        FileName = dialog.SafeFileName
                     };
                     
                     

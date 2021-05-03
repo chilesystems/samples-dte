@@ -72,7 +72,7 @@ namespace DemoEndPoints.Impresion
                     archivoByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "fileEnvio",
-                        FileName = dialogB.FileName
+                        FileName = dialogB.SafeFileName
                     };
                     HttpContent jsonString = new StringContent(json);
                     form.Add(jsonString, "input");

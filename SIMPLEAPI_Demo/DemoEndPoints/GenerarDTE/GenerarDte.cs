@@ -302,14 +302,14 @@ namespace DemoEndPoints
                     certificadoByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "files",
-                        FileName = dialogCert.FileName
+                        FileName = dialogCert.SafeFileName
                     };
                     var cafByte = new ByteArrayContent(await streamContentR.ReadAsByteArrayAsync());
                     cafByte.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
                     cafByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "files",
-                        FileName = dialogCaf.FileName
+                        FileName = dialogCaf.SafeFileName
                     };
                     HttpContent jsonString = new StringContent(json);
                     form.Add(jsonString, "input");

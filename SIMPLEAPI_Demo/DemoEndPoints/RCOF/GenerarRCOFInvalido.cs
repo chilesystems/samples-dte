@@ -360,7 +360,7 @@ namespace DemoEndPoints.RCOF
                     passByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "files",
-                        FileName = dialog.FileName
+                        FileName = dialog.SafeFileName
                     };
                     HttpContent jsonString = new StringContent(json);
                     form.Add(jsonString, "input");

@@ -84,21 +84,21 @@ namespace DemoEndPoints.GenerarDTE
                     certificadoByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "files",
-                        FileName = dialogCert.FileName
+                        FileName = dialogCert.SafeFileName
                     };
                     var cafByte = new ByteArrayContent(await streamContentR.ReadAsByteArrayAsync());
                     cafByte.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
                     cafByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "files",
-                        FileName = dialogCaf.FileName
+                        FileName = dialogCaf.SafeFileName
                     };
                     var jsonByte = new ByteArrayContent(await streamContentR.ReadAsByteArrayAsync());
                     jsonByte.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
                     jsonByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "files",
-                        FileName = dialogJson.FileName
+                        FileName = dialogJson.SafeFileName
                     };
                     //HttpContent jsonString = new StringContent(json);
                     form.Add(jsonByte);

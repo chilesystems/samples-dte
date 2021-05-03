@@ -95,14 +95,14 @@ namespace DemoEndPoints.Impresion
                     archivoByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "fileEnvio",
-                        FileName = dialogD.FileName
+                        FileName = dialogD.SafeFileName
                     };
                     var logoByte = new ByteArrayContent(await streamContentL.ReadAsByteArrayAsync());
                     archivoByte.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
                     archivoByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "logo",
-                        FileName = dialogL.FileName
+                        FileName = dialogL.SafeFileName
                     };
 
                     HttpContent jsonString = new StringContent(json);

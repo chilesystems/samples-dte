@@ -83,7 +83,7 @@ namespace DemoEndPoints
                     certificadoByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "files",
-                        FileName = dialogC.FileName
+                        FileName = dialogC.SafeFileName
                     };
                    
                     HttpContent jsonString = new StringContent(json);
