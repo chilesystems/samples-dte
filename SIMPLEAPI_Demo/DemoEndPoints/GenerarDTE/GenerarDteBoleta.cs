@@ -21,7 +21,7 @@ namespace DemoEndPoints.GenerarDTE
         string url = ConfigurationManager.AppSettings["url"] + ConfigurationManager.AppSettings["GenerarDte"];
         string apikey = ConfigurationManager.AppSettings["apikey"];
 
-
+        string indexD = "";
         OpenFileDialog dialogCert;
         OpenFileDialog dialogCaf;
         List<Detalles> detalles = new List<Detalles>();
@@ -72,6 +72,8 @@ namespace DemoEndPoints.GenerarDTE
             txt_descuentoDetalles.Text = "0";
             chbx_exentoSi.Checked = true;
             chbx_exentoNo.Checked = false;
+
+            grid_detalles.ClearSelection();
         }
 
         private async void btn_generarDTE_Click(object sender, EventArgs e)
@@ -147,14 +149,14 @@ namespace DemoEndPoints.GenerarDTE
                     certificadoByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "files",
-                        FileName = dialogCert.FileName
+                        FileName = dialogCert.SafeFileName
                     };
                     var cafByte = new ByteArrayContent(await streamContentR.ReadAsByteArrayAsync());
                     cafByte.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
                     cafByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "files",
-                        FileName = dialogCaf.FileName
+                        FileName = dialogCaf.SafeFileName
                     };
                     HttpContent jsonString = new StringContent(json);
                     form.Add(jsonString, "input");
@@ -198,6 +200,8 @@ namespace DemoEndPoints.GenerarDTE
         private void GenerarDteBoleta_Load(object sender, EventArgs e)
         {
             cargar();
+            grid_detalles.ClearSelection();
+            grid_detalles.ReadOnly = true;
         }
         private void cargar()
         {
@@ -230,6 +234,51 @@ namespace DemoEndPoints.GenerarDTE
 
             txt_rutCertificado.Text = "17096073-4";
             txt_passCertificado.Text = "Pollito702";
+        }
+
+        private void btn_eliminarD_Click(object sender, EventArgs e)
+        {
+            if (indexD.ToString() != "")
+            {
+                DialogResult r = MessageBox.Show("¿Estas seguro de eliminar este ítem?", "Eliminar Item", MessageBoxButtons.YesNo);
+                if (r == DialogResult.Yes)
+                {
+                    for (int i = 0; i < detalles.Count; i++)
+                    {
+                        if (detalles[i] == detalles[int.Parse(indexD)])
+                        {
+                            detalles.Remove(detalles[int.Parse(indexD)]);
+                            if (detalles.Count == 0)
+                            {
+                                grid_detalles.DataSource = null;
+                            }
+                            grid_detalles.DataSource = null;
+                            grid_detalles.DataSource = detalles;
+                            grid_detalles.ClearSelection();
+                            indexD = "";
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un item de la lista de detalles para eliminar");
+            }
+        }
+
+        private void grid_detalles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+                indexD = grid_detalles.Rows[e.RowIndex].Index.ToString();
+                grid_detalles.Rows[e.RowIndex].Selected = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Selecciona un item");
+            }
         }
     }
 }

@@ -100,6 +100,7 @@ namespace DemoEndPoints.GenerarDTE
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txt_indicarServOtros = new System.Windows.Forms.NumericUpDown();
             this.label30 = new System.Windows.Forms.Label();
+            this.btn_eliminarD = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_telefonoEmisor)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -475,6 +476,7 @@ namespace DemoEndPoints.GenerarDTE
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btn_eliminarD);
             this.groupBox3.Controls.Add(this.grid_detalles);
             this.groupBox3.Controls.Add(this.btn_agregarDetalles);
             this.groupBox3.Controls.Add(this.txt_descuentoDetalles);
@@ -504,6 +506,7 @@ namespace DemoEndPoints.GenerarDTE
             this.grid_detalles.Name = "grid_detalles";
             this.grid_detalles.Size = new System.Drawing.Size(924, 143);
             this.grid_detalles.TabIndex = 14;
+            this.grid_detalles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_detalles_CellClick);
             // 
             // btn_agregarDetalles
             // 
@@ -831,6 +834,16 @@ namespace DemoEndPoints.GenerarDTE
             this.label30.TabIndex = 0;
             this.label30.Text = "Indicador Servicio :";
             // 
+            // btn_eliminarD
+            // 
+            this.btn_eliminarD.Location = new System.Drawing.Point(798, 32);
+            this.btn_eliminarD.Name = "btn_eliminarD";
+            this.btn_eliminarD.Size = new System.Drawing.Size(75, 23);
+            this.btn_eliminarD.TabIndex = 16;
+            this.btn_eliminarD.Text = "Eliminar";
+            this.btn_eliminarD.UseVisualStyleBackColor = true;
+            this.btn_eliminarD.Click += new System.EventHandler(this.btn_eliminarD_Click);
+            // 
             // GenerarDteBoleta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -949,5 +962,6 @@ namespace DemoEndPoints.GenerarDTE
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.NumericUpDown txt_indicarServOtros;
         private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Button btn_eliminarD;
     }
 }

@@ -21,7 +21,8 @@ namespace DemoEndPoints.GenerarDTE
         string url = ConfigurationManager.AppSettings["url"] + ConfigurationManager.AppSettings["GenerarDte"];
         string apikey = ConfigurationManager.AppSettings["apikey"];
 
-
+        string indexA = "";
+        string indexD = "";
         OpenFileDialog dialogCert;
         OpenFileDialog dialogCaf;
         List<DetallesGuia> detalles = new List<DetallesGuia>();
@@ -54,6 +55,7 @@ namespace DemoEndPoints.GenerarDTE
                 grid_actividades.DataSource = actividades;
                 txt_actividadEcoEmisor.Text = "0";
             }
+            grid_actividades.ClearSelection();
         }
 
         private void btn_caf_Click(object sender, EventArgs e)
@@ -78,6 +80,7 @@ namespace DemoEndPoints.GenerarDTE
             txt_cantidadDetalles.Text = "0";
             txt_precioDetalles.Text = "0";
             txt_totalDetalles.Text = "0";
+            grid_detalles.ClearSelection();
         }
 
         private async void btn_generarDTE_Click(object sender, EventArgs e)
@@ -159,14 +162,14 @@ namespace DemoEndPoints.GenerarDTE
                     certificadoByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "files",
-                        FileName = dialogCert.FileName
+                        FileName = dialogCert.SafeFileName
                     };
                     var cafByte = new ByteArrayContent(await streamContentR.ReadAsByteArrayAsync());
                     cafByte.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
                     cafByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                     {
                         Name = "files",
-                        FileName = dialogCaf.FileName
+                        FileName = dialogCaf.SafeFileName
                     };
                     HttpContent jsonString = new StringContent(json);
                     form.Add(jsonString, "input");
@@ -194,6 +197,11 @@ namespace DemoEndPoints.GenerarDTE
         private void GenerarDTEGuiaD_Load(object sender, EventArgs e)
         {
             cargar();
+            grid_detalles.ClearSelection();
+            grid_actividades.ClearSelection();
+
+            grid_actividades.ReadOnly = true;
+            grid_detalles.ReadOnly = true;
         }
 
         private void cargar()
@@ -236,6 +244,96 @@ namespace DemoEndPoints.GenerarDTE
 
             txt_rutCertificado.Text = "17096073-4";
             txt_passCertificado.Text = "Pollito702";
+        }
+
+        private void grid_actividades_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+                indexA = grid_actividades.Rows[e.RowIndex].Index.ToString();
+                grid_actividades.Rows[e.RowIndex].Selected = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Selecciona un item");
+            }
+        }
+
+        private void btn_eliminarAE_Click(object sender, EventArgs e)
+        {
+            if (indexA.ToString() != "")
+            {
+                DialogResult r = MessageBox.Show("¿Estas seguro de eliminar este ítem?", "Eliminar Item", MessageBoxButtons.YesNo);
+                if (r == DialogResult.Yes)
+                {
+                    for (int i = 0; i < actividades.Count; i++)
+                    {
+                        if (actividades[i] == actividades[int.Parse(indexA)])
+                        {
+                            actividades.Remove(actividades[int.Parse(indexA)]);
+                            if (actividades.Count == 0)
+                            {
+                                grid_actividades.DataSource = null;
+                            }
+                            grid_actividades.DataSource = null;
+                            grid_actividades.DataSource = actividades;
+                            grid_actividades.ClearSelection();
+                            indexA = "";
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un item de la lista de actividades económicas para eliminar");
+            }
+        }
+
+        private void grid_detalles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+                indexD = grid_detalles.Rows[e.RowIndex].Index.ToString();
+                grid_detalles.Rows[e.RowIndex].Selected = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Selecciona un item");
+            }
+        }
+
+        private void btn_eliminarD_Click(object sender, EventArgs e)
+        {
+            if (indexD.ToString() != "")
+            {
+                DialogResult r = MessageBox.Show("¿Estas seguro de eliminar este ítem?", "Eliminar Item", MessageBoxButtons.YesNo);
+                if (r == DialogResult.Yes)
+                {
+                    for (int i = 0; i < detalles.Count; i++)
+                    {
+                        if (detalles[i] == detalles[int.Parse(indexD)])
+                        {
+                            detalles.Remove(detalles[int.Parse(indexD)]);
+                            if (detalles.Count == 0)
+                            {
+                                grid_detalles.DataSource = null;
+                            }
+                            grid_detalles.DataSource = null;
+                            grid_detalles.DataSource = detalles;
+                            grid_detalles.ClearSelection();
+                            indexD = "";
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un item de la lista de detalles para eliminar");
+            }
         }
     }
 }

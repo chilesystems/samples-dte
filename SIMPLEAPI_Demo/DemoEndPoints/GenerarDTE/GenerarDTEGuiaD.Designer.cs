@@ -49,10 +49,6 @@ namespace DemoEndPoints.GenerarDTE
             this.lbl_tipoDespacho = new System.Windows.Forms.Label();
             this.lbl_tipotraslado = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btn_caf = new System.Windows.Forms.Button();
-            this.txt_caf = new System.Windows.Forms.TextBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.grid_actividades = new System.Windows.Forms.DataGridView();
             this.btn_agregarActEco = new System.Windows.Forms.Button();
             this.txt_actividadEcoEmisor = new System.Windows.Forms.NumericUpDown();
             this.txt_direccionEmisor = new System.Windows.Forms.TextBox();
@@ -99,6 +95,12 @@ namespace DemoEndPoints.GenerarDTE
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.btn_eliminarAE = new System.Windows.Forms.Button();
+            this.btn_caf = new System.Windows.Forms.Button();
+            this.txt_caf = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.grid_actividades = new System.Windows.Forms.DataGridView();
+            this.btn_eliminarD = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoDteEncabezado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_folioEncabezado)).BeginInit();
@@ -110,7 +112,6 @@ namespace DemoEndPoints.GenerarDTE
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoDespachoOtros)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoTrasladoOtros)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grid_actividades)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_actividadEcoEmisor)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -119,6 +120,7 @@ namespace DemoEndPoints.GenerarDTE
             ((System.ComponentModel.ISupportInitialize)(this.txt_totalDetalles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_precioDetalles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_cantidadDetalles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_actividades)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox5
@@ -329,10 +331,11 @@ namespace DemoEndPoints.GenerarDTE
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.grid_actividades);
+            this.groupBox2.Controls.Add(this.btn_eliminarAE);
             this.groupBox2.Controls.Add(this.btn_caf);
             this.groupBox2.Controls.Add(this.txt_caf);
             this.groupBox2.Controls.Add(this.label41);
-            this.groupBox2.Controls.Add(this.grid_actividades);
             this.groupBox2.Controls.Add(this.btn_agregarActEco);
             this.groupBox2.Controls.Add(this.txt_actividadEcoEmisor);
             this.groupBox2.Controls.Add(this.txt_direccionEmisor);
@@ -352,40 +355,6 @@ namespace DemoEndPoints.GenerarDTE
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Emisor";
-            // 
-            // btn_caf
-            // 
-            this.btn_caf.Location = new System.Drawing.Point(732, 88);
-            this.btn_caf.Name = "btn_caf";
-            this.btn_caf.Size = new System.Drawing.Size(75, 23);
-            this.btn_caf.TabIndex = 18;
-            this.btn_caf.Text = "Cargar";
-            this.btn_caf.UseVisualStyleBackColor = true;
-            this.btn_caf.Click += new System.EventHandler(this.btn_caf_Click);
-            // 
-            // txt_caf
-            // 
-            this.txt_caf.Location = new System.Drawing.Point(551, 85);
-            this.txt_caf.Name = "txt_caf";
-            this.txt_caf.Size = new System.Drawing.Size(175, 20);
-            this.txt_caf.TabIndex = 17;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(442, 88);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(104, 13);
-            this.label41.TabIndex = 16;
-            this.label41.Text = "Selecciona un CAF :";
-            // 
-            // grid_actividades
-            // 
-            this.grid_actividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid_actividades.Location = new System.Drawing.Point(839, 19);
-            this.grid_actividades.Name = "grid_actividades";
-            this.grid_actividades.Size = new System.Drawing.Size(126, 134);
-            this.grid_actividades.TabIndex = 15;
             // 
             // btn_agregarActEco
             // 
@@ -701,6 +670,7 @@ namespace DemoEndPoints.GenerarDTE
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btn_eliminarD);
             this.groupBox3.Controls.Add(this.grid_detalles);
             this.groupBox3.Controls.Add(this.btn_agregarDetalles);
             this.groupBox3.Controls.Add(this.txt_totalDetalles);
@@ -725,6 +695,7 @@ namespace DemoEndPoints.GenerarDTE
             this.grid_detalles.Name = "grid_detalles";
             this.grid_detalles.Size = new System.Drawing.Size(924, 131);
             this.grid_detalles.TabIndex = 14;
+            this.grid_detalles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_detalles_CellClick);
             // 
             // btn_agregarDetalles
             // 
@@ -815,6 +786,60 @@ namespace DemoEndPoints.GenerarDTE
             this.label13.TabIndex = 0;
             this.label13.Text = "Nombre :";
             // 
+            // btn_eliminarAE
+            // 
+            this.btn_eliminarAE.Location = new System.Drawing.Point(732, 57);
+            this.btn_eliminarAE.Name = "btn_eliminarAE";
+            this.btn_eliminarAE.Size = new System.Drawing.Size(75, 23);
+            this.btn_eliminarAE.TabIndex = 23;
+            this.btn_eliminarAE.Text = "Eliminar";
+            this.btn_eliminarAE.UseVisualStyleBackColor = true;
+            this.btn_eliminarAE.Click += new System.EventHandler(this.btn_eliminarAE_Click);
+            // 
+            // btn_caf
+            // 
+            this.btn_caf.Location = new System.Drawing.Point(732, 103);
+            this.btn_caf.Name = "btn_caf";
+            this.btn_caf.Size = new System.Drawing.Size(75, 23);
+            this.btn_caf.TabIndex = 22;
+            this.btn_caf.Text = "Cargar";
+            this.btn_caf.UseVisualStyleBackColor = true;
+            // 
+            // txt_caf
+            // 
+            this.txt_caf.Location = new System.Drawing.Point(552, 105);
+            this.txt_caf.Name = "txt_caf";
+            this.txt_caf.Size = new System.Drawing.Size(174, 20);
+            this.txt_caf.TabIndex = 21;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(442, 108);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(104, 13);
+            this.label41.TabIndex = 20;
+            this.label41.Text = "Selecciona un CAF :";
+            // 
+            // grid_actividades
+            // 
+            this.grid_actividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_actividades.Location = new System.Drawing.Point(839, 19);
+            this.grid_actividades.Name = "grid_actividades";
+            this.grid_actividades.Size = new System.Drawing.Size(147, 134);
+            this.grid_actividades.TabIndex = 24;
+            this.grid_actividades.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_actividades_CellClick);
+            // 
+            // btn_eliminarD
+            // 
+            this.btn_eliminarD.Location = new System.Drawing.Point(533, 41);
+            this.btn_eliminarD.Name = "btn_eliminarD";
+            this.btn_eliminarD.Size = new System.Drawing.Size(75, 23);
+            this.btn_eliminarD.TabIndex = 16;
+            this.btn_eliminarD.Text = "Eliminar";
+            this.btn_eliminarD.UseVisualStyleBackColor = true;
+            this.btn_eliminarD.Click += new System.EventHandler(this.btn_eliminarD_Click);
+            // 
             // GenerarDTEGuiaD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -846,7 +871,6 @@ namespace DemoEndPoints.GenerarDTE
             ((System.ComponentModel.ISupportInitialize)(this.txt_tipoTrasladoOtros)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grid_actividades)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_actividadEcoEmisor)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -858,6 +882,7 @@ namespace DemoEndPoints.GenerarDTE
             ((System.ComponentModel.ISupportInitialize)(this.txt_totalDetalles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_precioDetalles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_cantidadDetalles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_actividades)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -884,10 +909,6 @@ namespace DemoEndPoints.GenerarDTE
         private System.Windows.Forms.Label lbl_tipoDespacho;
         private System.Windows.Forms.Label lbl_tipotraslado;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btn_caf;
-        private System.Windows.Forms.TextBox txt_caf;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.DataGridView grid_actividades;
         private System.Windows.Forms.Button btn_agregarActEco;
         private System.Windows.Forms.NumericUpDown txt_actividadEcoEmisor;
         private System.Windows.Forms.TextBox txt_direccionEmisor;
@@ -934,5 +955,11 @@ namespace DemoEndPoints.GenerarDTE
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btn_eliminarAE;
+        private System.Windows.Forms.Button btn_caf;
+        private System.Windows.Forms.TextBox txt_caf;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.DataGridView grid_actividades;
+        private System.Windows.Forms.Button btn_eliminarD;
     }
 }
