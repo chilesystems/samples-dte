@@ -16,7 +16,7 @@ namespace DemoEndPoints.Impresion
 {
     public partial class Pdf417 : Form
     {
-        string url = ConfigurationManager.AppSettings["url"];
+        string url = ConfigurationManager.AppSettings["urlLocal"];
         string apikey = ConfigurationManager.AppSettings["apikey"];
         public int tipo;
         OpenFileDialog dialog;
@@ -73,17 +73,18 @@ namespace DemoEndPoints.Impresion
                     var pass = Encoding.GetEncoding("ISO-8859-1").GetBytes("api:2318-J320-6378-2229-4600");
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                     Convert.ToBase64String(pass));*/
-                    HttpResponseMessage response = await client.GetAsync(url/*, form*/);
+                    HttpResponseMessage response = await client.PostAsync(url, form);
                     response.EnsureSuccessStatusCode();
                     client.Dispose();
                     string sd = await response.Content.ReadAsStringAsync();
+                    MemoryStream ms = new MemoryStream(Convert.FromBase64String(sd));
                     MessageBox.Show(sd);
-                    url = ConfigurationManager.AppSettings["url"];
+                    url = ConfigurationManager.AppSettings["urlLocal"];
                 }
                 catch(Exception ex)
                 {
                     MessageBox.Show("Error : "+ex);
-                    url = ConfigurationManager.AppSettings["url"];
+                    url = ConfigurationManager.AppSettings["urlLocal"];
                 }
             }
             

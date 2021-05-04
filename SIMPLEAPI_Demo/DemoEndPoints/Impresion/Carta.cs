@@ -118,12 +118,12 @@ namespace DemoEndPoints.Impresion
                     client.Dispose();
                     string sd = await response.Content.ReadAsStringAsync();
                     MessageBox.Show(sd);
-                    url = ConfigurationManager.AppSettings["url"];
+                    url = ConfigurationManager.AppSettings["urlLocal"];
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error : " + ex);
-                    url = ConfigurationManager.AppSettings["url"];
+                    url = ConfigurationManager.AppSettings["urlLocal"];
                 }
             }
         }
