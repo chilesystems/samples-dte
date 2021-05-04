@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -13,12 +15,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace DemoEndPoints.Impresion
 {
     public partial class Carta : Form
     {
-        string url = ConfigurationManager.AppSettings["url"];
+        string url = ConfigurationManager.AppSettings["urlLocal"];
         string apikey = ConfigurationManager.AppSettings["apikey"];
         public int tipo;
         OpenFileDialog dialogD;
@@ -79,12 +82,12 @@ namespace DemoEndPoints.Impresion
                     carta.NumeroResolucion = int.Parse(txt_numResolucion.Text);
                     carta.UnidadSII = txt_unidadSii.Text;
                     carta.FechaResolucion = dp_fechaResolucion.Value.ToString("yyyy-MM-dd");
-
+                    
                     var json = new JavaScriptSerializer().Serialize(carta);
                     var fsD = File.OpenRead(dialogD.FileName);
                     var streamContentD = new StreamContent(fsD);
 
-                    var fsL = File.OpenRead(dialogD.FileName);
+                    var fsL = File.OpenRead(dialogL.FileName);
                     var streamContentL = new StreamContent(fsL);
 
                     HttpClient client = new HttpClient();
@@ -97,9 +100,10 @@ namespace DemoEndPoints.Impresion
                         Name = "fileEnvio",
                         FileName = dialogD.SafeFileName
                     };
+
                     var logoByte = new ByteArrayContent(await streamContentL.ReadAsByteArrayAsync());
-                    archivoByte.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
-                    archivoByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                    logoByte.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+                    logoByte.Headers.ContentDisposition = new ContentDispositionHeaderValue("image")
                     {
                         Name = "logo",
                         FileName = dialogL.SafeFileName
@@ -117,7 +121,35 @@ namespace DemoEndPoints.Impresion
                     response.EnsureSuccessStatusCode();
                     client.Dispose();
                     string sd = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show(sd);
+                    if (tipo==1||tipo==4)
+                    {
+                        txt_result.Text = sd;
+                       
+                    }
+                    else if (tipo == 2 ||tipo==3)
+                    {
+                        XmlDocument doc = new XmlDocument();
+                        doc.LoadXml(sd);
+                        txt_result.Text = doc.DocumentElement.FirstChild.InnerText;
+                        sd= doc.DocumentElement.FirstChild.InnerText;
+                        var ruta = @"C:\Users\McL\source\repos\samples-dte\SIMPLEAPI_Demo\DemoEndPoints\" + DateTime.Now.Ticks.ToString();
+                        
+                        byte[] bytes = Convert.FromBase64String(sd);
+                        System.IO.FileStream stream =
+                        new FileStream(ruta, FileMode.CreateNew);
+                        System.IO.BinaryWriter writer =
+                            new BinaryWriter(stream);
+                        writer.Write(bytes, 0, bytes.Length);
+                        writer.Close();
+                        File.Delete(ruta);
+                        Process proceso = new Process();
+                        proceso.StartInfo.FileName = ruta;
+                        proceso.Start();
+                        
+                    }
+                   
+
+                    MessageBox.Show("Operación Exitosa");
                     url = ConfigurationManager.AppSettings["urlLocal"];
                 }
                 catch (Exception ex)
@@ -130,7 +162,16 @@ namespace DemoEndPoints.Impresion
 
         private void Carta_Load(object sender, EventArgs e)
         {
+            if (tipo==1 || tipo==2)
+            {
+                lbl_dte.Text = "Selecciona el dte boleta :";
+            }
+            else if (tipo == 3 || tipo == 4)
+            {
+                lbl_dte.Text = "Selecciona el dte factura :";
+            }
             cargar();
+
         }
         public void cargar()
         {

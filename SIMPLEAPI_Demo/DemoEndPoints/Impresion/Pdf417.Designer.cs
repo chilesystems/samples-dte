@@ -34,6 +34,7 @@ namespace DemoEndPoints.Impresion
             this.btn_cargar = new System.Windows.Forms.Button();
             this.txt_archivo = new System.Windows.Forms.TextBox();
             this.lbl_archivo = new System.Windows.Forms.Label();
+            this.txt_result = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,17 +87,27 @@ namespace DemoEndPoints.Impresion
             this.lbl_archivo.TabIndex = 0;
             this.lbl_archivo.Text = "Selecciona el dte :";
             // 
+            // txt_result
+            // 
+            this.txt_result.Location = new System.Drawing.Point(13, 155);
+            this.txt_result.Multiline = true;
+            this.txt_result.Name = "txt_result";
+            this.txt_result.Size = new System.Drawing.Size(366, 326);
+            this.txt_result.TabIndex = 1;
+            // 
             // Pdf417
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(420, 150);
+            this.ClientSize = new System.Drawing.Size(410, 514);
+            this.Controls.Add(this.txt_result);
             this.Controls.Add(this.groupBox1);
             this.Name = "Pdf417";
             this.Load += new System.EventHandler(this.Pdf417_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -107,5 +118,6 @@ namespace DemoEndPoints.Impresion
         private System.Windows.Forms.Button btn_cargar;
         private System.Windows.Forms.TextBox txt_archivo;
         private System.Windows.Forms.Label lbl_archivo;
+        private System.Windows.Forms.TextBox txt_result;
     }
 }

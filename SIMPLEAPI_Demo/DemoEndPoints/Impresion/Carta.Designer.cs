@@ -39,12 +39,14 @@ namespace DemoEndPoints.Impresion
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_archivo = new System.Windows.Forms.Button();
             this.txt_archivo = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbl_dte = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_logo = new System.Windows.Forms.Button();
             this.txt_logo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_enviar = new System.Windows.Forms.Button();
+            this.txt_result = new System.Windows.Forms.TextBox();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_numResolucion)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -118,7 +120,7 @@ namespace DemoEndPoints.Impresion
             // 
             this.groupBox2.Controls.Add(this.btn_archivo);
             this.groupBox2.Controls.Add(this.txt_archivo);
-            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.lbl_dte);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(404, 91);
@@ -143,14 +145,14 @@ namespace DemoEndPoints.Impresion
             this.txt_archivo.Size = new System.Drawing.Size(100, 20);
             this.txt_archivo.TabIndex = 1;
             // 
-            // label4
+            // lbl_dte
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 28);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Selecciona el archivo :";
+            this.lbl_dte.AutoSize = true;
+            this.lbl_dte.Location = new System.Drawing.Point(14, 28);
+            this.lbl_dte.Name = "lbl_dte";
+            this.lbl_dte.Size = new System.Drawing.Size(115, 13);
+            this.lbl_dte.TabIndex = 0;
+            this.lbl_dte.Text = "Selecciona el archivo :";
             // 
             // groupBox3
             // 
@@ -200,11 +202,20 @@ namespace DemoEndPoints.Impresion
             this.btn_enviar.UseVisualStyleBackColor = true;
             this.btn_enviar.Click += new System.EventHandler(this.btn_enviar_Click);
             // 
+            // txt_result
+            // 
+            this.txt_result.Location = new System.Drawing.Point(29, 275);
+            this.txt_result.Multiline = true;
+            this.txt_result.Name = "txt_result";
+            this.txt_result.Size = new System.Drawing.Size(759, 211);
+            this.txt_result.TabIndex = 8;
+            // 
             // Carta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 256);
+            this.ClientSize = new System.Drawing.Size(1077, 526);
+            this.Controls.Add(this.txt_result);
             this.Controls.Add(this.btn_enviar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -219,6 +230,7 @@ namespace DemoEndPoints.Impresion
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -234,11 +246,13 @@ namespace DemoEndPoints.Impresion
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btn_archivo;
         private System.Windows.Forms.TextBox txt_archivo;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbl_dte;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btn_logo;
         private System.Windows.Forms.TextBox txt_logo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btn_enviar;
+        private System.Windows.Forms.TextBox txt_result;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

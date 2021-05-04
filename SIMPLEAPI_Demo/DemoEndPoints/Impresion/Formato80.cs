@@ -13,12 +13,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace DemoEndPoints.Impresion
 {
     public partial class Formato80 : Form
     {
-        string url = ConfigurationManager.AppSettings["url"];
+        string url = ConfigurationManager.AppSettings["urlLocal"];
         string apikey = ConfigurationManager.AppSettings["apikey"];
         public int tipo;
         OpenFileDialog dialogB;
@@ -85,8 +86,21 @@ namespace DemoEndPoints.Impresion
                     response.EnsureSuccessStatusCode();
                     client.Dispose();
                     string sd = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show(sd);
-                     url = ConfigurationManager.AppSettings["urlLocal"];
+                    if (tipo==1)
+                    {
+                        txt_result.Text = sd;
+                    }
+                    else if (tipo==2)
+                    {
+                        XmlDocument doc = new XmlDocument();
+                        doc.LoadXml(sd);
+                        txt_result.Text = doc.DocumentElement.FirstChild.InnerText;
+                    }
+                    
+                    
+
+                    MessageBox.Show("Operación Exitosa");
+                    url = ConfigurationManager.AppSettings["urlLocal"];
                 }
                 catch (Exception ex)
                 {

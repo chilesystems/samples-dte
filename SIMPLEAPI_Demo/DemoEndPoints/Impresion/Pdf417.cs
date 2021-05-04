@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Syncfusion.Pdf;
+using Syncfusion.Pdf.Graphics;
+using Syncfusion.Pdf.Parsing;
+using System.Drawing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -11,6 +15,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace DemoEndPoints.Impresion
 {
@@ -77,7 +82,14 @@ namespace DemoEndPoints.Impresion
                     response.EnsureSuccessStatusCode();
                     client.Dispose();
                     string sd = await response.Content.ReadAsStringAsync();
-                    MemoryStream ms = new MemoryStream(Convert.FromBase64String(sd));
+
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(sd);
+                    txt_result.Text = doc.DocumentElement.FirstChild.InnerText;
+                    sd= doc.DocumentElement.FirstChild.InnerText;
+
+                    byte[] byteArray = System.Convert.FromBase64String(sd);
+                    
                     MessageBox.Show(sd);
                     url = ConfigurationManager.AppSettings["urlLocal"];
                 }
