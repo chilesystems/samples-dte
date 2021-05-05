@@ -20,6 +20,7 @@ namespace DemoEndPoints
     public partial class EnvioDte : Form
     {
         public int tipo;
+        
         string url = ConfigurationManager.AppSettings["url"];
         string apikey = ConfigurationManager.AppSettings["apikey"];
 
@@ -32,6 +33,22 @@ namespace DemoEndPoints
 
         private void EnvioDte_Load(object sender, EventArgs e)
         {
+            if (tipo == 1)
+            {
+                this.Text = "Generar Envio DTE";
+            }
+            else if (tipo == 2)
+            {
+                this.Text = "Generar Envio Boleta";
+            }
+            else if (tipo == 3)
+            {
+                this.Text = "Enviar Envio DTE";
+            }
+            else if (tipo == 4)
+            {
+                this.Text = "Enviar Envio Boleta";
+            }
             cargar();
         }
 

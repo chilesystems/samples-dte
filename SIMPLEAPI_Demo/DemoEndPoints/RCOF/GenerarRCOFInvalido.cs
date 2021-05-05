@@ -61,6 +61,14 @@ namespace DemoEndPoints.RCOF
 
         private void GenerarRCOFInvalido_Load(object sender, EventArgs e)
         {
+            if (tipo==1)
+            {
+                this.Text = "Generar RCOF Invalido 4 Resumenes";
+            }
+            else if (tipo==2)
+            {
+                this.Text = "Generar RCOF Invalido Resumen Tipo Invalido";
+            }
             lbl_rangoAF.Visible = false;
             lbl_rangoAI.Visible = false;
             lbl_rangoUF.Visible = false;
@@ -75,6 +83,7 @@ namespace DemoEndPoints.RCOF
             btn_eliminarResumen.Visible = false;
             cargar();
             grid_resumen.ReadOnly = true;
+
         }
         public void cargar()
         {
@@ -89,23 +98,7 @@ namespace DemoEndPoints.RCOF
                 dp_fechaFinal.Value = new DateTime(2020, 12, 11);
                 dp_tmstFirma.Value = new DateTime(2020, 12, 11,15,17,22);
                 List<Rangos>uti = new List<Rangos>();
-                List<Rangos> anul=new List<Rangos>();
-
-
-                /*
-                ResumenInvalido resumen1 = new ResumenInvalido();
-                resumen1.TipoDocumento = 39;
-                resumen1.MntNeto = 43832;
-                resumen1.MntIva = 8328;
-                resumen1.TasaIVA = 19;
-                resumen1.MntExento = 2000;
-                resumen1.MntTotal = 54160;
-                resumen1.FoliosEmitidos = 5;
-                resumen1.FoliosAnulados = 0;
-                resumen1.FoliosUtilizados = 5;
-                resumen1.RangoUtilizados = uti;
-                resumen1.RangoAnulados = anul;
-                */
+                List<Rangos> anul = new List<Rangos>();
 
                 uti.Add(new Rangos(6, 10));
                 anul.Add(new Rangos(11, 12));

@@ -700,7 +700,7 @@ namespace DemoEndPoints.RCOF
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "GenerarRCOFInvalido";
-            this.Text = "Generar RCOF Invalido con 4 Resumenes";
+            this.Text = "Generar RCOF Invalido";
             this.Load += new System.EventHandler(this.GenerarRCOFInvalido_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
