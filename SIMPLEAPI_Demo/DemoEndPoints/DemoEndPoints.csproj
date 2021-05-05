@@ -222,6 +222,12 @@
       <DependentUpon>GenerarRCOFInvalido.cs</DependentUpon>
     </Compile>
     <Compile Include="RCOF\RCOF.cs" />
+    <Compile Include="RCOF\Resultado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RCOF\Resultado.Designer.cs">
+      <DependentUpon>Resultado.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="EnvioDTE\ConsultarEstadoEnvio.resx">
       <DependentUpon>ConsultarEstadoEnvio.cs</DependentUpon>
     </EmbeddedResource>
@@ -278,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RCOF\GenerarRCOFInvalido.resx">
       <DependentUpon>GenerarRCOFInvalido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RCOF\Resultado.resx">
+      <DependentUpon>Resultado.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

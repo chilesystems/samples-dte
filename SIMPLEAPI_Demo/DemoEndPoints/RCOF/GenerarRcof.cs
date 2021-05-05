@@ -112,15 +112,22 @@ namespace DemoEndPoints
                         form.Add(jsonString, "input");
                         form.Add(passByte);
 
-                        var pass = Encoding.GetEncoding("ISO-8859-1").GetBytes("api:2318-J320-6378-2229-4600");
+                        var pass = Encoding.GetEncoding("ISO-8859-1").GetBytes("api:"+apikey);
                         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                         Convert.ToBase64String(pass));
                         HttpResponseMessage response = await client.PostAsync(url, form);
                         response.EnsureSuccessStatusCode();
                         client.Dispose();
                         string sd = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show(sd);
+                    //MessageBox.Show(sd);
+
+                    Resultado resultado = new Resultado();
+                    resultado.json = json;
+                    resultado.xml = sd;
+                    resultado.response = response;
+                    resultado.Show();
                     
+                        
                 }
                 catch (Exception ex)
                 {
