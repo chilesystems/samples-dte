@@ -45,8 +45,6 @@ namespace DemoEndPoints.Impresion
             this.txt_logo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_enviar = new System.Windows.Forms.Button();
-            this.txt_result = new System.Windows.Forms.TextBox();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_numResolucion)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -202,24 +200,16 @@ namespace DemoEndPoints.Impresion
             this.btn_enviar.UseVisualStyleBackColor = true;
             this.btn_enviar.Click += new System.EventHandler(this.btn_enviar_Click);
             // 
-            // txt_result
-            // 
-            this.txt_result.Location = new System.Drawing.Point(29, 275);
-            this.txt_result.Multiline = true;
-            this.txt_result.Name = "txt_result";
-            this.txt_result.Size = new System.Drawing.Size(759, 211);
-            this.txt_result.TabIndex = 8;
-            // 
             // Carta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1077, 526);
-            this.Controls.Add(this.txt_result);
+            this.ClientSize = new System.Drawing.Size(799, 254);
             this.Controls.Add(this.btn_enviar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Carta";
             this.Load += new System.EventHandler(this.Carta_Load);
             this.groupBox1.ResumeLayout(false);
@@ -230,7 +220,6 @@ namespace DemoEndPoints.Impresion
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -252,7 +241,5 @@ namespace DemoEndPoints.Impresion
         private System.Windows.Forms.TextBox txt_logo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btn_enviar;
-        private System.Windows.Forms.TextBox txt_result;
-        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }
