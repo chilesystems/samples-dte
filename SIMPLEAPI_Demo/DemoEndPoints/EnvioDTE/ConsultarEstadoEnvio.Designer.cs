@@ -292,6 +292,7 @@ namespace DemoEndPoints
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Name = "ConsultarEstadoEnvio";
+            this.Text = "Consultar Estado de Envios";
             this.Load += new System.EventHandler(this.ConsultarEstadoEnvio_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

@@ -19,7 +19,7 @@ namespace DemoEndPoints
 {
     public partial class ConsultarEstadoEnvio : Form
     {
-        string url = ConfigurationManager.AppSettings["url"]+ ConfigurationManager.AppSettings["ConsultarEstadoEnvio"];
+        string url = ConfigurationManager.AppSettings["urlLocal"]+ ConfigurationManager.AppSettings["ConsultarEstadoEnvio"];
         string apikey = ConfigurationManager.AppSettings["apikey"];
 
         OpenFileDialog dialogC;
@@ -93,7 +93,7 @@ namespace DemoEndPoints
                     var pass = Encoding.GetEncoding("ISO-8859-1").GetBytes("api:2318-J320-6378-2229-4600");
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                     Convert.ToBase64String(pass));
-                    HttpResponseMessage response = await client.GetAsync(url/*,form*/);
+                    HttpResponseMessage response = await client.PostAsync(url,form);
                     response.EnsureSuccessStatusCode();
                     client.Dispose();
                     string sd = await response.Content.ReadAsStringAsync();
