@@ -34,8 +34,9 @@ namespace DemoEndPoints.Impresion
             this.btn_cargar = new System.Windows.Forms.Button();
             this.txt_archivo = new System.Windows.Forms.TextBox();
             this.lbl_archivo = new System.Windows.Forms.Label();
-            this.txt_result = new System.Windows.Forms.TextBox();
+            this.img = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -87,27 +88,27 @@ namespace DemoEndPoints.Impresion
             this.lbl_archivo.TabIndex = 0;
             this.lbl_archivo.Text = "Selecciona el dte :";
             // 
-            // txt_result
+            // img
             // 
-            this.txt_result.Location = new System.Drawing.Point(13, 155);
-            this.txt_result.Multiline = true;
-            this.txt_result.Name = "txt_result";
-            this.txt_result.Size = new System.Drawing.Size(366, 326);
-            this.txt_result.TabIndex = 1;
+            this.img.Location = new System.Drawing.Point(416, 13);
+            this.img.Name = "img";
+            this.img.Size = new System.Drawing.Size(376, 120);
+            this.img.TabIndex = 1;
+            this.img.TabStop = false;
             // 
             // Pdf417
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 514);
-            this.Controls.Add(this.txt_result);
+            this.ClientSize = new System.Drawing.Size(814, 158);
+            this.Controls.Add(this.img);
             this.Controls.Add(this.groupBox1);
             this.Name = "Pdf417";
             this.Load += new System.EventHandler(this.Pdf417_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -118,6 +119,6 @@ namespace DemoEndPoints.Impresion
         private System.Windows.Forms.Button btn_cargar;
         private System.Windows.Forms.TextBox txt_archivo;
         private System.Windows.Forms.Label lbl_archivo;
-        private System.Windows.Forms.TextBox txt_result;
+        private System.Windows.Forms.PictureBox img;
     }
 }

@@ -16,6 +16,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using iTextSharp.text.pdf;
+using System.Drawing.Imaging;
+using System.Diagnostics;
 
 namespace DemoEndPoints.Impresion
 {
@@ -85,12 +88,20 @@ namespace DemoEndPoints.Impresion
 
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(sd);
-                    txt_result.Text = doc.DocumentElement.FirstChild.InnerText;
-                    sd= doc.DocumentElement.FirstChild.InnerText;
-
-                    byte[] byteArray = System.Convert.FromBase64String(sd);
                     
-                    MessageBox.Show(sd);
+                    sd= doc.DocumentElement.FirstChild.InnerText;
+                    
+                    var ruta = @"C:\Users\McL\source\repos\samples-dte\SIMPLEAPI_Demo\DemoEndPoints\" + DateTime.Now.Ticks.ToString() + ".jpg";
+
+                    byte[] bytes = Convert.FromBase64String(sd);
+                    System.IO.FileStream stream =
+                    new FileStream(ruta, FileMode.CreateNew);
+                    System.IO.BinaryWriter writer =
+                        new BinaryWriter(stream);
+                    writer.Write(bytes, 0, bytes.Length);
+                    writer.Close();
+                    img.ImageLocation = ruta;
+                    MessageBox.Show("Exito");
                     url = ConfigurationManager.AppSettings["urlLocal"];
                 }
                 catch(Exception ex)
