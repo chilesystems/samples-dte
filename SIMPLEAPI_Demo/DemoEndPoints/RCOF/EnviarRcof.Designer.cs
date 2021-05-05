@@ -308,7 +308,11 @@ namespace DemoEndPoints
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "EnviarRcof";
+            this.Text = "Enviar RCOF";
             this.Load += new System.EventHandler(this.EnviarRcof_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

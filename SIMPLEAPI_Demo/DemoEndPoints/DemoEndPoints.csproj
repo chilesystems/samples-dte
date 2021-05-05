@@ -194,11 +194,11 @@
     <Compile Include="EnvioDTE\EnvioDte.Designer.cs">
       <DependentUpon>EnvioDte.cs</DependentUpon>
     </Compile>
-    <Compile Include="GenerarDTE\GenerarDte.cs">
+    <Compile Include="GenerarDTE\GenerarDteFactura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GenerarDTE\GenerarDte.Designer.cs">
-      <DependentUpon>GenerarDte.cs</DependentUpon>
+    <Compile Include="GenerarDTE\GenerarDteFactura.Designer.cs">
+      <DependentUpon>GenerarDteFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="RCOF\GenerarRcof.cs">
       <SubType>Form</SubType>
@@ -234,8 +234,8 @@
     <EmbeddedResource Include="EnvioDTE\EnvioDte.resx">
       <DependentUpon>EnvioDte.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GenerarDTE\GenerarDte.resx">
-      <DependentUpon>GenerarDte.cs</DependentUpon>
+    <EmbeddedResource Include="GenerarDTE\GenerarDteFactura.resx">
+      <DependentUpon>GenerarDteFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarDTE\GenerarDteBoleta.resx">
       <DependentUpon>GenerarDteBoleta.cs</DependentUpon>

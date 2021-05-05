@@ -185,7 +185,11 @@ namespace DemoEndPoints.Impresion
             this.Controls.Add(this.btn_enviar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Formato80";
+            this.Text = "Formato 80mm";
             this.Load += new System.EventHandler(this.Formato80_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -855,7 +855,11 @@ namespace DemoEndPoints.GenerarDTE
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox8);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "GenerarDTEGuiaD";
+            this.Text = "Generar DTE Guia de Despacho";
             this.Load += new System.EventHandler(this.GenerarDTEGuiaD_Load);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();

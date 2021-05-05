@@ -308,7 +308,11 @@ namespace DemoEndPoints
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "EnvioDte";
+            this.Text = "Envio DTE";
             this.Load += new System.EventHandler(this.EnvioDte_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

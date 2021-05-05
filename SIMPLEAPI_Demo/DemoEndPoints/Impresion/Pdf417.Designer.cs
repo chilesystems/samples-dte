@@ -103,7 +103,11 @@ namespace DemoEndPoints.Impresion
             this.ClientSize = new System.Drawing.Size(814, 158);
             this.Controls.Add(this.img);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Pdf417";
+            this.Text = "PDF417";
             this.Load += new System.EventHandler(this.Pdf417_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

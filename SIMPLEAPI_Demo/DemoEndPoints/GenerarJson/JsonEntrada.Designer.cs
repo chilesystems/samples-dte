@@ -46,7 +46,11 @@ namespace DemoEndPoints.GenerarJson
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.txt_jsonEntrada);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "JsonEntrada";
+            this.Text = "Generador Json Entrada";
             this.Load += new System.EventHandler(this.JsonEntrada_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

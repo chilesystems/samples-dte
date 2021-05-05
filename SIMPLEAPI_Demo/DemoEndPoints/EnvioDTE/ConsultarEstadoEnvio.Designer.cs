@@ -291,6 +291,9 @@ namespace DemoEndPoints
             this.Controls.Add(this.btn_consultar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ConsultarEstadoEnvio";
             this.Text = "Consultar Estado de Envios";
             this.Load += new System.EventHandler(this.ConsultarEstadoEnvio_Load);

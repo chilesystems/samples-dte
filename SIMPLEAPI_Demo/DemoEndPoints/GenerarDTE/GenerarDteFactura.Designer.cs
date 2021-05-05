@@ -1285,7 +1285,11 @@ namespace DemoEndPoints
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox8);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "GenerarDte";
+            this.Text = "Generar DTE Factura";
             this.Load += new System.EventHandler(this.GenerarDte_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -68,6 +68,7 @@ namespace DemoEndPoints.GenerarDTE
             this.label35 = new System.Windows.Forms.Label();
             this.btn_generarDTE = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn_eliminarD = new System.Windows.Forms.Button();
             this.grid_detalles = new System.Windows.Forms.DataGridView();
             this.btn_agregarDetalles = new System.Windows.Forms.Button();
             this.txt_descuentoDetalles = new System.Windows.Forms.NumericUpDown();
@@ -100,7 +101,6 @@ namespace DemoEndPoints.GenerarDTE
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txt_indicarServOtros = new System.Windows.Forms.NumericUpDown();
             this.label30 = new System.Windows.Forms.Label();
-            this.btn_eliminarD = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_telefonoEmisor)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -499,6 +499,16 @@ namespace DemoEndPoints.GenerarDTE
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Detalles";
             // 
+            // btn_eliminarD
+            // 
+            this.btn_eliminarD.Location = new System.Drawing.Point(798, 32);
+            this.btn_eliminarD.Name = "btn_eliminarD";
+            this.btn_eliminarD.Size = new System.Drawing.Size(75, 23);
+            this.btn_eliminarD.TabIndex = 16;
+            this.btn_eliminarD.Text = "Eliminar";
+            this.btn_eliminarD.UseVisualStyleBackColor = true;
+            this.btn_eliminarD.Click += new System.EventHandler(this.btn_eliminarD_Click);
+            // 
             // grid_detalles
             // 
             this.grid_detalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -834,16 +844,6 @@ namespace DemoEndPoints.GenerarDTE
             this.label30.TabIndex = 0;
             this.label30.Text = "Indicador Servicio :";
             // 
-            // btn_eliminarD
-            // 
-            this.btn_eliminarD.Location = new System.Drawing.Point(798, 32);
-            this.btn_eliminarD.Name = "btn_eliminarD";
-            this.btn_eliminarD.Size = new System.Drawing.Size(75, 23);
-            this.btn_eliminarD.TabIndex = 16;
-            this.btn_eliminarD.Text = "Eliminar";
-            this.btn_eliminarD.UseVisualStyleBackColor = true;
-            this.btn_eliminarD.Click += new System.EventHandler(this.btn_eliminarD_Click);
-            // 
             // GenerarDteBoleta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -858,7 +858,11 @@ namespace DemoEndPoints.GenerarDTE
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox8);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "GenerarDteBoleta";
+            this.Text = "Generar DTE Boleta";
             this.Load += new System.EventHandler(this.GenerarDteBoleta_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

@@ -46,7 +46,11 @@ namespace DemoEndPoints.GenerarJson
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.txt_jsonEnvio);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "JsonEnvio";
+            this.Text = "Generador Json Envio";
             this.Load += new System.EventHandler(this.JsonEnvio_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

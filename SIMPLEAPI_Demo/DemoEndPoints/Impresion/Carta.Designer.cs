@@ -210,7 +210,10 @@ namespace DemoEndPoints.Impresion
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Carta";
+            this.Text = "Formato Carta";
             this.Load += new System.EventHandler(this.Carta_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
