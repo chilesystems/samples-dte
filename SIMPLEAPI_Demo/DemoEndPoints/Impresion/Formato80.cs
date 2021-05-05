@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -88,13 +89,40 @@ namespace DemoEndPoints.Impresion
                     string sd = await response.Content.ReadAsStringAsync();
                     if (tipo==1)
                     {
-                        txt_result.Text = sd;
+                        byte[] bytes = await response.Content.ReadAsByteArrayAsync();
+                        var ruta = @"C:\Users\McL\source\repos\samples-dte\SIMPLEAPI_Demo\DemoEndPoints\" + DateTime.Now.Ticks.ToString() + ".pdf";
+
+
+                        System.IO.FileStream stream =
+                        new FileStream(ruta, FileMode.CreateNew);
+                        System.IO.BinaryWriter writer =
+                            new BinaryWriter(stream);
+                        writer.Write(bytes, 0, bytes.Length);
+                        writer.Close();
+                        Process proceso = new Process();
+                        proceso.StartInfo.FileName = ruta;
+                        proceso.Start();
                     }
                     else if (tipo==2)
                     {
                         XmlDocument doc = new XmlDocument();
                         doc.LoadXml(sd);
-                        txt_result.Text = doc.DocumentElement.FirstChild.InnerText;
+                        //txt_result.Text = doc.DocumentElement.FirstChild.InnerText;
+                        sd = doc.DocumentElement.FirstChild.InnerText;
+                        var ruta = @"C:\Users\McL\source\repos\samples-dte\SIMPLEAPI_Demo\DemoEndPoints\" + DateTime.Now.Ticks.ToString()+".pdf";
+
+                        byte[] bytes = Convert.FromBase64String(sd);
+                        System.IO.FileStream stream =
+                        new FileStream(ruta, FileMode.CreateNew);
+                        System.IO.BinaryWriter writer =
+                            new BinaryWriter(stream);
+                        writer.Write(bytes, 0, bytes.Length);
+                        writer.Close();
+                        Process proceso = new Process();
+                        proceso.StartInfo.FileName = ruta;
+                        proceso.Start();
+
+                        
                     }
                     
                     
