@@ -235,12 +235,13 @@ namespace DemoEndPoints.RCOF
         Boolean seleccionado=false;
         private void grid_resumen_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                index = grid_resumen.Rows[e.RowIndex].Index.ToString();
 
-            index = grid_resumen.Rows[e.RowIndex].Index.ToString();
-            
                 if (seleccionado)
                 {
-                    
+
                     grid_anulados.DataSource = null;
                     grid_utilizados.DataSource = null;
                     seleccionado = false;
@@ -254,16 +255,20 @@ namespace DemoEndPoints.RCOF
                         {
                             grid_anulados.DataSource = resumenes[int.Parse(index)].RangoAnulados;
                             grid_utilizados.DataSource = resumenes[int.Parse(index)].RangoUtilizados;
-                            
+
                         }
                     }
                     seleccionado = true;
                     grid_resumen.Rows[e.RowIndex].Selected = true;
                 }
-                
-            index = "";
 
-
+                index = "";
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Selecciona un item");
+            }
+            
         }
 
         private void btn_eliminarResumen_Click(object sender, EventArgs e)
@@ -373,6 +378,27 @@ namespace DemoEndPoints.RCOF
                 {
                     MessageBox.Show("Error " + ex);
                 }
+            }
+        }
+
+        
+
+        private void soloNumeros(object sender ,KeyPressEventArgs e)
+        {
+            //Para obligar a que sólo se introduzcan números
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+              if (Char.IsControl(e.KeyChar)) //permitir teclas de control como retroceso
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                //el resto de teclas pulsadas se desactivan
+                e.Handled = true;
             }
         }
     }

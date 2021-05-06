@@ -32,7 +32,14 @@ namespace DemoEndPoints
         List<Detalles> detalles=new List<Detalles>();
         List<ActividadesEconomicas>actividades=new List<ActividadesEconomicas>();
         List<DescuentosRecargos> descuentos =new List<DescuentosRecargos>();
-
+        Boolean actSeleccionada;
+        string AactIndexSeleccionada;
+        Boolean refSeleccionada;
+        string refIndexSeleccionada;
+        Boolean detSeleccionado;
+        string detIndexSeleccionada;
+        Boolean dRSeleccionado;
+        string dRIndexSeleccionada;
         public GenerarDte()
         {
             InitializeComponent();
@@ -205,9 +212,10 @@ namespace DemoEndPoints
         {
             DescuentosRecargos item = new DescuentosRecargos();
             item.Descripcion = txt_descDescuentos.Text;
-            item.TipoMovimiento = int.Parse(txt_tipoMovDescuentos.Text);
-            item.TipoValor = int.Parse(txt_tipoValorDescuentos.Text);
-            item.Valor = int.Parse(txt_valorDescuentos.Text);
+            item.TipoMovimiento =  int.Parse(txt_tipoMovDescuentos.Text)>=0? int.Parse(txt_tipoMovDescuentos.Text):0;
+            item.TipoValor = int.Parse(txt_tipoValorDescuentos.Text) >= 0 ? int.Parse(txt_tipoValorDescuentos.Text) : 0;
+            item.Valor = int.Parse(txt_valorDescuentos.Text) >= 0 ? int.Parse(txt_valorDescuentos.Text) : 0;
+
             descuentos.Add(item);
             grid_descuentos.DataSource = null;
             grid_descuentos.DataSource = descuentos;
@@ -381,13 +389,40 @@ namespace DemoEndPoints
                 MessageBox.Show("Selecciona un item de la lista de actividades económicas para eliminar");
             }
         }
+        
         private void grid_actividades_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-
-                indexA = grid_actividades.Rows[e.RowIndex].Index.ToString();
-                grid_actividades.Rows[e.RowIndex].Selected = true;
+                if (!actSeleccionada)
+                {
+                    indexA = grid_actividades.Rows[e.RowIndex].Index.ToString();
+                    grid_actividades.Rows[e.RowIndex].Selected = true;
+                    actSeleccionada = true;
+                    AactIndexSeleccionada = indexA;
+                }
+                else if (actSeleccionada && AactIndexSeleccionada != grid_actividades.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexA = grid_actividades.Rows[e.RowIndex].Index.ToString();
+                    grid_actividades.Rows[e.RowIndex].Selected = true;
+                    actSeleccionada = true;
+                    AactIndexSeleccionada = indexA;
+                }
+                else if (actSeleccionada && AactIndexSeleccionada == grid_actividades.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexA = "";
+                    grid_actividades.Rows[e.RowIndex].Selected = false;
+                    actSeleccionada = false;
+                    AactIndexSeleccionada = "";
+                }
+                else
+                {
+                    indexA = "";
+                    grid_actividades.Rows[e.RowIndex].Selected = false;
+                    actSeleccionada = false;
+                    AactIndexSeleccionada = "";
+                }
+                
             }
             catch (Exception ex)
             {
@@ -427,17 +462,42 @@ namespace DemoEndPoints
         }
         private void grid_referencias_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
+            try 
             {
-
-                indexR = grid_referencias.Rows[e.RowIndex].Index.ToString();
-                grid_referencias.Rows[e.RowIndex].Selected = true;
+                if (!refSeleccionada)
+                {
+                    indexR = grid_referencias.Rows[e.RowIndex].Index.ToString();
+                    grid_referencias.Rows[e.RowIndex].Selected = true;
+                    refSeleccionada = true;
+                    refIndexSeleccionada = indexR;
+                }
+                else if (refSeleccionada && refIndexSeleccionada != grid_referencias.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexR = grid_referencias.Rows[e.RowIndex].Index.ToString();
+                    grid_referencias.Rows[e.RowIndex].Selected = true;
+                    refSeleccionada = true;
+                    refIndexSeleccionada = indexR;
+                }
+                else if (refSeleccionada && refIndexSeleccionada == grid_referencias.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexR = "";
+                    grid_referencias.Rows[e.RowIndex].Selected = false;
+                    refSeleccionada = false;
+                    refIndexSeleccionada = "";
+                }
+                else
+                {
+                    indexR = "";
+                    grid_referencias.Rows[e.RowIndex].Selected = false;
+                    refSeleccionada = false;
+                    refIndexSeleccionada = "";
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Selecciona un item");
             }
-        }
+}
 
         private void btn_eliminarDR_Click(object sender, EventArgs e)
         {
@@ -474,14 +534,40 @@ namespace DemoEndPoints
         {
             try
             {
-
-                indexDR = grid_descuentos.Rows[e.RowIndex].Index.ToString();
-                grid_descuentos.Rows[e.RowIndex].Selected = true;
+                if (!dRSeleccionado)
+                {
+                    indexDR = grid_descuentos.Rows[e.RowIndex].Index.ToString();
+                    grid_descuentos.Rows[e.RowIndex].Selected = true;
+                    dRSeleccionado = true;
+                    dRIndexSeleccionada = indexDR;
+                }
+                else if (dRSeleccionado && dRIndexSeleccionada != grid_descuentos.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexDR = grid_descuentos.Rows[e.RowIndex].Index.ToString();
+                    grid_descuentos.Rows[e.RowIndex].Selected = true;
+                    dRSeleccionado = true;
+                    dRIndexSeleccionada = indexDR;
+                }
+                else if (dRSeleccionado && dRIndexSeleccionada == grid_descuentos.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexDR = "";
+                    grid_descuentos.Rows[e.RowIndex].Selected = false;
+                    dRSeleccionado = false;
+                    dRIndexSeleccionada = "";
+                }
+                else
+                {
+                    indexDR = "";
+                    grid_descuentos.Rows[e.RowIndex].Selected = false;
+                    dRSeleccionado = false;
+                    dRIndexSeleccionada = "";
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Selecciona un item");
             }
+        
         }
 
         private void btn_eliminarD_Click(object sender, EventArgs e)
@@ -518,21 +604,57 @@ namespace DemoEndPoints
         {
             try
             {
-
-                indexD = grid_detalles.Rows[e.RowIndex].Index.ToString();
-                grid_detalles.Rows[e.RowIndex].Selected = true;
+                if (!detSeleccionado)
+                {
+                    indexD = grid_detalles.Rows[e.RowIndex].Index.ToString();
+                    grid_detalles.Rows[e.RowIndex].Selected = true;
+                    detSeleccionado = true;
+                    detIndexSeleccionada = indexD;
+                }
+                else if (detSeleccionado && detIndexSeleccionada != grid_detalles.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexD = grid_detalles.Rows[e.RowIndex].Index.ToString();
+                    grid_detalles.Rows[e.RowIndex].Selected = true;
+                    detSeleccionado = true;
+                    detIndexSeleccionada = indexD;
+                }
+                else if (detSeleccionado && detIndexSeleccionada == grid_detalles.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexD = "";
+                    grid_detalles.Rows[e.RowIndex].Selected = false;
+                    detSeleccionado = false;
+                    detIndexSeleccionada = "";
+                }
+                else
+                {
+                    indexD = "";
+                    grid_detalles.Rows[e.RowIndex].Selected = false;
+                    detSeleccionado = false;
+                    detIndexSeleccionada = "";
+                }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 MessageBox.Show("Selecciona un item");
             }
         }
-
-       
-        
-
-        
-
-        
+        private void soloNumeros(object sender, KeyPressEventArgs e)
+        {
+            //Para obligar a que sólo se introduzcan números
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+              if (Char.IsControl(e.KeyChar)) //permitir teclas de control como retroceso
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                //el resto de teclas pulsadas se desactivan
+                e.Handled = true;
+            }
+        }
     }
 }

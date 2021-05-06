@@ -27,6 +27,10 @@ namespace DemoEndPoints.GenerarDTE
         OpenFileDialog dialogCaf;
         List<DetallesGuia> detalles = new List<DetallesGuia>();
         List<ActividadesEconomicas> actividades = new List<ActividadesEconomicas>();
+        Boolean actSeleccionada;
+        string AactIndexSeleccionada;
+        Boolean detSeleccionado;
+        string detIndexSeleccionada;
         public GenerarDTEGuiaD()
         {
             InitializeComponent();
@@ -250,9 +254,35 @@ namespace DemoEndPoints.GenerarDTE
         {
             try
             {
+                if (!actSeleccionada)
+                {
+                    indexA = grid_actividades.Rows[e.RowIndex].Index.ToString();
+                    grid_actividades.Rows[e.RowIndex].Selected = true;
+                    actSeleccionada = true;
+                    AactIndexSeleccionada = indexA;
+                }
+                else if (actSeleccionada && AactIndexSeleccionada != grid_actividades.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexA = grid_actividades.Rows[e.RowIndex].Index.ToString();
+                    grid_actividades.Rows[e.RowIndex].Selected = true;
+                    actSeleccionada = true;
+                    AactIndexSeleccionada = indexA;
+                }
+                else if (actSeleccionada && AactIndexSeleccionada == grid_actividades.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexA = "";
+                    grid_actividades.Rows[e.RowIndex].Selected = false;
+                    actSeleccionada = false;
+                    AactIndexSeleccionada = "";
+                }
+                else
+                {
+                    indexA = "";
+                    grid_actividades.Rows[e.RowIndex].Selected = false;
+                    actSeleccionada = false;
+                    AactIndexSeleccionada = "";
+                }
 
-                indexA = grid_actividades.Rows[e.RowIndex].Index.ToString();
-                grid_actividades.Rows[e.RowIndex].Selected = true;
             }
             catch (Exception ex)
             {
@@ -295,9 +325,34 @@ namespace DemoEndPoints.GenerarDTE
         {
             try
             {
-
-                indexD = grid_detalles.Rows[e.RowIndex].Index.ToString();
-                grid_detalles.Rows[e.RowIndex].Selected = true;
+                if (!detSeleccionado)
+                {
+                    indexD = grid_detalles.Rows[e.RowIndex].Index.ToString();
+                    grid_detalles.Rows[e.RowIndex].Selected = true;
+                    detSeleccionado = true;
+                    detIndexSeleccionada = indexD;
+                }
+                else if (detSeleccionado && detIndexSeleccionada != grid_detalles.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexD = grid_detalles.Rows[e.RowIndex].Index.ToString();
+                    grid_detalles.Rows[e.RowIndex].Selected = true;
+                    detSeleccionado = true;
+                    detIndexSeleccionada = indexD;
+                }
+                else if (detSeleccionado && detIndexSeleccionada == grid_detalles.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexD = "";
+                    grid_detalles.Rows[e.RowIndex].Selected = false;
+                    detSeleccionado = false;
+                    detIndexSeleccionada = "";
+                }
+                else
+                {
+                    indexD = "";
+                    grid_detalles.Rows[e.RowIndex].Selected = false;
+                    detSeleccionado = false;
+                    detIndexSeleccionada = "";
+                }
             }
             catch (Exception ex)
             {
@@ -342,6 +397,10 @@ namespace DemoEndPoints.GenerarDTE
             dialogCaf.Filter = "XML Files(*.xml)|*.xml";
             dialogCaf.ShowDialog();
             txt_caf.Text = dialogCaf.FileName;
+        }
+        private void soloNumeros(object sender, KeyPressEventArgs e)
+        {
+
         }
     }
 }

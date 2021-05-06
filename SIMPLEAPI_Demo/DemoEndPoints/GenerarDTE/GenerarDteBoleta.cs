@@ -25,6 +25,8 @@ namespace DemoEndPoints.GenerarDTE
         OpenFileDialog dialogCert;
         OpenFileDialog dialogCaf;
         List<Detalles> detalles = new List<Detalles>();
+        Boolean detSeleccionado;
+        string detIndexSeleccionada;
         public GenerarDteBoleta()
         {
             InitializeComponent();
@@ -271,14 +273,61 @@ namespace DemoEndPoints.GenerarDTE
         {
             try
             {
-
-                indexD = grid_detalles.Rows[e.RowIndex].Index.ToString();
-                grid_detalles.Rows[e.RowIndex].Selected = true;
+                if (!detSeleccionado)
+                {
+                    indexD = grid_detalles.Rows[e.RowIndex].Index.ToString();
+                    grid_detalles.Rows[e.RowIndex].Selected = true;
+                    detSeleccionado = true;
+                    detIndexSeleccionada = indexD;
+                }
+                else if (detSeleccionado && detIndexSeleccionada != grid_detalles.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexD = grid_detalles.Rows[e.RowIndex].Index.ToString();
+                    grid_detalles.Rows[e.RowIndex].Selected = true;
+                    detSeleccionado = true;
+                    detIndexSeleccionada = indexD;
+                }
+                else if (detSeleccionado && detIndexSeleccionada == grid_detalles.Rows[e.RowIndex].Index.ToString())
+                {
+                    indexD = "";
+                    grid_detalles.Rows[e.RowIndex].Selected = false;
+                    detSeleccionado = false;
+                    detIndexSeleccionada = "";
+                }
+                else
+                {
+                    indexD = "";
+                    grid_detalles.Rows[e.RowIndex].Selected = false;
+                    detSeleccionado = false;
+                    detIndexSeleccionada = "";
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Selecciona un item");
             }
         }
+
+        
+        private void soloNumeros(object sender, KeyPressEventArgs e)
+        {
+            //Para obligar a que sólo se introduzcan números
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+              if (Char.IsControl(e.KeyChar)) //permitir teclas de control como retroceso
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                //el resto de teclas pulsadas se desactivan
+                e.Handled = true;
+            }
+        }
+
+        
     }
 }
