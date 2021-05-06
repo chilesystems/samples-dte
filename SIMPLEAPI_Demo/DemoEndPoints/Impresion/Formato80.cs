@@ -140,6 +140,14 @@ namespace DemoEndPoints.Impresion
 
         private void Formato80_Load(object sender, EventArgs e)
         {
+            if (tipo==1)
+            {
+                this.Text = "Boleta desde un DTE con Formato 80mm PDF";
+            }
+            else if (tipo == 2)
+            {
+                this.Text = "Boleta desde un DTE con Formato 80mm Base64";
+            }
             cargar();
         }
         public void cargar()

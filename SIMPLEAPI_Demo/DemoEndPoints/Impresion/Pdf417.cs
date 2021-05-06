@@ -117,9 +117,15 @@ namespace DemoEndPoints.Impresion
 
         private void Pdf417_Load(object sender, EventArgs e)
         {
+            if (tipo==1)
+            {
+                this.Text = "PDF417 desde un DTE";
+                lbl_archivo.Text = "Selecciona un dte ";
+            }
             if (tipo==2)
             {
-                lbl_archivo.Text = "Selecciona el envio :";
+                this.Text = "PDF417 desde un Envio";
+                lbl_archivo.Text = "Selecciona el envio ";
             }
         }
     }

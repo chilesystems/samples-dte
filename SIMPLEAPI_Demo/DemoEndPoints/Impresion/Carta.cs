@@ -174,12 +174,24 @@ namespace DemoEndPoints.Impresion
 
         private void Carta_Load(object sender, EventArgs e)
         {
-            if (tipo==1 || tipo==2)
+            if (tipo==1)
             {
+                this.Text = "Boleta desde un DTE con Formato Carta PDF";
                 lbl_dte.Text = "Selecciona el dte boleta :";
             }
-            else if (tipo == 3 || tipo == 4)
+            else if (tipo == 2)
             {
+                this.Text = "Boleta desde un DTE con Formato Carta Base64";
+                lbl_dte.Text = "Selecciona el dte boleta :";
+            }
+            if (tipo == 3)
+            {
+                this.Text = "Factura desde un DTE con Formato Carta PDF";
+                lbl_dte.Text = "Selecciona el dte factura :";
+            }
+            else if (tipo == 4)
+            {
+                this.Text = "Factura desde un DTE con Formato Carta Base64";
                 lbl_dte.Text = "Selecciona el dte factura :";
             }
             cargar();

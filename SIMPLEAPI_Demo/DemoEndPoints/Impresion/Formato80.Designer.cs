@@ -163,9 +163,9 @@ namespace DemoEndPoints.Impresion
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(25, 28);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(109, 13);
+            this.label5.Size = new System.Drawing.Size(124, 13);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Selecciona la boleta :";
+            this.label5.Text = "Selecciona el dte boleta ";
             // 
             // btn_enviar
             // 
