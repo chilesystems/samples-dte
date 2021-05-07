@@ -50,4 +50,33 @@ namespace DemoEndPoints.Clases
         public int total { get; set; }
 
     }
+
+    public class DetallesEntrada
+    {
+        
+        public DetallesEntrada()
+        {
+
+        }
+
+        public DetallesEntrada(string nombre, int cantidad, int precio, int total, bool isExento, int descuento, int unidad)
+        {
+            this.nombre = nombre;
+            this.cantidad = cantidad;
+            this.precio = precio;
+            this.total = total;
+            this.isExento = isExento;
+            this.descuento = descuento;
+            this.unidad = unidad;
+        }
+
+        public string nombre { get; set; }
+        public int cantidad { get; set; }
+        public int precio { get; set; }
+        public int total { get; set; }
+        public Boolean isExento { get; set; }
+        public int descuento { get; set; }
+        public Nullable<int> unidad { get; set; }
+
+    }
 }

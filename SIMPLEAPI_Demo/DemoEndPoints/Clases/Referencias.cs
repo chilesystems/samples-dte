@@ -24,4 +24,27 @@ namespace DemoEndPoints.Clases
         public int folioReferencia { get; set; }
         public string glosa { get; set; }
     }
+    public class ReferenciasEntrada
+    {
+        
+        public ReferenciasEntrada()
+        {
+
+        }
+
+        public ReferenciasEntrada(string fecha, int tipoDocReferencia, int folioReferencia, string glosa, int codigoReferencia)
+        {
+            this.fecha = fecha;
+            this.tipoDocReferencia = tipoDocReferencia;
+            this.folioReferencia = folioReferencia;
+            this.glosa = glosa;
+            this.codigoReferencia = codigoReferencia;
+        }
+
+        public string fecha { get; set; }
+        public int tipoDocReferencia { get; set; }
+        public int folioReferencia { get; set; }
+        public string glosa { get; set; }
+        public int codigoReferencia { get; set; }
+    }
 }
