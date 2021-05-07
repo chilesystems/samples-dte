@@ -35,6 +35,7 @@ namespace DemoEndPoints.Impresion
             this.txt_archivo = new System.Windows.Forms.TextBox();
             this.lbl_archivo = new System.Windows.Forms.Label();
             this.img = new System.Windows.Forms.PictureBox();
+            this.btn_guardar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img)).BeginInit();
             this.SuspendLayout();
@@ -84,23 +85,35 @@ namespace DemoEndPoints.Impresion
             this.lbl_archivo.AutoSize = true;
             this.lbl_archivo.Location = new System.Drawing.Point(34, 31);
             this.lbl_archivo.Name = "lbl_archivo";
-            this.lbl_archivo.Size = new System.Drawing.Size(95, 13);
+            this.lbl_archivo.Size = new System.Drawing.Size(92, 13);
             this.lbl_archivo.TabIndex = 0;
-            this.lbl_archivo.Text = "Selecciona el dte :";
+            this.lbl_archivo.Text = "Selecciona el dte ";
             // 
             // img
             // 
-            this.img.Location = new System.Drawing.Point(416, 13);
+            this.img.Location = new System.Drawing.Point(13, 139);
             this.img.Name = "img";
-            this.img.Size = new System.Drawing.Size(376, 120);
+            this.img.Size = new System.Drawing.Size(366, 120);
+            this.img.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.img.TabIndex = 1;
             this.img.TabStop = false;
+            // 
+            // btn_guardar
+            // 
+            this.btn_guardar.Location = new System.Drawing.Point(146, 275);
+            this.btn_guardar.Name = "btn_guardar";
+            this.btn_guardar.Size = new System.Drawing.Size(75, 23);
+            this.btn_guardar.TabIndex = 4;
+            this.btn_guardar.Text = "Guardar Imagen";
+            this.btn_guardar.UseVisualStyleBackColor = true;
+            this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
             // 
             // Pdf417
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 158);
+            this.ClientSize = new System.Drawing.Size(406, 310);
+            this.Controls.Add(this.btn_guardar);
             this.Controls.Add(this.img);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -124,5 +137,6 @@ namespace DemoEndPoints.Impresion
         private System.Windows.Forms.TextBox txt_archivo;
         private System.Windows.Forms.Label lbl_archivo;
         private System.Windows.Forms.PictureBox img;
+        private System.Windows.Forms.Button btn_guardar;
     }
 }

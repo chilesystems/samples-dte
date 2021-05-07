@@ -89,6 +89,13 @@ namespace DemoEndPoints.Impresion
                     string sd = await response.Content.ReadAsStringAsync();
                     if (tipo==1)
                     {
+                        ResultadoImpresion resultado = new ResultadoImpresion();
+                        resultado.json = json;
+                        resultado.response = response;
+                        resultado.resultado = sd;
+                        resultado.tipo = tipo;
+                        resultado.Show();
+                        /*
                         byte[] bytes = await response.Content.ReadAsByteArrayAsync();
                         var ruta = @"C:\Users\McL\source\repos\samples-dte\SIMPLEAPI_Demo\DemoEndPoints\" + DateTime.Now.Ticks.ToString() + ".pdf";
 
@@ -101,14 +108,24 @@ namespace DemoEndPoints.Impresion
                         writer.Close();
                         Process proceso = new Process();
                         proceso.StartInfo.FileName = ruta;
-                        proceso.Start();
+                        proceso.Start();*/
                     }
                     else if (tipo==2)
                     {
+
                         XmlDocument doc = new XmlDocument();
                         doc.LoadXml(sd);
                         //txt_result.Text = doc.DocumentElement.FirstChild.InnerText;
                         sd = doc.DocumentElement.FirstChild.InnerText;
+
+                        ResultadoImpresion resultado = new ResultadoImpresion();
+                        resultado.json = json;
+                        resultado.response = response;
+                        resultado.resultado = sd;
+                        resultado.tipo = tipo;
+                        resultado.Show();
+
+                        /*
                         var ruta = @"C:\Users\McL\source\repos\samples-dte\SIMPLEAPI_Demo\DemoEndPoints\" + DateTime.Now.Ticks.ToString()+".pdf";
 
                         byte[] bytes = Convert.FromBase64String(sd);
@@ -121,7 +138,7 @@ namespace DemoEndPoints.Impresion
                         Process proceso = new Process();
                         proceso.StartInfo.FileName = ruta;
                         proceso.Start();
-
+                        */
                         
                     }
                     
@@ -156,6 +173,25 @@ namespace DemoEndPoints.Impresion
             txt_unidadSii.Text = "IQUIQUE";
             dp_fechaResolucion.Value = new DateTime(2021, 02, 16,13,20,0);
             txt_ejecutivo.Text = "Gonzalo Bustamante";
+        }
+
+        private void soloNumeros(object sender, KeyPressEventArgs e)
+        {
+            //Para obligar a que sólo se introduzcan números
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+              if (Char.IsControl(e.KeyChar)) //permitir teclas de control como retroceso
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                //el resto de teclas pulsadas se desactivan
+                e.Handled = true;
+            }
         }
     }
 }

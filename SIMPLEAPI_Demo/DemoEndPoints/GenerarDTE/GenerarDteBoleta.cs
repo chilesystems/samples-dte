@@ -1,4 +1,5 @@
 ﻿using DemoEndPoints.Clases;
+using DemoEndPoints.RCOF;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -172,7 +173,11 @@ namespace DemoEndPoints.GenerarDTE
                     response.EnsureSuccessStatusCode();
                     client.Dispose();
                     string sd = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show(sd);
+                    Resultado resultado = new Resultado();
+                    resultado.json = json;
+                    resultado.xml = sd;
+                    resultado.response = response;
+                    resultado.Show();
                 }
 
 

@@ -123,7 +123,13 @@ namespace DemoEndPoints.Impresion
                     string sd = await response.Content.ReadAsStringAsync();
                     if (tipo==1||tipo==4)
                     {
-                        //txt_result.Text = sd;
+                        ResultadoImpresion resultado = new ResultadoImpresion();
+                        resultado.json = json;
+                        resultado.response = response;
+                        resultado.resultado = sd;
+                        resultado.tipo = tipo;
+                        resultado.Show();
+                        /*//txt_result.Text = sd;
                         byte[] bytes = await response.Content.ReadAsByteArrayAsync();
                         var ruta = @"C:\Users\McL\source\repos\samples-dte\SIMPLEAPI_Demo\DemoEndPoints\" + DateTime.Now.Ticks.ToString() + ".pdf";
 
@@ -136,7 +142,7 @@ namespace DemoEndPoints.Impresion
                         writer.Close();
                         Process proceso = new Process();
                         proceso.StartInfo.FileName = ruta;
-                        proceso.Start();
+                        proceso.Start();*/
                     }
                     else if (tipo == 2 ||tipo==3)
                     {
@@ -144,6 +150,13 @@ namespace DemoEndPoints.Impresion
                         doc.LoadXml(sd);
                         //txt_result.Text = doc.DocumentElement.FirstChild.InnerText;
                         sd= doc.DocumentElement.FirstChild.InnerText;
+                        ResultadoImpresion resultado = new ResultadoImpresion();
+                        resultado.json = json;
+                        resultado.tipo = tipo;
+                        resultado.response = response;
+                        resultado.resultado = sd;
+                        resultado.Show();
+                        /*
                         var ruta = @"C:\Users\McL\source\repos\samples-dte\SIMPLEAPI_Demo\DemoEndPoints\" + DateTime.Now.Ticks.ToString()+".pdf";
                         
                         byte[] bytes = Convert.FromBase64String(sd);
@@ -156,7 +169,7 @@ namespace DemoEndPoints.Impresion
                         Process proceso = new Process();
                         proceso.StartInfo.FileName = ruta;
                         proceso.Start();
-
+                        */
                         
                     }
                     
@@ -177,22 +190,22 @@ namespace DemoEndPoints.Impresion
             if (tipo==1)
             {
                 this.Text = "Boleta desde un DTE con Formato Carta PDF";
-                lbl_dte.Text = "Selecciona el dte boleta :";
+                lbl_dte.Text = "Selecciona el dte boleta ";
             }
             else if (tipo == 2)
             {
                 this.Text = "Boleta desde un DTE con Formato Carta Base64";
-                lbl_dte.Text = "Selecciona el dte boleta :";
+                lbl_dte.Text = "Selecciona el dte boleta ";
             }
             if (tipo == 3)
             {
                 this.Text = "Factura desde un DTE con Formato Carta PDF";
-                lbl_dte.Text = "Selecciona el dte factura :";
+                lbl_dte.Text = "Selecciona el dte factura ";
             }
             else if (tipo == 4)
             {
                 this.Text = "Factura desde un DTE con Formato Carta Base64";
-                lbl_dte.Text = "Selecciona el dte factura :";
+                lbl_dte.Text = "Selecciona el dte factura ";
             }
             cargar();
 
@@ -213,7 +226,25 @@ namespace DemoEndPoints.Impresion
             }
             
         }
+        private void soloNumeros(object sender, KeyPressEventArgs e)
+        {
+            //Para obligar a que sólo se introduzcan números
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+              if (Char.IsControl(e.KeyChar)) //permitir teclas de control como retroceso
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                //el resto de teclas pulsadas se desactivan
+                e.Handled = true;
+            }
+        }
 
-        
+
     }
 }

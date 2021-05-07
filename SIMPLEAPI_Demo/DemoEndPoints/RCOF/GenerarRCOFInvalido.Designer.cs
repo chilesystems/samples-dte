@@ -31,6 +31,24 @@ namespace DemoEndPoints.RCOF
         {
             this.btn_generar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txt_foliosAnulados = new System.Windows.Forms.TextBox();
+            this.txt_foliosEmitidos = new System.Windows.Forms.TextBox();
+            this.txt_foliosUtilizados = new System.Windows.Forms.TextBox();
+            this.txt_mntTotal = new System.Windows.Forms.TextBox();
+            this.txt_mntExento = new System.Windows.Forms.TextBox();
+            this.txt_tasaIva = new System.Windows.Forms.TextBox();
+            this.txt_mntIva = new System.Windows.Forms.TextBox();
+            this.txt_mntNeto = new System.Windows.Forms.TextBox();
+            this.txt_tipoDoc = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.btn_eliminarResumen = new System.Windows.Forms.Button();
             this.grid_resumen = new System.Windows.Forms.DataGridView();
             this.btn_agregarAnulados = new System.Windows.Forms.Button();
@@ -73,24 +91,6 @@ namespace DemoEndPoints.RCOF
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txt_foliosAnulados = new System.Windows.Forms.TextBox();
-            this.txt_foliosEmitidos = new System.Windows.Forms.TextBox();
-            this.txt_foliosUtilizados = new System.Windows.Forms.TextBox();
-            this.txt_mntTotal = new System.Windows.Forms.TextBox();
-            this.txt_mntExento = new System.Windows.Forms.TextBox();
-            this.txt_tasaIva = new System.Windows.Forms.TextBox();
-            this.txt_mntIva = new System.Windows.Forms.TextBox();
-            this.txt_mntNeto = new System.Windows.Forms.TextBox();
-            this.txt_tipoDoc = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_resumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid_anulados)).BeginInit();
@@ -156,6 +156,177 @@ namespace DemoEndPoints.RCOF
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Resumen";
+            // 
+            // txt_foliosAnulados
+            // 
+            this.txt_foliosAnulados.Location = new System.Drawing.Point(592, 82);
+            this.txt_foliosAnulados.MaxLength = 9;
+            this.txt_foliosAnulados.Name = "txt_foliosAnulados";
+            this.txt_foliosAnulados.Size = new System.Drawing.Size(70, 20);
+            this.txt_foliosAnulados.TabIndex = 52;
+            this.txt_foliosAnulados.Text = "0";
+            this.txt_foliosAnulados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
+            // 
+            // txt_foliosEmitidos
+            // 
+            this.txt_foliosEmitidos.Location = new System.Drawing.Point(592, 56);
+            this.txt_foliosEmitidos.MaxLength = 9;
+            this.txt_foliosEmitidos.Name = "txt_foliosEmitidos";
+            this.txt_foliosEmitidos.Size = new System.Drawing.Size(70, 20);
+            this.txt_foliosEmitidos.TabIndex = 51;
+            this.txt_foliosEmitidos.Text = "0";
+            this.txt_foliosEmitidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
+            // 
+            // txt_foliosUtilizados
+            // 
+            this.txt_foliosUtilizados.Location = new System.Drawing.Point(592, 30);
+            this.txt_foliosUtilizados.MaxLength = 9;
+            this.txt_foliosUtilizados.Name = "txt_foliosUtilizados";
+            this.txt_foliosUtilizados.Size = new System.Drawing.Size(70, 20);
+            this.txt_foliosUtilizados.TabIndex = 50;
+            this.txt_foliosUtilizados.Text = "0";
+            this.txt_foliosUtilizados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
+            // 
+            // txt_mntTotal
+            // 
+            this.txt_mntTotal.Location = new System.Drawing.Point(361, 82);
+            this.txt_mntTotal.MaxLength = 9;
+            this.txt_mntTotal.Name = "txt_mntTotal";
+            this.txt_mntTotal.Size = new System.Drawing.Size(70, 20);
+            this.txt_mntTotal.TabIndex = 49;
+            this.txt_mntTotal.Text = "0";
+            this.txt_mntTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
+            // 
+            // txt_mntExento
+            // 
+            this.txt_mntExento.Location = new System.Drawing.Point(361, 56);
+            this.txt_mntExento.MaxLength = 9;
+            this.txt_mntExento.Name = "txt_mntExento";
+            this.txt_mntExento.Size = new System.Drawing.Size(70, 20);
+            this.txt_mntExento.TabIndex = 48;
+            this.txt_mntExento.Text = "0";
+            this.txt_mntExento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
+            // 
+            // txt_tasaIva
+            // 
+            this.txt_tasaIva.Location = new System.Drawing.Point(361, 30);
+            this.txt_tasaIva.MaxLength = 9;
+            this.txt_tasaIva.Name = "txt_tasaIva";
+            this.txt_tasaIva.Size = new System.Drawing.Size(70, 20);
+            this.txt_tasaIva.TabIndex = 47;
+            this.txt_tasaIva.Text = "0";
+            this.txt_tasaIva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
+            // 
+            // txt_mntIva
+            // 
+            this.txt_mntIva.Location = new System.Drawing.Point(152, 82);
+            this.txt_mntIva.MaxLength = 9;
+            this.txt_mntIva.Name = "txt_mntIva";
+            this.txt_mntIva.Size = new System.Drawing.Size(70, 20);
+            this.txt_mntIva.TabIndex = 46;
+            this.txt_mntIva.Text = "0";
+            this.txt_mntIva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
+            // 
+            // txt_mntNeto
+            // 
+            this.txt_mntNeto.Location = new System.Drawing.Point(152, 56);
+            this.txt_mntNeto.MaxLength = 9;
+            this.txt_mntNeto.Name = "txt_mntNeto";
+            this.txt_mntNeto.Size = new System.Drawing.Size(70, 20);
+            this.txt_mntNeto.TabIndex = 45;
+            this.txt_mntNeto.Text = "0";
+            this.txt_mntNeto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
+            // 
+            // txt_tipoDoc
+            // 
+            this.txt_tipoDoc.Location = new System.Drawing.Point(152, 30);
+            this.txt_tipoDoc.MaxLength = 9;
+            this.txt_tipoDoc.Name = "txt_tipoDoc";
+            this.txt_tipoDoc.Size = new System.Drawing.Size(70, 20);
+            this.txt_tipoDoc.TabIndex = 44;
+            this.txt_tipoDoc.Text = "0";
+            this.txt_tipoDoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(28, 85);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(48, 13);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "Mnt IVA ";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(492, 33);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(85, 13);
+            this.label16.TabIndex = 43;
+            this.label16.Text = "Folios Utilizados ";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(493, 85);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(84, 13);
+            this.label15.TabIndex = 42;
+            this.label15.Text = "Folios Anulados ";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(492, 59);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(79, 13);
+            this.label14.TabIndex = 41;
+            this.label14.Text = "Folios Emitidos ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(287, 84);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(55, 13);
+            this.label13.TabIndex = 40;
+            this.label13.Text = "Mnt Total ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(287, 59);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(64, 13);
+            this.label12.TabIndex = 39;
+            this.label12.Text = "Mnt Exento ";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(287, 33);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 13);
+            this.label11.TabIndex = 38;
+            this.label11.Text = "Tasa IVA ";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(28, 59);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(54, 13);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "Mnt Neto ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(28, 33);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(104, 13);
+            this.label8.TabIndex = 35;
+            this.label8.Text = "Tipo de Documento ";
             // 
             // btn_eliminarResumen
             // 
@@ -329,6 +500,7 @@ namespace DemoEndPoints.RCOF
             this.btn_cargarCertificado.TabIndex = 6;
             this.btn_cargarCertificado.Text = "Cargar";
             this.btn_cargarCertificado.UseVisualStyleBackColor = true;
+            this.btn_cargarCertificado.Click += new System.EventHandler(this.btn_cargarCertificado_Click);
             // 
             // txt_passCertificado
             // 
@@ -423,17 +595,21 @@ namespace DemoEndPoints.RCOF
             // txt_numSecEnvio
             // 
             this.txt_numSecEnvio.Location = new System.Drawing.Point(376, 78);
+            this.txt_numSecEnvio.MaxLength = 9;
             this.txt_numSecEnvio.Name = "txt_numSecEnvio";
             this.txt_numSecEnvio.Size = new System.Drawing.Size(44, 20);
             this.txt_numSecEnvio.TabIndex = 29;
+            this.txt_numSecEnvio.Text = "0";
             this.txt_numSecEnvio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
             // 
             // txt_numResol
             // 
             this.txt_numResol.Location = new System.Drawing.Point(152, 104);
+            this.txt_numResol.MaxLength = 9;
             this.txt_numResol.Name = "txt_numResol";
             this.txt_numResol.Size = new System.Drawing.Size(44, 20);
             this.txt_numResol.TabIndex = 28;
+            this.txt_numResol.Text = "0";
             this.txt_numResol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
             // 
             // dp_fechaFinal
@@ -513,7 +689,7 @@ namespace DemoEndPoints.RCOF
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 84);
+            this.label3.Location = new System.Drawing.Point(28, 81);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 13);
             this.label3.TabIndex = 18;
@@ -536,159 +712,6 @@ namespace DemoEndPoints.RCOF
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 16;
             this.label1.Text = "Rut Emisor ";
-            // 
-            // txt_foliosAnulados
-            // 
-            this.txt_foliosAnulados.Location = new System.Drawing.Point(592, 82);
-            this.txt_foliosAnulados.Name = "txt_foliosAnulados";
-            this.txt_foliosAnulados.Size = new System.Drawing.Size(100, 20);
-            this.txt_foliosAnulados.TabIndex = 52;
-            this.txt_foliosAnulados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
-            // 
-            // txt_foliosEmitidos
-            // 
-            this.txt_foliosEmitidos.Location = new System.Drawing.Point(592, 56);
-            this.txt_foliosEmitidos.Name = "txt_foliosEmitidos";
-            this.txt_foliosEmitidos.Size = new System.Drawing.Size(100, 20);
-            this.txt_foliosEmitidos.TabIndex = 51;
-            this.txt_foliosEmitidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
-            // 
-            // txt_foliosUtilizados
-            // 
-            this.txt_foliosUtilizados.Location = new System.Drawing.Point(592, 30);
-            this.txt_foliosUtilizados.Name = "txt_foliosUtilizados";
-            this.txt_foliosUtilizados.Size = new System.Drawing.Size(100, 20);
-            this.txt_foliosUtilizados.TabIndex = 50;
-            this.txt_foliosUtilizados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
-            // 
-            // txt_mntTotal
-            // 
-            this.txt_mntTotal.Location = new System.Drawing.Point(361, 82);
-            this.txt_mntTotal.Name = "txt_mntTotal";
-            this.txt_mntTotal.Size = new System.Drawing.Size(100, 20);
-            this.txt_mntTotal.TabIndex = 49;
-            this.txt_mntTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
-            // 
-            // txt_mntExento
-            // 
-            this.txt_mntExento.Location = new System.Drawing.Point(361, 56);
-            this.txt_mntExento.Name = "txt_mntExento";
-            this.txt_mntExento.Size = new System.Drawing.Size(100, 20);
-            this.txt_mntExento.TabIndex = 48;
-            this.txt_mntExento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
-            // 
-            // txt_tasaIva
-            // 
-            this.txt_tasaIva.Location = new System.Drawing.Point(361, 30);
-            this.txt_tasaIva.Name = "txt_tasaIva";
-            this.txt_tasaIva.Size = new System.Drawing.Size(100, 20);
-            this.txt_tasaIva.TabIndex = 47;
-            this.txt_tasaIva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
-            // 
-            // txt_mntIva
-            // 
-            this.txt_mntIva.Location = new System.Drawing.Point(152, 82);
-            this.txt_mntIva.Name = "txt_mntIva";
-            this.txt_mntIva.Size = new System.Drawing.Size(100, 20);
-            this.txt_mntIva.TabIndex = 46;
-            this.txt_mntIva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
-            // 
-            // txt_mntNeto
-            // 
-            this.txt_mntNeto.Location = new System.Drawing.Point(152, 56);
-            this.txt_mntNeto.Name = "txt_mntNeto";
-            this.txt_mntNeto.Size = new System.Drawing.Size(100, 20);
-            this.txt_mntNeto.TabIndex = 45;
-            this.txt_mntNeto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
-            // 
-            // txt_tipoDoc
-            // 
-            this.txt_tipoDoc.Location = new System.Drawing.Point(152, 30);
-            this.txt_tipoDoc.Name = "txt_tipoDoc";
-            this.txt_tipoDoc.Size = new System.Drawing.Size(100, 20);
-            this.txt_tipoDoc.TabIndex = 44;
-            this.txt_tipoDoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(28, 85);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(48, 13);
-            this.label10.TabIndex = 37;
-            this.label10.Text = "Mnt IVA ";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(492, 33);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(85, 13);
-            this.label16.TabIndex = 43;
-            this.label16.Text = "Folios Utilizados ";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(493, 85);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(84, 13);
-            this.label15.TabIndex = 42;
-            this.label15.Text = "Folios Anulados ";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(492, 59);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(79, 13);
-            this.label14.TabIndex = 41;
-            this.label14.Text = "Folios Emitidos ";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(287, 84);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 13);
-            this.label13.TabIndex = 40;
-            this.label13.Text = "Mnt Total ";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(287, 59);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(64, 13);
-            this.label12.TabIndex = 39;
-            this.label12.Text = "Mnt Exento ";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(287, 33);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(54, 13);
-            this.label11.TabIndex = 38;
-            this.label11.Text = "Tasa IVA ";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(28, 59);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(54, 13);
-            this.label9.TabIndex = 36;
-            this.label9.Text = "Mnt Neto ";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(28, 33);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(104, 13);
-            this.label8.TabIndex = 35;
-            this.label8.Text = "Tipo de Documento ";
             // 
             // GenerarRCOFInvalido
             // 

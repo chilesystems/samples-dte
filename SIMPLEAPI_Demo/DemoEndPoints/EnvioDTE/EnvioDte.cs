@@ -154,7 +154,11 @@ namespace DemoEndPoints
                     response.EnsureSuccessStatusCode();
                     client.Dispose();
                     string sd = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show(sd);
+                    Resultado resultado = new Resultado();
+                    resultado.json = json;
+                    resultado.xml = sd;
+                    resultado.response = response;
+                    resultado.Show();
                     url = ConfigurationManager.AppSettings["url"];
                 }
             }

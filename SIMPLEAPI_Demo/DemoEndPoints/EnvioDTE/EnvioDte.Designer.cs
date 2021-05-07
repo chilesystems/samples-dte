@@ -31,6 +31,7 @@ namespace DemoEndPoints
         {
             this.btn_enviarDte = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txt_numResolucion = new System.Windows.Forms.TextBox();
             this.chbx_produccionNo = new System.Windows.Forms.CheckBox();
             this.chbx_produccionSi = new System.Windows.Forms.CheckBox();
             this.dp_fechaResolucion = new System.Windows.Forms.DateTimePicker();
@@ -53,7 +54,6 @@ namespace DemoEndPoints
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.txt_numResolucion = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -61,7 +61,7 @@ namespace DemoEndPoints
             // 
             // btn_enviarDte
             // 
-            this.btn_enviarDte.Location = new System.Drawing.Point(167, 404);
+            this.btn_enviarDte.Location = new System.Drawing.Point(206, 404);
             this.btn_enviarDte.Name = "btn_enviarDte";
             this.btn_enviarDte.Size = new System.Drawing.Size(75, 23);
             this.btn_enviarDte.TabIndex = 10;
@@ -84,15 +84,24 @@ namespace DemoEndPoints
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(11, 243);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(397, 155);
+            this.groupBox2.Size = new System.Drawing.Size(452, 155);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos";
             // 
+            // txt_numResolucion
+            // 
+            this.txt_numResolucion.Location = new System.Drawing.Point(195, 73);
+            this.txt_numResolucion.MaxLength = 9;
+            this.txt_numResolucion.Name = "txt_numResolucion";
+            this.txt_numResolucion.Size = new System.Drawing.Size(70, 20);
+            this.txt_numResolucion.TabIndex = 12;
+            this.txt_numResolucion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
+            // 
             // chbx_produccionNo
             // 
             this.chbx_produccionNo.AutoSize = true;
-            this.chbx_produccionNo.Location = new System.Drawing.Point(214, 125);
+            this.chbx_produccionNo.Location = new System.Drawing.Point(236, 125);
             this.chbx_produccionNo.Name = "chbx_produccionNo";
             this.chbx_produccionNo.Size = new System.Drawing.Size(40, 17);
             this.chbx_produccionNo.TabIndex = 11;
@@ -105,7 +114,7 @@ namespace DemoEndPoints
             this.chbx_produccionSi.AutoSize = true;
             this.chbx_produccionSi.Checked = true;
             this.chbx_produccionSi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbx_produccionSi.Location = new System.Drawing.Point(173, 125);
+            this.chbx_produccionSi.Location = new System.Drawing.Point(195, 125);
             this.chbx_produccionSi.Name = "chbx_produccionSi";
             this.chbx_produccionSi.Size = new System.Drawing.Size(35, 17);
             this.chbx_produccionSi.TabIndex = 10;
@@ -116,21 +125,21 @@ namespace DemoEndPoints
             // dp_fechaResolucion
             // 
             this.dp_fechaResolucion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dp_fechaResolucion.Location = new System.Drawing.Point(173, 99);
+            this.dp_fechaResolucion.Location = new System.Drawing.Point(195, 99);
             this.dp_fechaResolucion.Name = "dp_fechaResolucion";
             this.dp_fechaResolucion.Size = new System.Drawing.Size(100, 20);
             this.dp_fechaResolucion.TabIndex = 8;
             // 
             // txt_rutReceptor
             // 
-            this.txt_rutReceptor.Location = new System.Drawing.Point(173, 47);
+            this.txt_rutReceptor.Location = new System.Drawing.Point(195, 47);
             this.txt_rutReceptor.Name = "txt_rutReceptor";
             this.txt_rutReceptor.Size = new System.Drawing.Size(100, 20);
             this.txt_rutReceptor.TabIndex = 6;
             // 
             // txt_rutEmisor
             // 
-            this.txt_rutEmisor.Location = new System.Drawing.Point(173, 21);
+            this.txt_rutEmisor.Location = new System.Drawing.Point(195, 21);
             this.txt_rutEmisor.Name = "txt_rutEmisor";
             this.txt_rutEmisor.Size = new System.Drawing.Size(100, 20);
             this.txt_rutEmisor.TabIndex = 5;
@@ -187,14 +196,14 @@ namespace DemoEndPoints
             this.groupBox1.Controls.Add(this.lbl_tipo);
             this.groupBox1.Location = new System.Drawing.Point(12, 161);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(396, 76);
+            this.groupBox1.Size = new System.Drawing.Size(451, 76);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DTE";
             // 
             // btn_cargarDte
             // 
-            this.btn_cargarDte.Location = new System.Drawing.Point(326, 24);
+            this.btn_cargarDte.Location = new System.Drawing.Point(348, 26);
             this.btn_cargarDte.Name = "btn_cargarDte";
             this.btn_cargarDte.Size = new System.Drawing.Size(48, 25);
             this.btn_cargarDte.TabIndex = 9;
@@ -204,7 +213,7 @@ namespace DemoEndPoints
             // 
             // txt_dte
             // 
-            this.txt_dte.Location = new System.Drawing.Point(172, 29);
+            this.txt_dte.Location = new System.Drawing.Point(194, 31);
             this.txt_dte.Name = "txt_dte";
             this.txt_dte.Size = new System.Drawing.Size(131, 20);
             this.txt_dte.TabIndex = 8;
@@ -229,14 +238,14 @@ namespace DemoEndPoints
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Location = new System.Drawing.Point(12, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(396, 143);
+            this.groupBox3.Size = new System.Drawing.Size(451, 143);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Certificado Digital";
             // 
             // btn_cargarCertificado
             // 
-            this.btn_cargarCertificado.Location = new System.Drawing.Point(326, 23);
+            this.btn_cargarCertificado.Location = new System.Drawing.Point(348, 23);
             this.btn_cargarCertificado.Name = "btn_cargarCertificado";
             this.btn_cargarCertificado.Size = new System.Drawing.Size(48, 25);
             this.btn_cargarCertificado.TabIndex = 6;
@@ -246,21 +255,21 @@ namespace DemoEndPoints
             // 
             // txt_passCertificado
             // 
-            this.txt_passCertificado.Location = new System.Drawing.Point(172, 97);
+            this.txt_passCertificado.Location = new System.Drawing.Point(194, 97);
             this.txt_passCertificado.Name = "txt_passCertificado";
             this.txt_passCertificado.Size = new System.Drawing.Size(100, 20);
             this.txt_passCertificado.TabIndex = 5;
             // 
             // txt_rutCertificado
             // 
-            this.txt_rutCertificado.Location = new System.Drawing.Point(172, 69);
+            this.txt_rutCertificado.Location = new System.Drawing.Point(194, 69);
             this.txt_rutCertificado.Name = "txt_rutCertificado";
             this.txt_rutCertificado.Size = new System.Drawing.Size(100, 20);
             this.txt_rutCertificado.TabIndex = 4;
             // 
             // txt_certificado
             // 
-            this.txt_certificado.Location = new System.Drawing.Point(172, 26);
+            this.txt_certificado.Location = new System.Drawing.Point(194, 26);
             this.txt_certificado.Name = "txt_certificado";
             this.txt_certificado.Size = new System.Drawing.Size(131, 20);
             this.txt_certificado.TabIndex = 3;
@@ -292,20 +301,11 @@ namespace DemoEndPoints
             this.label17.TabIndex = 0;
             this.label17.Text = "Selecciona un Certificado ";
             // 
-            // txt_numResolucion
-            // 
-            this.txt_numResolucion.Location = new System.Drawing.Point(173, 73);
-            this.txt_numResolucion.MaxLength = 9;
-            this.txt_numResolucion.Name = "txt_numResolucion";
-            this.txt_numResolucion.Size = new System.Drawing.Size(70, 20);
-            this.txt_numResolucion.TabIndex = 12;
-            this.txt_numResolucion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
-            // 
             // EnvioDte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 434);
+            this.ClientSize = new System.Drawing.Size(478, 450);
             this.Controls.Add(this.btn_enviarDte);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

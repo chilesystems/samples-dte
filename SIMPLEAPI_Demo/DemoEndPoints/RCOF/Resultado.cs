@@ -56,6 +56,11 @@ namespace DemoEndPoints.RCOF
             {
                 txt_json.Text = json;
             }
+            else
+            {
+                lbl_json.Visible = false;
+                txt_json.Visible = false;
+            }
             if (xml!="")
             {
                 txt_xml.Text = xml;

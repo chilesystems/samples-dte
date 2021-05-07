@@ -27,4 +27,25 @@ namespace DemoEndPoints.GenerarDTE
             this.DescuentosRecargos = new List<DescuentosRecargos>();
         }
     }
+
+    public class DTEEntrada
+    {
+        public Receptor receptor { get; set; }
+        public Emisor emisor { get; set; }
+        public List<DetallesEntrada> detalles { get; set; }
+        public List<ReferenciasEntrada> referencias { get; set; }
+        public Encabezado encabezado { get; set; }
+        public Totales totales { get; set; }
+
+        public OtrosDTE otrosDTE { get; set; }
+        public CertificadoDigital certificadoDigital { get; set; }
+        public List<DescuentosRecargos> DescuentosRecargos { get; set; }
+
+        public DTEEntrada()
+        {
+            this.detalles = new List<DetallesEntrada>();
+            this.referencias = new List<ReferenciasEntrada>();
+            //this.DescuentosRecargos = new List<DescuentosRecargos>();
+        }
+    }
 }

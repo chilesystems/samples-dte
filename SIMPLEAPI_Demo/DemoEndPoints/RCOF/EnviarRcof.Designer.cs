@@ -34,6 +34,7 @@ namespace DemoEndPoints
             this.txt_rcof = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txt_numResolucion = new System.Windows.Forms.TextBox();
             this.chbx_produccionNo = new System.Windows.Forms.CheckBox();
             this.chbx_produccionSi = new System.Windows.Forms.CheckBox();
             this.dp_fechaResolucion = new System.Windows.Forms.DateTimePicker();
@@ -53,7 +54,6 @@ namespace DemoEndPoints
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.txt_numResolucion = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -116,6 +116,15 @@ namespace DemoEndPoints
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos";
+            // 
+            // txt_numResolucion
+            // 
+            this.txt_numResolucion.Location = new System.Drawing.Point(153, 77);
+            this.txt_numResolucion.MaxLength = 9;
+            this.txt_numResolucion.Name = "txt_numResolucion";
+            this.txt_numResolucion.Size = new System.Drawing.Size(44, 20);
+            this.txt_numResolucion.TabIndex = 29;
+            this.txt_numResolucion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soloNumeros);
             // 
             // chbx_produccionNo
             // 
@@ -242,6 +251,7 @@ namespace DemoEndPoints
             this.btn_cargarCertificado.TabIndex = 6;
             this.btn_cargarCertificado.Text = "Cargar";
             this.btn_cargarCertificado.UseVisualStyleBackColor = true;
+            this.btn_cargarCertificado.Click += new System.EventHandler(this.btn_cargarCertificado_Click);
             // 
             // txt_passCertificado
             // 
@@ -290,13 +300,6 @@ namespace DemoEndPoints
             this.label17.Size = new System.Drawing.Size(131, 13);
             this.label17.TabIndex = 0;
             this.label17.Text = "Selecciona un Certificado ";
-            // 
-            // txt_numResolucion
-            // 
-            this.txt_numResolucion.Location = new System.Drawing.Point(153, 77);
-            this.txt_numResolucion.Name = "txt_numResolucion";
-            this.txt_numResolucion.Size = new System.Drawing.Size(44, 20);
-            this.txt_numResolucion.TabIndex = 29;
             // 
             // EnviarRcof
             // 

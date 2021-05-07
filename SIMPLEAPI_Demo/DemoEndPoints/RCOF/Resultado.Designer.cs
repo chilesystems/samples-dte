@@ -32,7 +32,7 @@ namespace DemoEndPoints.RCOF
             this.txt_json = new System.Windows.Forms.TextBox();
             this.txt_xml = new System.Windows.Forms.TextBox();
             this.btn_guardar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_json = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -64,14 +64,14 @@ namespace DemoEndPoints.RCOF
             this.btn_guardar.UseVisualStyleBackColor = true;
             this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
             // 
-            // label1
+            // lbl_json
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 88);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Json de Datos";
+            this.lbl_json.AutoSize = true;
+            this.lbl_json.Location = new System.Drawing.Point(31, 88);
+            this.lbl_json.Name = "lbl_json";
+            this.lbl_json.Size = new System.Drawing.Size(75, 13);
+            this.lbl_json.TabIndex = 3;
+            this.lbl_json.Text = "Json de Datos";
             // 
             // label2
             // 
@@ -88,7 +88,7 @@ namespace DemoEndPoints.RCOF
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 450);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbl_json);
             this.Controls.Add(this.btn_guardar);
             this.Controls.Add(this.txt_xml);
             this.Controls.Add(this.txt_json);
@@ -108,7 +108,7 @@ namespace DemoEndPoints.RCOF
         private System.Windows.Forms.TextBox txt_json;
         private System.Windows.Forms.TextBox txt_xml;
         private System.Windows.Forms.Button btn_guardar;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_json;
         private System.Windows.Forms.Label label2;
     }
 }

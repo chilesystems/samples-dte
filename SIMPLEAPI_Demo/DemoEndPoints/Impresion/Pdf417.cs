@@ -28,6 +28,7 @@ namespace DemoEndPoints.Impresion
         string apikey = ConfigurationManager.AppSettings["apikey"];
         public int tipo;
         OpenFileDialog dialog;
+        string sd="";
         public Pdf417()
         {
             InitializeComponent();
@@ -84,15 +85,14 @@ namespace DemoEndPoints.Impresion
                     HttpResponseMessage response = await client.PostAsync(url, form);
                     response.EnsureSuccessStatusCode();
                     client.Dispose();
-                    string sd = await response.Content.ReadAsStringAsync();
-
+                    sd = await response.Content.ReadAsStringAsync();
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(sd);
-                    
-                    sd= doc.DocumentElement.FirstChild.InnerText;
-                    
-                    var ruta = @"C:\Users\McL\source\repos\samples-dte\SIMPLEAPI_Demo\DemoEndPoints\" + DateTime.Now.Ticks.ToString() + ".jpg";
 
+                    sd = doc.DocumentElement.FirstChild.InnerText;
+
+                    //var ruta = @"C:\Users\McL\source\repos\samples-dte\SIMPLEAPI_Demo\DemoEndPoints\" + DateTime.Now.Ticks.ToString() + ".jpg";
+                    var ruta = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\" + DateTime.Now.Ticks.ToString() + ".jpg");
                     byte[] bytes = Convert.FromBase64String(sd);
                     System.IO.FileStream stream =
                     new FileStream(ruta, FileMode.CreateNew);
@@ -101,7 +101,10 @@ namespace DemoEndPoints.Impresion
                     writer.Write(bytes, 0, bytes.Length);
                     writer.Close();
                     img.ImageLocation = ruta;
+                    btn_guardar.Visible = true;
                     MessageBox.Show("Exito");
+                    
+
                     url = ConfigurationManager.AppSettings["urlLocal"];
                 }
                 catch(Exception ex)
@@ -117,6 +120,7 @@ namespace DemoEndPoints.Impresion
 
         private void Pdf417_Load(object sender, EventArgs e)
         {
+            btn_guardar.Visible = false;
             if (tipo==1)
             {
                 this.Text = "PDF417 desde un DTE";
@@ -126,6 +130,57 @@ namespace DemoEndPoints.Impresion
             {
                 this.Text = "PDF417 desde un Envio";
                 lbl_archivo.Text = "Selecciona el envio ";
+            }
+        }
+
+        private void btn_guardar_Click(object sender, EventArgs e)
+        {
+            guardar();
+            /*
+            byte[] bytes = Convert.FromBase64String(sd);
+            System.IO.FileStream stream =
+            new FileStream(ruta, FileMode.CreateNew);
+            System.IO.BinaryWriter writer =
+                new BinaryWriter(stream);
+            writer.Write(bytes, 0, bytes.Length);
+            writer.Close();
+            img.ImageLocation = ruta;
+            MessageBox.Show("Exito");*/
+        }
+        private void guardar()
+        {
+            byte[] bytes = Convert.FromBase64String(sd);
+            var formato="";
+            var nombreArchivo = "archivo" + DateTime.Now.Millisecond.ToString();
+            
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "JPG (*.jpg)|*.jpg|PNG (*.png*)|*.png*";
+            save.FileName = nombreArchivo;
+
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                switch (save.FilterIndex)
+                {
+                    case 1:
+                        formato = ".jpg";
+                        break;
+
+                    case 2:
+                        formato = ".png";
+                        break;
+                }
+                
+                var ruta = save.FileName+formato;
+                System.IO.FileStream stream =
+                new FileStream(ruta, FileMode.CreateNew);
+                System.IO.BinaryWriter writer =
+                    new BinaryWriter(stream);
+                writer.Write(bytes, 0, bytes.Length);
+                writer.Close();
+                MessageBox.Show("PDF417 Guardado con Exito");
+                Process proceso = new Process();
+                proceso.StartInfo.FileName = ruta;
+                proceso.Start();
             }
         }
     }
