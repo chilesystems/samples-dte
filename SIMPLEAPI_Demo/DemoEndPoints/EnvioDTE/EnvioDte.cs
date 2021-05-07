@@ -20,7 +20,7 @@ namespace DemoEndPoints
     public partial class EnvioDte : Form
     {
         public int tipo;
-        
+
         string url = ConfigurationManager.AppSettings["url"];
         string apikey = ConfigurationManager.AppSettings["apikey"];
 
@@ -83,7 +83,7 @@ namespace DemoEndPoints
                 else
                 {
 
-                    if (tipo==1)
+                    if (tipo == 1)
                     {
                         url = url + ConfigurationManager.AppSettings["GenerarEnvioDte"];
                     }
@@ -166,7 +166,7 @@ namespace DemoEndPoints
         }
         public void cargar()
         {
-            if (tipo==1)
+            if (tipo == 1)
             {
                 txt_rutEmisor.Text = "76269769-6";
                 txt_rutReceptor.Text = "60803000-K";
@@ -177,7 +177,7 @@ namespace DemoEndPoints
                 txt_rutCertificado.Text = "17096073-4";
                 txt_passCertificado.Text = "Pollito702";
 
-                lbl_tipo.Text = "Selecciona un DTE ";
+                lbl_tipo.Text = "Seleccionar DTE ";
             }
             else if (tipo == 2)
             {
@@ -190,7 +190,7 @@ namespace DemoEndPoints
                 txt_rutCertificado.Text = "17096073-4";
                 txt_passCertificado.Text = "Pollito702";
 
-                lbl_tipo.Text = "Selecciona un DTE boleta";
+                lbl_tipo.Text = "Seleccionar DTE boleta";
             }
             else if (tipo == 3)
             {
@@ -203,7 +203,7 @@ namespace DemoEndPoints
                 txt_rutCertificado.Text = "17096073-4";
                 txt_passCertificado.Text = "Pollito702";
 
-                lbl_tipo.Text = "Selecciona un envio DTE ";
+                lbl_tipo.Text = "Seleccionar envio DTE ";
             }
             else if (tipo == 4)
             {
@@ -216,7 +216,7 @@ namespace DemoEndPoints
                 txt_rutCertificado.Text = "17096073-4";
                 txt_passCertificado.Text = "Pollito702";
 
-                lbl_tipo.Text = "Selecciona un envio DTE boleta ";
+                lbl_tipo.Text = "Seleccionar envio DTE boleta ";
             }
 
         }
@@ -234,6 +234,28 @@ namespace DemoEndPoints
             {
                 chbx_produccionSi.Checked = false;
             }
+        }
+
+
+        private void soloNumeros(object sender, KeyPressEventArgs e)
+        {
+
+            //Para obligar a que sólo se introduzcan números
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+              if (Char.IsControl(e.KeyChar)) //permitir teclas de control como retroceso
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                //el resto de teclas pulsadas se desactivan
+                e.Handled = true;
+            }
+
         }
     }
 }
