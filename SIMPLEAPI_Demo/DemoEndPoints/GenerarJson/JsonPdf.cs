@@ -25,9 +25,9 @@ namespace DemoEndPoints.GenerarJson
 
         private  void JsonPdf_Load(object sender, EventArgs e)
         {
-           
+            cargar();  
         }
-
+        /*
         private  void btn_generar_Click(object sender, EventArgs e)
         {
             formato80mm f = new formato80mm();
@@ -48,7 +48,7 @@ namespace DemoEndPoints.GenerarJson
             var json = new JavaScriptSerializer().Serialize(f);
             txt_jsonPdf.Text = json;
         }
-
+        */
         private async void cargar()
         {
             HttpClient client = new HttpClient();
@@ -57,23 +57,15 @@ namespace DemoEndPoints.GenerarJson
             formato80mm json = new JavaScriptSerializer().Deserialize<formato80mm>(response);
 
             txt_jsonPdf.Text = response;
-            txt_ejecutivo.Text = json.Ejecutivo;
-            txt_numResolucion.Text = json.NumeroResolucion.ToString();
-            txt_unidadSii.Text = json.UnidadSII;
-            json.FechaResolucion = null;
-            if (json.FechaResolucion == null)
-            {
-                dp_fechaResolucion.Visible=false;
-            }
-            else
-            {
-                dp_fechaResolucion.Value = DateTime.Parse(json.FechaResolucion);
-            }
-            
+            lbl_ejecutivo.Text = json.Ejecutivo;
+            lbl_numResol.Text = json.NumeroResolucion.ToString();
+            lbl_unidadSii.Text = json.UnidadSII;
+            lbl_fecha.Text = json.FechaResolucion;
+            lbl_hora.Text = json.Hora;
 
 
         }
-
+        /*
         private void btn_limpiar_Click(object sender, EventArgs e)
         {
             txt_jsonPdf.Text = "";
@@ -86,15 +78,7 @@ namespace DemoEndPoints.GenerarJson
                 dp_fechaResolucion.Visible = true;
             }
         }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_jsonPdf_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        */
+       
     }
 }
