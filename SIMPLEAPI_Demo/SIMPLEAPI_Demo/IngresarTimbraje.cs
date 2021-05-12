@@ -1,5 +1,5 @@
-﻿using ChileSystems.DTE.Engine.Documento;
-using ChileSystems.DTE.Engine.XML;
+﻿//using ChileSystems.DTE.Engine.Documento;
+//using ChileSystems.DTE.Engine.XML;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ namespace SIMPLEAPI_Demo
 {
     public partial class IngresarTimbraje : Form
     {
-        Autorizacion aut;
+        SimpleAPI.Models.DTE.Autorizacion aut;
 
         public IngresarTimbraje()
         {
@@ -28,44 +28,44 @@ namespace SIMPLEAPI_Demo
             if (File.Exists(openFileDialog1.FileName))
             {
                 txtFilePath.Text = openFileDialog1.FileName;
-                aut = XmlHandler.DeserializeRaw<Autorizacion>(openFileDialog1.FileName);
+                aut = SimpleAPI.XML.XmlHandler.DeserializeRaw<SimpleAPI.Models.DTE.Autorizacion>(openFileDialog1.FileName);
                 aut.CAF.IdCAF = 1;
                 textFecha.Text = aut.CAF.Datos.FechaAutorizacion.ToShortDateString();
                 textRango.Text = aut.CAF.Datos.RangoAutorizado.Desde.ToString() + " - " + aut.CAF.Datos.RangoAutorizado.Hasta.ToString();
                 string tipo = string.Empty;
                 switch (aut.CAF.Datos.TipoDTE)
                 {
-                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaCompraElectronica:
+                    case SimpleAPI.Enum.TipoDTE.DTEType.FacturaCompraElectronica:
                         tipo = "FACTURA DE COMPRA ELECTRÓNICA";
                         break;
-                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica:
+                    case SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronica:
                         tipo = "FACTURA ELECTRÓNICA";
                         break;
-                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronicaExenta:
+                    case SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronicaExenta:
                         tipo = "FACTURA ELECTRÓNICA EXENTA";
                         break;
-                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.GuiaDespachoElectronica:
+                    case SimpleAPI.Enum.TipoDTE.DTEType.GuiaDespachoElectronica:
                         tipo = "GUIA DE DESPACHO ELECTRÓNICA";
                         break;
-                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica:
+                    case SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica:
                         tipo = "NOTA DE CRÉDITO ELECTRÓNICA";
                         break;
-                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica:
+                    case SimpleAPI.Enum.TipoDTE.DTEType.NotaDebitoElectronica:
                         tipo = "NOTA DE DÉBITO ELECTRÓNICA";
                         break;
-                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica:
+                    case SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica:
                         tipo = "BOLETA ELECTRÓNICA";
                         break;
-                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronicaExenta:
+                    case SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronicaExenta:
                         tipo = "BOLETA ELECTRÓNICA EXENTA";
                         break;
-                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaExportacionElectronica:
+                    case SimpleAPI.Enum.TipoDTE.DTEType.FacturaExportacionElectronica:
                         tipo = "FACTURA DE EXPORTACIÓN ELECTRÓNICA";
                         break;
-                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoExportacionElectronica:
+                    case SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoExportacionElectronica:
                         tipo = "NOTA DE CRÉDITO DE EXPORTACIÓN ELECTRÓNICA";
                         break;
-                    case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoExportacionElectronica:
+                    case SimpleAPI.Enum.TipoDTE.DTEType.NotaDebitoExportacionElectronica:
                         tipo = "NOTA DE DÉBITO DE EXPORTACIÓN ELECTRÓNICA";
                         break;
                 }
@@ -86,6 +86,11 @@ namespace SIMPLEAPI_Demo
                 fs.Close();
             }
             MessageBox.Show("CAF Guardado correctamente");
+        }
+
+        private void IngresarTimbraje_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,12 +1,12 @@
-﻿using ChileSystems.DTE.Engine.Documento;
-using ChileSystems.DTE.Engine.Enum;
-using ChileSystems.DTE.Engine.Envio;
-using ChileSystems.DTE.Engine.RespuestaEnvio;
-using ChileSystems.DTE.WS.EnvioDTE;
-using ChileSystems.DTE.WS.EstadoDTE;
-using ChileSystems.DTE.WS.EstadoEnvio;
-using SIMPLE_API.Security.Firma;
-using SIMPLE_API.WS;
+﻿//using ChileSystems.DTE.Engine.Documento;
+//using ChileSystems.DTE.Engine.Enum;
+//using ChileSystems.DTE.Engine.Envio;
+//using ChileSystems.DTE.Engine.RespuestaEnvio;
+//using ChileSystems.DTE.WS.EnvioDTE;
+//using ChileSystems.DTE.WS.EstadoDTE;
+//using ChileSystems.DTE.WS.EstadoEnvio;
+//using SIMPLE_API.Security.Firma;
+//using SIMPLE_API.WS;
 using SIMPLEAPI_Demo.Clases;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static SIMPLE_API.Enum.Ambiente;
+//using static SIMPLE_API.Enum.Ambiente;
 
 namespace SIMPLEAPI_Demo
 {
@@ -32,10 +32,10 @@ namespace SIMPLEAPI_Demo
 
         #region Generar Documento
 
-        public DTE GenerateDTE(TipoDTE.DTEType tipoDTE, int folio, string idDTE = "")
+        public SimpleAPI.Models.DTE.DTE GenerateDTE(SimpleAPI.Enum.TipoDTE.DTEType tipoDTE, int folio, string idDTE = "")
         {
             // DOCUMENTO
-            var dte = new DTE();
+            var dte = new SimpleAPI.Models.DTE.DTE();
             //
             // DOCUMENTO - ENCABEZADO - CAMPO OBLIGATORIO
             //Id = puede ser compuesto según tus propios requerimientos pero debe ser único                  
@@ -52,9 +52,9 @@ namespace SIMPLEAPI_Demo
             dte.Documento.Encabezado.Emisor.ComunaOrigen = configuracion.Empresa.Comuna;
 
             //Para boletas electrónicas
-            if (tipoDTE == TipoDTE.DTEType.BoletaElectronica || tipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta)
+            if (tipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica || tipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronicaExenta)
             {
-                dte.Documento.Encabezado.IdentificacionDTE.IndicadorServicio = ChileSystems.DTE.Engine.Enum.IndicadorServicio.IndicadorServicioEnum.BoletaVentasYServicios;
+                dte.Documento.Encabezado.IdentificacionDTE.IndicadorServicio = SimpleAPI.Enum.IndicadorServicio.IndicadorServicioEnum.BoletaVentasYServicios;
                 dte.Documento.Encabezado.Emisor.RazonSocialBoleta = configuracion.Empresa.RazonSocial;
                 dte.Documento.Encabezado.Emisor.GiroBoleta = configuracion.Empresa.Giro;
             }
@@ -65,10 +65,10 @@ namespace SIMPLEAPI_Demo
                 dte.Documento.Encabezado.Emisor.Giro = configuracion.Empresa.Giro;
             }
 
-            if (tipoDTE == TipoDTE.DTEType.GuiaDespachoElectronica)
+            if (tipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.GuiaDespachoElectronica)
             {
-                dte.Documento.Encabezado.IdentificacionDTE.TipoTraslado = TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta;
-                dte.Documento.Encabezado.IdentificacionDTE.TipoDespacho = TipoDespacho.TipoDespachoEnum.EmisorACliente;
+                dte.Documento.Encabezado.IdentificacionDTE.TipoTraslado = SimpleAPI.Enum.TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta;
+                dte.Documento.Encabezado.IdentificacionDTE.TipoDespacho = SimpleAPI.Enum.TipoDespacho.TipoDespachoEnum.EmisorACliente;
             }
             //DOCUMENTO - ENCABEZADO - RECEPTOR - CAMPOS OBLIGATORIOS
 
@@ -76,22 +76,22 @@ namespace SIMPLEAPI_Demo
             dte.Documento.Encabezado.Receptor.RazonSocial = "Razon Social de Cliente";
             dte.Documento.Encabezado.Receptor.Direccion = "Dirección de cliente";
             dte.Documento.Encabezado.Receptor.Comuna = "Comuna de cliente";
-            if (tipoDTE != TipoDTE.DTEType.BoletaElectronica && tipoDTE != TipoDTE.DTEType.BoletaElectronicaExenta)
+            if (tipoDTE != SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica && tipoDTE != SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronicaExenta)
             {
                 dte.Documento.Encabezado.Receptor.Ciudad = "Ciudad de cliente";
                 dte.Documento.Encabezado.Receptor.Giro = "Giro de cliente";
             }
 
-            dte.Documento.Referencias = new List<Referencia>();
+            dte.Documento.Referencias = new List<SimpleAPI.Models.DTE.Referencia>();
 
             return dte;
         }
 
-        public DTE GenerateDTEExportacionBase(TipoDTE.DTEType tipoDTE, int folio, string idDTE = "")
+        public SimpleAPI.Models.DTE.DTE GenerateDTEExportacionBase(SimpleAPI.Enum.TipoDTE.DTEType tipoDTE, int folio, string idDTE = "")
         {
             // DOCUMENTO
-            var dte = new ChileSystems.DTE.Engine.Documento.DTE();
-            dte.Exportaciones = new SIMPLE_API.Documento.Exportaciones();
+            var dte = new SimpleAPI.Models.DTE.DTE();
+            dte.Exportaciones = new SimpleAPI.Models.DTE.Exportaciones();
             dte.Exportaciones.Id = string.IsNullOrEmpty(idDTE) ? "DTE_" + DateTime.Now.Ticks.ToString() : idDTE;
 
             dte.Exportaciones.Encabezado.IdentificacionDTE.TipoDTE = tipoDTE;
@@ -114,16 +114,16 @@ namespace SIMPLEAPI_Demo
             dte.Exportaciones.Encabezado.Receptor.Ciudad = "Ciudad de cliente";
             dte.Exportaciones.Encabezado.Receptor.Giro = "Giro de cliente";
 
-            dte.Exportaciones.Encabezado.Transporte = new ChileSystems.DTE.Engine.Documento.Transporte();
-            dte.Exportaciones.Encabezado.Transporte.Aduana = new ChileSystems.DTE.Engine.Documento.Aduana();           
+            dte.Exportaciones.Encabezado.Transporte = new SimpleAPI.Models.DTE.Transporte();
+            dte.Exportaciones.Encabezado.Transporte.Aduana = new SimpleAPI.Models.DTE.Aduana();           
 
-            dte.Exportaciones.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
+            dte.Exportaciones.Referencias = new List<SimpleAPI.Models.DTE.Referencia>();
            
 
             return dte;
         }
 
-        public void CalculateTotalesExportacion(DTE dte, double adicional = 0)
+        public void CalculateTotalesExportacion(SimpleAPI.Models.DTE.DTE dte, double adicional = 0)
         {
             int total = (int)Math.Round(dte.Exportaciones.Detalles.Sum(x => x.MontoItem) + dte.Exportaciones.Encabezado.Transporte.Aduana.MontoFlete + dte.Exportaciones.Encabezado.Transporte.Aduana.MontoSeguro + adicional, 0);
             //int total = (int)Math.Round((decimal)dte.Exportaciones.Detalles.Sum(x => x.MontoItem), 0);
@@ -141,11 +141,11 @@ namespace SIMPLEAPI_Demo
            
         }
 
-        public void GenerateDetails(DTE dte)
+        public void GenerateDetails(SimpleAPI.Models.DTE.DTE dte)
         {
             //DOCUMENTO - DETALLES
-            dte.Documento.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
-            var detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+            dte.Documento.Detalles = new List<SimpleAPI.Models.DTE.Detalle>();
+            var detalle = new SimpleAPI.Models.DTE.Detalle();
             detalle.NumeroLinea = 1;
             /*IndicadorExento = Sólo aplica si el producto es exento de IVA*/
             //detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
@@ -158,7 +158,7 @@ namespace SIMPLEAPI_Demo
             detalle.MontoItem = 2040;
             dte.Documento.Detalles.Add(detalle);
 
-            detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+            detalle = new SimpleAPI.Models.DTE.Detalle();
             detalle.NumeroLinea = 2;
             //detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
             detalle.Nombre = "DESARROLLO DE ETL";
@@ -171,12 +171,12 @@ namespace SIMPLEAPI_Demo
             calculosTotales(dte);
         }
 
-        public void GenerateDetailsExportacion(DTE dte)
+        public void GenerateDetailsExportacion(SimpleAPI.Models.DTE.DTE dte)
         {
-            dte.Exportaciones.Detalles = new List<ChileSystems.DTE.Engine.Documento.DetalleExportacion>();
-            var detalle = new ChileSystems.DTE.Engine.Documento.DetalleExportacion();
+            dte.Exportaciones.Detalles = new List<SimpleAPI.Models.DTE.DetalleExportacion>();
+            var detalle = new SimpleAPI.Models.DTE.DetalleExportacion();
             detalle.NumeroLinea = 1;
-            detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
+            detalle.IndicadorExento = SimpleAPI.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
             detalle.Nombre = "CHATARRA DE ALUMINIO";
             detalle.Cantidad = 148;
             detalle.UnidadMedida = "U";
@@ -187,18 +187,18 @@ namespace SIMPLEAPI_Demo
             CalculateTotalesExportacion(dte);
         }
 
-        public void GenerateDetails(DTE dte, List<ItemBoleta> detalles)
+        public void GenerateDetails(SimpleAPI.Models.DTE.DTE dte, List<ItemBoleta> detalles)
         {
             //DOCUMENTO - DETALLES
-            dte.Documento.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
+            dte.Documento.Detalles = new List<SimpleAPI.Models.DTE.Detalle>();
 
             int contador = 1;
             foreach (var det in detalles)
             {
-                var detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+                var detalle = new SimpleAPI.Models.DTE.Detalle();
                 detalle.NumeroLinea = contador;
                 /*IndicadorExento = Sólo aplica si el producto es exento de IVA*/
-                detalle.IndicadorExento = det.Afecto ? ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet : ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
+                detalle.IndicadorExento = det.Afecto ? SimpleAPI.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet : SimpleAPI.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
 
                 detalle.Nombre = det.Nombre;
                 detalle.Cantidad = (double)det.Cantidad;
@@ -216,9 +216,9 @@ namespace SIMPLEAPI_Demo
                 }
                 detalle.MontoItem = det.Total - detalle.Descuento;
 
-                if (det.TipoImpuesto != ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.NotSet)
+                if (det.TipoImpuesto != SimpleAPI.Enum.TipoImpuesto.TipoImpuestoEnum.NotSet)
                 {
-                    detalle.CodigoImpuestoAdicional = new List<ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum>();
+                    detalle.CodigoImpuestoAdicional = new List<SimpleAPI.Enum.TipoImpuesto.TipoImpuestoEnum>();
                     detalle.CodigoImpuestoAdicional.Add(det.TipoImpuesto);
                 }
                 
@@ -228,26 +228,26 @@ namespace SIMPLEAPI_Demo
             calculosTotales(dte);
         }
 
-        private void calculosTotales(DTE dte)
+        private void calculosTotales(SimpleAPI.Models.DTE.DTE dte)
         {
             try
             {
                 //DOCUMENTO - ENCABEZADO - TOTALES - CAMPOS OBLIGATORIOS
-                if (dte.Documento.Encabezado.IdentificacionDTE.TipoDTE != ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica
-                    && dte.Documento.Encabezado.IdentificacionDTE.TipoDTE != TipoDTE.DTEType.BoletaElectronicaExenta)
+                if (dte.Documento.Encabezado.IdentificacionDTE.TipoDTE != SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica
+                    && dte.Documento.Encabezado.IdentificacionDTE.TipoDTE != SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronicaExenta)
                 {
                     dte.Documento.Encabezado.Totales.TasaIVA = Convert.ToDouble(19);
                     var neto = dte.Documento.Detalles
-                        .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet)
+                        .Where(x => x.IndicadorExento == SimpleAPI.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet)
                         .Sum(x => x.MontoItem);
 
                     var exento = dte.Documento.Detalles
-                        .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
+                        .Where(x => x.IndicadorExento == SimpleAPI.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
                         .Sum(x => x.MontoItem);
 
                     var descuentos = dte.Documento.DescuentosRecargos?
-                        .Where(x => x.TipoMovimiento == ChileSystems.DTE.Engine.Enum.TipoMovimiento.TipoMovimientoEnum.Descuento
-                        && x.TipoValor == ChileSystems.DTE.Engine.Enum.ExpresionDinero.ExpresionDineroEnum.Porcentaje)
+                        .Where(x => x.TipoMovimiento == SimpleAPI.Enum.TipoMovimiento.TipoMovimientoEnum.Descuento
+                        && x.TipoValor == SimpleAPI.Enum.ExpresionDinero.ExpresionDineroEnum.Porcentaje)
                         .Sum(x => x.Valor);
 
                     if (descuentos.HasValue && descuentos.Value > 0)
@@ -262,17 +262,17 @@ namespace SIMPLEAPI_Demo
                     {
                         retenido = (int)Math.Round(
                             dte.Documento.Detalles
-                            .Where(x=>x.CodigoImpuestoAdicional.First() == ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal)
+                            .Where(x=>x.CodigoImpuestoAdicional.First() == SimpleAPI.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal)
                             .Sum(x => x.MontoItem) * 0.19, 0);
 
                         if (retenido != 0)
                         {
-                            dte.Documento.Encabezado.Totales.ImpuestosRetenciones = new List<ChileSystems.DTE.Engine.Documento.ImpuestosRetenciones>();
-                            dte.Documento.Encabezado.Totales.ImpuestosRetenciones.Add(new ChileSystems.DTE.Engine.Documento.ImpuestosRetenciones()
+                            dte.Documento.Encabezado.Totales.ImpuestosRetenciones = new List<SimpleAPI.Models.DTE.ImpuestosRetenciones>();
+                            dte.Documento.Encabezado.Totales.ImpuestosRetenciones.Add(new SimpleAPI.Models.DTE.ImpuestosRetenciones()
                             {
                                 MontoImpuesto = retenido,
                                 TasaImpuesto = 19,
-                                TipoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal
+                                TipoImpuesto = SimpleAPI.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal
                             });
                         }                       
                     }
@@ -287,14 +287,14 @@ namespace SIMPLEAPI_Demo
                     
 
                     /*En las boletas, sólo es necesario informar el monto total*/
-                    if (dte.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronica)
+                    if (dte.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica)
                     {
                         var totalBrutoAfecto = dte.Documento.Detalles
-                        .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet)
+                        .Where(x => x.IndicadorExento == SimpleAPI.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet)
                         .Sum(x => x.MontoItem);
 
                         var totalExento = dte.Documento.Detalles
-                            .Where(x => x.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
+                            .Where(x => x.IndicadorExento == SimpleAPI.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
                             .Sum(x => x.MontoItem);
 
                         var neto = totalBrutoAfecto / 1.19;
@@ -325,63 +325,65 @@ namespace SIMPLEAPI_Demo
         /// <param name="fechaDocReferencia">Fecha del documento de referencia. NO de cuándo se genera la referencia.</param>
         /// <param name="folioReferencia">Folio del documento de referencia.</param>
         /// <param name="casoPrueba">N° de caso de prueba</param>        
-        public void Referencias(DTE dte, TipoReferencia.TipoReferenciaEnum operacionReferencia, TipoDTE.TipoReferencia tipoDocumentoReferencia, DateTime? fechaDocReferencia, int? folioReferencia = 0, string casoPrueba = "")
+        public void Referencias(SimpleAPI.Models.DTE.DTE dte, SimpleAPI.Enum.TipoReferencia.TipoReferenciaEnum operacionReferencia, SimpleAPI.Enum.TipoDTE.TipoReferencia tipoDocumentoReferencia, DateTime? fechaDocReferencia, int? folioReferencia = 0, string casoPrueba = "")
         {
-            if (operacionReferencia == TipoReferencia.TipoReferenciaEnum.SetPruebas)  //REFERENCIA A SET DE PRUEBAS
+            if (operacionReferencia == SimpleAPI.Enum.TipoReferencia.TipoReferenciaEnum.SetPruebas)  //REFERENCIA A SET DE PRUEBAS
             {
-                if (tipoDocumentoReferencia == TipoDTE.TipoReferencia.BoletaElectronica || tipoDocumentoReferencia == TipoDTE.TipoReferencia.BoletaExentaElectronica)
+                if (tipoDocumentoReferencia == SimpleAPI.Enum.TipoDTE.TipoReferencia.BoletaElectronica || tipoDocumentoReferencia == SimpleAPI.Enum.TipoDTE.TipoReferencia.BoletaExentaElectronica)
                 {
-                    dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+                    dte.Documento.Referencias.Add(new SimpleAPI.Models.DTE.Referencia()
                     {
-                        CodigoReferencia = TipoReferencia.TipoReferenciaEnum.SetPruebas,
+                        CodigoReferencia = SimpleAPI.Enum.TipoReferencia.TipoReferenciaEnum.SetPruebas,
                         Numero = dte.Documento.Referencias.Count + 1,
                         RazonReferencia = casoPrueba,
                     });
                 }
                 else
                 {
-                    dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+                    dte.Documento.Referencias.Add(new SimpleAPI.Models.DTE.Referencia()
                     {
                         FechaDocumentoReferencia = fechaDocReferencia.Value,
                         FolioReferencia = folioReferencia.ToString(),
                         Numero = dte.Documento.Referencias.Count + 1,
                         RazonReferencia = casoPrueba,
-                        TipoDocumento = TipoDTE.TipoReferencia.SetPruebas
+                        TipoDocumento = SimpleAPI.Enum.TipoDTE.TipoReferencia.SetPruebas
                     });
                 }
             }
             else 
             {
-                dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+                dte.Documento.Referencias.Add(new SimpleAPI.Models.DTE.Referencia()
                 {
                     CodigoReferencia = operacionReferencia,
                     FechaDocumentoReferencia = fechaDocReferencia.Value,
                     FolioReferencia = folioReferencia.ToString(),
                     Numero = dte.Documento.Referencias.Count + 1,
-                    RazonReferencia = operacionReferencia == TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia ? "ANULA" : "CORRIGE" + " DOCUMENTO N° " + folioReferencia.ToString(),
+                    RazonReferencia = operacionReferencia == SimpleAPI.Enum.TipoReferencia.TipoReferenciaEnum.AnulaDocumentoReferencia ? "ANULA" : "CORRIGE" + " DOCUMENTO N° " + folioReferencia.ToString(),
                     TipoDocumento = tipoDocumentoReferencia
                 });
             }            
         }
 
-        public string TimbrarYFirmarXMLDTE(DTE dte, string pathResult, string pathCaf, out string messageOut)
+        public async Task<string> TimbrarYFirmarXMLDTE(SimpleAPI.Models.DTE.DTE dte, string pathResult, string pathCaf)
         {
             /*En primer lugar, el documento debe timbrarse con el CAF que descargas desde el SII, es simular
              * cuando antes debías ir con las facturas en papel para que te las timbraran */
-            messageOut = string.Empty;
+            string messageOut = string.Empty;
             dte.Documento.Timbrar(
-                EnsureExists((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, dte.Documento.Encabezado.IdentificacionDTE.Folio, pathCaf),  
+                EnsureExists((int)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE, dte.Documento.Encabezado.IdentificacionDTE.Folio, pathCaf),
                 out messageOut);
 
+            if (!string.IsNullOrEmpty(messageOut)) return messageOut;
             /*El documento timbrado se guarda en la variable pathResult*/
 
             /*Finalmente, el documento timbrado debe firmarse con el certificado digital*/
             /*Se debe entregar en el argumento del método Firmar, el "FriendlyName" o Nombre descriptivo del certificado*/
             /*Retorna el filePath donde estará el archivo XML timbrado y firmado, listo para ser enviado al SII*/
-            return dte.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, out messageOut, "out\\temp\\", "");
+            var resultado = await dte.Firmar(configuracion.Certificado.Nombre, configuracion.APIKey, "out\\temp\\");
+            return resultado.Item1;
         }
 
-        public string TimbrarYFirmarXMLDTEExportacion(DTE dte, string pathResult, string pathCaf)
+        public string TimbrarYFirmarXMLDTEExportacion(SimpleAPI.Models.DTE.DTE dte, string pathResult, string pathCaf)
         {
             
             /*En primer lugar, el documento debe timbrarse con el CAF que descargas desde el SII, es simular
@@ -396,7 +398,7 @@ namespace SIMPLEAPI_Demo
             /*Finalmente, el documento timbrado debe firmarse con el certificado digital*/
             /*Se debe entregar en el argumento del método Firmar, el "FriendlyName" o Nombre descriptivo del certificado*/
             /*Retorna el filePath donde estará el archivo XML timbrado y firmado, listo para ser enviado al SII*/
-            return dte.FirmarExportacion(configuracion.Certificado.Nombre, configuracion.APIKey, out messageOut, "out\\temp\\");
+            return dte.FirmarExportacion(configuracion.Certificado.Nombre, out messageOut, "out\\temp\\");
         }
 
         //public bool ValidateEnvio(string filePath, ChileSystems.DTE.Security.Firma.Firma.TipoXML tipo)
@@ -410,11 +412,11 @@ namespace SIMPLEAPI_Demo
         //    throw new Exception(messageResult);
         //}
 
-        public bool Validate(string filePath, Firma.TipoXML tipo, string schema)
+        public bool Validate(string filePath, SimpleAPI.Security.Firma.TipoXML tipo, string schema)
         {
             string messageResult = string.Empty;
-            if (ChileSystems.DTE.Engine.XML.XmlHandler.ValidateWithSchema(filePath, out messageResult, schema))
-                if (SIMPLE_API.Security.Firma.Firma.VerificarFirma(filePath, tipo, out string messageOutFirma))
+            if (SimpleAPI.XML.XmlHandler.ValidateWithSchema(filePath, out messageResult, schema))
+                if (SimpleAPI.Security.Firma.VerificarFirma(filePath, tipo, out string messageOutFirma))
                     return true;
                 else
                     MessageBox.Show("Error al validar firma electrónica: " + messageResult + "", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -451,10 +453,10 @@ namespace SIMPLEAPI_Demo
 
         #region Envio
 
-        public ChileSystems.DTE.Engine.Envio.EnvioDTE GenerarEnvioDTEToSII(List<DTE> dtes, List<string> xmlDtes)
+        public SimpleAPI.Models.Envios.EnvioDTE GenerarEnvioDTEToSII(List<SimpleAPI.Models.DTE.DTE> dtes, List<string> xmlDtes)
         {
-            var EnvioSII = new ChileSystems.DTE.Engine.Envio.EnvioDTE();
-            EnvioSII.SetDTE = new ChileSystems.DTE.Engine.Envio.SetDTE();
+            var EnvioSII = new SimpleAPI.Models.Envios.EnvioDTE();
+            EnvioSII.SetDTE = new SimpleAPI.Models.Envios.SetDTE();
             EnvioSII.SetDTE.Id = "FENV010";
             /*Es necesario agregar en el envío, los objetos DTE como sus respectivos XML en strings*/
             foreach (var a in dtes)
@@ -466,7 +468,7 @@ namespace SIMPLEAPI_Demo
             }
 
 
-            EnvioSII.SetDTE.Caratula = new ChileSystems.DTE.Engine.Envio.Caratula();
+            EnvioSII.SetDTE.Caratula = new SimpleAPI.Models.Envios.Caratula();
             EnvioSII.SetDTE.Caratula.FechaEnvio = DateTime.Now;
             /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
             EnvioSII.SetDTE.Caratula.FechaResolucion = configuracion.Empresa.FechaResolucion;
@@ -475,7 +477,7 @@ namespace SIMPLEAPI_Demo
             EnvioSII.SetDTE.Caratula.RutEmisor = configuracion.Empresa.RutEmpresa;
             EnvioSII.SetDTE.Caratula.RutEnvia = configuracion.Certificado.Rut;
             EnvioSII.SetDTE.Caratula.RutReceptor = "60803000-K"; //Este es el RUT del SII
-            EnvioSII.SetDTE.Caratula.SubTotalesDTE = new List<ChileSystems.DTE.Engine.Envio.SubTotalesDTE>();
+            EnvioSII.SetDTE.Caratula.SubTotalesDTE = new List<SimpleAPI.Models.Envios.SubTotalesDTE>();
 
             /*En la carátula del envío, se debe indicar cuantos documentos de cada tipo se están enviando*/
             
@@ -484,7 +486,7 @@ namespace SIMPLEAPI_Demo
                 var tipos = EnvioSII.SetDTE.DTEs.GroupBy(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE);
                 foreach (var a in tipos)
                 {
-                    EnvioSII.SetDTE.Caratula.SubTotalesDTE.Add(new ChileSystems.DTE.Engine.Envio.SubTotalesDTE()
+                    EnvioSII.SetDTE.Caratula.SubTotalesDTE.Add(new SimpleAPI.Models.Envios.SubTotalesDTE()
                     {
                         Cantidad = a.Count(),
                         TipoDTE = a.ElementAt(0).Documento.Encabezado.IdentificacionDTE.TipoDTE
@@ -496,7 +498,7 @@ namespace SIMPLEAPI_Demo
                 var tipos = EnvioSII.SetDTE.DTEs.GroupBy(x => x.Exportaciones.Encabezado.IdentificacionDTE.TipoDTE);
                 foreach (var a in tipos)
                 {
-                    EnvioSII.SetDTE.Caratula.SubTotalesDTE.Add(new ChileSystems.DTE.Engine.Envio.SubTotalesDTE()
+                    EnvioSII.SetDTE.Caratula.SubTotalesDTE.Add(new SimpleAPI.Models.Envios.SubTotalesDTE()
                     {
                         Cantidad = a.Count(),
                         TipoDTE = a.ElementAt(0).Exportaciones.Encabezado.IdentificacionDTE.TipoDTE
@@ -507,13 +509,13 @@ namespace SIMPLEAPI_Demo
             return EnvioSII;
         }
 
-        public ChileSystems.DTE.Engine.Envio.EnvioDTE GenerarEnvioCliente(DTE dte, string dteXML)
+        public SimpleAPI.Models.Envios.EnvioDTE GenerarEnvioCliente(SimpleAPI.Models.DTE.DTE dte, string dteXML)
         {
-            var EnvioCustomer = new ChileSystems.DTE.Engine.Envio.EnvioDTE();
-            EnvioCustomer.SetDTE = new ChileSystems.DTE.Engine.Envio.SetDTE();
+            var EnvioCustomer = new SimpleAPI.Models.Envios.EnvioDTE();
+            EnvioCustomer.SetDTE = new SimpleAPI.Models.Envios.SetDTE();
             EnvioCustomer.SetDTE.DTEs.Add(dte);
             EnvioCustomer.SetDTE.dteXmls.Add(dteXML);
-            EnvioCustomer.SetDTE.Caratula = new ChileSystems.DTE.Engine.Envio.Caratula();
+            EnvioCustomer.SetDTE.Caratula = new SimpleAPI.Models.Envios.Caratula();
             EnvioCustomer.SetDTE.Caratula.FechaEnvio = DateTime.Now;
             /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
             EnvioCustomer.SetDTE.Caratula.FechaResolucion = configuracion.Empresa.FechaResolucion;
@@ -524,9 +526,9 @@ namespace SIMPLEAPI_Demo
             EnvioCustomer.SetDTE.Caratula.RutReceptor = dte.Documento.Encabezado.Receptor.Rut;
             /*Generalmente al cliente se le envía una sola factura, sin embargo si no es el caso, 
              se pueden agregar varias tal cual como está el método GenerarEnvioDTEToSII()*/
-            EnvioCustomer.SetDTE.Caratula.SubTotalesDTE = new List<ChileSystems.DTE.Engine.Envio.SubTotalesDTE>()
+            EnvioCustomer.SetDTE.Caratula.SubTotalesDTE = new List<SimpleAPI.Models.Envios.SubTotalesDTE>()
             {
-                new ChileSystems.DTE.Engine.Envio.SubTotalesDTE()
+                new SimpleAPI.Models.Envios.SubTotalesDTE()
                 {
                     Cantidad = 1,
                     TipoDTE = dte.Documento.Encabezado.IdentificacionDTE.TipoDTE
@@ -536,63 +538,48 @@ namespace SIMPLEAPI_Demo
             return EnvioCustomer;
         }
 
-        public long EnviarEnvioDTEToSII(string filePathEnvio, AmbienteEnum ambiente, out string messageResult, bool nuevaBoleta = false)
+        public async Task<(long, string)> EnviarEnvioDTEToSIIAsync(string filePathEnvio, SimpleAPI.Enum.Ambiente.AmbienteEnum ambiente, bool nuevaBoleta = false)
         {
-            messageResult = string.Empty;
-            long trackID = -1;
-            int i;
             try
             {
-                for (i = 1; i <= 5; i++)
-                {                    
-                    EnvioDTEResult responseEnvio = new EnvioDTEResult();
+                SimpleAPI.WS.Envio.EnvioDTEResult responseEnvio = new SimpleAPI.WS.Envio.EnvioDTEResult();
 
-                    if(nuevaBoleta) responseEnvio = ChileSystems.DTE.WS.EnvioBoleta.EnvioBoleta.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
-                    else responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat", "", true);
+                if (nuevaBoleta) responseEnvio = await SimpleAPI.WS.Envio.EnvioBoleta.EnviarAsync(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", configuracion.APIKey);
+                else responseEnvio = await SimpleAPI.WS.Envio.EnvioDTE.EnviarAsync(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", configuracion.APIKey, isLibro: true);
 
-                    if (string.IsNullOrEmpty(messageResult))
-                    {
-                        if (responseEnvio != null && responseEnvio.TrackId > 0)
-                        {
-                            trackID = responseEnvio.TrackId;
-
-                            /*Aquí pueden obtener todos los datos de la respuesta, tal como:
-                             * Estado
-                             * Fecha
-                             * Archivo
-                             * Glosa
-                             * XML
-                             * Entre otros*/
-                            return trackID;
-                        }
-                        else 
-                        {
-                            messageResult = responseEnvio.ResponseXml;
-                        }
-                    }
+                if (responseEnvio != null && responseEnvio.TrackId > 0)
+                {
+                    long trackID = responseEnvio.TrackId;
+                    /*Aquí pueden obtener todos los datos de la respuesta, tal como:
+                     * Estado
+                     * Fecha
+                     * Archivo
+                     * Glosa
+                     * XML
+                     * Entre otros*/
+                    return (trackID, string.Empty);
                 }
-
-                if (i == 5)
-                    throw new Exception("SE HA ALCANZADO EL MÁXIMO NÚMERO DE INTENTOS: " + messageResult);
+                else
+                {
+                    return (0, responseEnvio.ResponseXml);
+                }
             }
             catch (Exception ex)
             {
-                messageResult = ex.Message;
-                return 0;
+                return (0, ex.Message);
             }
-            return 0;
         }
 
-        
+
         #endregion
 
 
         #region Boletas Electrónicas
 
-        public EnvioBoleta GenerarEnvioBoletaDTEToSII(List<DTE> dtes, List<string> xmlDtes)
+        public SimpleAPI.Models.Envios.EnvioBoleta GenerarEnvioBoletaDTEToSII(List<SimpleAPI.Models.DTE.DTE> dtes, List<string> xmlDtes)
         {
-            var EnvioSII = new ChileSystems.DTE.Engine.Envio.EnvioBoleta();
-            EnvioSII.SetDTE = new ChileSystems.DTE.Engine.Envio.SetDTE();
+            var EnvioSII = new SimpleAPI.Models.Envios.EnvioBoleta();
+            EnvioSII.SetDTE = new SimpleAPI.Models.Envios.SetDTE();
             EnvioSII.SetDTE.Id = "FENV010";
             /*Es necesario agregar en el envío, los objetos DTE como sus respectivos XML en strings*/
             foreach (var a in dtes)
@@ -603,7 +590,7 @@ namespace SIMPLEAPI_Demo
                 EnvioSII.SetDTE.signedXmls.Add(a);
             }
 
-            EnvioSII.SetDTE.Caratula = new ChileSystems.DTE.Engine.Envio.Caratula();
+            EnvioSII.SetDTE.Caratula = new SimpleAPI.Models.Envios.Caratula();
             EnvioSII.SetDTE.Caratula.FechaEnvio = DateTime.Now;
             /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
             EnvioSII.SetDTE.Caratula.FechaResolucion = configuracion.Empresa.FechaResolucion;
@@ -612,13 +599,13 @@ namespace SIMPLEAPI_Demo
             EnvioSII.SetDTE.Caratula.RutEmisor = configuracion.Empresa.RutEmpresa;
             EnvioSII.SetDTE.Caratula.RutEnvia = configuracion.Certificado.Rut;
             EnvioSII.SetDTE.Caratula.RutReceptor = "60803000-K"; //Este es el RUT del SII
-            EnvioSII.SetDTE.Caratula.SubTotalesDTE = new List<ChileSystems.DTE.Engine.Envio.SubTotalesDTE>();
+            EnvioSII.SetDTE.Caratula.SubTotalesDTE = new List<SimpleAPI.Models.Envios.SubTotalesDTE>();
 
             /*En la carátula del envío, se debe indicar cuantos documentos de cada tipo se están enviando*/
             var tipos = EnvioSII.SetDTE.DTEs.GroupBy(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE);
             foreach (var a in tipos)
             {
-                EnvioSII.SetDTE.Caratula.SubTotalesDTE.Add(new ChileSystems.DTE.Engine.Envio.SubTotalesDTE()
+                EnvioSII.SetDTE.Caratula.SubTotalesDTE.Add(new SimpleAPI.Models.Envios.SubTotalesDTE()
                 {
                     Cantidad = a.Count(),
                     TipoDTE = a.ElementAt(0).Documento.Encabezado.IdentificacionDTE.TipoDTE
@@ -627,9 +614,9 @@ namespace SIMPLEAPI_Demo
             return EnvioSII;
         }
 
-        public ChileSystems.DTE.Engine.RCOF.ConsumoFolios GenerarRCOF(List<DTE> dtes)
+        public SimpleAPI.Models.RCOF.ConsumoFolios GenerarRCOF(List<SimpleAPI.Models.DTE.DTE> dtes)
         {
-            var rcof = new ChileSystems.DTE.Engine.RCOF.ConsumoFolios();
+            var rcof = new SimpleAPI.Models.RCOF.ConsumoFolios();
             //preparo los datos segun los DTE seleccionados
             DateTime fechaInicio = dtes.Min(x => x.Documento.Encabezado.IdentificacionDTE.FechaEmision);
             DateTime fechaFinal = dtes.Max(x => x.Documento.Encabezado.IdentificacionDTE.FechaEmision);
@@ -642,19 +629,19 @@ namespace SIMPLEAPI_Demo
             rcof.DocumentoConsumoFolios.Caratula.RutEnvia = configuracion.Certificado.Rut;
             rcof.DocumentoConsumoFolios.Caratula.SecEnvio = "1";
             rcof.DocumentoConsumoFolios.Caratula.FechaEnvio = DateTime.Now;
-            List<ChileSystems.DTE.Engine.RCOF.Resumen> resumenes = new List<ChileSystems.DTE.Engine.RCOF.Resumen>();
+            List<SimpleAPI.Models.RCOF.Resumen> resumenes = new List<SimpleAPI.Models.RCOF.Resumen>();
 
             /*datos de boletas electrónicas afectas*/
             /* Estos datos se deben calcular, debido a que no se informa IVA en boletas electrónicas 
              */
-            int totalBrutoAfecto = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronica)
+            int totalBrutoAfecto = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica)
                         .Sum(x => x.Documento.Detalles
-                        .Where(y => y.IndicadorExento == IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet)
+                        .Where(y => y.IndicadorExento == SimpleAPI.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NotSet)
                         .Sum(y => y.MontoItem));
 
-            int totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronica)
+            int totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica)
                     .Sum(x => x.Documento.Detalles
-                    .Where(y => y.IndicadorExento == IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
+                    .Where(y => y.IndicadorExento == SimpleAPI.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento)
                     .Sum(y => y.MontoItem));
 
             int totalNeto = (int)Math.Round(totalBrutoAfecto / 1.19, 0, MidpointRounding.AwayFromZero);
@@ -662,84 +649,84 @@ namespace SIMPLEAPI_Demo
             int totalTotal = totalExento + totalNeto + totalIVA;
 
             /*Se calculan todos los rangos según el array de DTEs*/
-            var resultRangos = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>();
-            List<int> lst = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronica).Select(x => x.Documento.Encabezado.IdentificacionDTE.Folio).ToList();
+            var resultRangos = new List<SimpleAPI.Models.RCOF.RangoUtilizados>();
+            List<int> lst = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica).Select(x => x.Documento.Encabezado.IdentificacionDTE.Folio).ToList();
             var minBoundaries = lst.Where(i => !lst.Contains(i - 1)).OrderBy(x => x).ToList();
             var maxBoundaries = lst.Where(i => !lst.Contains(i + 1)).OrderBy(x => x).ToList();
             for (int i = 0; i < maxBoundaries.Count; i++)
             {
-                resultRangos.Add(new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = minBoundaries[i], Final = maxBoundaries[i] });
+                resultRangos.Add(new SimpleAPI.Models.RCOF.RangoUtilizados() { Inicial = minBoundaries[i], Final = maxBoundaries[i] });
             }
 
-            resumenes.Add(new ChileSystems.DTE.Engine.RCOF.Resumen
+            resumenes.Add(new SimpleAPI.Models.RCOF.Resumen
             {
                 FoliosAnulados = 0,
-                FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronica).Count(),
-                FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronica).Count(),
+                FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica).Count(),
+                FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica).Count(),
                 MntExento = totalExento,
                 MntIva = totalIVA,
                 MntNeto = totalNeto,
                 MntTotal = totalTotal,
                 TasaIVA = 19,
-                TipoDocumento = TipoDTE.DTEType.BoletaElectronica,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica,
                 RangoUtilizados = resultRangos
                 //RangoAnulados = new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
             });
 
 
             /*datos de boletas electrónicas exentas*/
-            if (dtes.Any(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta))
+            if (dtes.Any(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronicaExenta))
             {
-                totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta).Sum(x => x.Documento.Encabezado.Totales.MontoExento);                
-                resultRangos = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>();
-                lst = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta).Select(x => x.Documento.Encabezado.IdentificacionDTE.Folio).ToList();
+                totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronicaExenta).Sum(x => x.Documento.Encabezado.Totales.MontoExento);                
+                resultRangos = new List<SimpleAPI.Models.RCOF.RangoUtilizados>();
+                lst = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronicaExenta).Select(x => x.Documento.Encabezado.IdentificacionDTE.Folio).ToList();
                 minBoundaries = lst.Where(i => !lst.Contains(i - 1)).OrderBy(x => x).ToList();
                 maxBoundaries = lst.Where(i => !lst.Contains(i + 1)).OrderBy(x => x).ToList();
                 for (int i = 0; i < maxBoundaries.Count; i++)
                 {
-                    resultRangos.Add(new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = minBoundaries[i], Final = maxBoundaries[i] });
+                    resultRangos.Add(new SimpleAPI.Models.RCOF.RangoUtilizados() { Inicial = minBoundaries[i], Final = maxBoundaries[i] });
                 }
 
-                resumenes.Add(new ChileSystems.DTE.Engine.RCOF.Resumen
+                resumenes.Add(new SimpleAPI.Models.RCOF.Resumen
                 {
                     FoliosAnulados = 0,
-                    FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta).Count(),
-                    FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta).Count(),
+                    FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronicaExenta).Count(),
+                    FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronicaExenta).Count(),
                     MntExento = totalExento,
                     MntTotal = totalExento,
-                    TipoDocumento = TipoDTE.DTEType.BoletaElectronicaExenta,
+                    TipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronicaExenta,
                     RangoUtilizados = resultRangos
                 });
             }
 
             /*datos de notas de credito electronicas*/
-            if (dtes.Any(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica))
+            if (dtes.Any(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica))
             {
-                totalNeto = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoNeto);
-                totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoExento);
-                totalIVA = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.IVA);
-                totalTotal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoTotal);
+                totalNeto = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoNeto);
+                totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoExento);
+                totalIVA = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.IVA);
+                totalTotal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoTotal);
 
-                resultRangos = new List<ChileSystems.DTE.Engine.RCOF.RangoUtilizados>();
-                lst = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Select(x => x.Documento.Encabezado.IdentificacionDTE.Folio).ToList();
+                resultRangos = new List<SimpleAPI.Models.RCOF.RangoUtilizados>();
+                lst = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Select(x => x.Documento.Encabezado.IdentificacionDTE.Folio).ToList();
                 minBoundaries = lst.Where(i => !lst.Contains(i - 1)).OrderBy(x => x).ToList();
                 maxBoundaries = lst.Where(i => !lst.Contains(i + 1)).OrderBy(x => x).ToList();
                 for (int i = 0; i < maxBoundaries.Count; i++)
                 {
-                    resultRangos.Add(new ChileSystems.DTE.Engine.RCOF.RangoUtilizados() { Inicial = minBoundaries[i], Final = maxBoundaries[i] });
+                    resultRangos.Add(new SimpleAPI.Models.RCOF.RangoUtilizados() { Inicial = minBoundaries[i], Final = maxBoundaries[i] });
                 }
 
-                resumenes.Add(new ChileSystems.DTE.Engine.RCOF.Resumen
+                resumenes.Add(new SimpleAPI.Models.RCOF.Resumen
                 {
                     FoliosAnulados = 0,
-                    FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Count(),
-                    FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == TipoDTE.DTEType.NotaCreditoElectronica).Count(),
+                    FoliosEmitidos = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Count(),
+                    FoliosUtilizados = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica).Count(),
                     MntExento = totalExento,
                     MntIva = totalIVA,
                     MntNeto = totalNeto,
                     MntTotal = totalTotal,
                     TasaIVA = 19,
-                    TipoDocumento = TipoDTE.DTEType.NotaCreditoElectronica,
+                    TipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica,
                     RangoUtilizados = resultRangos
                     //RangoAnulados =new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
                 });
@@ -749,9 +736,9 @@ namespace SIMPLEAPI_Demo
             return rcof;
         }
 
-        public ChileSystems.DTE.Engine.RCOF.ConsumoFolios GenerarRCOFVacio(DateTime fecha)
+        public SimpleAPI.Models.RCOF.ConsumoFolios GenerarRCOFVacio(DateTime fecha)
         {
-            var rcof = new ChileSystems.DTE.Engine.RCOF.ConsumoFolios();
+            var rcof = new SimpleAPI.Models.RCOF.ConsumoFolios();
             DateTime fechaInicio = fecha;
             DateTime fechaFinal = fecha;
 
@@ -763,11 +750,11 @@ namespace SIMPLEAPI_Demo
             rcof.DocumentoConsumoFolios.Caratula.RutEnvia = configuracion.Certificado.Rut;
             rcof.DocumentoConsumoFolios.Caratula.SecEnvio = "1";
             rcof.DocumentoConsumoFolios.Caratula.FechaEnvio = DateTime.Now;
-            List<ChileSystems.DTE.Engine.RCOF.Resumen> resumenes = new List<ChileSystems.DTE.Engine.RCOF.Resumen>();
+            List< SimpleAPI.Models.RCOF.Resumen> resumenes = new List<SimpleAPI.Models.RCOF.Resumen>();
 
             /*datos de boletas electrónicas afectas*/
 
-            resumenes.Add(new ChileSystems.DTE.Engine.RCOF.Resumen
+            resumenes.Add(new SimpleAPI.Models.RCOF.Resumen
             {
                 FoliosAnulados = 0,
                 FoliosEmitidos = 0,
@@ -777,7 +764,7 @@ namespace SIMPLEAPI_Demo
                 MntNeto = 0,
                 MntTotal = 0,
                 TasaIVA = 19,
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica,
                 //RangoUtilizados = resultRangos
                 //RangoAnulados = new List<ChileSystems.DTE.Engine.RCOF.RangoAnulados>() { new ChileSystems.DTE.Engine.RCOF.RangoAnulados() { Final = 0, Inicial = 0 } }
             });
@@ -786,130 +773,130 @@ namespace SIMPLEAPI_Demo
             return rcof;
         }
 
-        public ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas GenerateLibroBoletas(List<DTE> dtes)
-        {
-            var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas();
+        //public ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas GenerateLibroBoletas(List<SimpleAPI.Models.DTE.DTE> dtes)
+        //{
+        //    var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas();
 
-            libro.EnvioLibro = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.EnvioLibro();
+        //    libro.EnvioLibro = new SimpleAPI.Models.LCV.EnvioLibro();
 
-            /*Datos para confeccion de caratula*/
-            string periodoTributario = "2018-05";
-            /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
-            /*El tipo de libro debe ser "Especial" cuando se trata del set de pruebas*/
-            /*El folio de notificacion lo entrega el SII al momento de solicitar el libro, para el set de pruebas no es necesario agregarlo*/
-            libro.EnvioLibro.Caratula = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Caratula
-            {
-                RutEmisor = configuracion.Empresa.RutEmpresa,
-                RutEnvia = configuracion.Certificado.Rut,
-                PeriodoTributario = periodoTributario,
-                FechaResolucion = configuracion.Empresa.FechaResolucion,
-                NumeroResolucion = configuracion.Empresa.NumeroResolucion,
-                TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
-                TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total
-            };
+        //    /*Datos para confeccion de caratula*/
+        //    string periodoTributario = "2018-05";
+        //    /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
+        //    /*El tipo de libro debe ser "Especial" cuando se trata del set de pruebas*/
+        //    /*El folio de notificacion lo entrega el SII al momento de solicitar el libro, para el set de pruebas no es necesario agregarlo*/
+        //    libro.EnvioLibro.Caratula = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Caratula
+        //    {
+        //        RutEmisor = configuracion.Empresa.RutEmpresa,
+        //        RutEnvia = configuracion.Certificado.Rut,
+        //        PeriodoTributario = periodoTributario,
+        //        FechaResolucion = configuracion.Empresa.FechaResolucion,
+        //        NumeroResolucion = configuracion.Empresa.NumeroResolucion,
+        //        TipoLibro =SimpleAPI.Enum.TipoLibro.TipoLibroEnum.Especial,
+        //        TipoEnvio = SimpleAPI.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total
+        //    };
 
-            libro.EnvioLibro.ResumenPeriodo = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.ResumenPeriodo();
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = new List<ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalPeriodo>();
+        //    libro.EnvioLibro.ResumenPeriodo = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.ResumenPeriodo();
+        //    libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = new List<ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalPeriodo>();
 
-            /*Se agregar un Total Periodo por cada tipo de documento. Boletas electrónicas exentas y afectas*/
-            /*Boletas electronicas*/
-            int totalNeto = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoNeto);
-            int totalIVA = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.IVA);
-            int totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoExento);
-            int totalTotal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoTotal);
+        //    /*Se agregar un Total Periodo por cada tipo de documento. Boletas electrónicas exentas y afectas*/
+        //    /*Boletas electronicas*/
+        //    int totalNeto = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoNeto);
+        //    int totalIVA = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.IVA);
+        //    int totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoExento);
+        //    int totalTotal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoTotal);
 
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalPeriodo()
-            {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.BoletaElectronica,
-                CantidadDocumentosAnulados = 0,
-                TotalesServicio = new List<ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalServicio>()
-                {
-                    new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalServicio()
-                    {
-                        CantidadDocumentos = dtes.Count(x=>x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica),
-                        TasaIVA = 19,
-                        TotalIVA = totalIVA,
-                        TotalNeto = totalNeto,
-                        TotalExento = totalExento,
-                        TotalTotal = totalTotal,
-                        TipoServicio = (int)ChileSystems.DTE.Engine.Enum.IndicadorServicio.IndicadorServicioEnum.BoletaVentasYServicios
-                    }
-                }
-            });
+        //    libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalPeriodo()
+        //    {
+        //        TipoDocumento = SimpleAPI.Enum.TipoDTE.TipoDocumentoLibro.BoletaElectronica,
+        //        CantidadDocumentosAnulados = 0,
+        //        TotalesServicio = new List<ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalServicio>()
+        //        {
+        //            new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalServicio()
+        //            {
+        //                CantidadDocumentos = dtes.Count(x=>x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica),
+        //                TasaIVA = 19,
+        //                TotalIVA = totalIVA,
+        //                TotalNeto = totalNeto,
+        //                TotalExento = totalExento,
+        //                TotalTotal = totalTotal,
+        //                TipoServicio = (int)SimpleAPI.Enum.IndicadorServicio.IndicadorServicioEnum.BoletaVentasYServicios
+        //            }
+        //        }
+        //    });
 
-            /*Se agregan los dtes del libro*/
-            libro.EnvioLibro.Detalles = new List<ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Detalle>();
-            foreach (var dte in dtes)
-                libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Detalle()
-                {
-                    TipoDocumento = (ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE,
-                    FolioDocumento = dte.Documento.Encabezado.IdentificacionDTE.Folio,
-                    FechaEmision = dte.Documento.Encabezado.IdentificacionDTE.FechaEmision,
-                    MontoExento = dte.Documento.Encabezado.Totales.MontoExento,
-                    MontoTotal = dte.Documento.Encabezado.Totales.MontoTotal,
-                    RutCliente = dte.Documento.Encabezado.Receptor.Rut
-                });
+        //    /*Se agregan los dtes del libro*/
+        //    libro.EnvioLibro.Detalles = new List<ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Detalle>();
+        //    foreach (var dte in dtes)
+        //        libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Detalle()
+        //        {
+        //            TipoDocumento = (SimpleAPI.Enum.TipoDTE.TipoDocumentoLibro)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE,
+        //            FolioDocumento = dte.Documento.Encabezado.IdentificacionDTE.Folio,
+        //            FechaEmision = dte.Documento.Encabezado.IdentificacionDTE.FechaEmision,
+        //            MontoExento = dte.Documento.Encabezado.Totales.MontoExento,
+        //            MontoTotal = dte.Documento.Encabezado.Totales.MontoTotal,
+        //            RutCliente = dte.Documento.Encabezado.Receptor.Rut
+        //        });
 
-            return libro;
-        }
+        //    return libro;
+        //}
         #endregion
 
         #region IECV
 
-        public ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta GenerateLibroVentas(ChileSystems.DTE.Engine.Envio.EnvioDTE envioAux)
+        public SimpleAPI.Models.LCV.LibroCompraVenta GenerateLibroVentas(SimpleAPI.Models.Envios.EnvioDTE envioAux)
         {
-            var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta();
-            libro.EnvioLibro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.EnvioLibro();
+            var libro = new SimpleAPI.Models.LCV.LibroCompraVenta();
+            libro.EnvioLibro = new SimpleAPI.Models.LCV.EnvioLibro();
             libro.EnvioLibro.Id = "ID_LIBRO1_1";
 
             /*Si el libro tiene código de autorización para rectificación, se debe ingresar en la carátula
              * del EnvioLibro. Esto es: libro.EnvioLibro.Caratula.CodigoAutorizacionRectificacionLibro*/
 
-            libro.EnvioLibro.Caratula = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Caratula()
+            libro.EnvioLibro.Caratula = new SimpleAPI.Models.LCV.Caratula()
             {
                 RutEmisor = configuracion.Empresa.RutEmpresa,
                 RutEnvia = configuracion.Certificado.Rut,
                 PeriodoTributario = $"{DateTime.Now.Year}-{(DateTime.Now.Month >= 10 ? DateTime.Now.Month.ToString() : "0" + DateTime.Now.Month)}",
                 FechaResolucion = configuracion.Empresa.FechaResolucion,
                 NumeroResolucion = configuracion.Empresa.NumeroResolucion,
-                TipoOperacion = ChileSystems.DTE.Engine.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Venta,
-                TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
-                TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
+                TipoOperacion = SimpleAPI.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Venta,
+                TipoLibro = SimpleAPI.Enum.TipoLibro.TipoLibroEnum.Especial,
+                TipoEnvio = SimpleAPI.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
                 FolioNotificacion = 100,
                 //Para cuando es SET de pruebas, siempre es 1,,                
                
             };
 
-            libro.EnvioLibro.Caratula.TipoOperacion = ChileSystems.DTE.Engine.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Venta;
-            libro.EnvioLibro.Caratula.TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial;
-            libro.EnvioLibro.Caratula.TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total;
+            libro.EnvioLibro.Caratula.TipoOperacion = SimpleAPI.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Venta;
+            libro.EnvioLibro.Caratula.TipoLibro = SimpleAPI.Enum.TipoLibro.TipoLibroEnum.Especial;
+            libro.EnvioLibro.Caratula.TipoEnvio = SimpleAPI.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total;
 
-            libro.EnvioLibro.ResumenPeriodo = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ResumenPeriodo();
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo>();
+            libro.EnvioLibro.ResumenPeriodo = new SimpleAPI.Models.LCV.ResumenPeriodo();
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = new List<SimpleAPI.Models.LCV.TotalPeriodo>();
 
             /**************TOTALES PARA LAS FACTURAS******************/
             int cantidadDocumentosFacturas = envioAux.SetDTE.DTEs.
-                Count(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica);
+                Count(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronica);
 
             int totalExento = envioAux.SetDTE.DTEs.
-                Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica)
+                Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronica)
                 .Sum(x => x.Documento.Encabezado.Totales.MontoExento);
 
             int totalNeto = envioAux.SetDTE.DTEs.
-               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica)
+               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronica)
                .Sum(x => x.Documento.Encabezado.Totales.MontoNeto);
 
             int totalIVA = envioAux.SetDTE.DTEs.
-               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica)
+               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronica)
                .Sum(x => x.Documento.Encabezado.Totales.IVA);
 
             int totalTotal = envioAux.SetDTE.DTEs.
-               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica)
+               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronica)
                .Sum(x => x.Documento.Encabezado.Totales.MontoTotal);
 
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new SimpleAPI.Models.LCV.TotalPeriodo()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica,
                 CantidadDocumentos = cantidadDocumentosFacturas,
                 CantidadDocumentosAnulados = 0,
                 TotalMontoExento = totalExento,
@@ -921,27 +908,27 @@ namespace SIMPLEAPI_Demo
 
             /***************TOTALES PARA LAS NC*****************/
             int cantidadDocumentosNC = envioAux.SetDTE.DTEs.
-                Count(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica);
+                Count(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica);
 
             int totalExentoNC = envioAux.SetDTE.DTEs.
-                Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
+                Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
                 .Sum(x => x.Documento.Encabezado.Totales.MontoExento);
 
             int totalNetoNC = envioAux.SetDTE.DTEs.
-               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
+               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
                .Sum(x => x.Documento.Encabezado.Totales.MontoNeto);
 
             int totalIVANC = envioAux.SetDTE.DTEs.
-               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
+               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
                .Sum(x => x.Documento.Encabezado.Totales.IVA);
 
             int totalTotalNC = envioAux.SetDTE.DTEs.
-               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
+               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
                .Sum(x => x.Documento.Encabezado.Totales.MontoTotal);
 
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new SimpleAPI.Models.LCV.TotalPeriodo()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.NotaCreditoElectronica,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.TipoDocumentoLibro.NotaCreditoElectronica,
                 CantidadDocumentos = cantidadDocumentosNC,
                 CantidadDocumentosAnulados = 0,
                 TotalMontoExento = totalExentoNC,
@@ -953,27 +940,27 @@ namespace SIMPLEAPI_Demo
 
             /********************TOTALES PARA ND***************/
             int cantidadDocumentosND = envioAux.SetDTE.DTEs.
-                Count(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica);
+                Count(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaDebitoElectronica);
 
             int totalExentoND = envioAux.SetDTE.DTEs.
-                Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
+                Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
                 .Sum(x => x.Documento.Encabezado.Totales.MontoExento);
 
             int totalNetoND = envioAux.SetDTE.DTEs.
-               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
+               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
                .Sum(x => x.Documento.Encabezado.Totales.MontoNeto);
 
             int totalIVAND = envioAux.SetDTE.DTEs.
-               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
+               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
                .Sum(x => x.Documento.Encabezado.Totales.IVA);
 
             int totalTotalND = envioAux.SetDTE.DTEs.
-               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
+               Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
                .Sum(x => x.Documento.Encabezado.Totales.MontoTotal);
 
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new SimpleAPI.Models.LCV.TotalPeriodo()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.NotaDebitoElectronica,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.TipoDocumentoLibro.NotaDebitoElectronica,
                 CantidadDocumentos = cantidadDocumentosND,
                 CantidadDocumentosAnulados = 0,
                 TotalMontoExento = totalExentoND,
@@ -982,25 +969,25 @@ namespace SIMPLEAPI_Demo
                 TotalMonto = totalTotalND
             });
             /**************************************************/
-            libro.EnvioLibro.Detalles = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle>();
+            libro.EnvioLibro.Detalles = new List<SimpleAPI.Models.LCV.Detalle>();
             foreach (var dteAux in envioAux.SetDTE.DTEs)
             {
-                ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotSet;
+                SimpleAPI.Enum.TipoDTE.DTEType tipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.NotSet;
 
-                if (dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica)
-                    tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
+                if (dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronica)
+                    tipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronica;
 
-                else if (dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
-                    tipoDocumento = TipoDTE.DTEType.NotaCreditoElectronica;
+                else if (dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
+                    tipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica;
 
-                else if (dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
-                    tipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica;
+                else if (dteAux.Documento.Encabezado.IdentificacionDTE.TipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
+                    tipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.NotaDebitoElectronica;
 
-                libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
+                libro.EnvioLibro.Detalles.Add(new SimpleAPI.Models.LCV.Detalle()
                 {
                     TipoDocumento = tipoDocumento,
                     NumeroDocumento = dteAux.Documento.Encabezado.IdentificacionDTE.Folio,
-                    IndicadorAnulado = ChileSystems.DTE.Engine.Enum.IndicadorAnulado.IndicadorAnuladoEnum.NotSet,
+                    IndicadorAnulado = SimpleAPI.Enum.IndicadorAnulado.IndicadorAnuladoEnum.NotSet,
                     TasaImpuestoOperacion = 0.19,
                     FechaDocumento = dteAux.Documento.Encabezado.IdentificacionDTE.FechaEmision,
                     RutDocumento = dteAux.Documento.Encabezado.Receptor.Rut,
@@ -1015,39 +1002,39 @@ namespace SIMPLEAPI_Demo
             return libro;
         }
 
-        public ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta GenerateLibroCompras()
+        public SimpleAPI.Models.LCV.LibroCompraVenta GenerateLibroCompras()
         {
-            var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroCompraVenta();
-            libro.EnvioLibro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.EnvioLibro();
+            var libro = new SimpleAPI.Models.LCV.LibroCompraVenta();
+            libro.EnvioLibro = new SimpleAPI.Models.LCV.EnvioLibro();
             libro.EnvioLibro.Id = "ID_LIBRO2";
 
             /*Si el libro tiene código de autorización para rectificación, se debe ingresar en la carátula
              * del EnvioLibro. Esto es: libro.EnvioLibro.Caratula.CodigoAutorizacionRectificacionLibro*/
 
-            libro.EnvioLibro.Caratula = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Caratula()
+            libro.EnvioLibro.Caratula = new SimpleAPI.Models.LCV.Caratula()
             {
                 RutEmisor = configuracion.Empresa.RutEmpresa,
                 RutEnvia = configuracion.Certificado.Rut,
                 PeriodoTributario = $"{DateTime.Now.Year}-{(DateTime.Now.Month >= 10 ? DateTime.Now.Month.ToString() : "0" + DateTime.Now.Month)}",
                 FechaResolucion = configuracion.Empresa.FechaResolucion,
                 NumeroResolucion = configuracion.Empresa.NumeroResolucion,
-                TipoOperacion = ChileSystems.DTE.Engine.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Compra,
-                TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
-                TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
+                TipoOperacion = SimpleAPI.Enum.TipoOperacionLibro.TipoOperacionLibroEnum.Compra,
+                TipoLibro = SimpleAPI.Enum.TipoLibro.TipoLibroEnum.Especial,
+                TipoEnvio = SimpleAPI.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
                 FolioNotificacion = 100, //Para cuando es SET de pruebas, siempre es 1
                 //CodigoAutorizacionRectificacionLibro = "1NLKZLFX4S"
 
             };
 
-            libro.EnvioLibro.Detalles = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle>();
+            libro.EnvioLibro.Detalles = new List<SimpleAPI.Models.LCV.Detalle>();
 
             int neto = 60906;
             int exento = 0;
             int iva = (int)Math.Round(neto * 0.19, 0);           
             int total = neto + iva + exento;
-            libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
+            libro.EnvioLibro.Detalles.Add(new SimpleAPI.Models.LCV.Detalle()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.Factura,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.Factura,
                 NumeroDocumento = 234,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = DateTime.Now,
@@ -1062,9 +1049,9 @@ namespace SIMPLEAPI_Demo
             exento = 11061;
             iva = (int)Math.Round(neto * 0.19, 0);
             total = neto + iva + exento;
-            libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
+            libro.EnvioLibro.Detalles.Add(new SimpleAPI.Models.LCV.Detalle()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronica,
                 NumeroDocumento = 32,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = DateTime.Now,
@@ -1074,7 +1061,7 @@ namespace SIMPLEAPI_Demo
                 MontoNeto = neto,
                 MontoIva = iva,
                 MontoTotal = total,
-                IVANoRecuperable = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalIVANoRecuperableDetalle>()
+                IVANoRecuperable = new List<SimpleAPI.Models.LCV.TotalIVANoRecuperableDetalle>()
                 {
                 }
             });
@@ -1082,9 +1069,9 @@ namespace SIMPLEAPI_Demo
             exento = 0;
             iva = (int)Math.Round(neto * 0.19, 0);
             total = neto + iva + exento;
-            libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
+            libro.EnvioLibro.Detalles.Add(new SimpleAPI.Models.LCV.Detalle()
             {
-                TipoDocumento =  ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.Factura,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.Factura,
                 NumeroDocumento = 781,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = DateTime.Now,
@@ -1095,7 +1082,7 @@ namespace SIMPLEAPI_Demo
                 //MontoIva = 5681,
                 IVAUsoComun = iva, //Neto * 0.19 
                 MontoTotal = total,
-                TipoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoResumido.Iva
+                TipoImpuesto = SimpleAPI.Enum.TipoImpuesto.TipoImpuestoResumido.Iva
 
             });
 
@@ -1103,9 +1090,9 @@ namespace SIMPLEAPI_Demo
             exento = 0;
             iva = (int)Math.Round(neto * 0.19, 0);
             total = neto + iva + exento;
-            libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
+            libro.EnvioLibro.Detalles.Add(new SimpleAPI.Models.LCV.Detalle()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCredito,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.NotaCredito,
                 NumeroDocumento = 451,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = DateTime.Now,
@@ -1115,7 +1102,7 @@ namespace SIMPLEAPI_Demo
                 MontoNeto = neto,
                 MontoIva = iva,
                 MontoTotal = total,
-                TipoDocumentoReferencia = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaManual,
+                TipoDocumentoReferencia = SimpleAPI.Enum.TipoDTE.TipoDocumentoLibro.FacturaManual,
                 FolioDocumentoReferencia = 234
             });
 
@@ -1123,9 +1110,9 @@ namespace SIMPLEAPI_Demo
             exento = 0;
             iva = (int)Math.Round(neto * 0.19, 0);
             total = neto + iva + exento;
-            libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
+            libro.EnvioLibro.Detalles.Add(new SimpleAPI.Models.LCV.Detalle()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronica,
                 NumeroDocumento = 67,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = DateTime.Now,
@@ -1134,11 +1121,11 @@ namespace SIMPLEAPI_Demo
                 MontoExento = exento,
                 MontoNeto = neto,
                 MontoTotal = total,
-                IVANoRecuperable = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalIVANoRecuperableDetalle>()
+                IVANoRecuperable = new List<SimpleAPI.Models.LCV.TotalIVANoRecuperableDetalle>()
                 {
-                    new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalIVANoRecuperableDetalle()
+                    new SimpleAPI.Models.LCV.TotalIVANoRecuperableDetalle()
                     {
-                        CodigoIVANoRecuperable = ChileSystems.DTE.Engine.Enum.CodigoIVANoRecuperable.CodigoIVANoRecuperableEnum.EntregaGratuita,
+                        CodigoIVANoRecuperable =SimpleAPI.Enum.CodigoIVANoRecuperable.CodigoIVANoRecuperableEnum.EntregaGratuita,
                         TotalMontoIVANoRecuperable = iva
                     }
                 }
@@ -1148,9 +1135,9 @@ namespace SIMPLEAPI_Demo
             exento = 0;
             iva = (int)Math.Round(neto * 0.19, 0);
             total = neto + exento;
-            libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
+            libro.EnvioLibro.Detalles.Add(new SimpleAPI.Models.LCV.Detalle()
             {
-                TipoDocumento =  ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaCompraElectronica,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.FacturaCompraElectronica,
                 NumeroDocumento = 9,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = DateTime.Now,
@@ -1161,11 +1148,11 @@ namespace SIMPLEAPI_Demo
                 MontoIva = iva,
                 MontoTotal = total,
                 IVARetenidoTotal = iva,
-                Impuestos = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.ImpuestosDetalle>()
+                Impuestos = new List<SimpleAPI.Models.LCV.ImpuestosDetalle>()
                 {
-                    new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ImpuestosDetalle()
+                    new SimpleAPI.Models.LCV.ImpuestosDetalle()
                     {
-                        CodigoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal,
+                        CodigoImpuesto = SimpleAPI.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal,
                         TotalMontoImpuesto = iva,
                         TasaImpuesto = 19
                     }
@@ -1176,9 +1163,9 @@ namespace SIMPLEAPI_Demo
             exento = 0;
             iva = (int)Math.Round(neto * 0.19, 0);
             total = neto + iva + exento;
-            libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
+            libro.EnvioLibro.Detalles.Add(new SimpleAPI.Models.LCV.Detalle()
             {
-                TipoDocumento =  ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCredito,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.DTEType.NotaCredito,
                 NumeroDocumento = 211,
                 TasaImpuestoOperacion = 19,
                 FechaDocumento = DateTime.Now,
@@ -1188,20 +1175,20 @@ namespace SIMPLEAPI_Demo
                 MontoNeto = neto,
                 MontoIva = iva,
                 MontoTotal = total,
-                TipoDocumentoReferencia = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica,
+                TipoDocumentoReferencia = SimpleAPI.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica,
                 FolioDocumentoReferencia = 32
             });
 
 
 
 
-            libro.EnvioLibro.ResumenPeriodo = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ResumenPeriodo();
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo>();
+            libro.EnvioLibro.ResumenPeriodo = new SimpleAPI.Models.LCV.ResumenPeriodo();
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = new List<SimpleAPI.Models.LCV.TotalPeriodo>();
 
-            var manuales = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.Factura);
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
+            var manuales = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == SimpleAPI.Enum.TipoDTE.DTEType.Factura);
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new SimpleAPI.Models.LCV.TotalPeriodo()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaManual,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.TipoDocumentoLibro.FacturaManual,
                 CantidadDocumentos = manuales.Count(),
                 CantidadDocumentosAnulados = 0,
                 TotalMontoExento = manuales.Sum(x=>x.MontoExento),
@@ -1214,10 +1201,10 @@ namespace SIMPLEAPI_Demo
                 CantidadOperacionesConIvaUsoComun = 1
             });
 
-            var electronicas = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica);
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
+            var electronicas = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronica);
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new SimpleAPI.Models.LCV.TotalPeriodo()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.TipoDocumentoLibro.FacturaElectronica,
                 CantidadDocumentos = electronicas.Count(),
                 CantidadDocumentosAnulados = 0,
                 TotalMontoExento = electronicas.Sum(x=>x.MontoExento),
@@ -1225,21 +1212,21 @@ namespace SIMPLEAPI_Demo
                 TotalMontoIva = electronicas.Sum(x => x.MontoIva),
                 TotalIVAUsoComun = electronicas.Sum(x => x.IVAUsoComun),
                 TotalMonto = electronicas.Sum(x => x.MontoTotal),
-                TotalIVANoRecuperable = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalIVANoRecuperable>()
+                TotalIVANoRecuperable = new List<SimpleAPI.Models.LCV.TotalIVANoRecuperable>()
                 {
-                    new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalIVANoRecuperable()
+                    new SimpleAPI.Models.LCV.TotalIVANoRecuperable()
                     {
                         CantidadOperacionesIVANoRecuperable = 1,
-                        CodigoIVANoRecuperable = ChileSystems.DTE.Engine.Enum.CodigoIVANoRecuperable.CodigoIVANoRecuperableEnum.EntregaGratuita,
+                        CodigoIVANoRecuperable = SimpleAPI.Enum.CodigoIVANoRecuperable.CodigoIVANoRecuperableEnum.EntregaGratuita,
                         TotalMontoIVANoRecuperable = electronicas.Sum(x=>x.IVANoRecuperable.Sum(y=>y.TotalMontoIVANoRecuperable))
                     }
                 }
             });
 
-            var nc = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCredito);
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
+            var nc = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == SimpleAPI.Enum.TipoDTE.DTEType.NotaCredito);
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new SimpleAPI.Models.LCV.TotalPeriodo()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.NotaCredito,
+                TipoDocumento =SimpleAPI.Enum.TipoDTE.TipoDocumentoLibro.NotaCredito,
                 CantidadDocumentos = nc.Count(),
                 CantidadDocumentosAnulados = 0,
                 TotalMontoExento = nc.Sum(x => x.MontoExento),
@@ -1248,10 +1235,10 @@ namespace SIMPLEAPI_Demo
                 TotalMonto = nc.Sum(x => x.MontoTotal),
             });
 
-            var fce = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaCompraElectronica);
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalPeriodo()
+            var fce = libro.EnvioLibro.Detalles.Where(x => x.TipoDocumento == SimpleAPI.Enum.TipoDTE.DTEType.FacturaCompraElectronica);
+            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new SimpleAPI.Models.LCV.TotalPeriodo()
             {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.FacturaCompraElectronica,
+                TipoDocumento = SimpleAPI.Enum.TipoDTE.TipoDocumentoLibro.FacturaCompraElectronica,
                 CantidadDocumentos = fce.Count(),
                 CantidadDocumentosAnulados = 0,
                 TotalMontoExento = fce.Sum(x => x.MontoExento),
@@ -1259,11 +1246,11 @@ namespace SIMPLEAPI_Demo
                 TotalMontoIva = fce.Sum(x => x.MontoIva),
                 TotalMonto = fce.Sum(x => x.MontoTotal),
                 TotalIVARetenidoTotal = fce.Sum(x => x.IVARetenidoTotal),
-                Impuestos = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.ImpuestosPeriodo>()
+                Impuestos = new List<SimpleAPI.Models.LCV.ImpuestosPeriodo>()
                 {
-                    new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ImpuestosPeriodo()
+                    new SimpleAPI.Models.LCV.ImpuestosPeriodo()
                     {
-                        CodigoImpuesto = ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal,
+                        CodigoImpuesto = SimpleAPI.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal,
                         TotalMontoImpuesto = fce.Sum(x=>x.IVARetenidoTotal)
                     }
                 }
@@ -1279,55 +1266,55 @@ namespace SIMPLEAPI_Demo
 
         #region Guias de despacho
 
-        public ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroGuia GenerateLibroGuias(ChileSystems.DTE.Engine.Envio.EnvioDTE envioAux)
+        public SimpleAPI.Models.LCV.LibroGuia GenerateLibroGuias(SimpleAPI.Models.Envios.EnvioDTE envioAux)
         {
-            var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.LibroGuia();
-            libro.EnvioLibro = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.EnvioLibro();
+            var libro = new SimpleAPI.Models.LCV.LibroGuia();
+            libro.EnvioLibro = new SimpleAPI.Models.LCV.EnvioLibro();
             libro.EnvioLibro.Id = "ID_LIBRO_GUIAS_";
 
 
-            libro.EnvioLibro.Caratula = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Caratula()
+            libro.EnvioLibro.Caratula = new SimpleAPI.Models.LCV.Caratula()
             {
                 RutEmisor = configuracion.Empresa.RutEmpresa,
                 RutEnvia = configuracion.Certificado.Rut,
                 PeriodoTributario = DateTime.Now.Year + "-0" + DateTime.Now.Month,
                 FechaResolucion = configuracion.Empresa.FechaResolucion,
                 NumeroResolucion = configuracion.Empresa.NumeroResolucion,
-                TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
-                TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
+                TipoLibro = SimpleAPI.Enum.TipoLibro.TipoLibroEnum.Especial,
+                TipoEnvio = SimpleAPI.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total,
                 FolioNotificacion = 100
             };
 
 
-            libro.EnvioLibro.ResumenPeriodo = new ChileSystems.DTE.Engine.InformacionElectronica.LCV.ResumenPeriodo()
+            libro.EnvioLibro.ResumenPeriodo = new SimpleAPI.Models.LCV.ResumenPeriodo()
             {
-                TotalesGuiasDeVentas = envioAux.SetDTE.DTEs.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoTraslado == ChileSystems.DTE.Engine.Enum.TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta).Count(),
-                MontoTotalVentasGuia = envioAux.SetDTE.DTEs.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoTraslado == ChileSystems.DTE.Engine.Enum.TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta).Sum(x => x.Documento.Encabezado.Totales.MontoTotal),
+                TotalesGuiasDeVentas = envioAux.SetDTE.DTEs.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoTraslado == SimpleAPI.Enum.TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta).Count(),
+                MontoTotalVentasGuia = envioAux.SetDTE.DTEs.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoTraslado == SimpleAPI.Enum.TipoTraslado.TipoTrasladoEnum.OperacionConstituyeVenta).Sum(x => x.Documento.Encabezado.Totales.MontoTotal),
                 TotalesGuiasAnuladas = 0, //Dato opcional. No hay un indicador en el DTE para establecer que está anulado. Se debe entregar según datos del propio desarrollador,
                 TotalesFoliosAnulados = 0, //Dato opcional. No hay un indicador en el DTE para establecer que su folio está anulado. Se debe entregar según datos del propio desarrollador,               
 
                 //El traslado es opcional. Se repite hasta 6 veces, según los códigos de NO venta (2, 3, 4, 5, 6, 7).
-                Traslados = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalTraslado>()
+                Traslados = new List<SimpleAPI.Models.LCV.TotalTraslado>()
                 {
-                    new ChileSystems.DTE.Engine.InformacionElectronica.LCV.TotalTraslado()
+                    new SimpleAPI.Models.LCV.TotalTraslado()
                     {
-                        TipoTraslado = ChileSystems.DTE.Engine.Enum.TipoTraslado.TipoTrasladoEnum.TrasladosInternos,
+                        TipoTraslado = SimpleAPI.Enum.TipoTraslado.TipoTrasladoEnum.TrasladosInternos,
                         CantidadGuia = 1,
                         MontoGuia = 0
                     }
                 }
             };
 
-            libro.EnvioLibro.Detalles = new List<ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle>();
+            libro.EnvioLibro.Detalles = new List<SimpleAPI.Models.LCV.Detalle>();
             foreach (var dte in envioAux.SetDTE.DTEs)
             {
-                libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LCV.Detalle()
+                libro.EnvioLibro.Detalles.Add(new SimpleAPI.Models.LCV.Detalle()
                 {
                     MontoTotal = dte.Documento.Encabezado.Totales.MontoTotal,
                     Folio = dte.Documento.Encabezado.IdentificacionDTE.Folio,
                     TipoOperacion = dte.Documento.Encabezado.IdentificacionDTE.TipoTraslado,
                     //Para indicar que la guía está anulada se debe utilizar este atributo. Por defecto se omitirá
-                    IndicadorAnulado = ChileSystems.DTE.Engine.Enum.IndicadorAnulado.IndicadorAnuladoEnum.NotSet
+                    IndicadorAnulado = SimpleAPI.Enum.IndicadorAnulado.IndicadorAnuladoEnum.NotSet
                 });
             }
 
@@ -1340,11 +1327,11 @@ namespace SIMPLEAPI_Demo
 
         #region Utilidades
 
-        public DTE GenerateRandomDTE(int folio, TipoDTE.DTEType tipo)
+        public SimpleAPI.Models.DTE.DTE GenerateRandomDTE(int folio, SimpleAPI.Enum.TipoDTE.DTEType tipo)
         {
             // DOCUMENTO
             Random r = new Random();
-            var dte = new ChileSystems.DTE.Engine.Documento.DTE();
+            var dte = new SimpleAPI.Models.DTE.DTE();
             dte.Documento.Id = "TEST_2" + folio.ToString() + "_" + tipo;
             dte.Documento.Encabezado.IdentificacionDTE.TipoDTE = tipo;
             dte.Documento.Encabezado.IdentificacionDTE.FechaEmision = DateTime.Now;
@@ -1369,22 +1356,22 @@ namespace SIMPLEAPI_Demo
             dte.Documento.Encabezado.Receptor.Ciudad = "Ciudad de cliente";
             dte.Documento.Encabezado.Receptor.Giro = "Giro de cliente";
 
-            dte.Documento.Detalles = new List<ChileSystems.DTE.Engine.Documento.Detalle>();
+            dte.Documento.Detalles = new List<SimpleAPI.Models.DTE.Detalle>();
 
-            if (tipo == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
+            if (tipo == SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica)
             {
-                dte.Documento.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
-                dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+                dte.Documento.Referencias = new List<SimpleAPI.Models.DTE.Referencia>();
+                dte.Documento.Referencias.Add(new SimpleAPI.Models.DTE.Referencia()
                 {
-                    CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
+                    CodigoReferencia = SimpleAPI.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
                     FechaDocumentoReferencia = DateTime.Now,
                     FolioReferencia = "40",
                     IndicadorGlobal = 0,
                     Numero = 1,
                     RazonReferencia = "CORRIGE MONTOS",
-                    TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.FacturaElectronica
+                    TipoDocumento = SimpleAPI.Enum.TipoDTE.TipoReferencia.FacturaElectronica
                 });
-                dte.Documento.Detalles.Add(new ChileSystems.DTE.Engine.Documento.Detalle()
+                dte.Documento.Detalles.Add(new SimpleAPI.Models.DTE.Detalle()
                 {
                     NumeroLinea = 1,
                     Nombre = "DEVOLUCION",
@@ -1393,20 +1380,20 @@ namespace SIMPLEAPI_Demo
                     MontoItem = 100
                 });
             }
-            else if (tipo == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
+            else if (tipo == SimpleAPI.Enum.TipoDTE.DTEType.NotaDebitoElectronica)
             {
-                dte.Documento.Referencias = new List<ChileSystems.DTE.Engine.Documento.Referencia>();
-                dte.Documento.Referencias.Add(new ChileSystems.DTE.Engine.Documento.Referencia()
+                dte.Documento.Referencias = new List<SimpleAPI.Models.DTE.Referencia>();
+                dte.Documento.Referencias.Add(new SimpleAPI.Models.DTE.Referencia()
                 {
-                    CodigoReferencia = ChileSystems.DTE.Engine.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
+                    CodigoReferencia = SimpleAPI.Enum.TipoReferencia.TipoReferenciaEnum.CorrigeMontos,
                     FechaDocumentoReferencia = DateTime.Now,
                     FolioReferencia = "41",
                     IndicadorGlobal = 0,
                     Numero = 1,
                     RazonReferencia = "RECARGO DE INTERESES",
-                    TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoReferencia.FacturaElectronica
+                    TipoDocumento = SimpleAPI.Enum.TipoDTE.TipoReferencia.FacturaElectronica
                 });
-                dte.Documento.Detalles.Add(new ChileSystems.DTE.Engine.Documento.Detalle()
+                dte.Documento.Detalles.Add(new SimpleAPI.Models.DTE.Detalle()
                 {
                     NumeroLinea = 1,
                     Nombre = "RECARGO",
@@ -1415,18 +1402,18 @@ namespace SIMPLEAPI_Demo
                     MontoItem = 100
                 });
             }
-            else if (tipo == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaCompraElectronica)
+            else if (tipo == SimpleAPI.Enum.TipoDTE.DTEType.FacturaCompraElectronica)
             {
-                dte.Documento.Detalles.Add(new ChileSystems.DTE.Engine.Documento.Detalle()
+                dte.Documento.Detalles.Add(new SimpleAPI.Models.DTE.Detalle()
                 {
                     NumeroLinea = 1,
                     Nombre = "TECLADOS INALAMBRICOS",
                     Cantidad = 1,
                     Precio = 100,
                     MontoItem = 100,
-                    CodigoImpuestoAdicional = new List<ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum>()
+                    CodigoImpuestoAdicional = new List<SimpleAPI.Enum.TipoImpuesto.TipoImpuestoEnum>()
                     {
-                        ChileSystems.DTE.Engine.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal
+                        SimpleAPI.Enum.TipoImpuesto.TipoImpuestoEnum.IVARetenidoTotal
                     }
                 });
             }
@@ -1439,7 +1426,7 @@ namespace SIMPLEAPI_Demo
 
                 for (int i = 1; i <= max_detalles; i++)
                 {
-                    var detalle = new ChileSystems.DTE.Engine.Documento.Detalle();
+                    var detalle = new SimpleAPI.Models.DTE.Detalle();
                     detalle.NumeroLinea = i;
                     //detalle.IndicadorExento = ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento;
                     detalle.Nombre = detallesRandom[r.Next(0, detallesRandom.Count - 1)];
@@ -1455,111 +1442,59 @@ namespace SIMPLEAPI_Demo
             return dte;
         }
 
-        public string EnviarAceptacionReclamo(int tipoDocumento, int folio, string accion, string rutProveedor, int dvProveedor, AmbienteEnum ambiente)
+
+
+        public async Task<string> EnviarAceptacionReclamo(int tipoDocumento, int folio, string accion, string rutEmpresa, SimpleAPI.Enum.Ambiente.AmbienteEnum ambiente, string passwordCertificado = "")
         {
-            string messageResult = string.Empty;
-            int trackID = -1;
-            int i;
             try
             {
-                for (i = 1; i <= 5; i++)
+                var responseEnvio = await SimpleAPI.WS.AceptacionReclamo.AceptacionReclamo.NotificarAceptacionReclamoAsync(new SimpleAPI.SII.AceptacionReclamoEntity(rutEmpresa, tipoDocumento, folio)
                 {
-                    var responseEnvio = ChileSystems.DTE.WS.AceptacionReclamo.AceptacionReclamoWS.NotificarAceptacionReclamo
-                        (rutProveedor, dvProveedor.ToString(), tipoDocumento, folio, accion, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", configuracion.APIKey);
-
-                    if (responseEnvio != null && string.IsNullOrEmpty(messageResult))
-                    {
-                        return responseEnvio;
-                    }
+                    Accion = accion
+                }, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", passwordCertificado);
+                if (responseEnvio != null)
+                {
+                    return responseEnvio.Descripcion;
                 }
-
-                if (i == 5)
-                    throw new Exception("SE HA ALCANZADO EL MÁXIMO NÚMERO DE INTENTOS: " + messageResult);
             }
             catch (Exception ex)
             {
-                messageResult = ex.Message;
-                return "Error: " + messageResult;
+                return "Error: " + ex.Message;
             }
             return "Error";
         }
 
-        public EstadoDTEResult ConsultarEstadoDTE(AmbienteEnum ambiente, int receptorRUT, string receptorDV, TipoDTE.DTEType tipo, int folio, DateTime fechaEmision, int total, bool isBoletaCertificacion)
+        public async Task<SimpleAPI.WS.Estado.EstadoDTEResult> ConsultarEstadoDTEAsync(SimpleAPI.Enum.Ambiente.AmbienteEnum ambiente, string rutReceptor, SimpleAPI.Enum.TipoDTE.DTEType tipo, int folio, DateTime fechaEmision, int total)
         {
-            int rutTrabajador = configuracion.Certificado.RutCuerpo;
-            string rutTrabajadorDigito = configuracion.Certificado.DV;
-            int rutEmpresa = configuracion.Empresa.RutCuerpo;
-            string rutEmpresaDigito = configuracion.Empresa.DV;
-            int rutReceptor = receptorRUT;
-            string rutReceptorDigito = receptorDV;
-
-            int tipoDte = (int)tipo;
-            string error = string.Empty;
-
-            EstadoDTEResult responseEstadoDTE;
-
-            if (!isBoletaCertificacion && (tipo == TipoDTE.DTEType.BoletaElectronica || tipo == TipoDTE.DTEType.BoletaElectronicaExenta))
-            {
-                responseEstadoDTE = EstadoDTE.GetEstadoBoleta
-                 (rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
-                 tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", configuracion.APIKey, out error);
-               
-            }
-            else 
-            {
-                responseEstadoDTE = EstadoDTE.GetEstado
-                   (rutTrabajador, rutTrabajadorDigito, rutEmpresa, rutEmpresaDigito, rutReceptor, rutReceptorDigito,
-                   tipoDte, folio, fechaEmision, total, configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat", configuracion.APIKey, out error);
-            }
-
-            if (!string.IsNullOrEmpty(error))
-            {
-                throw new Exception(error);
-            }
-
+            var responseEstadoDTE = await SimpleAPI.WS.Estado.EstadoDTE.GetEstadoDTEAsync(new SimpleAPI.SII.GetEstadoEntity(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, rutReceptor, fechaEmision, (int)tipo, folio, total), configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat");
             return responseEstadoDTE;
         }
-
-        public EstadoEnvioResult ConsultarEstadoEnvio(AmbienteEnum ambiente, long trackId)
+        public async Task<SimpleAPI.WS.Estado.EstadoBoletaResult> ConsultarEstadoBoletaAsync(SimpleAPI.Enum.Ambiente.AmbienteEnum ambiente, string rutReceptor, SimpleAPI.Enum.TipoDTE.DTEType tipo, int folio, DateTime fechaEmision, int total)
         {
-            //string signature = SIMPLE_API.Security.Firma.Firma.GetFirmaFromString(xmlEnvio);
-            int rutEmpresa = configuracion.Empresa.RutCuerpo;
-            string rutEmpresaDigito = configuracion.Empresa.DV;
-
-            string error = "";
-            EstadoEnvioResult responseEstadoEnvio = EstadoEnvio.GetEstado(rutEmpresa, rutEmpresaDigito, trackId, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out error, ".\\out\\tkn.dat");
-
-
-            if (!String.IsNullOrEmpty(error))
-                throw new Exception(error);
-
+            var responseEstadoDTE = await SimpleAPI.WS.Estado.EstadoDTE.GetEstadoBoletaAsync(new SimpleAPI.SII.GetEstadoEntity(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, rutReceptor, fechaEmision, (int)tipo, folio, total), configuracion.Certificado.Nombre, ambiente, ".\\out\\tkn.dat");
+            return responseEstadoDTE;
+        }
+        public async Task<SimpleAPI.WS.Estado.EstadoEnvioResult> ConsultarEstadoEnvioDTEAsync(SimpleAPI.Enum.Ambiente.AmbienteEnum ambiente, long trackId)
+        {
+            SimpleAPI.WS.Estado.EstadoEnvioResult responseEstadoEnvio = await SimpleAPI.WS.Estado.EstadoEnvio.GetEstadoEnvioAsync(new SimpleAPI.SII.GetEstadoEnvioEntity(configuracion.Empresa.RutEmpresa, trackId.ToString()), ambiente, ".\\out\\tkn.dat", configuracion.Certificado.Nombre);
             return responseEstadoEnvio;
         }
 
-        public EstadoEnvioBoletaResult ConsultarEstadoEnvioBoleta(AmbienteEnum ambiente, long trackId)
+        public async Task<SimpleAPI.WS.Estado.EstadoEnvioBoletaResult> ConsultarEstadoEnvioBoletaAsync(SimpleAPI.Enum.Ambiente.AmbienteEnum ambiente, long trackId)
         {
-            //string signature = SIMPLE_API.Security.Firma.Firma.GetFirmaFromString(xmlEnvio);
-            int rutEmpresa = configuracion.Empresa.RutCuerpo;
-            string rutEmpresaDigito = configuracion.Empresa.DV;
-
-            string error = "";
-            var responseEstadoEnvio = EstadoEnvio.GetEstadoEnvioBoleta(rutEmpresa, rutEmpresaDigito, trackId, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out error, ".\\out\\tkn.dat");
-
-
-            if (!String.IsNullOrEmpty(error))
-                throw new Exception(error);
-
+            var responseEstadoEnvio = await SimpleAPI.WS.Estado.EstadoEnvio.GetEstadoEnvioBoletaAsync(new SimpleAPI.SII.GetEstadoEnvioEntity(configuracion.Empresa.RutEmpresa, trackId.ToString()), ambiente, ".\\out\\tkn.dat", configuracion.Certificado.Nombre);
             return responseEstadoEnvio;
+            // return new EstadoEnvioBoletaResult() { Response = responseEstadoEnvio };
         }
 
-        public string GenerarRespuestaEnvio(List<DTE> dtes, string estadoDTE)
+        public string GenerarRespuestaEnvio(List<SimpleAPI.Models.DTE.DTE> dtes, string estadoDTE)
         {
-            RespuestaDTE response = new RespuestaDTE();
-            response.Resultado = new Resultado();
+            SimpleAPI.Models.RespuestaEnvio.RespuestaDTE response = new SimpleAPI.Models.RespuestaEnvio.RespuestaDTE();
+            response.Resultado = new SimpleAPI.Models.RespuestaEnvio.Resultado();
             var result = response.Resultado;
 
             result.Id = "R_ENVIO1";
-            result.Caratula = new ChileSystems.DTE.Engine.RespuestaEnvio.Caratula();
+            result.Caratula = new SimpleAPI.Models.RespuestaEnvio.Caratula();
             result.Caratula.Fecha = DateTime.Now;
             result.Caratula.IdRespuesta = 1;
             result.Caratula.MailContacto = "mailcontacto@mail.com";
@@ -1569,8 +1504,8 @@ namespace SIMPLEAPI_Demo
             result.Caratula.NumeroDetalles = 1;
             result.Caratula.RutRecibe = "88888888-8";
 
-            result.RecepcionEnvio = new List<RecepcionEnvio>();
-            var recepcionEnvio = new RecepcionEnvio();
+            result.RecepcionEnvio = new List<SimpleAPI.Models.RespuestaEnvio.RecepcionEnvio>();
+            var recepcionEnvio = new SimpleAPI.Models.RespuestaEnvio.RecepcionEnvio();
 
             recepcionEnvio.CodigoEnvio = 4545;
             //recepcionEnvio.Digest = SIMPLE_SDK.Security.Firma.Firma.GetDigestValueFromFile(dte.DTEfilepath);
@@ -1579,10 +1514,10 @@ namespace SIMPLEAPI_Demo
             recepcionEnvio.NumeroDTE = 2;
             recepcionEnvio.RutEmisor = result.Caratula.RutRecibe;
             recepcionEnvio.RutReceptor = result.Caratula.RutResponde;
-            recepcionEnvio.EstadoRecepcionEnvio = ChileSystems.DTE.Engine.Enum.EstadoEnvioEmpresa.EstadoEnvioEmpresaEnum.OK;
+            recepcionEnvio.EstadoRecepcionEnvio = SimpleAPI.Enum.EstadoEnvioEmpresa.EstadoEnvioEmpresaEnum.OK;
             recepcionEnvio.GlosaEstadoRecepcionEnvio = "ENVIO OK";
             recepcionEnvio.NombreArchivoEnvio = "ENVIO_DTE_1072427";
-            recepcionEnvio.RecepcionDTE = new List<RecepcionDTE>();
+            recepcionEnvio.RecepcionDTE = new List<SimpleAPI.Models.RespuestaEnvio.RecepcionDTE>();
 
             //foreach (var dte in dtes)
             //{
@@ -1598,7 +1533,7 @@ namespace SIMPLEAPI_Demo
             //    recepcionEnvio.RecepcionDTE.Add(recepcionDTE);
             //}
 
-            var recepcionDTE = new RecepcionDTE();
+            var recepcionDTE = new SimpleAPI.Models.RespuestaEnvio.RecepcionDTE();
             var dte = dtes[0];
             recepcionDTE.FechaEmision = dte.Documento.Encabezado.IdentificacionDTE.FechaEmision;
             recepcionDTE.Folio = dte.Documento.Encabezado.IdentificacionDTE.Folio;
@@ -1606,20 +1541,20 @@ namespace SIMPLEAPI_Demo
             recepcionDTE.RutEmisor = dte.Documento.Encabezado.Emisor.Rut;
             recepcionDTE.RutReceptor = dte.Documento.Encabezado.Receptor.Rut;
             recepcionDTE.TipoDTE = dte.Documento.Encabezado.IdentificacionDTE.TipoDTE;
-            recepcionDTE.EstadoRecepcionDTE = ChileSystems.DTE.Engine.Enum.EstadoRecepcionDTE.EstadoRecepcionDTEEnum.Ok;
-            recepcionDTE.GlosaEstadoRecepcionDTE = ChileSystems.DTE.Engine.Enum.EstadoRecepcionDTE.Glosa(recepcionDTE.EstadoRecepcionDTE);
+            recepcionDTE.EstadoRecepcionDTE = SimpleAPI.Enum.EstadoRecepcionDTE.EstadoRecepcionDTEEnum.Ok;
+            recepcionDTE.GlosaEstadoRecepcionDTE = SimpleAPI.Enum.EstadoRecepcionDTE.Glosa(recepcionDTE.EstadoRecepcionDTE);
             recepcionEnvio.RecepcionDTE.Add(recepcionDTE);
 
             var dte2 = dtes[1];
-            recepcionDTE = new RecepcionDTE();
+            recepcionDTE = new SimpleAPI.Models.RespuestaEnvio.RecepcionDTE();
             recepcionDTE.FechaEmision = dte2.Documento.Encabezado.IdentificacionDTE.FechaEmision;
             recepcionDTE.Folio = dte2.Documento.Encabezado.IdentificacionDTE.Folio;
             recepcionDTE.MontoTotal = dte2.Documento.Encabezado.Totales.MontoTotal;
             recepcionDTE.RutEmisor = dte2.Documento.Encabezado.Emisor.Rut;
             recepcionDTE.RutReceptor = dte2.Documento.Encabezado.Receptor.Rut;
             recepcionDTE.TipoDTE = dte2.Documento.Encabezado.IdentificacionDTE.TipoDTE;
-            recepcionDTE.EstadoRecepcionDTE = ChileSystems.DTE.Engine.Enum.EstadoRecepcionDTE.EstadoRecepcionDTEEnum.ErrorRutReceptor;
-            recepcionDTE.GlosaEstadoRecepcionDTE = ChileSystems.DTE.Engine.Enum.EstadoRecepcionDTE.Glosa(recepcionDTE.EstadoRecepcionDTE);
+            recepcionDTE.EstadoRecepcionDTE = SimpleAPI.Enum.EstadoRecepcionDTE.EstadoRecepcionDTEEnum.ErrorRutReceptor;
+            recepcionDTE.GlosaEstadoRecepcionDTE = SimpleAPI.Enum.EstadoRecepcionDTE.Glosa(recepcionDTE.EstadoRecepcionDTE);
             recepcionEnvio.RecepcionDTE.Add(recepcionDTE);
 
 
@@ -1630,17 +1565,17 @@ namespace SIMPLEAPI_Demo
             return filepath;
         }
 
-        public string ResponderIntercambio(int estado, DTE dte, string motivo)
+        public string ResponderIntercambio(int estado, SimpleAPI.Models.DTE.DTE dte, string motivo)
         {
             try
             {
-                RespuestaDTE response = new RespuestaDTE();
-                response.Resultado = new Resultado();
+                SimpleAPI.Models.RespuestaEnvio.RespuestaDTE response = new SimpleAPI.Models.RespuestaEnvio.RespuestaDTE();
+                response.Resultado = new SimpleAPI.Models.RespuestaEnvio.Resultado();
 
                 var result = response.Resultado;
 
                 result.Id = "R_001";
-                result.Caratula = new ChileSystems.DTE.Engine.RespuestaEnvio.Caratula();
+                result.Caratula = new SimpleAPI.Models.RespuestaEnvio.Caratula();
                 result.Caratula.Fecha = DateTime.Now;
                 result.Caratula.IdRespuesta = 1;
                 result.Caratula.MailContacto = "test@test.cl";
@@ -1650,18 +1585,18 @@ namespace SIMPLEAPI_Demo
                 result.Caratula.NumeroDetalles = 1;
                 result.Caratula.RutRecibe = "88888888-8";
 
-                result.ResultadoDTE = new List<ResultadoDTE>();
-                var resultadoDTE = new ResultadoDTE();
+                result.ResultadoDTE = new List<SimpleAPI.Models.RespuestaEnvio.ResultadoDTE>();
+                var resultadoDTE = new SimpleAPI.Models.RespuestaEnvio.ResultadoDTE();
 
                 resultadoDTE.CodigoEnvio = 1;
 
                 resultadoDTE.CodigoRechazoODiscrepancia = -1;//(int)estado;
-                resultadoDTE.EstadoDTE = (ChileSystems.DTE.Engine.Enum.EstadoResultadoDTE.EstadoResultadoDTEEnum)estado;
+                resultadoDTE.EstadoDTE = (SimpleAPI.Enum.EstadoResultadoDTE.EstadoResultadoDTEEnum)estado;
                 resultadoDTE.GlosaEstadoDTE = string.IsNullOrEmpty(motivo) ? resultadoDTE.EstadoDTE.ToString() : motivo;
 
                 resultadoDTE.RutEmisor = "88888888-8";
                 resultadoDTE.RutReceptor = configuracion.Empresa.RutEmpresa;
-                resultadoDTE.TipoDTE = ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica;
+                resultadoDTE.TipoDTE = SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronica;
                 resultadoDTE.Folio = 52576;
                 resultadoDTE.FechaEmision = new DateTime(2019, 2, 19);
                 resultadoDTE.MontoTotal = 18635;
@@ -1677,17 +1612,17 @@ namespace SIMPLEAPI_Demo
             }
         }
 
-        public string ResponderDTE(int estado, DTE dte, string motivo)
+        public string ResponderDTE(int estado, SimpleAPI.Models.DTE.DTE dte, string motivo)
         {
             try
             {
-                RespuestaDTE response = new RespuestaDTE();
-                response.Resultado = new ChileSystems.DTE.Engine.RespuestaEnvio.Resultado();
+                SimpleAPI.Models.RespuestaEnvio.RespuestaDTE response = new SimpleAPI.Models.RespuestaEnvio.RespuestaDTE();
+                response.Resultado = new SimpleAPI.Models.RespuestaEnvio.Resultado();
 
                 var result = response.Resultado;
 
                 result.Id = "APROBACION_COMERCIAL_";
-                result.Caratula = new ChileSystems.DTE.Engine.RespuestaEnvio.Caratula();
+                result.Caratula = new SimpleAPI.Models.RespuestaEnvio.Caratula();
                 result.Caratula.Fecha = DateTime.Now;
                 result.Caratula.IdRespuesta = 1;
                 result.Caratula.MailContacto = "test@test.cl";
@@ -1697,13 +1632,13 @@ namespace SIMPLEAPI_Demo
                 result.Caratula.NumeroDetalles = 1;
                 result.Caratula.RutRecibe = "88888888-8";
 
-                result.ResultadoDTE = new List<ResultadoDTE>();
-                var resultadoDTE = new ResultadoDTE();
+                result.ResultadoDTE = new List<SimpleAPI.Models.RespuestaEnvio.ResultadoDTE>();
+                var resultadoDTE = new SimpleAPI.Models.RespuestaEnvio.ResultadoDTE();
 
                 resultadoDTE.CodigoEnvio = 1;
 
                 resultadoDTE.CodigoRechazoODiscrepancia = -1;//(int)estado;
-                resultadoDTE.EstadoDTE = (ChileSystems.DTE.Engine.Enum.EstadoResultadoDTE.EstadoResultadoDTEEnum)estado;
+                resultadoDTE.EstadoDTE = (SimpleAPI.Enum.EstadoResultadoDTE.EstadoResultadoDTEEnum)estado;
                 resultadoDTE.GlosaEstadoDTE = string.IsNullOrEmpty(motivo) ? resultadoDTE.EstadoDTE.ToString() : motivo;
 
                 resultadoDTE.RutEmisor = "88888888-8";
@@ -1724,15 +1659,15 @@ namespace SIMPLEAPI_Demo
             }
         }
 
-        public string AcuseReciboMercaderias(DTE dte)
+        public string AcuseReciboMercaderias(SimpleAPI.Models.DTE.DTE dte)
         {
             try
             {
-                ChileSystems.DTE.Engine.ReciboMercaderia.EnvioRecibos envio = new ChileSystems.DTE.Engine.ReciboMercaderia.EnvioRecibos();
-                envio.SetRecibos = new ChileSystems.DTE.Engine.ReciboMercaderia.SetRecibos()
+                SimpleAPI.Models.ReciboMercaderia.EnvioRecibos envio = new SimpleAPI.Models.ReciboMercaderia.EnvioRecibos();
+                envio.SetRecibos = new SimpleAPI.Models.ReciboMercaderia.SetRecibos()
                 {
                     Id = "EARM00",
-                    Caratula = new ChileSystems.DTE.Engine.ReciboMercaderia.Caratula()
+                    Caratula = new SimpleAPI.Models.ReciboMercaderia.Caratula()
                     {
                         RutRecibe = "88888888-8",
                         RutResponde = configuracion.Empresa.RutEmpresa,
@@ -1740,11 +1675,11 @@ namespace SIMPLEAPI_Demo
                     }
                 };
 
-                envio.SetRecibos.Recibos = new List<ChileSystems.DTE.Engine.ReciboMercaderia.Recibo>()
+                envio.SetRecibos.Recibos = new List<SimpleAPI.Models.ReciboMercaderia.Recibo>()
                 {
-                    new ChileSystems.DTE.Engine.ReciboMercaderia.Recibo()
+                    new SimpleAPI.Models.ReciboMercaderia.Recibo()
                     {
-                         DocumentoRecibo = new ChileSystems.DTE.Engine.ReciboMercaderia.DocumentoRecibo()
+                         DocumentoRecibo = new SimpleAPI.Models.ReciboMercaderia.DocumentoRecibo()
                          {
                             Id = "R01",
                             RutEmisor = "88888888-8",
@@ -1777,8 +1712,8 @@ namespace SIMPLEAPI_Demo
 
         public string ObtenerCertificados()
         {
-            var certificadosMaquina = ChileSystems.DTE.Engine.Utilidades.ObtenerCertificadosMaquinas();
-            var certificadosUsuario = ChileSystems.DTE.Engine.Utilidades.ObtenerCertificadosUsuario();
+            var certificadosMaquina = SimpleAPI.Config.Utilidades.ObtenerCertificadosMaquinas();
+            var certificadosUsuario = SimpleAPI.Config.Utilidades.ObtenerCertificadosUsuario();
             string result = "Máquina:\n";
             foreach (var a in certificadosMaquina)
                 result += a + "\n";
@@ -1795,18 +1730,18 @@ namespace SIMPLEAPI_Demo
             return ms.ToArray();
         }
 
-        public static string TipoDTEString(TipoDTE.DTEType tipo)
+        public static string TipoDTEString(SimpleAPI.Enum.TipoDTE.DTEType tipo)
         {
             switch (tipo)
             {
-                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaCompraElectronica: return "FACTURA DE COMPRA ELECTRÓNICA";
-                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronica: return "FACTURA ELECTRÓNICA";
-                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.FacturaElectronicaExenta: return "FACTURA ELECTRÓNICA EXENTA";
-                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.GuiaDespachoElectronica: return "GUIA DE DESPACHO ELECTRÓNICA";
-                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCreditoElectronica: return "NOTA DE CRÉDITO ELECTRÓNICA";
-                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaDebitoElectronica: return "NOTA DE DÉBITO ELECTRÓNICA";
-                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.Factura: return "FACTURA MANUAL";
-                case ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.NotaCredito: return "NOTA DE CRÉDITO MANUAL";
+                case SimpleAPI.Enum.TipoDTE.DTEType.FacturaCompraElectronica: return "FACTURA DE COMPRA ELECTRÓNICA";
+                case SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronica: return "FACTURA ELECTRÓNICA";
+                case SimpleAPI.Enum.TipoDTE.DTEType.FacturaElectronicaExenta: return "FACTURA ELECTRÓNICA EXENTA";
+                case SimpleAPI.Enum.TipoDTE.DTEType.GuiaDespachoElectronica: return "GUIA DE DESPACHO ELECTRÓNICA";
+                case SimpleAPI.Enum.TipoDTE.DTEType.NotaCreditoElectronica: return "NOTA DE CRÉDITO ELECTRÓNICA";
+                case SimpleAPI.Enum.TipoDTE.DTEType.NotaDebitoElectronica: return "NOTA DE DÉBITO ELECTRÓNICA";
+                case SimpleAPI.Enum.TipoDTE.DTEType.Factura: return "FACTURA MANUAL";
+                case SimpleAPI.Enum.TipoDTE.DTEType.NotaCredito: return "NOTA DE CRÉDITO MANUAL";
             }
             return "Not Set";
         }

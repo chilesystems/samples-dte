@@ -1,5 +1,5 @@
 ﻿using System;
-using ChileSystems.DTE.Engine.Enum;
+//using ChileSystems.DTE.Engine.Enum;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static SIMPLE_API.Enum.Ambiente;
+//using static SIMPLE_API.Enum.Ambiente;
 using Newtonsoft.Json;
 
 namespace SIMPLEAPI_Demo
@@ -28,19 +28,19 @@ namespace SIMPLEAPI_Demo
             textDVEmpresa.Text = handler.configuracion.Empresa.DV;
         }
 
-        private void botonConsultar_Click(object sender, EventArgs e)
+        private async void botonConsultar_Click(object sender, EventArgs e)
         {
             long trackId = long.Parse(textTrackID.Text);
             try
             {
                 if (radioEnvioDTE.Checked)
                 {
-                    var responseEstadoDTE = handler.ConsultarEstadoEnvio(radioProduccion.Checked ? AmbienteEnum.Produccion : AmbienteEnum.Certificacion, trackId);
+                    var responseEstadoDTE = await handler.ConsultarEstadoEnvioDTEAsync(radioProduccion.Checked ? SimpleAPI.Enum.Ambiente.AmbienteEnum.Produccion : SimpleAPI.Enum.Ambiente.AmbienteEnum.Certificacion, trackId);
                     textRespuesta.Text = responseEstadoDTE.ResponseXml;
                 }
                 else
                 {
-                    var responseEstadoDTE = handler.ConsultarEstadoEnvioBoleta(radioProduccion.Checked ? AmbienteEnum.Produccion : AmbienteEnum.Certificacion, trackId);
+                    var responseEstadoDTE = await handler.ConsultarEstadoEnvioBoletaAsync(radioProduccion.Checked ? SimpleAPI.Enum.Ambiente.AmbienteEnum.Produccion : SimpleAPI.Enum.Ambiente.AmbienteEnum.Certificacion, trackId);
                     textRespuesta.Text = JsonConvert.SerializeObject(responseEstadoDTE, Formatting.Indented);
                 }
             }

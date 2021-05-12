@@ -1,4 +1,4 @@
-﻿using ChileSystems.DTE.Engine.Documento;
+﻿//using ChileSystems.DTE.Engine.Documento;
 using SIMPLEAPI_Demo.Impresion.Core.Helpers;
 using SIMPLEAPI_Demo.Impresion.Utils;
 using System;
@@ -61,7 +61,7 @@ namespace SIMPLEAPI_Demo.Impresion.Core
         public DateTime FechaResolucion { get; set; }
         public string WebVerificación { get; set; }
 
-        public static PrintableDocument FromDTE(DTE dte)
+        public static PrintableDocument FromDTE(SimpleAPI.Models.DTE.DTE dte)
         {
             var doc = new PrintableDocument();
             try
@@ -98,7 +98,7 @@ namespace SIMPLEAPI_Demo.Impresion.Core
                            {
                                Cantidad = detalle.Cantidad,
                                Descripcion = string.IsNullOrEmpty(detalle.Nombre) ? detalle.Descripcion : detalle.Nombre,
-                               IsExento = detalle.IndicadorExento == ChileSystems.DTE.Engine.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento,
+                               IsExento = detalle.IndicadorExento == SimpleAPI.Enum.IndicadorFacturacionExencion.IndicadorFacturacionExencionEnum.NoAfectoOExento,
                                Precio = detalle.Precio,
                                Total = detalle.MontoItem,
                                UnidadMedida = detalle.UnidadMedida
@@ -109,7 +109,7 @@ namespace SIMPLEAPI_Demo.Impresion.Core
                 doc.DescuentosRecargos = new List<(char, string, string)>();
                 foreach (var item in dte.Documento.DescuentosRecargos)
                 {
-                    if (item.TipoValor == ChileSystems.DTE.Engine.Enum.ExpresionDinero.ExpresionDineroEnum.Porcentaje)
+                    if (item.TipoValor == SimpleAPI.Enum.ExpresionDinero.ExpresionDineroEnum.Porcentaje)
                         value = item.Valor.ToString("N2") + "%";
                     else
                         value = item.Valor.ToString("N0") + "Pesos";

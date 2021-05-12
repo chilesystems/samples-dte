@@ -119,10 +119,18 @@ namespace SIMPLEAPI_Demo
                 string pathFile = txtXmlFilePath.Text;
                 string xml = File.ReadAllText(pathFile, Encoding.GetEncoding("ISO-8859-1"));
 
-                var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
+                var dte = SimpleAPI.XML.XmlHandler.DeserializeFromString<SimpleAPI.Models.DTE.DTE>(xml);
 
                 document = PrintableDocument.FromDTE(dte);
-                pictureBoxTimbre.BackgroundImage = document.TimbreImage = dte.Documento.TimbrePDF417(out string outMessage);
+
+                // anterior que da error
+                //pictureBoxTimbre.BackgroundImage = document.TimbreImage = dte.Documento.TimbrePDF417(out string outMessage);
+
+                //nueva forma
+                using (var ms = new MemoryStream(dte.Documento.TimbrePDF417(out string outMessage)))
+                {
+                    document.TimbreImage = pictureBoxTimbre.BackgroundImage = Image.FromStream(ms);
+                }
                 BindData();
 
             }

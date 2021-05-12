@@ -30,56 +30,56 @@ namespace SIMPLEAPI_Demo
 
                     
                     string tipoSchema = string.Empty;
-                    SIMPLE_API.Security.Firma.Firma.TipoXML tipoFirma = SIMPLE_API.Security.Firma.Firma.TipoXML.NotSet;
+                    SimpleAPI.Security.Firma.TipoXML tipoFirma = SimpleAPI.Security.Firma.TipoXML.NotSet;
                     string tipo = comboTipo.SelectedItem.ToString();
                     if (tipo == "DTE")
                     {
-                        tipoSchema = ChileSystems.DTE.Engine.XML.Schemas.DTE;
-                        tipoFirma = SIMPLE_API.Security.Firma.Firma.TipoXML.DTE;
+                        tipoSchema = SimpleAPI.XML.Schemas.DTE;
+                        tipoFirma = SimpleAPI.Security.Firma.TipoXML.DTE;
 
-                        var dte = ChileSystems.DTE.Engine.XML.XmlHandler.DeserializeFromString<ChileSystems.DTE.Engine.Documento.DTE>(xml);
+                        var dte = SimpleAPI.XML.XmlHandler.DeserializeFromString<SimpleAPI.Models.DTE.DTE>(xml);
                         textDocumento.Text = "FOLIO: " + dte.Documento.Encabezado.IdentificacionDTE.Folio + ". EMISOR: " + dte.Documento.Encabezado.Emisor.RazonSocial;
 
                     }
                     else if (tipo == "SOBREENVIO")
                     {
-                        tipoSchema = ChileSystems.DTE.Engine.XML.Schemas.EnvioDTE;
-                        tipoFirma = SIMPLE_API.Security.Firma.Firma.TipoXML.Envio;
+                        tipoSchema = SimpleAPI.XML.Schemas.EnvioDTE;
+                        tipoFirma = SimpleAPI.Security.Firma.TipoXML.Envio;
 
-                        var envio = ChileSystems.DTE.Engine.XML.XmlHandler.TryDeserializeFromString<ChileSystems.DTE.Engine.Envio.EnvioDTE>(xml);
+                        var envio = SimpleAPI.XML.XmlHandler.TryDeserializeFromString<SimpleAPI.Models.DTE.DTE>(xml);
                        // textDocumento.Text = "DOCUMENTOS: " + String.Join(",", envio.SetDTE.DTEs);
 
                     }
                     else if (tipo == "ENVIOBOLETA")
                     {
-                        tipoSchema = ChileSystems.DTE.Engine.XML.Schemas.EnvioBoleta;
-                        tipoFirma = SIMPLE_API.Security.Firma.Firma.TipoXML.EnvioBoleta;
+                        tipoSchema = SimpleAPI.XML.Schemas.EnvioBoleta;
+                        tipoFirma = SimpleAPI.Security.Firma.TipoXML.EnvioBoleta;
                     }
                     else if (tipo == "IECV")
                     {
-                        tipoSchema = ChileSystems.DTE.Engine.XML.Schemas.LCV_LIBRO;
-                        tipoFirma = SIMPLE_API.Security.Firma.Firma.TipoXML.LCV;
+                        tipoSchema = SimpleAPI.XML.Schemas.LCV_LIBRO;
+                        tipoFirma = SimpleAPI.Security.Firma.TipoXML.LCV;
                     }
                     else if (tipo == "CONSUMOFOLIOS")
                     {
-                        tipoSchema = ChileSystems.DTE.Engine.XML.Schemas.ConsumoFolios;
-                        tipoFirma = SIMPLE_API.Security.Firma.Firma.TipoXML.RCOF;
+                        tipoSchema = SimpleAPI.XML.Schemas.ConsumoFolios;
+                        tipoFirma = SimpleAPI.Security.Firma.TipoXML.RCOF;
                     }
                     else if (tipo == "LIBROBOLETA")
                     {
-                        tipoSchema = ChileSystems.DTE.Engine.XML.Schemas.LibroBoletas;
-                        tipoFirma = SIMPLE_API.Security.Firma.Firma.TipoXML.LibroBoletas;
+                        tipoSchema = SimpleAPI.XML.Schemas.LibroBoletas;
+                        tipoFirma = SimpleAPI.Security.Firma.TipoXML.LibroBoletas;
                     }
                     else if (tipo == "AEC")
                     {
-                        tipoSchema = ChileSystems.DTE.Engine.XML.Schemas.AEC;
-                        tipoFirma = SIMPLE_API.Security.Firma.Firma.TipoXML.AEC;
+                        tipoSchema = SimpleAPI.XML.Schemas.AEC;
+                        tipoFirma = SimpleAPI.Security.Firma.TipoXML.AEC;
                     }
                     string messageResultSchema = string.Empty;
                     string messageResultFirma = string.Empty;
-                    if (ChileSystems.DTE.Engine.XML.XmlHandler.ValidateWithSchema(openFileDialog1.FileName, out messageResultSchema, tipoSchema))
+                    if (SimpleAPI.XML.XmlHandler.ValidateWithSchema(openFileDialog1.FileName, out messageResultSchema, tipoSchema))
                     {
-                        if (SIMPLE_API.Security.Firma.Firma.VerificarFirma(openFileDialog1.FileName, tipoFirma, out messageResultFirma))
+                        if (SimpleAPI.Security.Firma.VerificarFirma(openFileDialog1.FileName, tipoFirma, out messageResultFirma))
                         {
                             textResultado.Text = "SCHEMA CORRECTO." + Environment.NewLine + " FIRMA CORRECTA.";
                         }

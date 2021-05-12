@@ -1,4 +1,4 @@
-﻿using ChileSystems.DTE.Engine.Enum;
+﻿//using ChileSystems.DTE.Engine.Enum;
 using SIMPLEAPI_Demo.Clases;
 using System;
 using System.Collections.Generic;
@@ -61,15 +61,15 @@ namespace SIMPLEAPI_Demo
             }
         }
 
-        private void botonGenerar_Click(object sender, EventArgs e)
+        private async void botonGenerar_Click(object sender, EventArgs e)
         {
-            var dte = handler.GenerateDTE(ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica, (int)numericFolio.Value);
+            var dte = handler.GenerateDTE(SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica, (int)numericFolio.Value);
             handler.GenerateDetails(dte, items);
             string casoPrueba = "CASO-" + numericCasoPrueba.Value.ToString("N0");
-            handler.Referencias(dte, TipoReferencia.TipoReferenciaEnum.SetPruebas, TipoDTE.TipoReferencia.BoletaElectronica, null, 0, casoPrueba);
-            var path = handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\", out string messageOut);
+            handler.Referencias(dte, SimpleAPI.Enum.TipoReferencia.TipoReferenciaEnum.SetPruebas, SimpleAPI.Enum.TipoDTE.TipoReferencia.BoletaElectronica, null, 0, casoPrueba);
+            var path = await handler.TimbrarYFirmarXMLDTE(dte, "out\\temp\\", "out\\caf\\");
 
-            handler.Validate(path, SIMPLE_API.Security.Firma.Firma.TipoXML.DTE, ChileSystems.DTE.Engine.XML.Schemas.DTE);
+            handler.Validate(path, SimpleAPI.Security.Firma.TipoXML.DTE, SimpleAPI.XML.Schemas.DTE);
             MessageBox.Show("Documento generado exitosamente");
         }
     }

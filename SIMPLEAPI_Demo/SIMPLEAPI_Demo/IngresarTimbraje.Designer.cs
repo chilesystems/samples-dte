@@ -165,6 +165,7 @@
             this.Name = "IngresarTimbraje";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ingresar Timbraje";
+            this.Load += new System.EventHandler(this.IngresarTimbraje_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

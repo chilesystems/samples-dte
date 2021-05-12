@@ -1,4 +1,5 @@
-﻿using ChileSystems.DTE.Engine.Enum;
+﻿//using ChileSystems.DTE.Engine.Enum;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static SIMPLE_API.Enum.Ambiente;
+/*using static SIMPLE_API.Enum.Ambiente;*/
 
 namespace SIMPLEAPI_Demo
 {
@@ -20,27 +21,28 @@ namespace SIMPLEAPI_Demo
             InitializeComponent();
         }
 
-        private void botonConsultar_Click(object sender, EventArgs e)
+        private async void botonConsultar_Click(object sender, EventArgs e)
         {
             int rutReceptor = int.Parse(textRUTReceptor.Text);
             string dvReceptor = textDVReceptor.Text;
             int folio = int.Parse(textFolio.Text);
             int total = int.Parse(textTotal.Text);
-            Enum.TryParse(comboTipoDTE.SelectedItem.ToString(), out TipoDTE.DTEType tipoDTE);            
-            try 
+            Enum.TryParse(comboTipoDTE.SelectedItem.ToString(), out SimpleAPI.Enum.TipoDTE.DTEType tipoDTE);
+            if (checkIsBoletaCertificacion.Checked || !(tipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica || tipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronicaExenta))
             {
-                var responseEstadoDTE = handler.ConsultarEstadoDTE(radioProduccion.Checked ? AmbienteEnum.Produccion: AmbienteEnum.Certificacion, rutReceptor, dvReceptor, tipoDTE, folio, dateFechaEmision.Value.Date, total, checkIsBoletaCertificacion.Checked);
+                var responseEstadoDTE = await handler.ConsultarEstadoDTEAsync(radioProduccion.Checked ? SimpleAPI.Enum.Ambiente.AmbienteEnum.Produccion : SimpleAPI.Enum.Ambiente.AmbienteEnum.Certificacion, $"{textRUTReceptor.Text}-{textDVReceptor.Text}", tipoDTE, folio, dateFechaEmision.Value.Date, total);
                 textRespuesta.Text = responseEstadoDTE.ResponseXml;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Ha ocurrido un error:" + ex);
+                var responseEstadoDTE = await handler.ConsultarEstadoBoletaAsync(radioProduccion.Checked ? SimpleAPI.Enum.Ambiente.AmbienteEnum.Produccion : SimpleAPI.Enum.Ambiente.AmbienteEnum.Certificacion, $"{textRUTReceptor.Text}-{textDVReceptor.Text}", tipoDTE, folio, dateFechaEmision.Value.Date, total);
+                textRespuesta.Text = JsonConvert.SerializeObject(responseEstadoDTE, Formatting.Indented);
             }
         }
 
         private void ConsultaEstadoDTE_Load(object sender, EventArgs e)
         {
-            foreach (var tipo in Enum.GetValues(typeof(TipoDTE.DTEType)))
+            foreach (var tipo in Enum.GetValues(typeof(SimpleAPI.Enum.TipoDTE.DTEType)))
             {
                 comboTipoDTE.Items.Add(tipo);
             }
@@ -55,8 +57,8 @@ namespace SIMPLEAPI_Demo
 
         private void comboTipoDTE_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Enum.TryParse(comboTipoDTE.SelectedItem.ToString(), out TipoDTE.DTEType tipoDTE);
-            checkIsBoletaCertificacion.Enabled = tipoDTE == TipoDTE.DTEType.BoletaElectronica || tipoDTE == TipoDTE.DTEType.BoletaElectronicaExenta;
+            Enum.TryParse(comboTipoDTE.SelectedItem.ToString(), out SimpleAPI.Enum.TipoDTE.DTEType tipoDTE);
+            checkIsBoletaCertificacion.Enabled = tipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronica || tipoDTE == SimpleAPI.Enum.TipoDTE.DTEType.BoletaElectronicaExenta;
         }
     }
 }
