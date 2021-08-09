@@ -540,40 +540,33 @@ namespace SIMPLEAPI_Demo
         {
             messageResult = string.Empty;
             long trackID = -1;
-            int i;
             try
             {
-                for (i = 1; i <= 5; i++)
-                {                    
-                    EnvioDTEResult responseEnvio = new EnvioDTEResult();
+                EnvioDTEResult responseEnvio = new EnvioDTEResult();
 
-                    if(nuevaBoleta) responseEnvio = ChileSystems.DTE.WS.EnvioBoleta.EnvioBoleta.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
-                    else responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat", "", true);
+                if (nuevaBoleta) responseEnvio = ChileSystems.DTE.WS.EnvioBoleta.EnvioBoleta.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat");
+                else responseEnvio = ChileSystems.DTE.WS.EnvioDTE.EnvioDTE.Enviar(configuracion.Certificado.Rut, configuracion.Empresa.RutEmpresa, filePathEnvio, configuracion.Certificado.Nombre, ambiente, configuracion.APIKey, out messageResult, ".\\out\\tkn.dat", "");
 
-                    if (string.IsNullOrEmpty(messageResult))
+                if (string.IsNullOrEmpty(messageResult))
+                {
+                    if (responseEnvio != null && responseEnvio.TrackId > 0)
                     {
-                        if (responseEnvio != null && responseEnvio.TrackId > 0)
-                        {
-                            trackID = responseEnvio.TrackId;
+                        trackID = responseEnvio.TrackId;
 
-                            /*Aquí pueden obtener todos los datos de la respuesta, tal como:
-                             * Estado
-                             * Fecha
-                             * Archivo
-                             * Glosa
-                             * XML
-                             * Entre otros*/
-                            return trackID;
-                        }
-                        else 
-                        {
-                            messageResult = responseEnvio.ResponseXml;
-                        }
+                        /*Aquí pueden obtener todos los datos de la respuesta, tal como:
+                         * Estado
+                         * Fecha
+                         * Archivo
+                         * Glosa
+                         * XML
+                         * Entre otros*/
+                        return trackID;
+                    }
+                    else
+                    {
+                        messageResult = responseEnvio.ResponseXml;
                     }
                 }
-
-                if (i == 5)
-                    throw new Exception("SE HA ALCANZADO EL MÁXIMO NÚMERO DE INTENTOS: " + messageResult);
             }
             catch (Exception ex)
             {
@@ -786,72 +779,6 @@ namespace SIMPLEAPI_Demo
             return rcof;
         }
 
-        public ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas GenerateLibroBoletas(List<DTE> dtes)
-        {
-            var libro = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.LibroBoletas();
-
-            libro.EnvioLibro = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.EnvioLibro();
-
-            /*Datos para confeccion de caratula*/
-            string periodoTributario = "2018-05";
-            /*Fecha de Resolución y Número de Resolución se averiguan en el sitio del SII según ambiente de producción o certificación*/
-            /*El tipo de libro debe ser "Especial" cuando se trata del set de pruebas*/
-            /*El folio de notificacion lo entrega el SII al momento de solicitar el libro, para el set de pruebas no es necesario agregarlo*/
-            libro.EnvioLibro.Caratula = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Caratula
-            {
-                RutEmisor = configuracion.Empresa.RutEmpresa,
-                RutEnvia = configuracion.Certificado.Rut,
-                PeriodoTributario = periodoTributario,
-                FechaResolucion = configuracion.Empresa.FechaResolucion,
-                NumeroResolucion = configuracion.Empresa.NumeroResolucion,
-                TipoLibro = ChileSystems.DTE.Engine.Enum.TipoLibro.TipoLibroEnum.Especial,
-                TipoEnvio = ChileSystems.DTE.Engine.Enum.TipoEnvioLibro.TipoEnvioLibroEnum.Total
-            };
-
-            libro.EnvioLibro.ResumenPeriodo = new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.ResumenPeriodo();
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo = new List<ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalPeriodo>();
-
-            /*Se agregar un Total Periodo por cada tipo de documento. Boletas electrónicas exentas y afectas*/
-            /*Boletas electronicas*/
-            int totalNeto = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoNeto);
-            int totalIVA = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.IVA);
-            int totalExento = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoExento);
-            int totalTotal = dtes.Where(x => x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica).Sum(x => x.Documento.Encabezado.Totales.MontoTotal);
-
-            libro.EnvioLibro.ResumenPeriodo.TotalesPeriodo.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalPeriodo()
-            {
-                TipoDocumento = ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro.BoletaElectronica,
-                CantidadDocumentosAnulados = 0,
-                TotalesServicio = new List<ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalServicio>()
-                {
-                    new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.TotalServicio()
-                    {
-                        CantidadDocumentos = dtes.Count(x=>x.Documento.Encabezado.IdentificacionDTE.TipoDTE == ChileSystems.DTE.Engine.Enum.TipoDTE.DTEType.BoletaElectronica),
-                        TasaIVA = 19,
-                        TotalIVA = totalIVA,
-                        TotalNeto = totalNeto,
-                        TotalExento = totalExento,
-                        TotalTotal = totalTotal,
-                        TipoServicio = (int)ChileSystems.DTE.Engine.Enum.IndicadorServicio.IndicadorServicioEnum.BoletaVentasYServicios
-                    }
-                }
-            });
-
-            /*Se agregan los dtes del libro*/
-            libro.EnvioLibro.Detalles = new List<ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Detalle>();
-            foreach (var dte in dtes)
-                libro.EnvioLibro.Detalles.Add(new ChileSystems.DTE.Engine.InformacionElectronica.LBoletas.Detalle()
-                {
-                    TipoDocumento = (ChileSystems.DTE.Engine.Enum.TipoDTE.TipoDocumentoLibro)dte.Documento.Encabezado.IdentificacionDTE.TipoDTE,
-                    FolioDocumento = dte.Documento.Encabezado.IdentificacionDTE.Folio,
-                    FechaEmision = dte.Documento.Encabezado.IdentificacionDTE.FechaEmision,
-                    MontoExento = dte.Documento.Encabezado.Totales.MontoExento,
-                    MontoTotal = dte.Documento.Encabezado.Totales.MontoTotal,
-                    RutCliente = dte.Documento.Encabezado.Receptor.Rut
-                });
-
-            return libro;
-        }
         #endregion
 
         #region IECV
